@@ -11,7 +11,7 @@ how to judge against it. Nothing customer-specific or price-specific is stored h
 | entry | meta_ad_text, named_service, greeting_only, price_question, job_seeker, returning_customer, existing_booking_support, sales_or_spam, other |
 | service | kitchen, full_house, sofa_mattress_carpet, bathrooms_only, kitchen_plus_bathrooms, refresh_or_partial, commercial, regular_or_maid, not_offered, not_stated, other |
 | furthest_stage | no_bot_reply, greeting_only, language_chosen, service_known, size_known, emirate_known, area_known, price_given, link_sent, customer_said_booked, booking_confirmed, handed_off |
-| outcome | booked, says_will_book, handed_off_waiting_owner, handed_off_owner_replied, silent_after_price, silent_before_price, silent_after_greeting, declined_price, declined_other, service_not_offered, abu_dhabi_al_ain, outside_uae, job_seeker, sales_or_spam, existing_customer_support, ongoing, other |
+| outcome | booked, says_will_book, handed_off_waiting_price, handed_off_answered, silent_after_price, silent_before_price, silent_after_greeting, declined_price, declined_other, service_not_offered, abu_dhabi_al_ain, outside_uae, job_seeker, sales_or_spam, existing_customer_support, ongoing, other |
 | expected_zone / expected_first_price_aed | from the ZONES list and PRICE TABLE in the live instruction |
 | waiting_for_human_now | true when the customer is still waiting for a human answer or price |
 
@@ -23,7 +23,8 @@ how to judge against it. Nothing customer-specific or price-specific is stored h
 | link_missing, link_missing_utm | medium |
 | hallucination (invented facts, numbers, availability, confirmed slots) | high if a customer relies on it |
 | no_reply, slow_reply, misunderstood_customer | high when a buying question was ignored |
-| handoff_missed, handoff_wrong | high when a customer waits for a human who was never called |
+| handoff_missed, handoff_wrong | high when a hand-off line went out without the "Price needed" tag, or the instruction already had the answer |
+| parked (assigned to the owner, or unassigned) | high – nobody answers it; the supervisor moves it back to the AI |
 | greeting_error, language_error, services_list_error, description_error | medium |
 | repeated_message, replied_after_close, followup_error, pushy_or_chasing | medium |
 | money_rule (discount, VAT, "from" price, hourly rate), not_offered_handling, abu_dhabi_rule, job_seeker_rule, sofa_commercial_rule, voice_media_rule | medium |

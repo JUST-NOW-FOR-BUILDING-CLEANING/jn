@@ -1,31 +1,60 @@
-# Nightly review (23:30 UAE) and morning apply (07:45 UAE)
+# Nightly review (23:40 UAE)
 
-## Nightly review
+Once a day: judge every conversation of the day, write the daily report into the owner's doc, and improve the
+bot's instruction where it keeps making the same mistake – automatically, inside the guardrails. Nobody watches
+this run: never ask questions, never message the owner. Read `supervisor/README.md`, `supervisor/playbook.md`
+and `supervisor/rubric.md` first. Same inputs and setup as `ten-minute-check.md` (steps 1 and 3).
 
-1. Same setup as `hourly-check.md` steps 1–2.
-2. Every conversation with activity since 00:00 UAE today: fetch, render and judge exactly as the hourly check does
-   (`--since "<today> 00:00"`), then write one review JSON per conversation into `supervisor/work/audit/`
-   (fields in `supervisor/rubric.md`).
-3. `python3 supervisor/tools/aggregate.py supervisor/work` → funnel, bookings, outcomes, mistakes by type,
-   hourly timeline, reply speed, hand-off response time.
-4. Write the daily report into the supervisor doc (new dated section in the "Daily log" tab):
-   - headline: conversations, prices given, bookings (lifecycle Qualified/Customer or "I booked"), vs yesterday
-   - what won today's bookings (quotes), where leads dropped (stage counts), top 5 mistakes with examples
-   - customers still waiting for a human (contact ids)
-5. **Proposed instruction changes** — for each mistake type seen 3+ times today, or any high-severity one:
-   the exact current wording, the exact new wording, why, and the example contact ids. Add each as an unchecked
-   task under "Pending instruction changes" in the doc, e.g. `- [ ] Change #3: link rule — …`.
-   Never touch prices, zones or policies unless the owner wrote them in a comment.
+## 1. Judge the day
 
-## Morning apply
+1. `search_contacts`: `lastInteractionTime isTimestampAfter <today> 00:00` (Asia/Dubai, limit 100, follow
+   `pagination.next`).
+2. For each contact: `list_messages` (limit 50) → `supervisor/work/raw/<id>.jsonl` → `render.py` with
+   `--since "<today> 00:00"` → judge with `rubric.md` → `supervisor/work/audit/<id>.json` (the rubric's fields
+   and mistakes, each mistake with the bot's exact words and time). With more than 40 conversations, split them
+   across parallel subagents (Agent tool), each writing the same files.
+3. `python3 supervisor/tools/aggregate.py supervisor/work` → the day's numbers.
 
-1. Read "Pending instruction changes" in the doc. Only items the owner ticked (or approved in a comment) count.
-2. `get_ai_agent` → keep the full current `bundle` and `knowledgeSourceIds`.
-3. Save the current instruction as a new dated entry in the doc's "Instruction history" tab **before** changing it.
-4. Apply the approved edits to the instruction text, then `update_ai_agent` with the new `bundle.instruction` and
-   **the full current `knowledgeSourceIds` list** — omitting it deletes every knowledge source of the agent.
-   Change the actions or follow-up settings only if an approved item says so.
-5. `get_ai_agent` again and confirm the new text is live; mark the items done in the doc with the time applied.
-6. The hourly checks of the day compare against the previous day: a new high-severity mistake type after a
-   change, or fewer prices/bookings per 10 conversations over 6+ hours, goes into the alert with a one-line
-   rollback proposal (restore the saved version from "Instruction history").
+## 2. Daily report → the doc's "Daily reports" tab (newest on top)
+
+- Headline: conversations, new leads, prices given, bookings (lifecycle Qualified/Customer or "I booked") –
+  against yesterday and the baseline in `playbook.md`.
+- What won today's bookings (quote the turning point), where leads dropped (stage counts).
+- Top mistakes with counts and 1–2 contact ids each.
+- What the supervisor did today (from the log tab): replies, corrections, reassignments, escalations.
+- **Price needed** – open sofa / mattress / carpet / curtains / commercial chats and unanswered "let me check"
+  questions: contact id, first name, what they need, waiting since. This list is how the team prices them.
+- Channel problems and anything only the owner can do (e.g. reconnect Instagram) – one line each, no nagging.
+
+## 3. Instruction updates (automatic)
+
+1. Candidates: a mistake type seen 3+ times today, or any high-severity one, that the current wording causes or
+   fails to prevent. One edit per cause.
+2. For each, write the smallest edit that fixes it into `supervisor/work/edits.json` as
+   `{"old": <exact text, occurring once>, "new": <text>, "why": <mistake type, count, example contact ids>}`.
+   Prefer adding one line or one example next to the rule it sharpens; keep the instruction's style (short
+   points, English + Arabic versions of customer-facing lines).
+3. Never: prices, packages, zones, TERMS AND POLICY, the booking link, the banned numbers, the no-assign rule,
+   the owner's facts; never delete a rule unless it contradicts another; at most 5 edits a night.
+   `agent.py patch` enforces most of this – if it refuses an edit, drop that edit.
+4. Save the current instruction first: a new dated entry in the doc's "Instruction history" tab (time, reason,
+   the full current text in a code block).
+5. `python3 supervisor/tools/agent.py patch supervisor/work/instruction.txt supervisor/work/edits.json --out supervisor/work/instruction.new.txt`
+6. `get_ai_agent` → current `knowledgeSourceIds`. `update_ai_agent` with `bundle.instruction` = the full text of
+   `instruction.new.txt`, `bundle.description` = the current description + " <DD Mon HH:MM>: <one line>", and
+   `knowledgeSourceIds` = that exact list (omitting it deletes every knowledge source).
+7. Verify: `list_ai_agents` → `python3 supervisor/tools/agent.py verify <dump> --agent AI_AGENT --expected supervisor/work/instruction.new.txt`
+   must print OK. If not, send again once; still not → restore the saved version the same way and escalate.
+8. Add "Instruction changes" to the daily report: each edit, why, the example contact ids.
+
+## 4. Regression check (yesterday's changes)
+
+Compare today with the three days before: prices given per 10 new chats, bookings, mistakes per 100 chats, and
+the mistake type each change targeted. Roll a change back (reverse edit, same steps 4–7) when the targeted type
+did not drop, a new high-severity mistake traces to the new wording, or prices per 10 chats fell by more than a
+quarter on 40+ chats. Log every rollback in the report. Unsure → escalate instead of guessing.
+
+## 5. Escalate
+
+As in `ten-minute-check.md` step 7: anything the report shows that needs deeper work (a sudden drop, a new kind
+of failure, a change that could not be verified).

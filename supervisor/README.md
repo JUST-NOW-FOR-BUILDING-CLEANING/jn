@@ -1,65 +1,87 @@
 # Just Now bot supervisor
 
 A Claude-run supervisor that sits beside the respond.io AI agent all day, the way a team lead would: it reads
-every conversation, catches mistakes, makes sure no customer is left without a reply, hands customers to a person
-when needed, and turns repeated mistakes into instruction updates that the owner approves.
+every new conversation, answers customers the bot left waiting, corrects wrong replies directly to the customer,
+keeps every conversation with the AI, and turns repeated mistakes into instruction updates. It works without
+asking the owner anything; problems it cannot solve alone go to Claude (the escalation routine), not to the owner.
+
+## Standing orders from the owner (28 Sep 2026)
+
+1. **Never assign anything to the owner.** Every conversation stays with, or is moved back to, the AI agent.
+   The agent's `assignConversation` action stays disabled.
+2. **Reply to every customer who needs a reply**, and when the bot said something wrong, **send the correction to
+   the customer** – no approval step.
+3. **Update the bot's instructions** when a mistake repeats – automatically, with the guardrails below.
+4. **Alerts go to Claude, not to the owner.** Anything the runs cannot fix is escalated to the Claude escalation
+   routine, which investigates and fixes it.
+5. Exception – prices only a person can give: sofa / mattress / carpet / curtain photos and commercial places
+   (office, shop, restaurant, salon). The bot asks for the photos or video, tags the conversation
+   **"Price needed"** and keeps it; nothing is assigned. The supervisor never invents these prices; the open ones
+   are listed in the daily report so the team can price them from the tag.
 
 ## How it works
 
 ```
  customers ──► respond.io AI agent ("Just Now update") ──► booking page
                     ▲            │
-                    │            ▼
-     approved       │     every 10 min  SAFETY NET      customer waiting 10+ min → assign to owner + alert
-     instruction    │     every hour    HOURLY CHECK    wrong price / invented fact / channel down → comment,
-     changes        │                                   correction, assign, alert; everything else → log
-                    │     23:30         NIGHTLY REVIEW  daily report + proposed instruction changes
-                    └──── 07:45         MORNING APPLY   applies only the changes the owner ticked
+   nightly          │            ▼
+   instruction      │   every 10 min  TEN-MINUTE CHECK   answer waiting customers · correct wrong replies ·
+   updates          │                                    move chats back to the AI · guard the no-assign rule
+   (guarded)        │   23:40         NIGHTLY REVIEW     daily report · instruction updates · regression rollback
+                    └── anytime       ESCALATION         Claude session with the full history fixes what the
+                                                         runs could not (prompt overwritten, channel down, …)
 ```
 
-| Loop | When (UAE) | Runs on | Prompt |
-| --- | --- | --- | --- |
-| Safety net | every 10 min, 08:00–21:00 | Make.com scenario (or a sub-hourly Claude routine) | `routines/safety-net.md` |
-| Hourly check | every hour, 08:00–23:00 | Claude routine, fresh session, respond.io connector | `routines/hourly-check.md` |
-| Nightly review | 23:30 | Claude routine | `routines/nightly-review.md` |
-| Morning apply | 07:45 | Claude routine | `routines/nightly-review.md` (second half) |
+| Run | When (UAE, GST = UTC+4) | Prompt |
+| --- | --- | --- |
+| Ten-minute check | every 10 min, all day | `routines/ten-minute-check.md` |
+| Nightly review | 23:40 | `routines/nightly-review.md` |
+| Escalation | when a run calls it | `routines/escalation.md` |
 
-The owner's control panel is a private Claude doc (report, daily log, pending instruction changes to tick,
-instruction history). Nothing customer-related is stored in this repository — **this repository is public**.
+Each scheduled run is a fresh Claude session with the respond.io connector. It fetches this branch, reads these
+files, reads the bot's **live** instruction (the single source of truth for prices, zones and wording), does its
+job and ends. Quiet runs end after one search.
 
-## Rollout
+## Memory
 
-| Phase | Days | The supervisor may | Owner does |
-| --- | --- | --- | --- |
-| 1 Watch | 1–2 | read, comment, alert; propose instruction changes | checks the alerts and comments are right; ticks changes |
-| 2 Assist | 3–7 | also assign waiting customers to the owner | answers assigned customers; ticks changes |
-| 3 Fix | week 2+ | also send the pre-approved corrections in `routines/corrections.md` | reviews the nightly report |
+| What | Where |
+| --- | --- |
+| Prices, zones, policies, wording | the live agent instruction (`get_ai_agent`), parsed by `tools/extract_rules.py` every run |
+| How the business works, what wins and loses bookings, known failure modes | `playbook.md` |
+| How to judge a conversation | `rubric.md` |
+| What to send when correcting | `routines/corrections.md` |
+| What was already done in a conversation | the conversation itself (supervisor messages are visible in `list_messages`) and the doc's "Supervisor log" tab |
+| Daily reports, instruction history (every version before a change), open "Price needed" list | the owner's private Claude doc |
 
-The supervisor never changes prices, zones or policies on its own, never closes or deletes anything, and never
-edits the AI agent outside the morning apply step. Every instruction change is saved to the history first, and
-`update_ai_agent` is always sent with the agent's full `knowledgeSourceIds` list (omitting it wipes the agent's
-knowledge sources).
+**This repository is public**: no customer names, numbers, messages or prompt text are ever committed here. Working
+files go to `supervisor/work/` (git-ignored).
+
+## Guardrails
+
+- Never assign to the owner or anyone else except the AI agent; never close, delete, block or merge contacts.
+- Never invent a price, a slot, an address or a confirmation. Prices come only from the live PRICE TABLE.
+- Never send a price correction that raises the price the customer was given – log it instead.
+- At most one correction per conversation per day; never to a customer who declined or said thank you.
+- WhatsApp free text only within 24 h of the customer's last message; outside it only the approved
+  `follow_up` template, and only between 09:00 and 21:00.
+- Between 23:00 and 08:00 only answer customers whose last message is less than 30 minutes old.
+- Instruction changes: only through `tools/patch_instruction.py` (exact, single-match edits; the PRICE TABLE,
+  ZONES, TERMS AND POLICY, prices, links and the no-assign rule are protected), the previous version saved first,
+  `update_ai_agent` always with the full `knowledgeSourceIds` list (omitting it wipes the knowledge sources), the
+  saved result verified, at most 5 edits a night, rolled back if the next day gets worse.
 
 ## Tools
 
 | File | What it does |
 | --- | --- |
-| `tools/extract_rules.py` | pulls the PRICE TABLE, ZONES, banned numbers and booking link out of the live agent instruction → `rules.json` |
-| `tools/render.py` | one conversation → transcript in UAE time + automatic checks (reply delays, unanswered tail, prices vs table, booking link, markdown, repeats, failed deliveries) |
-| `tools/aggregate.py` | all reviews of a day → funnel, bookings, outcomes, mistakes, hourly timeline, before/after splits |
-| `rubric.md` | how each conversation is judged; the mistake types |
-| `tools/config.example.json` | ids and thresholds; copy to `config.json` (git-ignored) |
+| `tools/extract_rules.py` | PRICE TABLE, ZONES, banned numbers and booking link from the live instruction → `rules.json` |
+| `tools/render.py` | one conversation → transcript in UAE time + automatic checks (unanswered tail, reply delays, prices vs table, booking link, markdown, repeats, failed deliveries) |
+| `tools/patch_instruction.py` | applies reviewed edits to the instruction with the protections above; verifies the saved version |
+| `tools/aggregate.py` | a day of reviews → funnel, bookings, outcomes, mistakes, hourly timeline, before/after splits |
+| `tools/config.example.json` | ids and thresholds; each run writes `work/config.json` from it |
 
-## Setting it up
-
-1. Make this repository private, or move `supervisor/` to a private one (the routines write working files).
-2. Create the routines (Claude Code on the web → Routines, or ask Claude in this repo): hourly check, nightly
-   review, morning apply — each "new session per run", with the respond.io connector attached, `PHASE 1`.
-3. Build the Make.com safety-net scenario from `routines/safety-net.md` (or a sub-hourly routine if available).
-4. After two days in phase 1, move to phase 2 by editing the routine prompt.
-
-## Daily numbers it tracks
+## Daily numbers
 
 Conversations, % answering the first reply, % reaching a price, bookings (lifecycle Qualified/Customer or
-"I booked"), % silent after price, bot reply time, customers left waiting, owner reply time on hand-offs,
-wrong prices, mistakes per 100 conversations by type, failed deliveries per channel.
+"I booked"), % silent after a price, bot reply time, customers the supervisor had to answer, corrections sent,
+wrong prices, mistakes per 100 conversations by type, failed deliveries per channel, open "Price needed" chats.

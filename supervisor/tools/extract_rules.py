@@ -13,7 +13,8 @@ import sys
 ROW = re.compile(r"^-\s*(?P<row>.+?),\s*zone\s+(?P<zone>[A-E]):\s*(?P<pkgs>.+)$", re.I)
 PKG = re.compile(r"(?P<cleaners>\d+)\s*cleaners?\s*x\s*(?P<hours>\d+)\s*h\s*=\s*(?P<aed>\d[\d,]*)", re.I)
 EMIRATE = re.compile(r"^-\s*(?P<emirate>Dubai|Sharjah|Ajman|Umm Al Quwain|Ras Al Khaimah|Fujairah):\s*default zone\s+(?P<default>[A-E])", re.I)
-ZONE_LIST = re.compile(r"Zone\s+(?P<zone>[A-E]):\s*(?P<areas>[^.]+)\.")
+# a zone list may carry a note before the colon, e.g. "Zone E (far from our base – Dubai default price): Al Suyoh, ..."
+ZONE_LIST = re.compile(r"Zone\s+(?P<zone>[A-E])(?:\s*\([^)]*\))?:\s*(?P<areas>[^.]+)\.")
 
 
 def row_key(name):
@@ -69,4 +70,7 @@ if __name__ == "__main__":
     rules = extract(src)
     if not rules["prices"]:
         sys.exit("no PRICE TABLE rows found - has the prompt format changed?")
+    empty = [em for em, z in rules["zones"].items() if not z["areas"]]
+    if len(rules["zones"]) < 6 or empty:
+        sys.exit(f"ZONES not parsed for {empty or 'some emirates'} - has the prompt format changed?")
     json.dump(rules, sys.stdout, ensure_ascii=False, indent=1)
