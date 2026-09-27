@@ -25,7 +25,7 @@ asking the owner anything; problems it cannot solve alone go to Claude (the esca
  customers ──► respond.io AI agent ("Just Now update") ──► booking page
                     ▲            │
    nightly          │            ▼
-   instruction      │   every 10 min  TEN-MINUTE CHECK   answer waiting customers · correct wrong replies ·
+   instruction      │   every hour    SUPERVISOR CHECK   answer waiting customers · correct wrong replies ·
    updates          │                                    move chats back to the AI · guard the no-assign rule
    (guarded)        │   23:40         NIGHTLY REVIEW     daily report · instruction updates · regression rollback
                     └── anytime       ESCALATION         Claude session with the full history fixes what the
@@ -34,7 +34,7 @@ asking the owner anything; problems it cannot solve alone go to Claude (the esca
 
 | Run | When (UAE, GST = UTC+4) | Prompt |
 | --- | --- | --- |
-| Ten-minute check | every 10 min, all day | `routines/ten-minute-check.md` |
+| Supervisor check | every hour, all day (the shortest interval routines allow here; every 10 min if the plan allows) | `routines/check.md` |
 | Nightly review | 23:40 | `routines/nightly-review.md` |
 | Escalation | when a run calls it | `routines/escalation.md` |
 
@@ -64,7 +64,7 @@ files go to `supervisor/work/` (git-ignored).
 - At most one correction per conversation per day; never to a customer who declined or said thank you.
 - WhatsApp free text only within 24 h of the customer's last message; outside it only the approved
   `follow_up` template, and only between 09:00 and 21:00.
-- Between 23:00 and 08:00 only answer customers whose last message is less than 30 minutes old.
+- Between 23:00 and 08:00 only answer customers whose last message is less than 75 minutes old.
 - Instruction changes: only through `tools/patch_instruction.py` (exact, single-match edits; the PRICE TABLE,
   ZONES, TERMS AND POLICY, prices, links and the no-assign rule are protected), the previous version saved first,
   `update_ai_agent` always with the full `knowledgeSourceIds` list (omitting it wipes the knowledge sources), the

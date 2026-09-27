@@ -6,4 +6,4 @@
 
 ## Supervisor
 
-- `supervisor/` – the all-day supervisor for the respond.io AI agent: the owner's standing orders, how each conversation is judged, the scheduled runs (every 10 minutes, nightly, escalation) and the helper scripts they use. See `supervisor/README.md`.
+- `supervisor/` – the all-day supervisor for the respond.io AI agent: the owner's standing orders, how each conversation is judged, the scheduled runs (hourly check, nightly review, escalation) and the helper scripts they use. See `supervisor/README.md`.

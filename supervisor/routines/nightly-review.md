@@ -3,7 +3,7 @@
 Once a day: judge every conversation of the day, write the daily report into the owner's doc, and improve the
 bot's instruction where it keeps making the same mistake – automatically, inside the guardrails. Nobody watches
 this run: never ask questions, never message the owner. Read `supervisor/README.md`, `supervisor/playbook.md`
-and `supervisor/rubric.md` first. Same inputs and setup as `ten-minute-check.md` (steps 1 and 3).
+and `supervisor/rubric.md` first. Same inputs and setup as `check.md` (steps 1 and 3).
 
 ## 1. Judge the day
 
@@ -56,5 +56,5 @@ quarter on 40+ chats. Log every rollback in the report. Unsure → escalate inst
 
 ## 5. Escalate
 
-As in `ten-minute-check.md` step 7: anything the report shows that needs deeper work (a sudden drop, a new kind
+As in `check.md` step 7: anything the report shows that needs deeper work (a sudden drop, a new kind
 of failure, a change that could not be verified).

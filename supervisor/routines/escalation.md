@@ -1,6 +1,6 @@
 # Escalation (when a scheduled run calls for help)
 
-The owner asked for alerts to go to Claude, not to him. The ten-minute check and the nightly review call the
+The owner asked for alerts to go to Claude, not to him. The hourly check and the nightly review call the
 escalation routine (`fire_trigger` with a short text) when they meet something they must not or cannot fix
 alone. The escalation session is a Claude session with the full history of this project; it reads the text,
 investigates in respond.io and fixes what can be fixed.
