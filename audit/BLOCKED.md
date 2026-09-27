@@ -1,0 +1,1 @@
+Audit blocked: https://www.justnow.life (and justnow.life) is still denied by the environment network policy (proxy CONNECT returned 403). Fix: cloud environment menu → Edit → Network access → add justnow.life and www.justnow.life, then re-run the audit.
