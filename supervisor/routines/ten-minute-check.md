@@ -22,8 +22,9 @@ and `ESCALATION` (the escalation routine's trigger id).
 
 `search_contacts` (timezone `Asia/Dubai`, `search: ""`, limit 100, follow `pagination.next`):
 - every run: `lastInteractionTime isTimestampAfter <NOW − 30 min>`;
-- when the minute of NOW is 00–09 (once an hour) also: `assigneeUserId isEqualTo OWNER` + `status isEqualTo open`,
-  and `assigneeUserId isEqualTo null` + `status isEqualTo open`.
+- once an hour between 09:00 and 21:00 (the run whose minute is 00–09) also: `assigneeUserId isEqualTo OWNER` +
+  `status isEqualTo open`, and `assigneeUserId isEqualTo null` + `status isEqualTo open` – conversations parked
+  where nobody answers them.
 
 Drop closed and blocked contacts. **Nothing left → end the run now** with the single line "quiet run" (no log,
 no doc write).
