@@ -1,0 +1,272 @@
+<title>Just Now Google Profile Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #EEF3F4; --surface: #FFFFFF; --ink: #13232B; --muted: #55686F; --line: #D3DEE1;
+    --accent: #0E7C86; --accent-ink: #FFFFFF; --accent-soft: #D7EEEF;
+    --sign: #F2B33D; --sign-ink: #1D1602; --todo: #B4561B; --todo-soft: #FBEADF;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #0D171B; --surface: #15232A; --ink: #E4EEF0; --muted: #93A8AE; --line: #27393F;
+      --accent: #3FB8C1; --accent-ink: #062024; --accent-soft: #173A3F; --todo: #F0A070; --todo-soft: #3A2419;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #0D171B; --surface: #15232A; --ink: #E4EEF0; --muted: #93A8AE; --line: #27393F;
+    --accent: #3FB8C1; --accent-ink: #062024; --accent-soft: #173A3F; --todo: #F0A070; --todo-soft: #3A2419;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--ground); color: var(--ink); font: 16px/1.55 var(--body); padding: 0 16px; padding-block: 28px 64px; }
+  .wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 28px; }
+  header { display: grid; gap: 8px; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font: 800 clamp(28px, 5vw, 40px)/1.05 var(--display); margin: 0; text-wrap: balance; }
+  h2 { font: 700 22px/1.2 var(--display); margin: 0; text-wrap: balance; }
+  h3 { font: 600 16px/1.3 var(--body); margin: 0; }
+  p { margin: 0; max-width: 68ch; }
+  .muted { color: var(--muted); }
+  section { display: grid; gap: 14px; padding-top: 22px; border-top: 1.5px solid var(--line); }
+  .where { font-size: 14px; color: var(--muted); }
+  .where b { color: var(--ink); font-weight: 600; }
+
+  .progress { display: flex; flex-wrap: wrap; gap: 8px; }
+  .progress label {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    padding: 7px 12px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--line); font-size: 14px;
+  }
+  .progress input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+  .progress label:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
+  .bar { height: 10px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--line); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .pct { font: 800 20px var(--display); font-variant-numeric: tabular-nums; }
+
+  .copy {
+    background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px;
+    display: grid; gap: 0; overflow: hidden;
+  }
+  .copy .head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1.5px solid var(--line); }
+  .copy .head span { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .copy .text { padding: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  button {
+    font: 600 14px var(--body); cursor: pointer; border-radius: 8px; padding: 7px 12px;
+    background: var(--accent); color: var(--accent-ink); border: 0; flex: none;
+  }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .todo { background: var(--todo-soft); color: var(--todo); font-weight: 600; padding: 0 4px; border-radius: 4px; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .tablewrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--surface); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .warn { background: var(--sign); color: var(--sign-ink); padding: 14px 16px; border-radius: 10px; display: grid; gap: 4px; }
+  .warn b { font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Just Now For Building Cleaning Services LLC</span>
+    <h1>Google Business Profile: everything to reach 100%</h1>
+    <p class="muted">Open <b>business.google.com</b>, choose your profile, press <b>Edit profile</b>, and paste each block below into the matching field. Tick each item as you finish it. Anything marked <span class="todo">like this</span> needs your real details.</p>
+  </header>
+
+  <section>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2>Your checklist</h2><span class="pct" id="pct">0%</span></div>
+    <div class="bar"><i id="barfill"></i></div>
+    <div class="progress" id="checks"></div>
+    <p class="where">Your ticks are saved in this browser only.</p>
+  </section>
+
+  <div class="warn">
+    <b>Fix first: WhatsApp link</b>
+    <span>Google shows your booking link as <code>wa.me/justnow.life</code>. That link does not open a chat. Use <code>https://wa.me/971585658859</code> (or the other number, whichever has WhatsApp) on your website and in Google.</span>
+  </div>
+
+  <section id="s-name">
+    <h2>1. Business name</h2>
+    <p class="where">Edit profile → <b>Business name</b></p>
+    <div class="copy"><div class="head"><span></span><button data-copy>Copy</button></div><div class="text">Just Now Building Cleaning Services</div></div>
+    <p class="muted">Google only allows the real business name. Do not add words like "Best" or "Dubai", or the profile can be suspended.</p>
+  </section>
+
+  <section id="s-cat">
+    <h2>2. Categories</h2>
+    <p class="where">Edit profile → <b>Business category</b>. One primary, then add the others.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Type</th><th>Category (type exactly)</th></tr>
+      <tr><td>Primary</td><td>House cleaning service</td></tr>
+      <tr><td>Additional</td><td>Commercial cleaning service</td></tr>
+      <tr><td>Additional</td><td>Upholstery cleaning service</td></tr>
+      <tr><td>Additional</td><td>Carpet cleaning service</td></tr>
+      <tr><td>Additional</td><td>Window cleaning service</td></tr>
+      <tr><td>Additional</td><td>Janitorial service</td></tr>
+    </table></div>
+  </section>
+
+  <section id="s-desc">
+    <h2>3. Business description</h2>
+    <p class="where">Edit profile → <b>Description</b> (max 750 characters)</p>
+    <div class="copy"><div class="head"><span data-count></span><button data-copy>Copy</button></div><div class="text">Just Now is a professional deep cleaning company serving Dubai, Sharjah and Ajman. We use steam cleaning technology to sanitise homes, offices and buildings without harsh chemicals. Our trained female cleaning team handles full home deep cleaning, kitchen degreasing, bathroom sanitising, sofa, mattress and carpet cleaning, window cleaning, move-in and move-out cleaning, and after-construction cleaning. We also clean offices and building common areas on weekly or monthly contracts. We bring our own equipment and eco-friendly products, arrive on time, and check every room before we leave. Book in minutes on WhatsApp or through our website and get a clear price before we start.</div></div>
+  </section>
+
+  <section id="s-contact">
+    <h2>4. Contact details</h2>
+    <p class="where">Edit profile → <b>Contact</b></p>
+    <div class="grid2">
+      <div class="copy"><div class="head"><span>Primary phone</span><button data-copy>Copy</button></div><div class="text">+971 58 565 8859</div></div>
+      <div class="copy"><div class="head"><span>Additional phone</span><button data-copy>Copy</button></div><div class="text">+971 50 767 7282</div></div>
+      <div class="copy"><div class="head"><span>Website</span><button data-copy>Copy</button></div><div class="text">https://www.justnow.life/</div></div>
+      <div class="copy"><div class="head"><span>Booking link (Appointments)</span><button data-copy>Copy</button></div><div class="text">https://wa.me/971585658859</div></div>
+    </div>
+    <p class="muted">Also turn on <b>Chat</b> (Edit profile → Contact → Chat) and connect WhatsApp, so customers can message you straight from Google search.</p>
+  </section>
+
+  <section id="s-area">
+    <h2>5. Location and service areas</h2>
+    <p class="where">Edit profile → <b>Location</b> → Service area. Add each one separately.</p>
+    <div class="copy"><div class="head"><span>Service areas</span><button data-copy>Copy</button></div><div class="text">Dubai
+Sharjah
+Ajman</div></div>
+    <p class="muted">If customers do not visit your office, hide the street address and keep only the service areas. If you have an office they can visit, add the full address with the building name.</p>
+  </section>
+
+  <section id="s-hours">
+    <h2>6. Hours</h2>
+    <p class="where">Edit profile → <b>Hours</b>. Then add <b>More hours</b> → "Online service hours" with the same times.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Day</th><th>Hours</th></tr>
+      <tr><td>Saturday to Thursday</td><td><span class="todo">e.g. 8:00 AM – 8:00 PM</span></td></tr>
+      <tr><td>Friday</td><td><span class="todo">your Friday hours or Closed</span></td></tr>
+    </table></div>
+    <p class="muted">Also add <b>Special hours</b> for Eid and UAE National Day each year. Google counts this toward the score.</p>
+  </section>
+
+  <section id="s-services">
+    <h2>7. Services</h2>
+    <p class="where">Edit profile → <b>Services</b>. Add each as a custom service with a price. Max 300 characters per description.</p>
+    <div id="services" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="s-attr">
+    <h2>8. Attributes and opening date</h2>
+    <p class="where">Edit profile → <b>More</b></p>
+    <ul>
+      <li><b>Identifies as women-owned</b>: turn on only if true.</li>
+      <li><b>Online appointments</b>: Yes. <b>Onsite services</b>: Yes.</li>
+      <li><b>Payments</b>: tick every method you accept (cash, cards, bank transfer, Apple Pay).</li>
+      <li><b>Opening date</b>: <span class="todo">the month and year from your trade licence</span>.</li>
+      <li><b>Language</b>: Arabic, English, and any other language your team speaks.</li>
+    </ul>
+  </section>
+
+  <section id="s-photos">
+    <h2>9. Photos and video</h2>
+    <p class="where">Your profile → <b>Add photo</b>. Take new photos on a phone in good daylight. No stock photos.</p>
+    <ul>
+      <li><b>Logo</b>: square, at least 250 × 250 px.</li>
+      <li><b>Cover photo</b>: your team in uniform with the steam machine, 1080 × 608 px.</li>
+      <li><b>At least 10 work photos</b>: before-and-after of kitchens, sofas, bathrooms and carpets. Name each file like <code>sofa-steam-cleaning-sharjah.jpg</code> before uploading.</li>
+      <li><b>3 team photos</b> and <b>1 van or equipment photo</b>.</li>
+      <li><b>1 short video</b> (under 30 seconds): steam cleaning a sofa or kitchen.</li>
+      <li>Add 3 new photos every week. Profiles that keep adding photos rank higher.</li>
+    </ul>
+  </section>
+
+  <section id="s-posts">
+    <h2>10. First Google posts</h2>
+    <p class="where">Your profile → <b>Add update</b>. Post one a week. Use the "Book" or "Call" button on each post.</p>
+    <div class="copy"><div class="head"><span data-count></span><button data-copy>Copy</button></div><div class="text">Steam deep cleaning is now booking in Dubai, Sharjah and Ajman. Our female team sanitises kitchens, bathrooms, sofas and mattresses with high-temperature steam and no harsh chemicals. Message us on WhatsApp for a price in minutes.</div></div>
+    <div class="copy"><div class="head"><span data-count></span><button data-copy>Copy</button></div><div class="text">Moving in or out? Our move-in and move-out deep clean covers every cupboard, appliance, window and floor so you get your deposit back or start fresh. Serving Dubai, Sharjah and Ajman. Book on WhatsApp.</div></div>
+    <div class="copy"><div class="head"><span data-count></span><button data-copy>Copy</button></div><div class="text">Office and building managers: we offer weekly and monthly cleaning contracts for offices, lobbies, stairs and lifts across Dubai, Sharjah and Ajman. Ask us for a free site visit and quote.</div></div>
+  </section>
+
+  <section id="s-qa">
+    <h2>11. Questions and answers</h2>
+    <p class="where">Search your business on Google → <b>Ask a question</b>. Post the question, then answer it from your business account.</p>
+    <div id="qa" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="s-reviews">
+    <h2>12. Reviews</h2>
+    <p class="where">Your profile → <b>Ask for reviews</b> → copy your review link.</p>
+    <p>Send this message to every customer after the job. Reply to every review, good or bad, within 2 days.</p>
+    <div class="copy"><div class="head"><span></span><button data-copy>Copy</button></div><div class="text">Thank you for choosing Just Now! If you are happy with our cleaning, could you leave us a quick Google review? It helps our small team a lot: <span class="todo">paste your review link here</span></div></div>
+  </section>
+
+  <section id="s-verify">
+    <h2>13. Verification</h2>
+    <p>If your profile shows <b>Verify</b> or <b>Get verified</b> anywhere, finish that first. An unverified profile does not show in search, no matter what else you fill in. Google usually asks for a short video of your signboard or trade licence and equipment.</p>
+  </section>
+</div>
+
+<script>
+  const SERVICES = [
+    ["Full home steam deep cleaning", "Top-to-bottom deep clean of every room with high-temperature steam: floors, bathrooms, kitchen, windows inside, doors and switches. No harsh chemicals. Female team. Dubai, Sharjah and Ajman."],
+    ["Kitchen deep cleaning", "Steam degreasing of cabinets inside and out, hob, oven, hood, fridge, tiles and sink. Removes built-up grease and bacteria safely around food areas."],
+    ["Bathroom deep cleaning", "Steam sanitising of toilets, showers, tiles, grout and fittings. Removes limescale, mould and soap scum."],
+    ["Sofa and upholstery cleaning", "Steam and extraction cleaning for fabric sofas, chairs and cushions. Removes stains, dust mites and odours. Dry in a few hours."],
+    ["Mattress cleaning", "Steam sanitising and vacuum extraction to remove dust mites, sweat stains and allergens from mattresses."],
+    ["Carpet and rug cleaning", "Deep shampoo and steam cleaning for carpets and rugs at your home or office."],
+    ["Move-in / move-out cleaning", "Full deep clean of an empty apartment or villa before you move in or hand back the keys, including cupboards, appliances and windows."],
+    ["After-construction cleaning", "Removal of dust, paint, cement and debris after building or renovation work, ready for handover."],
+    ["Office cleaning", "Daily, weekly or monthly office cleaning: desks, floors, kitchens and washrooms. Contracts available."],
+    ["Building common area cleaning", "Cleaning of lobbies, corridors, stairs, lifts and parking areas for residential and commercial buildings on contract."],
+    ["Window cleaning", "Inside and outside window and glass cleaning for apartments, villas and offices (ground and reachable floors)."],
+  ];
+  const QA = [
+    ["Which areas do you cover?", "We clean homes, offices and buildings across Dubai, Sharjah and Ajman."],
+    ["Do you bring your own equipment and products?", "Yes. We bring steam machines, vacuums and eco-friendly cleaning products. You do not need to provide anything."],
+    ["Is steam cleaning safe for children and pets?", "Yes. Steam cleans and sanitises with heat, so we use very few chemicals. It is safe once surfaces are dry."],
+    ["Are your cleaners female?", "Yes, our cleaning team is female and fully trained."],
+    ["How do I book and how much does it cost?", "Send us a WhatsApp message on +971 58 565 8859 with your area, home size and the service you need. We reply with a clear price before we start."],
+    ["How long does a deep clean take?", "A 1-bedroom apartment usually takes 4 to 5 hours with 2 cleaners. Larger homes take longer or we send a bigger team."],
+  ];
+  const CHECKS = ["Verified", "Name", "Categories", "Description", "Phones & website", "Booking link", "Chat on", "Service areas", "Hours", "Services & prices", "Attributes", "Opening date", "Logo & cover", "10+ photos", "Video", "First post", "Q&A", "Review link sent"];
+
+  const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+  document.getElementById("services").innerHTML = SERVICES.map(([n, d]) => `
+    <div class="copy"><div class="head"><h3>${esc(n)}</h3><button data-copy>Copy</button></div>
+    <div class="text">${esc(d)}</div>
+    <div class="text muted" style="padding-top:0">Price: <span class="todo">from AED ___</span></div></div>`).join("");
+  document.getElementById("qa").innerHTML = QA.map(([q, a]) => `
+    <div class="copy"><div class="head"><h3>${esc(q)}</h3><button data-copy>Copy answer</button></div><div class="text">${esc(a)}</div></div>`).join("");
+
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    const n = el.closest(".copy").querySelector(".text").textContent.length;
+    el.textContent = `${n} characters`;
+  });
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-copy]"); if (!b) return;
+    const box = b.closest(".copy").querySelector(".text");
+    const label = b.textContent;
+    const ok = () => { b.textContent = "Copied"; setTimeout(() => (b.textContent = label), 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(box); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(box.textContent.trim()).then(ok, fallback); } catch { fallback(); }
+  });
+
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem("gbp-checks") || "{}"); } catch {}
+  const wrap = document.getElementById("checks");
+  wrap.innerHTML = CHECKS.map((c, i) => `<label><input type="checkbox" id="ck-${i}" ${saved[i] ? "checked" : ""}>${c}</label>`).join("");
+  function update() {
+    const boxes = [...wrap.querySelectorAll("input")];
+    const done = boxes.filter((b) => b.checked).length;
+    const pct = Math.round((done / boxes.length) * 100);
+    document.getElementById("pct").textContent = pct + "%";
+    document.getElementById("barfill").style.width = pct + "%";
+    const state = {}; boxes.forEach((b, i) => { if (b.checked) state[i] = 1; });
+    try { localStorage.setItem("gbp-checks", JSON.stringify(state)); } catch {}
+  }
+  wrap.addEventListener("change", update);
+  update();
+</script>
