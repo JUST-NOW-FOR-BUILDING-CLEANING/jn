@@ -1,0 +1,343 @@
+<title>Just Now Quote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #EEF3F4;
+    --surface: #FFFFFF;
+    --ink: #13232B;
+    --muted: #55686F;
+    --line: #D3DEE1;
+    --accent: #0E7C86;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #D7EEEF;
+    --sign: #F2B33D;
+    --sign-ink: #1D1602;
+    --focus: #0E7C86;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #0D171B;
+      --surface: #15232A;
+      --ink: #E4EEF0;
+      --muted: #93A8AE;
+      --line: #27393F;
+      --accent: #3FB8C1;
+      --accent-ink: #062024;
+      --accent-soft: #173A3F;
+      --sign: #F2B33D;
+      --sign-ink: #1D1602;
+      --focus: #3FB8C1;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #0D171B;
+    --surface: #15232A;
+    --ink: #E4EEF0;
+    --muted: #93A8AE;
+    --line: #27393F;
+    --accent: #3FB8C1;
+    --accent-ink: #062024;
+    --accent-soft: #173A3F;
+    --sign: #F2B33D;
+    --sign-ink: #1D1602;
+    --focus: #3FB8C1;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font: 16px/1.5 var(--body);
+    padding: 0 16px;
+    padding-block: 24px 48px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 24px; }
+
+  header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .sign {
+    width: 44px; height: 44px; flex: none;
+    background: var(--sign); color: var(--sign-ink);
+    clip-path: polygon(50% 4%, 96% 92%, 4% 92%);
+    display: grid; place-items: end center;
+    font: 800 20px/1 var(--display); padding-bottom: 7px;
+  }
+  h1 { font: 800 clamp(26px, 5vw, 38px)/1.05 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 2px 0 0; }
+  .demo-tag {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--sign-ink); background: var(--sign); padding: 4px 10px; border-radius: 4px;
+  }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+  @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+
+  form { display: grid; gap: 22px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+  legend, .label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px; padding: 0;
+  }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .choice span {
+    display: grid; gap: 2px; height: 100%;
+    padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 8px;
+    background: var(--surface); cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .choice b { font-weight: 600; }
+  .choice small { color: var(--muted); font-size: 13px; }
+  .choice input:checked + span { border-color: var(--accent); background: var(--accent-soft); }
+  .choice input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .field { display: grid; gap: 6px; }
+  .field label { font-weight: 500; font-size: 14px; }
+  input[type="number"], input[type="text"], input[type="tel"], input[type="date"], select {
+    width: 100%; font: inherit; color: var(--ink);
+    background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px;
+    padding: 10px 12px;
+  }
+  input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip span { display: inline-flex; gap: 6px; padding: 8px 12px; border-radius: 999px; height: auto; }
+  .chip small { font-size: 13px; }
+
+  aside {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px);
+    background: var(--surface); border: 1.5px solid var(--line); border-radius: 12px;
+    padding: 20px; display: grid; gap: 16px;
+  }
+  @media (max-width: 760px) { aside { position: static; } }
+  .total { display: grid; gap: 2px; }
+  .total .amount { font: 800 44px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .total .per { color: var(--muted); font-size: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  td { padding: 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:last-child { text-align: right; white-space: nowrap; padding-left: 12px; }
+  tr.discount td { color: var(--accent); }
+  .hours { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+
+  button {
+    font: 600 16px var(--body); border: 0; border-radius: 8px; cursor: pointer;
+    padding: 13px 16px; background: var(--accent); color: var(--accent-ink);
+  }
+  button.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); padding: 9px 14px; font-size: 14px; }
+
+  .done { display: grid; gap: 10px; }
+  .done h2 { font: 700 20px/1.2 var(--display); margin: 0; }
+  .done pre {
+    margin: 0; white-space: pre-wrap; font: 13px/1.5 ui-monospace, "SFMono-Regular", Menlo, monospace;
+    background: var(--ground); border-radius: 8px; padding: 12px; user-select: all;
+  }
+  .note { font-size: 13px; color: var(--muted); margin: 0; }
+  .err { color: #C0392B; font-size: 14px; margin: 0; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="sign" aria-hidden="true">!</div>
+      <div>
+        <h1>Just Now Building Cleaning</h1>
+        <p class="sub">Get a cleaning price in under a minute.</p>
+      </div>
+    </div>
+    <span class="demo-tag">Example app · sample prices</span>
+  </header>
+
+  <div class="layout">
+    <form id="quote" novalidate>
+      <fieldset>
+        <legend>What needs cleaning?</legend>
+        <div class="services" id="services"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Size of the place</legend>
+        <div class="row">
+          <div class="field">
+            <label for="area">Floor area (m²)</label>
+            <input id="area" type="number" min="10" max="5000" step="5" value="120" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="baths">Bathrooms / toilets</label>
+            <input id="baths" type="number" min="0" max="50" value="2" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="freq">How often?</label>
+            <select id="freq">
+              <option value="once">One time</option>
+              <option value="weekly" selected>Every week (−15%)</option>
+              <option value="biweekly">Every 2 weeks (−10%)</option>
+              <option value="monthly">Every month (−5%)</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Extras</legend>
+        <div class="chips" id="extras"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your details</legend>
+        <div class="row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" autocomplete="name" value="Sara (example)">
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" autocomplete="tel" value="050 123 4567">
+          </div>
+          <div class="field">
+            <label for="date">Preferred date</label>
+            <input id="date" type="date">
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <aside aria-live="polite">
+      <div class="total">
+        <span class="label">Estimated price</span>
+        <span class="amount" id="amount">–</span>
+        <span class="per" id="per"></span>
+      </div>
+      <table><tbody id="breakdown"></tbody></table>
+      <div class="hours"><span>Crew</span><span id="crew"></span></div>
+      <button type="submit" form="quote" id="send">Request this cleaning</button>
+      <p class="err" id="err" hidden></p>
+      <div class="done" id="done" hidden>
+        <h2>Request ready</h2>
+        <pre id="summary"></pre>
+        <button type="button" class="ghost" id="copy">Copy request</button>
+        <p class="note">In the full app this goes straight to your inbox or WhatsApp. In this demo, copy it instead.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+  const CURRENCY = "AED";
+  const SERVICES = [
+    { id: "office",  name: "Office",               note: "Desks, floors, kitchen", perM2: 3.0, perBath: 25 },
+    { id: "home",    name: "Apartment / villa",     note: "Regular home clean",     perM2: 3.5, perBath: 30 },
+    { id: "deep",    name: "Deep clean",            note: "Move-in / move-out",     perM2: 6.0, perBath: 45 },
+    { id: "build",   name: "After construction",    note: "Dust, paint, debris",    perM2: 8.0, perBath: 50 },
+    { id: "common",  name: "Building common areas", note: "Lobby, stairs, lifts",   perM2: 2.5, perBath: 20 },
+  ];
+  const EXTRAS = [
+    { id: "windows", name: "Windows inside", price: 120 },
+    { id: "carpet",  name: "Carpet shampoo",  price: 180 },
+    { id: "kitchen", name: "Oven & fridge",   price: 90 },
+    { id: "balcony", name: "Balcony",         price: 60 },
+    { id: "sofa",    name: "Sofa cleaning",   price: 150 },
+  ];
+  const DISCOUNT = { once: 0, weekly: 0.15, biweekly: 0.10, monthly: 0.05 };
+  const FREQ_LABEL = { once: "one time", weekly: "per visit, weekly", biweekly: "per visit, every 2 weeks", monthly: "per visit, monthly" };
+  const MIN_PRICE = 150;
+
+  const $ = (id) => document.getElementById(id);
+  const money = (n) => `${CURRENCY} ${Math.round(n).toLocaleString()}`;
+
+  $("services").innerHTML = SERVICES.map((s, i) => `
+    <label class="choice">
+      <input type="radio" name="service" id="svc-${s.id}" value="${s.id}" ${i === 1 ? "checked" : ""}>
+      <span><b>${s.name}</b><small>${s.note}</small></span>
+    </label>`).join("");
+  $("extras").innerHTML = EXTRAS.map((e) => `
+    <label class="choice chip">
+      <input type="checkbox" id="ex-${e.id}" value="${e.id}" ${e.id === "windows" ? "checked" : ""}>
+      <span>${e.name} <small>+${e.price}</small></span>
+    </label>`).join("");
+
+  const d = new Date(); d.setDate(d.getDate() + 3);
+  $("date").value = d.toISOString().slice(0, 10);
+  $("date").min = new Date().toISOString().slice(0, 10);
+
+  function compute() {
+    const svc = SERVICES.find((s) => s.id === document.querySelector('input[name="service"]:checked').value);
+    const area = Math.max(0, Number($("area").value) || 0);
+    const baths = Math.max(0, Number($("baths").value) || 0);
+    const freq = $("freq").value;
+    const extras = EXTRAS.filter((e) => $("ex-" + e.id).checked);
+
+    const lines = [
+      [`${svc.name}: ${area} m² × ${svc.perM2}`, area * svc.perM2],
+      [`Bathrooms: ${baths} × ${svc.perBath}`, baths * svc.perBath],
+      ...extras.map((e) => [e.name, e.price]),
+    ];
+    let subtotal = lines.reduce((a, [, v]) => a + v, 0);
+    const rows = [...lines];
+    if (subtotal < MIN_PRICE) { rows.push(["Minimum job charge", MIN_PRICE - subtotal]); subtotal = MIN_PRICE; }
+    const disc = subtotal * DISCOUNT[freq];
+    if (disc) rows.push([`Regular-client discount (${DISCOUNT[freq] * 100}%)`, -disc, true]);
+    const total = subtotal - disc;
+
+    const hours = Math.max(2, Math.ceil((area / 40 + baths * 0.5 + extras.length * 0.5) * (svc.perM2 / 3.5)));
+    const cleaners = hours > 8 ? Math.ceil(hours / 6) : hours > 4 ? 2 : 1;
+    return { svc, area, baths, freq, extras, rows, total, cleaners, onSite: Math.ceil(hours / cleaners) };
+  }
+
+  function render() {
+    const q = compute();
+    $("amount").textContent = money(q.total);
+    $("per").textContent = FREQ_LABEL[q.freq];
+    $("breakdown").innerHTML = q.rows.map(([t, v, isDisc]) =>
+      `<tr class="${isDisc ? "discount" : ""}"><td>${t}</td><td>${v < 0 ? "−" : ""}${money(Math.abs(v))}</td></tr>`).join("");
+    $("crew").textContent = `${q.cleaners} cleaner${q.cleaners > 1 ? "s" : ""}, about ${q.onSite} h on site`;
+    $("done").hidden = true;
+    $("err").hidden = true;
+  }
+
+  $("quote").addEventListener("input", render);
+  $("quote").addEventListener("change", render);
+  $("quote").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const name = $("name").value.trim(), phone = $("phone").value.trim();
+    if (!name || !phone) {
+      $("err").textContent = "Add your name and phone number so we can confirm the booking.";
+      $("err").hidden = false;
+      return;
+    }
+    const q = compute();
+    $("summary").textContent = [
+      `New cleaning request`,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Date: ${$("date").value || "flexible"}`,
+      `Service: ${q.svc.name}, ${q.area} m², ${q.baths} bathrooms`,
+      `Extras: ${q.extras.map((e) => e.name).join(", ") || "none"}`,
+      `Frequency: ${FREQ_LABEL[q.freq]}`,
+      `Estimate: ${money(q.total)}`,
+    ].join("\n");
+    $("err").hidden = true;
+    $("done").hidden = false;
+  });
+  $("copy").addEventListener("click", () => {
+    const text = $("summary").textContent;
+    const done = () => { $("copy").textContent = "Copied"; setTimeout(() => ($("copy").textContent = "Copy request"), 1500); };
+    try {
+      navigator.clipboard.writeText(text).then(done, () => selectSummary());
+    } catch { selectSummary(); }
+  });
+  function selectSummary() {
+    const r = document.createRange(); r.selectNodeContents($("summary"));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+
+  render();
+</script>
