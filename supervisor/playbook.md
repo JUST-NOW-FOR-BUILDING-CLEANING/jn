@@ -49,5 +49,11 @@ judge whether a day, or an instruction change, is better or worse.
 - `list_ai_agents` returns every agent with its instruction (large, usually saved to a file); `get_ai_agent`
   also returns `knowledgeSourceIds`.
 - A message's time = `messageId // 1_000_000` (epoch seconds). UAE time = UTC+4.
+- Moving a conversation to the AI agent does not make it reply by itself (checked 28 Sep: no message after the
+  move); it answers the customer's next message. So when a customer is waiting, send the reply first, then move
+  the conversation.
+- The owner's own replies from the inbox show in `list_messages` as `sender.source = "user"` with his user id.
+- Instagram / Messenger customers usually have no phone number: when those channels are disconnected, nobody can
+  reach them any other way until the owner reconnects (their 24-hour window keeps running meanwhile).
 - Another Claude session may also edit the agent: always read the live version right before changing it, and
   never overwrite someone else's newer changes.
