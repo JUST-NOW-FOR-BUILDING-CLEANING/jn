@@ -27,7 +27,10 @@ check runs hourly).
 `search_contacts` (timezone `Asia/Dubai`, `search: ""`, limit 100, follow `pagination.next`):
 - every run: `lastInteractionTime isTimestampAfter <NOW − LOOKBACK>`;
 - between 09:00 and 21:00 also: `assigneeUserId isEqualTo OWNER` + `status isEqualTo open`, and
-  `assigneeUserId isEqualTo null` + `status isEqualTo open` – conversations parked where nobody answers them.
+  `assigneeUserId doesNotExist` (no `value`) + `status isEqualTo open` – conversations parked where nobody answers
+  them. An open unassigned chat never triggers the "conversation opened" workflow again, so a customer who writes
+  into it is never answered. On 28 Sep this search found 100+ chats parked since 24–26 Sep that earlier runs had
+  missed (they used `isEqualTo null`, which matches nothing). More than 20 → split them across subagents.
 
 Drop closed and blocked contacts. **Nothing left → end the run now** with the single line "quiet run" (no log,
 no doc write).
