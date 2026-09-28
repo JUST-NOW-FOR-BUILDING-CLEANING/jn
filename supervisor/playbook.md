@@ -60,5 +60,9 @@ judge whether a day, or an instruction change, is better or worse.
   the channel and adding it again creates a new channel id and unlinks every existing chat on it (Instagram, 28 Sep):
   those customers can no longer be messaged from respond.io ("Contact couldn't connect to the required channel")
   and reach the bot again only when they write.
+- A template that fails with "WhatsApp Business API: Business eligibility payment issue" means Meta cannot charge
+  the WhatsApp account (card declined, expired or removed): every template fails, and free text within 24 hours
+  still works. Only the owner can fix the payment method. Put it in "Needs the owner" once, don't send more
+  templates, and resend the failed ones once a test template is delivered (first seen 28 Sep between 14:04 and 15:51).
 - Another Claude session may also edit the agent: always read the live version right before changing it, and
   never overwrite someone else's newer changes.
