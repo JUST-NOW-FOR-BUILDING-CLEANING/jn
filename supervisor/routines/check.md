@@ -19,7 +19,7 @@ check runs hourly).
 - `NOW=$(TZ=Asia/Dubai date '+%Y-%m-%d %H:%M')`; work in `supervisor/work/` (git-ignored). Write
   `supervisor/work/config.json` from `supervisor/tools/config.example.json` with `bot_user_ids = [AI_AGENT]`,
   `human_user_ids = [OWNER]` and `channels = CHANNELS`.
-- Load tools: ToolSearch `select:mcp__Respond_io__search_contacts,mcp__Respond_io__list_messages,mcp__Respond_io__get_message,mcp__Respond_io__list_ai_agents,mcp__Respond_io__get_ai_agent,mcp__Respond_io__send_message,mcp__Respond_io__update_conversation_assignee,mcp__Respond_io__update_ai_agent,mcp__Respond_io__list_message_templates`.
+- Load tools: ToolSearch `select:mcp__Respond_io__search_contacts,mcp__Respond_io__list_messages,mcp__Respond_io__get_message,mcp__Respond_io__list_ai_agents,mcp__Respond_io__get_ai_agent,mcp__Respond_io__send_message,mcp__Respond_io__update_conversation_assignee,mcp__Respond_io__update_ai_agent,mcp__Respond_io__list_message_templates,mcp__Respond_io__add_contact_tags`.
   Every respond.io call needs a `context` argument (15–25 words, third person, no personal data).
 
 ## 2. Who needs a look
@@ -69,8 +69,11 @@ A. **Customer waiting.** The customer's last message has no answer after it (`la
      it. If the customer asks for an update and nobody said it yet, send once "Our team is on it and will reply
      here as soon as possible 😊" / "فريقنا يشتغل على طلبك وبيرد عليك هنا بأقرب وقت 😊"; list the chat in the log
      as "price needed".
-   - "Let me check this for you…" hand-offs: answer when `instruction.txt` holds the answer; otherwise leave it,
-     log it as "price needed" (the tag is already on it).
+   - "Let me check this for you…" hand-offs: answer when `instruction.txt` holds the answer; otherwise leave it
+     and log it as "price needed".
+   - Any hand-off line ("Our team will send you…", "Our team will contact you…", "Let me pass this…", "Let me
+     check…") without the "Price needed" tag on the contact: add the tag (`add_contact_tags`). The bot's own tag
+     action did not fire on 27–28 Sep, so the supervisor is the one that tags hand-offs.
 B. **Wrong reply by the bot** since the last run (`LOOKBACK`) – wrong price for the zone or size, a second or third
    package nobody asked for, a banned number, a price without the exact booking link, an invented fact (office
    address, slot, "booking confirmed", same-day after 6 PM), a promise the rules do not allow. → Send the matching
