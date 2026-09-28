@@ -70,3 +70,13 @@ judge whether a day, or an instruction change, is better or worse.
   01:53 copy. It added good rules (team size by home size, the already-booked section) but dropped the day's fixes
   and brought back "assign to Mohammed Bayoumi". It was merged back at 20:41. The hourly check now compares the live
   text with the last approved copy.
+- Voice notes reach the bot as something it can understand: on 28 Sep it answered their content correctly (e.g. "the
+  flat is empty"). The instruction now tells it to answer them and to ask for text only when it cannot understand.
+- The bot's follow-ups run on the platform timer (2 h, then 6 h after the first). The timer restarts after every customer
+  reply, so the same "Are you still with me?" can go out twice in one chat, and nudges can follow "we will book".
+  There are no quiet hours: chats that go quiet after about 18:00 get their second nudge between midnight and 08:00
+  (26–28 Sep: 9% replied within 4 hours at night, 20% by day). Changing this is the owner's call.
+- Hand-offs wait long for a person: median about 14 hours on 28 Sep; one sofa lead hired another company after 24 hours
+  without a price. The daily report's "Price needed" table, with each customer's reply-by time, is how the team catches up.
+- There is no price row for apartments with 4 or more bedrooms: the bot says "let me check" and tags the chat until
+  the owner picks one.

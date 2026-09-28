@@ -40,7 +40,9 @@ and `supervisor/rubric.md` first. Same inputs and setup as `check.md` (steps 1 a
    contradicts another; at most 5 edits a night.
    `agent.py patch` enforces most of this – if it refuses an edit, drop that edit.
 4. Save the current instruction first: a new dated entry in the doc's "Instruction history" tab (time, reason,
-   the full current text in a code block).
+   the full current text in a code block). The doc takes at most 32 KB per write and the instruction is larger, so
+   split it at a line boundary into two code blocks ("Part 1 of 2", "Part 2 of 2"; restore = part 1 + one line break +
+   part 2) and check both parts arrived.
 5. `python3 supervisor/tools/agent.py patch supervisor/work/instruction.txt supervisor/work/edits.json --out supervisor/work/instruction.new.txt`
 6. `get_ai_agent` → current `knowledgeSourceIds`. `update_ai_agent` with `bundle.instruction` = the full text of
    `instruction.new.txt`, `bundle.description` = the current description + " <DD Mon HH:MM>: <one line>", and
