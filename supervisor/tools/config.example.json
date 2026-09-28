@@ -23,7 +23,12 @@
     "Our team is on it",
     "دقيقة أتأكد",
     "فريقنا بيتواصل",
-    "فريقنا يشتغل"
+    "فريقنا يشتغل",
+    "فريقنا بيرسل لك"
+  ],
+  "handoff_exclude_phrases": [
+    "Once you book, our team will contact you",
+    "بعد ما تحجز"
   ],
   "working_hours": {
     "start": "08:00",

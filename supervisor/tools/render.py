@@ -62,6 +62,8 @@ def main():
     link = cfg["booking_link"]
     greeting_marker = cfg.get("greeting_marker", "")
     handoff_phrases = [p.lower() for p in cfg.get("handoff_phrases", [])]
+    # The discount reply ("Once you book, our team will contact you…") is not a hand-off.
+    handoff_exclude = [p.lower() for p in cfg.get("handoff_exclude_phrases", [])]
     all_prices = set(rules.get("all_prices", []))
     banned = set(rules.get("banned_numbers", cfg.get("banned_numbers", [])))
 
@@ -184,7 +186,8 @@ def main():
         "repeated_bot_texts": [k[:120] for k, c in counts.items() if c > 1],
         "consecutive_bot_msgs": sum(1 for p, q in zip(msgs, msgs[1:])
                                     if p["_t"] >= since and p["_w"] == "BOT" and q["_w"] == "BOT"),
-        "handoff_phrase": any(p in joined.lower() for p in handoff_phrases),
+        "handoff_phrase": any(any(p in x for p in handoff_phrases) and not any(e in x for e in handoff_exclude)
+                              for x in (t.lower() for t in bot_texts)),
         "failed_msgs": [{"time": fmt(m["_t"]), "err": m.get("err")} for m in win
                         if m.get("d") == "out" and m.get("st") == "failed"],
         "customer_media": sum(1 for m in cust_w if (m.get("t") or "text") != "text"),
