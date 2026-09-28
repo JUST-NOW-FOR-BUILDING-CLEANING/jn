@@ -9,11 +9,12 @@ and `supervisor/rubric.md` first. Same inputs and setup as `check.md` (steps 1 a
 
 1. `search_contacts`: `lastInteractionTime isTimestampAfter <today> 00:00` (Asia/Dubai, limit 100, follow
    `pagination.next`).
-2. For each contact: `list_messages` (limit 50) → `supervisor/work/raw/<id>.jsonl` → `render.py` with
-   `--since "<today> 00:00"` → judge with `rubric.md` → `supervisor/work/audit/<id>.json` (the rubric's fields
-   and mistakes, each mistake with the bot's exact words and time). With more than 40 conversations, split them
-   across parallel subagents (Agent tool), each writing the same files.
-3. `python3 supervisor/tools/aggregate.py supervisor/work` → the day's numbers.
+2. For each contact: `list_messages` (limit 50) → raw file → `render.py` with `--since "<today> 00:00"` → judge
+   with `rubric.md` → audit file (the rubric's fields and mistakes, each mistake with the bot's exact words and
+   time). Use a fresh folder for the night, `supervisor/work/day/` (clear it first), so the hourly runs' files do
+   not mix in. With more than 40 conversations, split them into balanced batches across parallel subagents (Agent
+   tool, at most 8), each following `routines/judge-guide.md` and returning only its short summary.
+3. `python3 supervisor/tools/aggregate.py supervisor/work/day` → the day's numbers.
 
 ## 2. Daily report → the doc's "Daily reports" tab (newest on top)
 
@@ -35,7 +36,8 @@ and `supervisor/rubric.md` first. Same inputs and setup as `check.md` (steps 1 a
    Prefer adding one line or one example next to the rule it sharpens; keep the instruction's style (short
    points, English + Arabic versions of customer-facing lines).
 3. Never: prices, packages, zones, TERMS AND POLICY, the booking link, the banned numbers, the no-assign rule,
-   the owner's facts; never delete a rule unless it contradicts another; at most 5 edits a night.
+   the owner's facts, template or follow-up sending (owner's order, 28 Sep 23:30); never delete a rule unless it
+   contradicts another; at most 5 edits a night.
    `agent.py patch` enforces most of this – if it refuses an edit, drop that edit.
 4. Save the current instruction first: a new dated entry in the doc's "Instruction history" tab (time, reason,
    the full current text in a code block).

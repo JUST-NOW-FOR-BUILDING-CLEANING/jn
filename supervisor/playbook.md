@@ -62,8 +62,9 @@ judge whether a day, or an instruction change, is better or worse.
   and reach the bot again only when they write.
 - A template that fails with "WhatsApp Business API: Business eligibility payment issue" means Meta cannot charge
   the WhatsApp account (card declined, expired or removed): every template fails, and free text within 24 hours
-  still works. Only the owner can fix the payment method. Put it in "Needs the owner" once, don't send more
-  templates, and resend the failed ones once a test template is delivered (first seen 28 Sep between 14:04 and 15:51).
+  still works. Only the owner can fix the payment method. Put it in "Needs the owner" once (first seen 28 Sep
+  between 14:04 and 15:51). Since 28 Sep 23:30 the owner's order is no templates at all and no re-sends, so failed
+  templates are never resent and no test template is sent.
 - Another Claude session may also edit the agent: always read the live version right before changing it, and
   never overwrite someone else's newer changes. On 28 Sep at 19:17 another editor saved a version built on the
   01:53 copy. It added good rules (team size by home size, the already-booked section) but dropped the day's fixes

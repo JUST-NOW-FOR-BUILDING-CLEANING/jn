@@ -19,7 +19,7 @@ check runs hourly).
 - `NOW=$(TZ=Asia/Dubai date '+%Y-%m-%d %H:%M')`; work in `supervisor/work/` (git-ignored). Write
   `supervisor/work/config.json` from `supervisor/tools/config.example.json` with `bot_user_ids = [AI_AGENT]`,
   `human_user_ids = [OWNER]` and `channels = CHANNELS`.
-- Load tools: ToolSearch `select:mcp__Respond_io__search_contacts,mcp__Respond_io__list_messages,mcp__Respond_io__get_message,mcp__Respond_io__list_ai_agents,mcp__Respond_io__get_ai_agent,mcp__Respond_io__send_message,mcp__Respond_io__update_conversation_assignee,mcp__Respond_io__update_ai_agent,mcp__Respond_io__list_message_templates,mcp__Respond_io__add_contact_tags`.
+- Load tools: ToolSearch `select:mcp__Respond_io__search_contacts,mcp__Respond_io__list_messages,mcp__Respond_io__get_message,mcp__Respond_io__list_ai_agents,mcp__Respond_io__get_ai_agent,mcp__Respond_io__send_message,mcp__Respond_io__update_conversation_assignee,mcp__Respond_io__update_ai_agent,mcp__Respond_io__add_contact_tags`.
   Every respond.io call needs a `context` argument (15–25 words, third person, no personal data).
 
 ## 2. Who needs a look
@@ -96,14 +96,16 @@ D. **Failed delivery.** An outgoing message with status failed:
    - access token / session invalidated / "not the thread owner" on Instagram or Messenger → the channel is
      disconnected; only the owner can reconnect it. Escalate once per channel per 6 hours (check the log tab for
      an earlier escalation).
-   - WhatsApp 24-hour window error → nothing to do now; A applies with the template rule below.
+   - WhatsApp 24-hour window error or a template error → never retry or re-send it (owner's order, 28 Sep 23:30);
+     if the customer still needs an answer, put one line in the doc's "Needs the owner" box.
 E. Everything else (style, wording, a follow-up sent at the wrong moment) → note it in the run summary for the
    nightly review; no action.
 
 **WhatsApp window.** Free text only when the customer's last message is less than 24 hours old (leave 5 minutes of
-margin). Older: only the approved template (`list_message_templates`; `follow_up`, body
-"Hi {{1}}, Just reaching out to {{2}}\nThank you"; copy its components verbatim and fill the parameters), only
-between 09:00 and 21:00, only when the customer asked a question or a price, at most once per conversation.
+margin). Older: send nothing. The owner's order of 28 Sep 23:30 forbids every WhatsApp template (`follow_up`,
+`job_feedback_en`, any other) and every marketing message, so the number is not blocked. When such a customer asked
+a question or a price, add one line to the doc's "Needs the owner" box instead (contact id, first name, what they
+need).
 
 **Night (23:00–08:00).** Only answer customers whose last message is less than 75 minutes old; everything else
 waits for the day runs.
@@ -128,4 +130,5 @@ mistake corrected 3+ times today, anything that looks like a system failure (man
 Assign to the owner or anyone but the AI agent · close, delete, block, merge or re-tag contacts · change
 lifecycles · edit the agent's instruction (only the actions fix in step 3) · invent prices, slots, addresses or
 confirmations · price sofa, mattress, carpet, curtains or commercial jobs · message a customer who declined or
-thanked · send anything to the owner · commit, push or open pull requests.
+thanked · send anything to the owner · send any WhatsApp template or marketing message, or retry / re-send a failed
+message · create, edit or submit templates · commit, push or open pull requests.

@@ -18,6 +18,11 @@ asking the owner anything; problems it cannot solve alone go to Claude (the esca
    (office, shop, restaurant, salon). The bot asks for the photos or video, tags the conversation
    **"Price needed"** and keeps it; nothing is assigned. The supervisor never invents these prices; the open ones
    are listed in the daily report so the team can price them from the tag.
+6. **No WhatsApp templates, no marketing messages** (28 Sep 2026, 23:30 – the owner does not want the number
+   blocked). Never send any template (`follow_up`, `job_feedback_en` or any other), never create, edit or submit
+   one, never retry or re-send a failed message. Only free-form replies inside the customer's 24-hour window. A
+   customer who could only be reached with a template goes on the doc's "Needs the owner" list instead. Template
+   or follow-up sending is never added to the bot's instruction either.
 
 ## How it works
 
@@ -62,8 +67,8 @@ files go to `supervisor/work/` (git-ignored).
 - Never invent a price, a slot, an address or a confirmation. Prices come only from the live PRICE TABLE.
 - Never send a price correction that raises the price the customer was given – log it instead.
 - At most one correction per conversation per day; never to a customer who declined or said thank you.
-- WhatsApp free text only within 24 h of the customer's last message; outside it only the approved
-  `follow_up` template, and only between 09:00 and 21:00.
+- WhatsApp free text only within 24 h of the customer's last message; outside it nothing is sent (no templates,
+  standing order 6) – the customer goes on the "Needs the owner" list. Failed messages are never retried.
 - Between 23:00 and 08:00 only answer customers whose last message is less than 75 minutes old.
 - Instruction changes: only through `tools/patch_instruction.py` (exact, single-match edits; the PRICE TABLE,
   ZONES, TERMS AND POLICY, prices, links and the no-assign rule are protected), the previous version saved first,

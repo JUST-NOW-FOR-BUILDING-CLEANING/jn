@@ -22,6 +22,6 @@ memory. Write in the customer's language, as one short message.
 - Never a correction that raises the price the customer was given: the lower quote stands; log it.
 - Never to a customer whose last message declined or thanked, unless the correction lowers their price.
 - Never correct sofa / mattress / carpet / curtains or commercial prices – there is no table for them.
-- Outside the 24-hour WhatsApp window: only the `follow_up` template, 09:00–21:00, e.g.
-  {{1}} = first name, {{2}} = "correct the price we sent: for your kitchen in Al Qusais it's 2 cleaners × 3 hours, AED [price], everything included. Book here: [booking link]".
+- Outside the 24-hour WhatsApp window: send nothing – no templates (owner's order, 28 Sep 23:30). Put the customer
+  on the doc's "Needs the owner" list with the correction they need.
 - Log every correction in the doc's log tab (time, contact id, what was wrong, what was sent).
