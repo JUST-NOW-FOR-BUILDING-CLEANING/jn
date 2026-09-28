@@ -55,5 +55,10 @@ judge whether a day, or an instruction change, is better or worse.
 - The owner's own replies from the inbox show in `list_messages` as `sender.source = "user"` with his user id.
 - Instagram / Messenger customers usually have no phone number: when those channels are disconnected, nobody can
   reach them any other way until the owner reconnects (their 24-hour window keeps running meanwhile).
+- An expired Instagram / Messenger login ("Error validating access token … session has been invalidated") is fixed
+  in place: respond.io → Settings → Channels → the channel → Manage → Troubleshoot → Refresh Permission. Deleting
+  the channel and adding it again creates a new channel id and unlinks every existing chat on it (Instagram, 28 Sep):
+  those customers can no longer be messaged from respond.io ("Contact couldn't connect to the required channel")
+  and reach the bot again only when they write.
 - Another Claude session may also edit the agent: always read the live version right before changing it, and
   never overwrite someone else's newer changes.
