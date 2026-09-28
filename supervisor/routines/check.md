@@ -47,6 +47,11 @@ It writes `instruction.txt` (the rule book – read it), `rules.json` and prints
   it). Then escalate (FYI).
 - `no_assign_rule_present: false`, `active: false`, `booking_link_present: false`, or `price_rows`/`zones_emirates`
   missing → someone overwrote the instruction: escalate at once; do not rewrite the prompt here.
+- The guard passes but `instruction.txt` differs from `supervisor/work/approved_instruction.txt` (the last approved
+  version, saved after every approved change) → someone edited the bot. `diff` the two: an edit that only adds or
+  sharpens rules is accepted (save it as the new approved version and log it); an edit that also drops earlier
+  fixes means it was made from an old copy (28 Sep 19:17: built on the 01:53 text, lost the day's fixes) → escalate
+  with the diff.
 
 ## 4. Read each conversation
 

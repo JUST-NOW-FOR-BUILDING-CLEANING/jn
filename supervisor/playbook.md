@@ -65,4 +65,7 @@ judge whether a day, or an instruction change, is better or worse.
   still works. Only the owner can fix the payment method. Put it in "Needs the owner" once, don't send more
   templates, and resend the failed ones once a test template is delivered (first seen 28 Sep between 14:04 and 15:51).
 - Another Claude session may also edit the agent: always read the live version right before changing it, and
-  never overwrite someone else's newer changes.
+  never overwrite someone else's newer changes. On 28 Sep at 19:17 another editor saved a version built on the
+  01:53 copy. It added good rules (team size by home size, the already-booked section) but dropped the day's fixes
+  and brought back "assign to Mohammed Bayoumi". It was merged back at 20:41. The hourly check now compares the live
+  text with the last approved copy.
