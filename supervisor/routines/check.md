@@ -52,8 +52,9 @@ For each contact: `list_messages` (`id:<id>`, limit 20; items come newest first)
 a failed outgoing message put the failure reason in `err`, from `get_message` if needed) → run
 `python3 supervisor/tools/render.py supervisor/work/raw/<id>.jsonl --config supervisor/work/config.json --rules supervisor/work/rules.json --since "<NOW − 24 h>" --now "<NOW>" --out-dir supervisor/work --quiet`
 → read `supervisor/work/transcripts/<id>.txt` and `metrics/<id>.json`. Judge with `supervisor/rubric.md`
-against `instruction.txt`. Messages sent by the supervisor show as sent by the owner's account or the API: treat
-them as ours, never answer them.
+against `instruction.txt`. Messages sent by the supervisor show in `list_messages` exactly like the owner's own
+inbox replies (`sender.source = "user"`, the owner's user id – checked 28 Sep); treat them as ours, never answer
+them, and use the doc's log tab to see which of them the supervisor sent.
 
 ## 5. Act (per conversation, in this order; one reply at most per conversation per run)
 
