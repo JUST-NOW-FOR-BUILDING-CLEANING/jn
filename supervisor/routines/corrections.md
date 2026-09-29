@@ -1,7 +1,8 @@
-# Corrections sent to customers
+# Correction wording (not sent by the supervisor)
 
-The supervisor sends these as soon as it finds the mistake (owner's order, 28 Sep 2026: "correct it and send it
-to the customer"). Fill the brackets from the live instruction (`supervisor/work/instruction.txt`) – never from
+Since 29 Sep 2026, 15:30 the supervisor no longer writes to customers (owner's order); it fixes the bot's
+instruction instead and lists the customer on the "Needs the owner" list. This wording stays for the owner or the
+team, and for a message the owner asks for in the session. Fill the brackets from the live instruction (`supervisor/work/instruction.txt`) – never from
 memory. Write in the customer's language, as one short message.
 
 | Mistake | English | Arabic |

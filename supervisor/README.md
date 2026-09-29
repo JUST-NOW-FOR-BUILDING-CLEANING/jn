@@ -1,17 +1,22 @@
 # Just Now bot supervisor
 
 A Claude-run supervisor that sits beside the respond.io AI agent all day, the way a team lead would: it reads
-every new conversation, answers customers the bot left waiting, corrects wrong replies directly to the customer,
-keeps every conversation with the AI, and turns repeated mistakes into instruction updates. It works without
-asking the owner anything; problems it cannot solve alone go to Claude (the escalation routine), not to the owner.
+every new conversation, keeps every conversation with the AI, and turns the bot's mistakes into instruction
+updates so the bot stops making them. It never writes to customers itself (owner's order, 29 Sep 2026); customers
+who still need a person go on the "Needs the owner" list. Problems it cannot solve alone go to Claude (the
+escalation routine), not to the owner.
 
 ## Standing orders from the owner (28 Sep 2026)
 
 1. **Never assign anything to the owner.** Every conversation stays with, or is moved back to, the AI agent.
    The agent's `assignConversation` action stays disabled.
-2. **Reply to every customer who needs a reply**, and when the bot said something wrong, **send the correction to
-   the customer** – no approval step.
-3. **Update the bot's instructions** when a mistake repeats – automatically, with the guardrails below.
+2. **Never write to customers** (29 Sep 2026, 15:30 – replaces the order of 28 Sep to reply and correct
+   directly): no replies, corrections or follow-ups from the supervisor, unless the owner asks for one specific
+   message in the session. A customer the bot left waiting, or who got a wrong answer, goes on the doc's
+   "Needs the owner" list (contact id, first name, what they need, since when).
+3. **Keep monitoring and update the bot's instructions when it makes a mistake** – so it stops doing it
+   (29 Sep 2026: "if the AI agent did any mistake, just update him with the update instruction and don't let him
+   do something"). Clear fixes go in the same day, with the guardrails below.
 4. **Alerts go to Claude, not to the owner.** Anything the runs cannot fix is escalated to the Claude escalation
    routine, which investigates and fixes it.
 5. Exception – prices only a person can give: sofa / mattress / carpet / curtain photos and commercial places
@@ -30,8 +35,8 @@ asking the owner anything; problems it cannot solve alone go to Claude (the esca
  customers ──► respond.io AI agent ("Just Now update") ──► booking page
                     ▲            │
    nightly          │            ▼
-   instruction      │   every hour    SUPERVISOR CHECK   answer waiting customers · correct wrong replies ·
-   updates          │                                    move chats back to the AI · guard the no-assign rule
+   instruction      │   every hour    SUPERVISOR CHECK   find mistakes and customers left waiting · fix the
+   updates          │                                    instruction · move chats back to the AI · guard it
    (guarded)        │   23:40         NIGHTLY REVIEW     daily report · instruction updates · regression rollback
                     └── anytime       ESCALATION         Claude session with the full history fixes what the
                                                          runs could not (prompt overwritten, channel down, …)
@@ -65,11 +70,9 @@ files go to `supervisor/work/` (git-ignored).
 
 - Never assign to the owner or anyone else except the AI agent; never close, delete, block or merge contacts.
 - Never invent a price, a slot, an address or a confirmation. Prices come only from the live PRICE TABLE.
-- Never send a price correction that raises the price the customer was given – log it instead.
-- At most one correction per conversation per day; never to a customer who declined or said thank you.
-- WhatsApp free text only within 24 h of the customer's last message; outside it nothing is sent (no templates,
-  standing order 6) – the customer goes on the "Needs the owner" list. Failed messages are never retried.
-- Between 23:00 and 08:00 only answer customers whose last message is less than 75 minutes old.
+- Nothing is sent to customers (standing order 2); no templates either (standing order 6). Failed messages are
+  never retried. A message the owner asks for in the session: WhatsApp free text only within 24 h of the
+  customer's last message.
 - Instruction changes: only through `tools/patch_instruction.py` (exact, single-match edits; the PRICE TABLE,
   ZONES, TERMS AND POLICY, prices, links and the no-assign rule are protected), the previous version saved first,
   `update_ai_agent` always with the full `knowledgeSourceIds` list (omitting it wipes the knowledge sources), the
