@@ -82,3 +82,7 @@ judge whether a day, or an instruction change, is better or worse.
   hours – nobody has seen the place. On 29 Sep a customer wrote "3 hours should be enough" and the bot said "Yes".
 - There is no price row for apartments with 4 or more bedrooms: the bot says "let me check" and tags the chat until
   the owner picks one.
+- Booking page areas (owner, 29 Sep): areas with a number are listed under their main name – Muhaisnah 1 to 4 are
+  all "Muhaisnah"; the customer writes the full address (building, apartment) in the address field. The bot had
+  made up page steps for a customer who couldn't find "Muhaisnah 4" ("Other area", type the number); the
+  instruction now forbids inventing page options, buttons or steps.
