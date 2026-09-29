@@ -25,7 +25,8 @@ check runs hourly).
 ## 2. Who needs a look
 
 `search_contacts` (timezone `Asia/Dubai`, `search: ""`, limit 100, follow `pagination.next`):
-- every run: `lastInteractionTime isTimestampAfter <NOW − LOOKBACK>`;
+- every run: `lastInteractionTime isTimestampAfter <NOW − LOOKBACK>`; the first run of the morning (08:05) instead
+  looks back to 23:40 the night before, so nothing that happened after the nightly review is missed;
 - between 09:00 and 21:00 also: `assigneeUserId isEqualTo OWNER` + `status isEqualTo open`, and
   `assigneeUserId doesNotExist` (no `value`) + `status isEqualTo open` – conversations parked where nobody answers
   them. An open unassigned chat never triggers the "conversation opened" workflow again, so a customer who writes
