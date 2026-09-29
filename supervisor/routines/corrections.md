@@ -14,6 +14,7 @@ memory. Write in the customer's language, as one short message.
 | "Your booking is confirmed" (the bot cannot see bookings) | Sorry, a small correction 😊 Our booking team will contact you on WhatsApp to confirm your booking. | عذراً، تصحيح بسيط 😊 فريق الحجز بيتواصل معك على واتساب لتأكيد حجزك. |
 | An office or street address was given | Sorry, a small correction 😊 We come to you – our team serves Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah and Fujairah. | عذراً، تصحيح بسيط 😊 نحن نجيك لين عندك – نخدم دبي والشارقة وعجمان وأم القيوين ورأس الخيمة والفجيرة. |
 | A question left unanswered (the answer is in the instruction) | Sorry for the wait 😊 [the answer, in the instruction's words] | عذراً على التأخير 😊 [الجواب من التعليمات] |
+| A time promised ("3 hours is enough", "it will be done in 3 hours") – owner's rule, 29 Sep | Just to clarify 😊 We can't confirm the time before our team sees the place – the package gives you the team for the booked hours, and you can add one more hour if needed. | للتوضيح 😊 ما نقدر نأكد الوقت قبل ما يشوف فريقنا المكان – الباقة تعطيك الفريق للساعات المحجوزة، وتقدر تضيف ساعة إضافية إذا احتجت. |
 | Voice note ignored | Sorry, I can't play voice notes here 😊 Could you please type your message? | عذراً، ما أقدر أسمع الرسائل الصوتية هنا 😊 ممكن تكتب رسالتك؟ |
 
 ## Rules

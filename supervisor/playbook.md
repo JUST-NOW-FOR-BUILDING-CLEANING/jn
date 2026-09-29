@@ -78,5 +78,7 @@ judge whether a day, or an instruction change, is better or worse.
   (26–28 Sep: 9% replied within 4 hours at night, 20% by day). Changing this is the owner's call.
 - Hand-offs wait long for a person: median about 14 hours on 28 Sep; one sofa lead hired another company after 24 hours
   without a price. The daily report's "Price needed" table, with each customer's reply-by time, is how the team catches up.
+- Owner's rule (29 Sep): the bot never confirms how long a job takes or that it will be finished within the booked
+  hours – nobody has seen the place. On 29 Sep a customer wrote "3 hours should be enough" and the bot said "Yes".
 - There is no price row for apartments with 4 or more bedrooms: the bot says "let me check" and tags the chat until
   the owner picks one.
