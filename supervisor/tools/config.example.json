@@ -1,0 +1,41 @@
+{
+  "_comment": "Each run writes supervisor/work/config.json from this file with the ids given in the routine prompt (bot = the AI agent, human = the owner).",
+  "utc_offset_hours": 4,
+  "bot_user_ids": [
+    0
+  ],
+  "human_user_ids": [
+    0
+  ],
+  "channels": {
+    "0": "WhatsApp",
+    "1": "Instagram",
+    "2": "Messenger",
+    "3": "TikTok"
+  },
+  "booking_link": "https://www.justnow.life/book-now?utm_source=whatsapp",
+  "greeting_marker": "Thank you for contacting Just Now",
+  "handoff_phrases": [
+    "Our team will send you",
+    "Let me check this for you",
+    "Our team will contact you",
+    "Let me pass this",
+    "Our team is on it",
+    "دقيقة أتأكد",
+    "فريقنا بيتواصل",
+    "فريقنا يشتغل",
+    "فريقنا بيرسل لك"
+  ],
+  "handoff_exclude_phrases": [
+    "Once you book, our team will contact you",
+    "بعد ما تحجز"
+  ],
+  "working_hours": {
+    "start": "08:00",
+    "end": "21:00"
+  },
+  "alert_after_min": {
+    "unanswered_customer": 10,
+    "handoff_without_human_reply": 20
+  }
+}
