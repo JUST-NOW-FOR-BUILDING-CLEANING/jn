@@ -6,7 +6,7 @@ owner at execution time. Connector draft mode is not enabled on these accounts, 
 objects directly: creates land **PAUSED**, pauses apply immediately. Each write was read back.
 
 ```
-PRODUCTION WRITES: 20 succeeded · 2 rejected by Meta (no object created) · GO-LIVE WRITES: 0 · ROLLBACKS: 0
+PRODUCTION WRITES: 33 succeeded (20 build + 13 go-live) · 2 rejected by Meta (no object created) · ROLLBACKS: 0
 ```
 
 ## 1. Pauses (clear waste) — live, 09:53–09:54 Dubai
@@ -81,3 +81,45 @@ ACTIVE until the union ad set goes live.
 | C — JN retargeting union | activate ad set 120252226500410312 + its 3 ads; pause C2-1 120252107098030312, C2-2 120252107107740312, C2-3 120252107111220312 (shared CBO, so no new spend) | 0 | 10-day scorecard; fail → unpause C2-1 and C2-3 |
 
 Ads still in Meta review will start delivering only once approved, whichever option is chosen.
+
+## 7. Go-live executed — 10:12 Dubai — owner: "APPROVE GO-LIVE: A + C"
+
+Owner's conditions: T1/T2 exactly as built (no T2 hard-cap, Advantage audience behaviour unchanged so
+the test moves account/mission only); JN winners keep running; 7 days or the §2.3 thresholds; JN winner
+paused only after the twin scorecard passes. C: union live, C2-1/2/3 paused at the same time, CBO
+unchanged. B: reactivation stays PAUSED until the second creative is resolved or the single-ad version
+is chosen deliberately.
+
+13 writes, each approved by the owner at execution time; read back 10:13 Dubai.
+
+| Item | ID | Write | Read-back |
+|---|---|---|---|
+| T1 | 120250144454520073 | activate | **ACTIVE** / effective ACTIVE · AED 60/day · 10:12:31 |
+| T2 | 120250144457040073 | activate | **ACTIVE** / effective ACTIVE · AED 30/day · 10:12:34 |
+| jn twins campaign | 120250144447740073 | activate | ACTIVE · 10:12:09 |
+| T1 ads V01 / V02 | 120250144462130073 / 120250144462600073 | activate | ACTIVE · effective PENDING_REVIEW |
+| T2 ad V01 | 120250144463050073 | activate | ACTIVE · effective PENDING_REVIEW |
+| JN RETARGETING UNION | 120252226500410312 | activate | **ACTIVE** / effective ACTIVE · 10:12:54 |
+| union ads | 120252226507840312 / 120252226508320312 / 120252226511090312 | activate | ACTIVE · effective IN_PROCESS / IN_PROCESS / PENDING_REVIEW |
+| C2-1 | 120252107098030312 | status=PAUSED | **PAUSED** / PAUSED · 10:12:52 |
+| C2-2 | 120252107107740312 | status=PAUSED | **PAUSED** / PAUSED · 10:12:54 |
+| C2-3 | 120252107111220312 | status=PAUSED | **PAUSED** / PAUSED · 10:12:57 |
+| JN retargeting campaign | 120252107080200312 | none | ACTIVE · CBO **AED 70/day unchanged** |
+| OLD JN WINNERS | campaign 120251948470120312 · W1 120251948470210312 · W2 120251948470250312 | none | **STILL ACTIVE — YES** (CBO AED 80/day) |
+| Reactivation (B) | 120250144448010073 / 120250144457810073 / 120250144463650073 | none | PAUSED / PAUSED / PAUSED |
+
+```
+NEW DAILY SPEND ADDED:        AED 90/day maximum from A (T1 60 + T2 30), delivery starts once the ads clear review
+RETARGETING NET NEW SPEND:    AED 0 (same AED 70 CBO; the union ad set replaces C2-1/2/3)
+OLD JN WINNERS:               STILL ACTIVE — YES
+```
+
+Known gap: until the three union ads clear review, campaign 120252107080200312 has no delivering ad
+set (minutes to 24 h). If review rejects an ad, the first fix is to re-attach the same creative to a
+new ad, not to unpause C2-x.
+
+Observation windows: twins 9–16 Oct (T1 pass ≤ AED 4.70 with ≥50 conversations and booking rate ≥ W1's;
+T2 pass ≤ AED 4.60 with ≥25); union 9–19 Oct (pass ≥5 leads ≤ AED 100 each or ≥3 purchases; fail <3
+leads after AED 500). Monitoring: read-only check this afternoon for review approval and first delivery,
+then a daily 09:22 Dubai scorecard check-in into this session; no further write without the owner's
+approval.
