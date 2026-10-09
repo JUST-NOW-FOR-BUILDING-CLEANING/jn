@@ -388,3 +388,22 @@ created today (3 via the website form) — available, handling normal.
 Conversion accounts total daily budget: **745 → 755** (brand 60 on top = 815). Stage 2b one-shot routine armed for
 18:30 Dubai (two hours of read-back at 150 before the 180 step, each write prompted). Writes this section: 1 budget
 edit (not force-paused). **Running total since 09:53: 68 successful production writes, 0 rollbacks.**
+
+## 14. Weekend Stage 2b — 18:33 Dubai: 150 → 180 step HELD until Saturday 09:40 (no writes)
+
+Read 18:33 (today): New Sales AED 92.29 → 29 conversations @ 3.18 (baseline 3.41, −7 %), CPM 17.8, freq 1.05;
+5158 AED 71.95 → 20 @ 3.60 (baseline 3.75, −4 %), CPM 21.8, freq 1.08; C3 AED 72.76 → 5 @ 14.55 (held); C1
+AED 69.44 → 0 website leads (held); C2 AED 52.31 → 1 lead, freq 1.28, ACTIVE at 90 (edit processed). Increment
+since the 16:28 step: New Sales +AED 23.82 → +5 conversations (marginal 4.76 = +40 % vs baseline, 5-conversation
+sample); 5158 +AED 15.86 → +5 (marginal 3.17, healthy). Capacity: 8 jobs today (Harinder 19:30 added at 17:17 via
+the website form), 7 tomorrow (3 still unconfirmed) → available; booking signal positive (5 created today).
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | DECISION | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales Campaign 120249855697050073 | 150 | 150 | 0 | 3.41 | 3.18 today; 4.76 on the last 5 conversations | 5 bookings created today | 8/12 today, 7/12 tomorrow | HOLD — marginal CPA at 150 inconclusive (+40 % on 5 conversations) and only 61 % of the day's 150 spent by 18:33; a +20 % raise now would force ≈ 5× faster evening pacing | Sat 09:40 Stage 3: 150 → 180 if Friday's full-day CPA at 150 ≤ baseline +25 % |
+| jn WhatsApp Sales 5158 120249855229580073 | 150 | 150 | 0 | 3.75 | 3.60 today; 3.17 marginal | same | same | HOLD — passes the CPA gate, held only for pacing (48 % of 150 spent by 18:33); first in line on Saturday | Sat 09:40 Stage 3 |
+
+Day total stays at **AED 755 conversion + 60 brand = 815** (owner's envelope for today 750–800, stretch 850–900 "if
+healthy" — not forced: C1 had no lead all day and C3 stayed above AED 10 per conversation). Stage 3 (Sat 09:40)
+inherits: 5158 → 180 first, New Sales → 180 if its Friday evening holds, C2 90 (modest, no further), C1/C3 only on
+proof. No writes this section. **Running total since 09:53: 68 successful production writes, 0 rollbacks.**
