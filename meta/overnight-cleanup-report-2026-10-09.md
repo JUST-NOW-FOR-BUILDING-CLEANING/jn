@@ -13,7 +13,8 @@ ROLLBACKS:                  0
 Owner clarification applied: the several JustNow numbers in creatives are all operational; number
 variation is **not** a blocker and no winner is paused for it. Only broken/unreachable destinations
 would be flagged — none was found (every CTWA ad set routes through Page 122098309970001876, every
-website ad to justnow.life/book-now).
+website ad to justnow.life/book-now). The three numbers seen in creatives and links (…7282 website link,
+…8859 Page bio, 971553755158 respond.io CTWA line) all appear in the owner's own 24 Sep routine as operational.
 
 ---
 
@@ -159,6 +160,13 @@ AFTER (target state once the batch is approved and T1/T2 pass): CTWA prospecting
   JustNow44, no WhatsApp marketing msgs)" (29 Sep 2026): Reel tests were moved out of JustNow44 and
   rebuilt without WhatsApp marketing messages — consistent with an ad-level rejection of the
   WhatsApp "marketing messages" feature, not with an account restriction. Unverified.
+* **HISTORY EVIDENCE (owner's own routine, 24 Sep 2026):** the scheduled "6 AM ads review" job the owner set
+  up on 24 Sep lists **"JN and JustNow44"** as the two ad accounts with active Meta ads to review in Ads Manager,
+  under a combined cap of AED 800/day across all Meta accounts, with a click-to-WhatsApp scale-up to the
+  respond.io number 971553755158 and a booking-page campaign on pixel 614743294720303. So JustNow44 was a
+  live spending account two weeks ago, and jn's "Reel tests (rebuilt from JustNow44…)" campaign of 29 Sep
+  shows its tests were moved out within five days. What happened between 24 and 29 Sep is the question the
+  export must answer (ad rejection, delivery restriction, spend-limit, or a deliberate move).
 
 ### Requested fields
 
@@ -180,9 +188,12 @@ AFTER (target state once the batch is approved and T1/T2 pass): CTWA prospecting
    result, leads, messaging conversations started, purchases, learning phase) and Account overview
    (spend limit, daily limit, payment, Account Quality). Drop the files into `meta/justnow44/` in this
    repo — the mission decision and the M6 build follow the same scorecard rules as jn/JN.
-2. **Or re-enable the connector path:** reconnect the Meta connector once Meta lists 2820299204977421
-   as enabled (check `ads_get_ad_accounts` → `is_ads_mcp_enabled`), or link a browser session so Ads
-   Manager can be read directly.
+2. **Or read it from the owner's desktop session (fastest direct path):** the Claude session on the owner's
+   MacBook (Claude in Chrome, the one that ran the 25 Sep 6 AM ads review) already has logged-in Ads
+   Manager / Business Manager. Running the JustNow44 read-out there (Account overview, Account Quality,
+   campaigns lifetime / 30 d / 90 d) and saving it to `meta/justnow44/` gives this session everything M6
+   needs. Alternatively reconnect the Meta connector once Meta lists 2820299204977421 as enabled
+   (check `ads_get_ad_accounts` → `is_ads_mcp_enabled`).
 3. **Asset checklist to apply in Business Settings regardless of history** (no spend involved):
    pixel 614743294720303 → assign to JustNow44 (Data sources → Pixels → Add assets); Page
    122098309970001876 and IG justnow.life.ae → assign with advertise permission; share audiences
@@ -373,8 +384,10 @@ WASTE REMOVED:  0 AED/day tonight (no writes). Estimated on approval: AED 60–7
 
 JUSTNOW44:
 ROOT PROBLEM:   connector-side — Meta Ads MCP staged rollout refuses 2820299204977421; business-level data shows
-                ACTIVE, payment present, no disable flag → no account-side problem visible
-FIXED:          NO (unreadable from this session; export or enabled read path needed — steps in M2)
+                ACTIVE, payment present, no disable flag → no account-side problem visible. Owner's own 24 Sep
+                routine shows it was a live spending account ("JN and JustNow44") until its tests were rebuilt in jn on 29 Sep.
+FIXED:          NO (unreadable from this session; fastest path = the owner's MacBook Claude-in-Chrome session with
+                logged-in Ads Manager → save read-out to meta/justnow44/; else export or enabled connector — M2)
 MISSION:        DEFERRED — HIGH-SCALE WHATSAPP if history shows CTWA ≤ AED 4.5 at volume (jn winners then twin
                 into it, one WhatsApp home only); else HIGH-SCALE WEBSITE / CREATIVE SCALE; HOLD if restricted
 DAILY SCALE CAPABILITY: unknown (spend limit not readable)
