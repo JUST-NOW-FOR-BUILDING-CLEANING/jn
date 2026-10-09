@@ -123,3 +123,118 @@ T2 pass ≤ AED 4.60 with ≥25); union 9–19 Oct (pass ≥5 leads ≤ AED 100 
 leads after AED 500). Monitoring: read-only check this afternoon for review approval and first delivery,
 then a daily 09:22 Dubai scorecard check-in into this session; no further write without the owner's
 approval.
+
+## 8. Continue-execution pass — 10:20–10:50 Dubai (owner brief "CONTINUE EXECUTION, CLEANUP & MIGRATION" + "WEEKEND WEIGHTING")
+
+### M1 — new cells
+All six new ads passed review (effective_status ACTIVE at 10:20); delivery "pending / preparing"; spend 0
+at read time. T1 120250144454520073 and T2 120250144457040073 ACTIVE at AED 60 / 30; union
+120252226500410312 ACTIVE under the AED 70 CBO. No error, no repair needed.
+
+### M2 — remaining JN/jn overlap (fresh read of all delivering ad sets)
+JN delivering: W1 120251948470210312 (CTWA, 7d AED 618 → 162 @3.81), W2 120251948470250312 (AED 22 → 8),
+C1-1 120252107075750312 (website Lead, AED 507 → 9 @56), union, and the Studio-feedback test ad set
+120252195374160312 (website Lead, AED 72.64 → 0 leads, CPM 41.75, own campaign AED 60/day).
+jn delivering: T1, T2, C3-1/2/3, TEST E, Copy A/B/2, New Sales Ad Set, A/B/C/D — all CONVERSATIONS →
+WhatsApp (three of them multi-destination IG-direct/Messenger/WhatsApp), Sharjah/Dubai/Ajman pins.
+
+| Pair | Decision |
+|---|---|
+| W1 (JN) ↔ T1 + jn Sharjah cluster (A, Copy A, Copy B) | **WAIT FOR TWIN TEST** — pause W1 only after T1 parity |
+| W2 (JN) ↔ T2 (+ Copy A parents) | **WAIT FOR TWIN TEST** |
+| C1-1 (JN website) ↔ jn | no live jn website prospecting → **KEEP JN**, no overlap |
+| union (JN retargeting) ↔ jn C3-3 (uses the shared LAL) | different audiences → **KEEP JN** |
+| Studio-feedback test campaign (JN) ↔ JN C1-1 (same pins, same goal, two budgets) | **MIGRATE NEXT → done**: ad moved into C1-1, test campaign paused (below) |
+| 658869122728885 boost ↔ C1-1 | already paused 09:54 |
+| **JustNow44 (unreadable) ↔ everything** | **UNKNOWN** — see M5: the Page has active ads that belong to neither jn nor JN |
+
+### M3 — customer exclusions
+Both lists READY: 120251936408430312 "JN - Confirmed bookings 12mo" (ACTIVE, Normal, updated 8 Oct) and
+120249973174230073 "jn - Customers 889" (ACTIVE, Normal, updated 8 Oct). Every new prospecting cell
+already carries them (T1, T2, C1-1, union, C3-2/3). Not applied today to the nine legacy jn winners and
+W1/W2: the connector force-pauses an ACTIVE ad set on any targeting edit (pause → edit → re-activate) and
+the edit resets learning; on a peak-traffic Friday that is a delivery risk on the proven cells, and W1/W2
+must stay untouched for the parity test. Proposed instead: **Monday 13 Oct 09:30 Dubai batch** — one
+bundled edit per ad set (exclusion only) on the nine jn winners, three at a time with read-back,
+owner-approved. Reactivation / C3-1 keep targeting customers (no exclusion, by design).
+
+### M4 — UAE 1 % lookalike
+Already exists: **120251936410460312 "JN - LAL 1% Confirmed bookings"** — origin 120251936408430312,
+ratio 0.01, delivery ACTIVE, created 18 Sep, size shown at the API's 1,000 floor; it is live-tested in jn
+C3-3 (7d AED 48 → 9 conv @5.30). No duplicate created. Rename to `JN | LAL 1% UAE | CONFIRMED CUSTOMERS`
+was attempted and **rejected by the connector** ("This audience type cannot be updated via this tool");
+rename in Audiences if wanted. Country is not exposed in the lookalike spec (`use_additional_countries`
+true, no `country` key) — verify "United Arab Emirates" in the Audiences UI before any new attach.
+
+### M5 — JustNow44 2820299204977421, direct evidence
+* **Connector:** `is_ads_mcp_enabled=false` (Meta staged rollout) — every ad-object read refused; business
+  list shows ACTIVE, AED, payment method present, no disable reason. No browser tool exists in this
+  session (re-checked). Google Drive: nothing.
+* **Mailbox evidence (owner's own receipts):** 20+ "Your Meta ads receipt (Account ID: 2820299204977421)"
+  emails 30 Jun – 21 Jul 2026, billed every 1–3 days at AED 150–425 (≈ AED 290/day), "You requested this
+  manual payment", Visa ····2662, line items only "New Sales Campaign" and "New Sales Campaign - Copy"
+  (impression-billed CTWA naming). "Your payment for Facebook Ads was declined" for JustNow44 on 11, 17,
+  19 and 22 Jul (and for JN on 22 Jul). No receipt for **any** account after 21 Jul in this mailbox — the
+  receipt links name a second notification address (mbayoumi2112@outlook.com), so later billing mail
+  likely lands there. A 24 Sep "Your ads are running again" notice links to ad account
+  **2043141456283110**, an ID not in the 32-account list — a 33rd account the connector cannot see.
+* **Ad Library (Page "Just Now" 122098309970001876, ACTIVE, AE): 38 active ads.** Matching their creation
+  times against every jn and JN ad created 15 Sep – 9 Oct leaves ≈ 20 unexplained, including a batch of
+  **16 ads created 29 Sep 15:28 Dubai** (jn's "Reel tests (rebuilt from JustNow44…)" were created at 22:13
+  that day and are PAUSED/WITH_ISSUES, so they are not these). Only one account with Page access is
+  unaccounted for: JustNow44. Snapshot URLs are in the Ad Library result (ids 4046185359019667,
+  27432568766420118, 1691958985795118, 2098580121531534, 1067474929246422, 1082208651079306 …).
+* **Conclusion:** CONNECTOR PROBLEM = Meta MCP rollout gate (unchanged). ACCOUNT: no restriction visible;
+  **very likely actively delivering CTWA ads right now from the same Page** → the JN/jn overlap cleanup is
+  incomplete until JustNow44 is read, and it may be the third bidder on the same Sharjah/Dubai audiences.
+  July evidence (manual-payment CTWA at ≈ AED 290/day) points to **HIGH-SCALE WHATSAPP** as the evidence-
+  based candidate mission, but it is not assigned until spend limit, Account Quality and campaign metrics
+  are read. Scale readiness: unknown (spend limit unreadable; payment declines in July are the one
+  historical risk). Unblock: export from Ads Manager (lifetime + 30d + 90d, Account overview, Account
+  Quality) into `meta/justnow44/`, or run the read from the owner's Claude-in-Chrome session.
+
+### M6 — shared dataset architecture (fresh)
+Dataset 614743294720303 last fired 10:23 Dubai today (browser + server). It appears in the dataset list of
+all four mission accounts.
+
+| ACCOUNT | DATASET 614743294720303 | PAGE | IG | CUSTOMER AUDIENCE ACCESS | STATUS |
+|---|---|---|---|---|---|
+| jn 1037126214908677 | yes (in use) | Just Now + CO LLC | justnow.life.ae | customers 889 own; JN LAL bookings shared | **CORRECT** |
+| JN 9147325105346647 | yes (in use, LEAD) | Just Now + CO LLC | justnow.life.ae | bookings 12mo, contacts csv, pixel audiences, LAL | **CORRECT** |
+| justnow22 1897980308260660 | yes (listed) | Just Now + CO LLC | not checked | only a site-visitor audience "jn" (22–26k); **no customer list** | FIX REQUIRED before CT: share 120249973174230073 + 120251936408430312 |
+| JNN 1304802461392117 | yes (listed) | **none** | none | **none** | FIX REQUIRED before any use: Page, IG, audiences |
+| JustNow44 2820299204977421 | unknown | unknown (BM-B owns only the CO LLC Page; "Just Now" is shared from BM-A) | unknown | unknown | VERIFY via export |
+| 658869122728885 | not used | 4 Pages | — | none | HOLD |
+
+Also visible: 16–23 legacy datasets per account (jn/JN.LIFE/NA3-7/Just Now 1,4/newpixel/wtp …), most
+last fired 7–15 Sep or never. No new pixel was created; the legacy ones are candidates for a later
+clean-up, not for use.
+
+### M7 — winner migration this pass
+* Studio-feedback video (creative 1094497890116067): new ad **120252227059520312** `VIDEO | STUDIO-FEEDBACK
+  | BOOK-NOW | V01` created in C1-1 120252107075750312 (10:45), activated (10:46; effective
+  PENDING_REVIEW); test campaign **120252195374070312 paused** (10:45:43, read back PAUSED; its ad set and
+  ad show CAMPAIGN_PAUSED). Saves AED 60/day of zero-lead spend; the creative keeps being tested inside the
+  learner. Rollback: set campaign ACTIVE.
+* W-c (jn "Sticky kitchen EN" into JN as a website ad) still needs the video file uploaded to JN (cross-
+  account video reuse is not possible); the second reactivation ad still needs a fresh build with a
+  WhatsApp CTA.
+* Running total WINNERS MIGRATED: T1, T2 (twins, in test) + 3 retargeting creatives consolidated + 1
+  studio ad moved.
+
+### M8 — account renames
+The connector cannot rename an ad account (`ads_update_entity` accepts campaign / ad set / ad only), so
+renames stay with the owner in Business Settings → Ad accounts: jn → `JUSTNOW | WHATSAPP SALES | jn`,
+JN → `JUSTNOW | WEBSITE BOOKINGS | JN`, justnow22 → `JUSTNOW | CREATIVE TESTING | justnow22`, JNN →
+`JUSTNOW | FUTURE REVENUE | JNN`; JustNow44 after its diagnosis; legacy shells untouched.
+
+### M9 — Purchase gate (re-check)
+Make scenario 6529499 ran 00:00 Dubai today: 9 completed jobs found, **0 Purchases sent**, 9 skipped as
+legacy (already sent by the old confirmation flow), 37 pending finalisation, **2 aged-out jobs requiring
+review**. Pixel 614743294720303: Purchase events arrived daily until 6 Oct (legacy flow), none on 7–8 Oct.
+Lead events ≈ 20–50/day. **FAIL** — 0 of 7 clean days; keep Purchase off everywhere.
+
+### Writes this pass
+3 successful (studio ad create, activate, test campaign pause), 1 rejected without change (LAL rename).
+Running total since 09:53: **36 successful production writes, 0 rollbacks.** Budgets: none changed; the
+weekend-weighting proposal is in `meta/weekend-weighting-plan-2026-10-09.md`.
