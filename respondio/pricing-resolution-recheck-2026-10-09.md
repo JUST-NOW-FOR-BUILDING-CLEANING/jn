@@ -37,7 +37,23 @@ Level 2 although they resolve (Al Hudaiba, Damac Hills 2, Jamal Abdul Nasser St)
 unresolved (Al Baraha, Sharjah). The four named by the owner — Al Qasba, Al Mahatta, Behind Mega Mall,
 BurJuman — all resolve with HIGH confidence; only the Arabic Al Qasba 2 BHK quote needs a correction.
 
-## 2. Correction messages (prepared, NOT sent — owner approval first)
+## 2. Correction messages — owner approved ("ok", 9 Oct ≈ 19:25 Dubai) and SENT 19:33 Dubai
+
+| Case | Customer ID | Message ID | Channel |
+|---|---|---|---|
+| #2 Al Qasba 2 BHK → AED 499 | 554912916 | 1791563592883802 | WhatsApp 541167 |
+| #7 Damac Hills 2 → AED 879 | 554741396 | 1791563596287816 | 560682 (the customer's channel) |
+| #8 Jamal Abdul Nasser St → AED 249 | 554734499 | 1791563599817965 | WhatsApp 541167 |
+| #6 Al Hudaiba → AED 279 (owner confirmed B) | 555013483 | 1791563603902868 | WhatsApp 541167 |
+| #10 Al Baraha, Sharjah → asked once for the exact community / pin | 554976892 | 1791563607639718 | WhatsApp 541167 |
+
+Texts as prepared below. The §3 additions were applied to the live prompt at 19:30 Dubai
+(`respondio/live-agent-prompt-2026-10-09.pricing-resolution-v2-approved-areas.txt`): Dubai B + Hudaiba,
+BurJuman (= Mankhool); Dubai C + Damac Hills 2 (Akoya Oxygen); Sharjah A + Qasba, Mahatta, Qadisiya,
+Butina, Aljada, Mareija, Muwaileh Commercial, Mega Mall (= Bu Daniq / Qasimia), Jamal Abdul Nasser St
+(= Majaz). Still open: the owner's re-upload of the two Level 2 knowledge files.
+
+### Texts (as sent)
 
 * **#2 — 554912916 (Arabic):** "عذراً على الخطأ 🙏 السعر الصحيح لتنظيف بيت غرفتين وصالة في القصباء، الشارقة 👇\n• 3 عاملات × 4 ساعات – 499 درهم\nكل شي شامل: الفريق والمواصلات وجهاز البخار والأدوات والمواد.\nاحجز موعدك خلال دقيقة: https://www.justnow.life/book-now?utm_source=whatsapp"
 * **#7 — 554741396 (Arabic):** "تحديث من فريقنا 😊 دماك هيلز 2 ضمن مناطق خدمتنا. تنظيف البيت العميق لفيلا 3 غرف في دماك هيلز 2، دبي 👇\n• 4 عاملات × 4 ساعات – 879 درهم\nكل شي شامل: الفريق والمواصلات وجهاز البخار والأدوات والمواد.\nاحجز موعدك خلال دقيقة: https://www.justnow.life/book-now?utm_source=whatsapp"
