@@ -318,3 +318,53 @@ Full spec, creative map, bench, audiences, metrics and rotation design: `meta/br
   audiences), 1 rejected audience attempt. **Running total since 09:53: 65 successful production writes, 0
   rollbacks.** Untouched: T1/T2, W1/W2, NSC/5158/C1/C2/C3 budgets (Stage 1 levels), reactivation, Purchase,
   protected account 1679026507158086.
+
+## 12. 16:15–16:30 Dubai — go-live delivery check #1, budget verification, and weekend Stage 1b (delayed from 14:00)
+
+### 12a. Delivery check #1 (routine "review approval + first delivery check", read-only)
+
+| Object | State at 16:20 Dubai | Today (since 00:00) |
+|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | ACTIVE, budget 60 untouched | AED 22.95 → 7 conversations @ 3.28, CPM 15.3, freq 1.03 |
+| T2 ad set 120250144457040073 (AED 30) | ACTIVE, budget 30 untouched | AED 10.43 → 3 @ 3.48, CPM 23.0, freq 1.08 |
+| T1/T2 ads 120250144462130073 / 120250144462600073 / 120250144463050073 | all ACTIVE, delivery `active` (review passed) | 5.63 / 17.25 / 10.26 spend, 3 / 4 / 3 conversations |
+| Twin campaign 120250144447740073 | ACTIVE | AED 33.14 → 10 @ 3.31 (W1 control today: AED 41.57 → 7 @ 5.94) |
+| Reactivation 120250144448010073 + ad 120250144463650073 | PAUSED / PAUSED, 0 spend | — |
+| JN union ad set 120252226500410312 | ACTIVE, LEARNING (1 conversion) | AED 24.63 → 1 website lead, CPM 42.9, freq 1.25 |
+| Union ads 120252226507840312 / 120252226508320312 / 120252226511090312 | all ACTIVE, `ad_set_in_learning_phase` (review passed) | 1.22 / 18.38 (the lead) / 5.03 |
+| C2-1 / C2-2 / C2-3 | PAUSED / PAUSED / PAUSED (residual spend 5.00 / 0.65 / 12.23 is from before the 10:12 pause) | — |
+| W1 120251948470210312 / W2 120251948470250312 | ACTIVE / ACTIVE (W2 barely delivering: AED 0.61, 40 impressions) | W1 AED 41.57 → 7 @ 5.94 |
+| Studio ad 120252227059520312 in C1-1 | ACTIVE, warning `ad_set_learning_exit_unsuccessfully` (pre-existing C1-1 learning-limited) | AED 1.51, 46 impressions |
+| Brand layer (justnow22) | all 7 ads ACTIVE, delivery `active` (review passed within ~4 h) | AED 19.70 → 1,319 ThruPlays @ ≈ AED 0.015; A-EN carries 4,536 of 5,502 impressions (ThruPlay rate 24 %), E 157 imp / 40 ThruPlays (25 %), F 513 / 112 (22 %) |
+
+No rejected ad, no policy issue, no delivery error. Nothing to fix.
+
+### 12b. Budget verification (routine 12:40 Dubai, completed here; the 12:40 run read jn and the brand campaign, the JN and T1/T2 reads were cut off by the next event)
+
+| Campaign | Expected (approved Stage 1 level) | Actual | OK |
+|---|---|---|---|
+| jn New Sales Campaign | 120 | 120 (until 16:28, see 12c) | yes |
+| jn WhatsApp Sales 5158 | 120 | 120 (until 16:28) | yes |
+| jn C3 | 90 | 90 | yes |
+| JN C1 | 105 | 105 | yes |
+| JN C2 | 80 | 80 | yes |
+| JN W1/W2 control | 80 | 80 | yes |
+| T1 / T2 | 60 / 30 | 60 / 30 | yes |
+| justnow22 brand | 60 | 60 | yes |
+
+The verification routine's prompt was pointed at "the latest approved level recorded in this log" (it still said "base" from before the weekend scale-up); from 16 Oct it compares with the rule values.
+
+### 12c. Weekend Stage 1b — executed 16:28 Dubai (routine fired 14:00; the session was idle until 16:16)
+
+Gates at 16:20: New Sales Campaign CPA 2.76 today vs 3.41 baseline (−19 %); 5158 CPA 4.20 vs 3.75 (+12 %, inside the +25–30 % tolerance; its CPM 22.9 equals its 7-day CPM, so no spike without conversions); frequency 1.05–1.06; capacity 7 bookings today (all confirmed), 7 booked tomorrow (4 still UNCONFIRMED) vs the 11-booking hold line; handling normal. All gates PASS. Weak campaigns not raised: C3 (AED 49 → 4 conversations @ 12.36, CPM 34), JN C1 (AED 62 → 0 website leads today; 7-day AED 56/lead).
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE (7d) | CURRENT CPA (today) | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales Campaign 120249855697050073 | 120 | **150** | +25 % | 3.41 | 2.76 (24 conv on AED 66) | 7 bookings today, 6 via the site form; 7 tomorrow | 7/12 today, 7/12 tomorrow → available | ACTIVE, budget 150, delivery active, 16:28:45 (not force-paused this time) | 16:40 Dubai (Stage 2 routine) |
+| jn WhatsApp Sales 5158 120249855229580073 | 120 | **150** | +25 % | 3.75 | 4.20 (13 conv on AED 55) | same | same | ACTIVE, budget 150, delivery active, 16:28:52 | 16:40 Dubai |
+
+Conversion accounts total daily budget: **685 → 745** (jn 480 incl. T1/T2 90; JN 265). Brand layer 60 on top (7.5 %
+of 805). Stage 2 at 16:40: C1 HOLD (0 leads today), C3 HOLD (CPA 12.4), C2 80 → 90 eligible (frequency 1.25 < 1.5,
+1 lead), New Sales/5158 150 → 180 only after ≥ 2 hours of read-back at 150 (earliest ≈ 18:30 Dubai), so today's
+realistic ceiling is ≈ 755–815 rather than 850–900 unless C1 produces leads this evening. Writes this section: 2
+budget edits (no re-activation needed). **Running total since 09:53: 67 successful production writes, 0 rollbacks.**
