@@ -248,3 +248,32 @@ weekend-weighting proposal is in `meta/weekend-weighting-plan-2026-10-09.md`.
 | Lookalike: keep 120251936410460312, no new 1 %, verify UAE in Audiences UI, do not attach | Connector read: source 120251936408430312, ratio 0.01, ACTIVE, created 18 Sep, size at API floor; country not exposed → owner confirms "United Arab Emirates" in Audiences. Nothing attached. |
 | JustNow44 priority direct read | No browser in this session. New direct path found: Windsor.ai's Facebook (Meta Ads) connector was connected before and its token expired on 29 Sep (owner's inbox alert). Re-authorizing it with the owner's Facebook login lets this session read 2820299204977421 through Windsor, independent of the Meta MCP gate. Authorization link handed to the owner; export remains the fallback. Mission stays unassigned. |
 | Monitoring unchanged, no budget changes, no restructuring during the weekend | 16:15 Dubai delivery check and daily 09:22 scorecard remain; nothing else scheduled to write. |
+
+## 10. Weekend controlled scale-up — Stage 1, 11:07 Dubai (owner brief "CONTROLLED SCALE-UP TO ~AED 1,000/DAY WEEKEND" + correction "today ≈ AED 750–800, then 850–900 after 16:15, Sat 950–1,000 staged")
+
+Scope: mature proven campaigns only. Never: T1/T2 (campaign 120250144447740073), W1/W2 control
+120251948470120312, reactivation, justnow22, Purchase. Progression 90 → 120 → 150 → 180 with read-back
+between stages. The connector force-pauses a campaign on a budget edit, so each change = edit + immediate
+re-activation (campaigns were paused for 20–40 s).
+
+Baseline 11:05 Dubai (today so far / 7 days): New Sales Campaign AED 22 → 9 conv @2.48 (7d 954 → 280
+@3.41, CPM 16); WhatsApp Sales 5158 AED 20 → 8 @2.53 (7d 911 → 243 @3.75, CPM 22); C3 AED 15 → 1 @14.78
+(7d ≈ 4.9 excl. C3-4, CPM 42 today) → held; JN C1 AED 35, 1,186 imp, CTR 4.4 %, 0 leads yet (7d 9 leads
+@56; learning status "limited"); JN C2 AED 21, union new. Capacity: 8 Oct 7 jobs (all DONE-marked),
+9 Oct 7 booked (6 via website form), 10 Oct 5 booked so far; ceiling 12 → available.
+
+| CAMPAIGN | OLD | NEW | % | STATUS (read-back) | LEARNING | SPEND AFTER CHANGE | CPA | BOOKING SIGNAL | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales Campaign 120249855697050073 | 90 | **120** | +33 % | ACTIVE 11:07:34 (re-activated after force-pause) | ad sets unchanged (no significant edit; CBO budget change) | AED 22.61 at 11:12 | 2.51 today / 3.41 7d | 7 bookings today, 6 from the site form | 14:00 Dubai |
+| jn WhatsApp Sales 5158 120249855229580073 | 90 | **120** | +33 % | ACTIVE 11:07:37 | unchanged | AED 20.34 | 2.54 / 3.75 | same | 14:00 |
+| JN C1 Website Acquisition 120252107068880312 | 84 | **105** | +25 % | ACTIVE 11:07:35 (not force-paused) | C1-1 "learning limited" (9 conv) — pre-existing | AED 35.03 | 0 leads today / AED 56 7d | website form active today | 14:00 |
+| JN C2 Retargeting 120252107080200312 | 70 | **80** | +14 % | ACTIVE 11:07:40 | union in learning (new) | AED 20.74 | n/a today | — | 16:40 |
+| jn C3 120250020646250073 | 90 | 90 | 0 | held — weakest today (1 conv on AED 15, CPM 42) | — | — | — | — | re-evaluate 16:40 |
+
+Account total daily budget: **594 → 685**. Planned path (each step gated, each write prompted):
+Stage 1b 14:00 Dubai → New Sales + 5158 to 150 (≈ 745); Stage 2 16:40 → toward 850–900 (C1 125, C3 110
+only if its CPA < 4.5, New Sales/5158 180 only if CPA holds, C2 90 only if frequency < 1.5); Sat 09:40 →
+toward 950–1,000 staged; Sun 00:30 → 800–900; Mon 00:30 → ≈ 600 baseline. Hold rules: CPA worse than
++25–30 % vs baseline, booking quality down, 11+ bookings yesterday/today, CPM/frequency spike without
+conversions, handling overload. Writes this stage: 4 budget edits + 3 re-activations = 7 (total since
+09:53: 43 successful, 0 rollbacks).
