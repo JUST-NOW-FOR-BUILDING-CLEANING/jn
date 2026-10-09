@@ -238,3 +238,13 @@ Lead events ≈ 20–50/day. **FAIL** — 0 of 7 clean days; keep Purchase off e
 3 successful (studio ad create, activate, test campaign pause), 1 rejected without change (LAL rename).
 Running total since 09:53: **36 successful production writes, 0 rollbacks.** Budgets: none changed; the
 weekend-weighting proposal is in `meta/weekend-weighting-plan-2026-10-09.md`.
+
+## 9. Owner approvals of 11:00 Dubai and what was prepared (no new Meta writes)
+
+| Approval | Action taken |
+|---|---|
+| Recommended multipliers; Meta-native rules only; five eligible campaigns; T1/T2, W1/W2, reactivation, justnow22, Purchase excluded; capacity guard kept | `meta/automated-rules-spec-2026-10-09.md`: 20 copy-ready rules (groups W-jn ×3 campaigns, W-C1, R-C2), staged steps ≤ +25 % / −20 %, one rule per campaign per slot. Owner creates them in Ads Manager (connector has no rule tool). Read-only verification routine at 00:40 and 12:40 Dubai daily until 23 Oct; daily 09:22 check-in carries the 11-booking capacity guard. |
+| Monday 13 Oct 09:30 exclusion batch on the 9 jn winners, one bundled edit each, baseline saved, read-back after | `meta/monday-exclusion-batch-2026-10-13.json`: baseline targeting (9 Oct read) + sanitized payloads adding 120249973174230073, pre-checks, 3-pass order (smallest spend first), rollback. One-shot routine fires 13 Oct 09:30 Dubai into this session; every write still prompts the owner. |
+| Lookalike: keep 120251936410460312, no new 1 %, verify UAE in Audiences UI, do not attach | Connector read: source 120251936408430312, ratio 0.01, ACTIVE, created 18 Sep, size at API floor; country not exposed → owner confirms "United Arab Emirates" in Audiences. Nothing attached. |
+| JustNow44 priority direct read | No browser in this session. New direct path found: Windsor.ai's Facebook (Meta Ads) connector was connected before and its token expired on 29 Sep (owner's inbox alert). Re-authorizing it with the owner's Facebook login lets this session read 2820299204977421 through Windsor, independent of the Meta MCP gate. Authorization link handed to the owner; export remains the fallback. Mission stays unassigned. |
+| Monitoring unchanged, no budget changes, no restructuring during the weekend | 16:15 Dubai delivery check and daily 09:22 scorecard remain; nothing else scheduled to write. |
