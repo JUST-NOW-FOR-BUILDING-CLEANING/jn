@@ -277,3 +277,44 @@ toward 950–1,000 staged; Sun 00:30 → 800–900; Mon 00:30 → ≈ 600 baseli
 +25–30 % vs baseline, booking quality down, 11+ bookings yesterday/today, CPM/frequency spike without
 conversions, handling overload. Writes this stage: 4 budget edits + 3 re-activations = 7 (total since
 09:53: 43 successful, 0 rollbacks).
+
+## 11. Brand expansion layer — built and published 11:47 Dubai (owner brief "BUILD TOP-OF-FUNNEL BRAND EXPANSION LAYER")
+
+Full spec, creative map, bench, audiences, metrics and rotation design: `meta/brand-expansion-layer-2026-10-09.md`.
+
+* Home account **justnow22 1897980308260660** (BRAND / CREATIVE TESTING): mission separation kept — jn
+  stays WhatsApp sales, JN website bookings + retargeting. Draft mode is ON in this account, so every
+  object was staged as a draft (nothing spent), read back, and published in one call at 11:47.
+* Campaign **23860638577100791** `BR | Video Views ThruPlay | UAE excl. Abu Dhabi | Deep Cleaning | Oct 2026`
+  — OUTCOME_ENGAGEMENT, CBO **AED 60/day**, Highest volume → read back ACTIVE, budget AED 60, start
+  11:47:22, delivery pending (ads in review).
+* Ad set **23860638584760791** `BR-1 | Broad 25+ | UAE excl. Abu Dhabi (incl. Al Ain) | ThruPlay` —
+  THRUPLAY / IMPRESSIONS / ON_VIDEO, Page 122098309970001876; UAE (home + recent) minus region Abu Dhabi
+  key 8 (Al Ain is inside it); Facebook + Instagram placements only; Advantage+ audience on (25–65 as
+  suggestion) → read back ACTIVE with exactly that targeting.
+* Ads (ACTIVE, PENDING_REVIEW / IN_PROCESS at 11:50): A-EN 23860638592800791 (post _2163113240903678),
+  A-AR 23860638592980791 (_1622838339212041), B 23860638593040791 (_1559790696189996), C 23860638593450791
+  (_4303960699820816, branded-content post with an external creator tag — review result to be checked),
+  D 23860638593500791 (_890288284018661), E 23860638607180791 (new positioning creative 1427446799529368 on
+  Page video 1387153059699272, copy "JustNow specializes in professional deep cleaning. We do not provide
+  regular cleaning." EN + AR), F 23860638601130791 (_2187572902181730). Deviation: the first E creative
+  1396311642317311 produced the draft error "ObjectStorySpecRedundant" (connector wrote image_url and
+  image_hash); rebuilt with the hash only, the broken draft ad 23860638593520791 was set DELETED before
+  publish (never live, no history).
+* Warm audiences in JN: **created** 120252228024070312 (video 25 %), 120252228030340312 (50 %),
+  120252228030930312 (75 %) — Page-wide single-rule form, 365 d, prefill on (the 11-video form was
+  rejected: max 5 rules per audience); **verified** IG engagers 120251888118190312 (31.4–37k) and FB
+  engagers of the Just Now Page 120241682713780312 "just now . facebook" (26.2–30.8k; the union ad set
+  still uses only the CO LLC Page audience 120251888139630312, 2.7–3.2k). Nothing attached.
+* Customer exclusion **not applied**: no customer list exists in justnow22; owner shares 120251936408430312
+  (JN) or 120249973174230073 (jn) to ad account 1897980308260660 in Business Settings, then one prompted
+  edit adds it to BR-1.
+* Budget profile: AED 60 flat in week 1; Automated Rules group **BR** (rows 21–27 of
+  `meta/automated-rules-spec-2026-10-09.md`: Mon 58 · Tue/Wed 50 · Thu 60→70 · Fri 85 · Sat 90 · Sun 72)
+  for the owner to create natively, first cycle Thu 16 Oct; brand share 8–10 % of planned totals.
+* Monitoring: the daily 09:22 Dubai routine now also reads the brand campaign (ThruPlay rate, cost per
+  ThruPlay, hook rate, frequency, audience growth, fatigue flags, 8–12 % share) — read-only.
+* Writes: 22 successful (1 campaign, 1 ad set, 8 creatives, 8 draft ads, 1 draft delete, 1 publish, 3
+  audiences), 1 rejected audience attempt. **Running total since 09:53: 65 successful production writes, 0
+  rollbacks.** Untouched: T1/T2, W1/W2, NSC/5158/C1/C2/C3 budgets (Stage 1 levels), reactivation, Purchase,
+  protected account 1679026507158086.

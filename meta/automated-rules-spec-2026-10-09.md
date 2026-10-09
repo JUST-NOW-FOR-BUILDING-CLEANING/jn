@@ -73,3 +73,25 @@ for that cycle, or approves a one-off hold write). Observed ceiling 12 jobs/day;
 After the 16 Oct scorecard, T1/T2 join as group **W-T** (ABO, budgets on the ad sets): same 9 slots,
 amounts = 60/30 × multiplier (or 80/40 × multiplier if the scorecard raised them). Until then they are
 untouched. W1/W2 are never scheduled; they are paused after parity.
+
+## Group BR — brand expansion layer (added 2026-10-09 12:00 Dubai, same mechanism)
+
+Campaign: justnow22 1897980308260660 → **23860638577100791** "BR | Video Views ThruPlay | UAE excl. Abu
+Dhabi | Deep Cleaning | Oct 2026" (CBO, base AED 60). Owner's bands: midweek 40–60, Thu 60–80, Fri/Sat
+80–100, Sun 60–80, brand ≈ 8–12 % of total spend. Week 1 (to Wed 15 Oct) stays flat at AED 60 so the ad
+set exits learning on a stable budget; first rule cycle Thu 16 Oct.
+
+| # | Rule name | Schedule (Dubai) | Set daily budget to | Step | Brand share of planned total |
+|---|---|---|---|---|---|
+| 21 | `BR \| THU 00:00 \| 60` | Thursday 00:00 | AED 60 | +20 % from 50 | 7.5–8.6 % of 700–800 |
+| 22 | `BR \| THU 12:00 \| 70` | Thursday 12:00 | AED 70 | +17 % | 8.8–10 % |
+| 23 | `BR \| FRI 00:00 \| 85` | Friday 00:00 | AED 85 | +21 % | 9.4–10.6 % of 800–900 |
+| 24 | `BR \| SAT 00:00 \| 90` | Saturday 00:00 | AED 90 | +6 % | 9–9.5 % of 950–1,000 |
+| 25 | `BR \| SUN 00:00 \| 72` | Sunday 00:00 | AED 72 | −20 % | 8–9 % of 800–900 |
+| 26 | `BR \| MON 00:00 \| 58` | Monday 00:00 | AED 58 | −19 % | ≈ 9.7 % of 600 |
+| 27 | `BR \| TUE 00:00 \| 50` | Tuesday 00:00 | AED 50 (holds Wednesday) | −14 % | 7.7–9 % of 550–650 |
+
+Same settings as rows 1–20 (condition "Daily budget > 1", time range Today, email on action). Weekly
+brand budget ≈ AED 470 (avg 67/day). The 11-booking capacity guard applies to this group too; a
+creative-fatigue flag (see `meta/brand-expansion-layer-2026-10-09.md` §7) never changes the budget, it
+rotates the creative.
