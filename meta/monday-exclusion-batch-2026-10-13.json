@@ -1,0 +1,2156 @@
+{
+ "prepared_at": "2026-10-09T11:00+04:00",
+ "execute_at": "2026-10-13T09:30+04:00 (Asia/Dubai)",
+ "ad_account_id": "1037126214908677",
+ "exclusion_audience": {
+  "id": "120249973174230073",
+  "name": "jn - Customers Jan 2025-Sep 2026 (booking calendar, 889)"
+ },
+ "pre_checks": [
+  "ads_get_custom_audience 120249973174230073 -> delivery_status ACTIVE, operation_status 200",
+  "re-read each ad set targeting and diff against baseline_targeting_raw; abort the ad set if changed since 9 Oct",
+  "confirm no ad set is in a CAPACITY FULL hold or mid-scorecard decision"
+ ],
+ "write_sequence_per_ad_set": [
+  "ads_update_entity entity_type=ad_set fields={targeting: monday_payload_targeting}  (connector force-pauses the ad set)",
+  "ads_activate_entity entity_type=ad_set (immediately)",
+  "ads_get_ad_entities fields targeting,status,effective_status,learning_stage_info,delivery_sub_status -> read back"
+ ],
+ "order": "three ad sets per pass with read-back between passes: (1) D, C, TEST E (smallest spend) (2) Copy 2, B Arabic, Copy B (3) New Sales Ad Set, Copy A, A Sharjah (largest)",
+ "rollback": "ads_update_entity with baseline_targeting_raw sanitized without the added exclusion, then ads_activate_entity",
+ "ad_sets": [
+  {
+   "ad_set_id": "120249947966990073",
+   "name": "TEST 24 Sep - E - Dubai women 25-55 [5158]",
+   "campaign_id": "120249855229580073",
+   "destination_type": "WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "110.97",
+   "results_7d": "25",
+   "baseline_targeting_raw": {
+    "genders": {
+     "0": 2
+    },
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 55
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.05,
+       "longitude": 55.26,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "1": {
+       "latitude": 25.058,
+       "longitude": 55.2094,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "2": {
+       "latitude": 25.0805,
+       "longitude": 55.1403,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "3": {
+       "latitude": 25.103,
+       "longitude": 55.246,
+       "radius": 3,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "4": {
+       "latitude": 25.1107,
+       "longitude": 55.2003,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "5": {
+       "latitude": 25.191,
+       "longitude": 55.27,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "genders": [
+     2
+    ],
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.05,
+       "longitude": 55.26,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.058,
+       "longitude": 55.2094,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.0805,
+       "longitude": 55.1403,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.103,
+       "longitude": 55.246,
+       "radius": 3,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.1107,
+       "longitude": 55.2003,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.191,
+       "longitude": 55.27,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855813520073",
+   "name": "New Sales Ad Set - Copy B",
+   "campaign_id": "120249855697050073",
+   "destination_type": "MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "221.63",
+   "results_7d": "64",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 62
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.318167,
+       "longitude": 55.377502,
+       "radius": 10,
+       "distance_unit": "mile",
+       "primary_city_id": 765,
+       "region_id": 13,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "locales": {
+     "0": 6,
+     "1": 24,
+     "2": 28,
+     "3": 46,
+     "4": 47,
+     "5": 90
+    },
+    "flexible_spec": {
+     "0": {
+      "interests": {
+       "0": {
+        "id": 6002920953955,
+        "name": "Interior design"
+       },
+       "1": {
+        "id": 6002979893723,
+        "name": "Renovation"
+       },
+       "2": {
+        "id": 6003199112065,
+        "name": "Home repair"
+       },
+       "3": {
+        "id": 6003234413249,
+        "name": "Home improvement"
+       }
+      },
+      "life_events": {
+       "0": {
+        "id": 6003054185372,
+        "name": "Recently moved"
+       }
+      }
+     }
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_optimization": "expansion_all",
+    "brand_safety_content_filter_levels": {
+     "0": "FACEBOOK_RELAXED",
+     "1": "AN_RELAXED"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1,
+     "individual_setting": {
+      "age": 1,
+      "gender": 1
+     }
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.318167,
+       "longitude": 55.377502,
+       "radius": 10,
+       "distance_unit": "mile"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "locales": [
+     6,
+     24,
+     28,
+     46,
+     47,
+     90
+    ],
+    "flexible_spec": [
+     {
+      "interests": [
+       {
+        "id": "6002920953955",
+        "name": "Interior design"
+       },
+       {
+        "id": "6002979893723",
+        "name": "Renovation"
+       },
+       {
+        "id": "6003199112065",
+        "name": "Home repair"
+       },
+       {
+        "id": "6003234413249",
+        "name": "Home improvement"
+       }
+      ],
+      "life_events": [
+       {
+        "id": "6003054185372",
+        "name": "Recently moved"
+       }
+      ]
+     }
+    ],
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855757070073",
+   "name": "New Sales Ad Set - Copy 2",
+   "campaign_id": "120249855697050073",
+   "destination_type": "WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "93.05",
+   "results_7d": "32",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 59
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.104617,
+       "longitude": 55.285034,
+       "radius": 10,
+       "distance_unit": "mile",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "1": {
+       "latitude": 25.316499,
+       "longitude": 55.395584,
+       "radius": 10,
+       "distance_unit": "mile",
+       "primary_city_id": 765,
+       "region_id": 13,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "locales": {
+     "0": 6,
+     "1": 24,
+     "2": 28,
+     "3": 46,
+     "4": 47,
+     "5": 90
+    },
+    "flexible_spec": {
+     "0": {
+      "interests": {
+       "0": {
+        "id": 6003266225248,
+        "name": "Jewelry"
+       },
+       "1": {
+        "id": 6003346592981,
+        "name": "Online shopping"
+       }
+      },
+      "work_positions": {
+       "0": {
+        "id": 108464855840777,
+        "name": "Teacher"
+       },
+       "1": {
+        "id": 109398559087414,
+        "name": "Preschool teacher"
+       },
+       "2": {
+        "id": 140696145961625,
+        "name": "Primary School Teacher"
+       },
+       "3": {
+        "id": 325361781008455,
+        "name": "High School Teacher"
+       }
+      }
+     }
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "brand_safety_content_filter_levels": {
+     "0": "FACEBOOK_RELAXED"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1,
+     "individual_setting": {
+      "age": 1,
+      "gender": 1
+     }
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.104617,
+       "longitude": 55.285034,
+       "radius": 10,
+       "distance_unit": "mile"
+      },
+      {
+       "latitude": 25.316499,
+       "longitude": 55.395584,
+       "radius": 10,
+       "distance_unit": "mile"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "locales": [
+     6,
+     24,
+     28,
+     46,
+     47,
+     90
+    ],
+    "flexible_spec": [
+     {
+      "interests": [
+       {
+        "id": "6003266225248",
+        "name": "Jewelry"
+       },
+       {
+        "id": "6003346592981",
+        "name": "Online shopping"
+       }
+      ],
+      "work_positions": [
+       {
+        "id": "108464855840777",
+        "name": "Teacher"
+       },
+       {
+        "id": "109398559087414",
+        "name": "Preschool teacher"
+       },
+       {
+        "id": "140696145961625",
+        "name": "Primary School Teacher"
+       },
+       {
+        "id": "325361781008455",
+        "name": "High School Teacher"
+       }
+      ]
+     }
+    ],
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855745520073",
+   "name": "New Sales Ad Set - Copy A",
+   "campaign_id": "120249855697050073",
+   "destination_type": "MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "446.03",
+   "results_7d": "117",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 63
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.32458,
+       "longitude": 55.42511,
+       "radius": 10,
+       "distance_unit": "mile",
+       "primary_city_id": 765,
+       "region_id": 13,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "locales": {
+     "0": 6,
+     "1": 24,
+     "2": 28,
+     "3": 46,
+     "4": 47,
+     "5": 90
+    },
+    "flexible_spec": {
+     "0": {
+      "interests": {
+       "0": {
+        "id": 6003232518610,
+        "name": "Parenting"
+       },
+       "1": {
+        "id": 6003263791114,
+        "name": "Shopping"
+       },
+       "2": {
+        "id": 6003332764437,
+        "name": "Parent"
+       },
+       "3": {
+        "id": 6003346592981,
+        "name": "Online shopping"
+       },
+       "4": {
+        "id": 6007828099136,
+        "name": "Luxury goods"
+       }
+      },
+      "behaviors": {
+       "0": {
+        "id": 6071631541183,
+        "name": "Engaged Shoppers"
+       }
+      },
+      "family_statuses": {
+       "0": {
+        "id": 6002714398372,
+        "name": "Parents (All)"
+       }
+      }
+     }
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_optimization": "expansion_all",
+    "brand_safety_content_filter_levels": {
+     "0": "FACEBOOK_RELAXED",
+     "1": "AN_RELAXED"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1,
+     "individual_setting": {
+      "age": 1,
+      "gender": 1
+     }
+    },
+    "user_age_unknown": true,
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.32458,
+       "longitude": 55.42511,
+       "radius": 10,
+       "distance_unit": "mile"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "locales": [
+     6,
+     24,
+     28,
+     46,
+     47,
+     90
+    ],
+    "flexible_spec": [
+     {
+      "interests": [
+       {
+        "id": "6003232518610",
+        "name": "Parenting"
+       },
+       {
+        "id": "6003263791114",
+        "name": "Shopping"
+       },
+       {
+        "id": "6003332764437",
+        "name": "Parent"
+       },
+       {
+        "id": "6003346592981",
+        "name": "Online shopping"
+       },
+       {
+        "id": "6007828099136",
+        "name": "Luxury goods"
+       }
+      ],
+      "behaviors": [
+       {
+        "id": "6071631541183",
+        "name": "Engaged Shoppers"
+       }
+      ],
+      "family_statuses": [
+       {
+        "id": "6002714398372",
+        "name": "Parents (All)"
+       }
+      ]
+     }
+    ],
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855697040073",
+   "name": "New Sales Ad Set",
+   "campaign_id": "120249855697050073",
+   "destination_type": "MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "193.19",
+   "results_7d": "67",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 59
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.226891,
+       "longitude": 55.444336,
+       "radius": 10,
+       "distance_unit": "mile",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "locales": {
+     "0": 6,
+     "1": 24,
+     "2": 28,
+     "3": 46,
+     "4": 47,
+     "5": 90
+    },
+    "flexible_spec": {
+     "0": {
+      "interests": {
+       "0": {
+        "id": 6003132627317,
+        "name": "Luxury"
+       },
+       "1": {
+        "id": 6003365135251,
+        "name": "Property management"
+       },
+       "2": {
+        "id": 6003385478363,
+        "name": "Landlord"
+       },
+       "3": {
+        "id": 6003388314512,
+        "name": "Investment"
+       },
+       "4": {
+        "id": 6003446239080,
+        "name": "Real estate investing"
+       },
+       "5": {
+        "id": 6007828099136,
+        "name": "Luxury goods"
+       }
+      },
+      "behaviors": {
+       "0": {
+        "id": 6028974351183,
+        "name": "People who prefer mid and high-value goods in India"
+       },
+       "1": {
+        "id": 6082317210583,
+        "name": "People who prefer high-value goods in UAE"
+       },
+       "2": {
+        "id": 6082317378383,
+        "name": "People who prefer mid and high-value goods in UAE"
+       }
+      }
+     }
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_optimization": "expansion_all",
+    "brand_safety_content_filter_levels": {
+     "0": "FACEBOOK_RELAXED",
+     "1": "AN_RELAXED"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1,
+     "individual_setting": {
+      "age": 1,
+      "gender": 1
+     }
+    },
+    "user_age_unknown": true,
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.226891,
+       "longitude": 55.444336,
+       "radius": 10,
+       "distance_unit": "mile"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "locales": [
+     6,
+     24,
+     28,
+     46,
+     47,
+     90
+    ],
+    "flexible_spec": [
+     {
+      "interests": [
+       {
+        "id": "6003132627317",
+        "name": "Luxury"
+       },
+       {
+        "id": "6003365135251",
+        "name": "Property management"
+       },
+       {
+        "id": "6003385478363",
+        "name": "Landlord"
+       },
+       {
+        "id": "6003388314512",
+        "name": "Investment"
+       },
+       {
+        "id": "6003446239080",
+        "name": "Real estate investing"
+       },
+       {
+        "id": "6007828099136",
+        "name": "Luxury goods"
+       }
+      ],
+      "behaviors": [
+       {
+        "id": "6028974351183",
+        "name": "People who prefer mid and high-value goods in India"
+       },
+       {
+        "id": "6082317210583",
+        "name": "People who prefer high-value goods in UAE"
+       },
+       {
+        "id": "6082317378383",
+        "name": "People who prefer mid and high-value goods in UAE"
+       }
+      ]
+     }
+    ],
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855379980073",
+   "name": "D - Dubai inner belt families 25-60 (Al Nahda Dubai, Qusais, Mirdif, Warqa, Silicon Oasis, Intl City, Deira) [5158]",
+   "campaign_id": "120249855229580073",
+   "destination_type": "WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "9.97",
+   "results_7d": "5",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 60
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.14,
+       "longitude": 55.39,
+       "radius": 5,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "1": {
+       "latitude": 25.215,
+       "longitude": 55.42,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "2": {
+       "latitude": 25.263,
+       "longitude": 55.31,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 335,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "3": {
+       "latitude": 25.28,
+       "longitude": 55.38,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.14,
+       "longitude": 55.39,
+       "radius": 5,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.215,
+       "longitude": 55.42,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.263,
+       "longitude": 55.31,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.28,
+       "longitude": 55.38,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855379550073",
+   "name": "C - Dubai premium communities 28-55 (Marina, JLT, JVC, Barsha, Downtown, Business Bay, Dubai Hills, Ranches) [5158]",
+   "campaign_id": "120249855229580073",
+   "destination_type": "WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "32.14",
+   "results_7d": "10",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 28,
+     "1": 55
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.05,
+       "longitude": 55.26,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "1": {
+       "latitude": 25.058,
+       "longitude": 55.2094,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "2": {
+       "latitude": 25.0805,
+       "longitude": 55.1403,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "3": {
+       "latitude": 25.103,
+       "longitude": 55.246,
+       "radius": 3,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "4": {
+       "latitude": 25.1107,
+       "longitude": 55.2003,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      },
+      "5": {
+       "latitude": 25.191,
+       "longitude": 55.27,
+       "radius": 4,
+       "distance_unit": "kilometer",
+       "primary_city_id": 368,
+       "region_id": 10,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.05,
+       "longitude": 55.26,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.058,
+       "longitude": 55.2094,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.0805,
+       "longitude": 55.1403,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.103,
+       "longitude": 55.246,
+       "radius": 3,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.1107,
+       "longitude": 55.2003,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.191,
+       "longitude": 55.27,
+       "radius": 4,
+       "distance_unit": "kilometer"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855378300073",
+   "name": "B - Arabic speakers Sharjah + Ajman 25-60 [5158]",
+   "campaign_id": "120249855229580073",
+   "destination_type": "WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "90.54",
+   "results_7d": "26",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 60
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.3463,
+       "longitude": 55.4209,
+       "radius": 12,
+       "distance_unit": "kilometer",
+       "primary_city_id": 765,
+       "region_id": 13,
+       "country": "AE"
+      },
+      "1": {
+       "latitude": 25.4052,
+       "longitude": 55.5136,
+       "radius": 10,
+       "distance_unit": "kilometer",
+       "primary_city_id": 118,
+       "region_id": 9,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "locales": {
+     "0": 28
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.3463,
+       "longitude": 55.4209,
+       "radius": 12,
+       "distance_unit": "kilometer"
+      },
+      {
+       "latitude": 25.4052,
+       "longitude": 55.5136,
+       "radius": 10,
+       "distance_unit": "kilometer"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "locales": [
+     28
+    ],
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  },
+  {
+   "ad_set_id": "120249855372950073",
+   "name": "A - Sharjah city families 25-60 [5158]",
+   "campaign_id": "120249855229580073",
+   "destination_type": "WHATSAPP",
+   "optimization_goal": "CONVERSATIONS",
+   "spend_7d": "667.12",
+   "results_7d": "177",
+   "baseline_targeting_raw": {
+    "age_min": 25,
+    "age_max": 65,
+    "age_range": {
+     "0": 25,
+     "1": 60
+    },
+    "geo_locations": {
+     "custom_locations": {
+      "0": {
+       "latitude": 25.3463,
+       "longitude": 55.4209,
+       "radius": 12,
+       "distance_unit": "kilometer",
+       "primary_city_id": 765,
+       "region_id": 13,
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "frequently_in",
+      "1": "home",
+      "2": "recent"
+     }
+    },
+    "excluded_geo_locations": {
+     "regions": {
+      "0": {
+       "key": 8,
+       "name": "Abu Dhabi",
+       "country": "AE"
+      }
+     },
+     "location_types": {
+      "0": "home",
+      "1": "recent"
+     }
+    },
+    "page_types": {
+     "0": "desktopfeed",
+     "1": "instagramstream",
+     "2": "instagramstory",
+     "3": "instagramprofilefeed",
+     "4": "instagramexploregridhome",
+     "5": "instagramreels",
+     "6": "instagramsearch",
+     "7": "mobileexternal",
+     "8": "mobilefeed",
+     "9": "rightcolumn",
+     "10": "mobile-instream-video",
+     "11": "desktop-instream-video",
+     "12": "desktop-marketplace",
+     "13": "mobile-marketplace",
+     "14": "mobile-fb-story",
+     "15": "whatsapp-status",
+     "16": "desktop_marketplace_search_ads",
+     "17": "mobile_marketplace_search_ads",
+     "18": "mobile_search_serp_ads",
+     "19": "desktop_search_serp_ads",
+     "20": "mobile-fb-profile-feed",
+     "21": "mobile-fb-story-sticker",
+     "22": "mobile-biz-disco-feed",
+     "23": "mobile-fb-reels",
+     "24": "watch_search_ads_mobile",
+     "25": "mobile_fb_notifs_jewel"
+    },
+    "effective_publisher_platforms": {
+     "0": "facebook",
+     "1": "instagram",
+     "2": "audience_network",
+     "3": "whatsapp"
+    },
+    "effective_facebook_positions": {
+     "0": "feed",
+     "1": "right_hand_column",
+     "2": "instream_video",
+     "3": "marketplace",
+     "4": "story",
+     "5": "search",
+     "6": "biz_disco_feed",
+     "7": "facebook_reels",
+     "8": "facebook_reels_overlay",
+     "9": "profile_feed",
+     "10": "notification"
+    },
+    "effective_instagram_positions": {
+     "0": "stream",
+     "1": "story",
+     "2": "reels",
+     "3": "explore_home",
+     "4": "profile_feed",
+     "5": "ig_search"
+    },
+    "effective_whatsapp_positions": {
+     "0": "status"
+    },
+    "effective_audience_network_positions": {
+     "0": "classic",
+     "1": "rewarded_video"
+    },
+    "effective_device_platforms": {
+     "0": "mobile",
+     "1": "desktop"
+    },
+    "dt_consolidation_state": {
+     "0": "v2"
+    },
+    "targeting_automation": {
+     "advantage_audience": 1
+    },
+    "effective_brand_safety_content_filter_levels": [
+     "FACEBOOK_RELAXED",
+     "AN_RELAXED",
+     "FEED_RELAXED"
+    ]
+   },
+   "monday_payload_targeting": {
+    "age_min": 25,
+    "age_max": 65,
+    "geo_locations": {
+     "custom_locations": [
+      {
+       "latitude": 25.3463,
+       "longitude": 55.4209,
+       "radius": 12,
+       "distance_unit": "kilometer"
+      }
+     ],
+     "location_types": [
+      "frequently_in",
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_geo_locations": {
+     "regions": [
+      {
+       "key": "8"
+      }
+     ],
+     "location_types": [
+      "home",
+      "recent"
+     ]
+    },
+    "excluded_custom_audiences": [
+     {
+      "id": "120249973174230073"
+     }
+    ],
+    "targeting_automation": {
+     "advantage_audience": 1
+    }
+   },
+   "expected_readback": {
+    "excluded_custom_audiences_contains": "120249973174230073",
+    "status": "ACTIVE after re-activation",
+    "learning_stage": "LEARNING (restarted by the significant edit)"
+   }
+  }
+ ]
+}
