@@ -368,3 +368,23 @@ of 805). Stage 2 at 16:40: C1 HOLD (0 leads today), C3 HOLD (CPA 12.4), C2 80 �
 1 lead), New Sales/5158 150 → 180 only after ≥ 2 hours of read-back at 150 (earliest ≈ 18:30 Dubai), so today's
 realistic ceiling is ≈ 755–815 rather than 850–900 unless C1 produces leads this evening. Writes this section: 2
 budget edits (no re-activation needed). **Running total since 09:53: 67 successful production writes, 0 rollbacks.**
+
+## 13. Weekend Stage 2 — 16:43 Dubai (routine 16:40; owner: "after the 16:15 checkpoint … prepare the next increase toward AED 850–900 … do not force 900")
+
+Fresh read 16:43 (today): New Sales AED 68.47 → 24 conversations @ 2.85 (baseline 3.41), CPM 17.5, freq 1.05;
+5158 AED 56.09 → 15 @ 3.74 (baseline 3.75), CPM 22.8, freq 1.06; C3 AED 51.20 → 5 @ 10.24 (gate < 4.5: FAIL);
+C1 AED 63.57 → 0 website leads (gate "leads/bookings came in": FAIL); C2 AED 44.12 → 1 lead @ 44.12, CPM 39.0,
+freq 1.26 (gate < 1.5: PASS). Capacity unchanged since 16:20: 7 today / 7 tomorrow (4 unconfirmed), 4 bookings
+created today (3 via the website form) — available, handling normal.
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| JN C2 Retargeting 120252107080200312 | 80 | **90** | +12.5 % (modest, retargeting) | union new (10-day window); C2 7-day n/a | AED 44.12/lead (1 lead) | 4 bookings created today | 7/12 · 7/12 → available | ACTIVE, budget 90, 16:44:50; effective IN_PROCESS (Meta re-processing after the edit, normal) | Sat 09:40 Dubai |
+| jn New Sales Campaign | 150 | 150 (hold) | — | 3.41 | 2.85 | — | — | ACTIVE at 150 since 16:28 — only 15 min of read-back | **18:30 Dubai Stage 2b**: 150 → 180 if CPA holds |
+| jn WhatsApp Sales 5158 | 150 | 150 (hold) | — | 3.75 | 3.74 | — | — | same | 18:30 Dubai Stage 2b |
+| JN C1 | 105 | 105 (hold) | — | AED 56/lead | 0 leads on AED 64 today | no website leads yet today | — | ACTIVE | Sat 09:40 |
+| jn C3 | 90 | 90 (hold) | — | ≈ 4.9 | 10.24 | — | — | ACTIVE | Sat 09:40 |
+
+Conversion accounts total daily budget: **745 → 755** (brand 60 on top = 815). Stage 2b one-shot routine armed for
+18:30 Dubai (two hours of read-back at 150 before the 180 step, each write prompted). Writes this section: 1 budget
+edit (not force-paused). **Running total since 09:53: 68 successful production writes, 0 rollbacks.**
