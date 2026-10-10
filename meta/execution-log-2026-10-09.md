@@ -497,3 +497,45 @@ the proof above, otherwise Saturday closes at 875 and I do not recommend lifting
 as a +20 % step. Writes this section: 2 budget edits + 2 re-activations (each approved on its prompt; the approval
 wait moved execution from 09:46 to 10:28). **Running total since 09:53 Thu: 72 successful production writes, 0
 rollbacks.**
+
+## 17. Weekend Stage 3b — Sat 10 Oct 16:01 Dubai read, C2 90 → 100 (write approved and applied 20:41)
+
+Read at 16:01 (today): New Sales AED 75.11 → 22 @ 3.41 (= baseline), CPM 19.51, freq 1.10; since the 09:40 snapshot
++61.73 → +17 (marginal 3.63). 5158 AED 81.81 → 24 @ 3.41 (baseline 3.75, −9 %), CPM 20.39, freq 1.07; marginal since
+09:40 3.61. C3 AED 50.28 → 4 @ 12.57 (CPM 44). **C1 AED 84.09 → 0 website leads** (CPM 39.06, freq 1.13) → the
+105 → 125 condition (≥ 2 leads ≤ AED 60) FAILED → hold. **C2 AED 53.14 → 1 lead @ 53.14, freq 1.28 < 1.5** → the
+90 → 100 condition (≥ 1 lead, frequency < 1.5) MET. Capacity: Sat 7/12 (6 confirmed, all staffed; 1 UNCONFIRMED
+16:00), Sun 6/12 (villa 5+ confirmed, one WhatsApp booking request 12:00, 3 UNCONFIRMED) → available. Bookings
+created today by 16:01: 2 (12:23 WhatsApp booking-request flow, 14:49 website form), both for Sunday — slower than
+Friday (4 by the same hour).
+
+Write: JN C2 120252107080200312 daily_budget 9000 → **10000 fils** — the approval prompt was answered at 20:41:40
+Dubai, so the edit landed 4 h 40 min after the decision; connector force-paused → `ads_activate_entity` → ACTIVE.
+Read-back 20:43: ACTIVE, budget 100, delivery active; union ad set ACTIVE, C2-1/2/3 still PAUSED. Practical effect on
+Saturday ≈ nil (3 h 20 min left in the day).
+
+Evening read 20:45 (today, for the Sunday decision):
+
+| Campaign | Budget | Today | CPA vs baseline | Since 16:01 (marginal) | Note |
+|---|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 180 | AED 119.81 → 32 @ 3.74, CPM 18.98, freq 1.09 | +10 % (tolerance to 4.26–4.43) | +44.70 → +10 = **4.47** | evening marginal at the edge of the band → 180 is the efficient ceiling, not a base for more |
+| jn 5158 120249855229580073 | 180 | AED 118.29 → 29 @ 4.08, CPM 19.49, freq 1.10 | +9 % (tolerance to 4.69–4.88) | +36.48 → +5 = **7.30** (5-conversion sample) | Friday's evening marginal was 2.02; today's is weak → supports Sunday's reduction |
+| jn C3 120250020646250073 | 90 | AED 74.27 → 9 @ 8.25, CPM 42.51 | +68 % vs ≈ 4.9 | +23.99 → +5 = 4.80 | improved in the evening, still above baseline on the day |
+| Twin campaign 120250144447740073 (T1/T2) | 90 ABO | AED 66.75 → 22 @ 3.03 | −11 % vs 3.41 | — | untouched |
+| JN C1 120252107068880312 | 105 | AED 96.80 → **0 website leads**, CPM 38.89, freq 1.14 | n/a (0 on AED 187.25 Fri + Sat) | — | see §15 flag; Sunday → 84 base proposed |
+| JN C2 120252107080200312 | 100 (since 20:41) | AED 67.37 → 1 lead @ 67.37, freq 1.31 | +20 % vs AED 56 ref. | no new lead since 16:01 | step kept (pre-committed rule met at 16:01); Sunday routine decides |
+| JN W1/W2 120251948470120312 | 80 | AED 67.39 → 16 @ 4.21, CPM 15.23, freq 1.07 (+ 1 pixel lead attributed) | control | — | untouched |
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| JN C2 Retargeting 120252107080200312 | 90 | **100** | +11 % | AED 56/lead (ref.) | 53.14 at decision (1 lead), 67.37 at 20:45 | 2 bookings created today | 7/12 Sat · 6/12 Sun → available | ACTIVE, budget 100, delivery active, 20:41:40 Dubai (force-paused → re-activated) | Sun 00:30 Dubai (reduce routine) |
+| JN C1 | 105 | 105 (hold) | — | AED 56/lead | 0 leads on AED 96.80 today | none from C1 | — | ACTIVE at 105 | Sun 00:30 → proposal: back to the AED 84 base |
+| jn New Sales / 5158 | 180 / 180 | hold (ceiling) | — | 3.41 / 3.75 | 3.74 / 4.08 | — | — | ACTIVE at 180 | Sun 00:30 |
+| jn C3 | 90 | 90 (hold) | — | ≈ 4.9 | 8.25 | — | — | ACTIVE at 90 | Sun 00:30 |
+
+Conversion accounts total daily budget: **815 → 825** (jn 540; JN 285 = 105 + 100 + 80); brand 60 on top = **885**.
+Saturday closes at 885 against the 950–1,000 target: the gap stayed in C1 (no leads two days running) and C3 (above
+baseline all day), and the evening marginal CPAs at 180 (4.47 and 7.30) say the mature CBOs should not go higher.
+Recommendation for the Sun 00:30 reduce routine: apply its planned Sunday levels; C1 to the AED 84 base (−20 %) rather
+than a proportional cut; nothing on T1/T2 or W1/W2. Writes this section: 1 budget edit + 1 re-activation. **Running
+total since 09:53 Thu: 74 successful production writes, 0 rollbacks.**
