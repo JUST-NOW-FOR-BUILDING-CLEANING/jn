@@ -1,0 +1,4 @@
+config.json
+rules.json
+work/
+__pycache__/
