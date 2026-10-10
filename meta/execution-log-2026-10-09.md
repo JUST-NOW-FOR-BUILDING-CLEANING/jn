@@ -407,3 +407,93 @@ Day total stays at **AED 755 conversion + 60 brand = 815** (owner's envelope for
 healthy" — not forced: C1 had no lead all day and C3 stayed above AED 10 per conversation). Stage 3 (Sat 09:40)
 inherits: 5158 → 180 first, New Sales → 180 if its Friday evening holds, C2 90 (modest, no further), C1/C3 only on
 proof. No writes this section. **Running total since 09:53: 68 successful production writes, 0 rollbacks.**
+
+## 15. Daily scorecard — day 1 (Sat 10 Oct, read 09:25–09:40 Dubai; routine 09:22, read-only)
+
+Window: since go-live 2026-10-09 10:12 Dubai (metrics from 00:00 Fri) to the read. No Meta write in this section.
+
+| Item | Day | Numbers (Fri 00:00 → Sat 09:25) | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 1 of 7 | AED 58.32 → 19 conversations @ **3.07**, CPM 17.77, freq 1.03, reach 3,185; ACTIVE, both ads ACTIVE (review passed) | **PASS-TRACK** (pass line ≤ 4.70 with ≥ 50; pace ≈ 19/day) |
+| T2 ad set 120250144457040073 (AED 30) | 1 of 7 | AED 29.09 → 8 @ **3.64**, CPM 23.35, freq 1.09, reach 1,141; ACTIVE, ad ACTIVE | **PASS-TRACK** (pass line ≤ 4.60 with ≥ 25; pace ≈ 8/day) |
+| Twin campaign 120250144447740073 | — | Fri full day AED 66.98 → 21 @ 3.19 (CPM 19.13, freq 1.06); Sat to 09:25 AED 21.01 → 7 @ 3.00 | — |
+| W1 120251948470210312 / W2 120251948470250312 (control, must stay ACTIVE) | — | ACTIVE / ACTIVE. W1 AED 75.42 → 17 @ 4.44 (CPM 13.87, freq 1.05); W2 AED 1.43 → 2 (62 impressions, barely delivering). Campaign 120251948470120312 at AED 80: Fri AED 75.73 → 19 @ 3.99 | parity window open; twins 27 @ 3.24 vs W1+W2 19 @ 4.04 on the same window (−20 % CPA, +42 % volume on +14 % spend) |
+| Union ad set 120252226500410312 | 1 of 10 | AED 85.54 → **2 website leads @ 42.77**, 0 purchases, CPM 42.26, freq 1.36, reach 1,485; ACTIVE. Fri (campaign) AED 78.99 → 2 @ 39.50; Sat to 09:25 AED 26.03 → 0 (CPM 49.87 on 522 impressions) | **PASS-TRACK** (≥ 5 leads ≤ AED 100 by 19 Oct; 17 % of the AED 500 fail-spend used) |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (residual 5.14 / 0.65 / 12.25, pre-pause attribution) | OK |
+| C2 campaign 120252107080200312 budget | — | AED 90 = §13 weekend level | OK |
+| Reactivation 120250144448010073 | — | PAUSED | OK |
+| Capacity (calendar) | — | **Fri 8 jobs** (all confirmed, all DONE) · **Sat 7** (6 confirmed and staffed, 1 UNCONFIRMED 16:00) · **Sun 3** (1 confirmed villa 5+, 2 UNCONFIRMED) vs ceiling 12 / hold 11 | available, no CAPACITY FULL |
+| Bookings created | — | **Fri 7** = 6 via the website form (08:52, 12:43, 14:45, 15:32, 17:17, 22:07 Dubai) + 1 phone (02:15); Sat none by 09:25. Fri conversations across all WhatsApp campaigns 129 (New Sales 40, 5158 42, C3 7, twins 21, W1/W2 19); website leads 2 (C2) + 0 (C1) | booking-rate proxy Fri ≈ 5.4 % (7 ÷ 129; account level, the calendar carries no ad-set source, so T1-vs-W1 booking rate is not measurable yet) |
+
+### 15a. Brand layer (justnow22, campaign 23860638577100791 at AED 60 flat) — day 2
+
+Campaign: Fri AED 36.39 → 12,506 impressions, reach 12,226, CPM 2.91, freq 1.02, **3,649 ThruPlays @ AED 0.010**,
+5,896 25 %-plays; Sat to 09:25 AED 18.96 → 6,464 impressions, 1,861 ThruPlays, 2,869 25 %-plays. Cumulative
+AED 55.35 → 18,970 impressions, **5,510 ThruPlays (ThruPlay rate 29.0 %), hook rate 46.2 %, cost per ThruPlay
+AED 0.010, frequency 1.02–1.05**. Instagram profile visits: not returned at ad level for this objective.
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | AED/TP | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN 23860638592800791 | 45.63 | 15,716 | 2.90 | 1.02 | 4,680 | 0.010 | 29.8 % | 7,373 | 46.9 % | 4,281 | 3,219 | 2,164 | 11,401 |
+| A-AR 23860638592980791 | 0.54 | 217 | 2.49 | 1.01 | 34 | 0.016 | 15.7 % | 34 | 15.7 % | 22 | 21 | 20 | 128 |
+| B 23860638593040791 | 1.70 | 634 | 2.68 | 1.02 | 176 | 0.010 | 27.8 % | 256 | 40.4 % | 183 | 125 | 95 | 418 |
+| C 23860638593450791 | 0.68 | 158 | 4.30 | 1.01 | 39 | 0.017 | 24.7 % | 36 | 22.8 % | 29 | 20 | 7 | 103 |
+| D 23860638593500791 | 0.32 | 152 | 2.11 | 1.03 | 43 | 0.007 | 28.3 % | 39 | 25.7 % | 28 | 24 | 22 | 97 |
+| E 23860638607180791 | 2.95 | 945 | 3.12 | 1.04 | 316 | 0.009 | 33.4 % | 292 | 30.9 % | 214 | 153 | 37 | 685 |
+| F 23860638601130791 | 3.53 | 1,148 | 3.07 | 1.01 | 276 | 0.013 | 24.0 % | 816 | 71.1 % | 524 | 340 | 264 | 892 |
+
+Benchmarks (first week, report only): ThruPlay rate ≥ 15 % → 29.0 % PASS · cost per ThruPlay ≤ AED 0.25 → 0.010
+PASS · hook ≥ 30 % → 46.2 % PASS · 7-day frequency ≤ 2.0 → 1.05 PASS. A-AR, C and D sit under the 30 % hook line
+on ≤ 220 impressions each (not judged yet). CBO concentration: A-EN carries 83 % of impressions and spend; no
+fatigue flag (frequency 1.02, day 2, first-week baseline forms on day 7), no rotation proposed.
+Brand share of Meta spend: **Fri 5.1 %** (36.39 of 712.46 = jn 404.74 + JN 271.33 + justnow22 36.39) — below the
+8–12 % band because week 1 runs flat at AED 60 by design and Friday was a partial first day; Sat to 09:25 13.1 %
+(video delivers early in the day; full-day expectation ≈ 7 % of 875). No budget change proposed; the band is reached
+from Thu 16 Oct when rules 21–24 lift the brand to 60–90.
+Warm audiences: video 25 % 120252228024070312, 50 % 120252228030340312, 75 % 120252228030930312 all still read
+"below 1,000" (delivery INACTIVE, status 441 = populating; Meta reports a size only above the 1,000 minimum, with a
+24–48 h lag, although the Page already has 8,765 25 %-plays); IG engagers 120251888118190312 31.4–36.9k (unchanged);
+FB engagers 120241682713780312 26.3–31.0k (+0.1–0.2k vs 26.2–30.8k yesterday).
+
+Recommended next action (proposal only, nothing executed): keep T1/T2 and W1/W2 untouched until the 16 Oct
+scorecard; union continues; brand stays flat at 60 with no rotation. **Flag for the owner: JN C1 120252107068880312
+has 0 website leads on AED 132 since Friday 00:00 (90.45 Fri + 41.94 Sat to 09:40)** — proposal: let Sunday's 00:30
+reduce routine take C1 back to its AED 84 base rather than a proportional cut, and review the book-now path and C1's
+creatives on Sunday.
+
+## 16. Weekend Stage 3 — Sat 10 Oct 09:40 Dubai: New Sales and 5158 150 → 180 (writes approved and executed 10:28)
+
+Gates on Friday's full day (owner: "if Friday remains healthy, allow staged scale toward AED 950–1,000. Do not
+jump directly … in one step"):
+
+* New Sales Campaign: AED 125.75 → 40 conversations @ **3.14** (baseline 3.41, −8 %; tolerance 4.26–4.43) PASS; CPM
+  17.06, frequency 1.05 PASS; the §14 worry (marginal 4.76 on 5 conversations) cleared — the evening after 18:33
+  added AED 33.46 → 11 conversations (marginal 3.04); 84 % of the 150 spent (budget was lifted mid-day). Sat to
+  09:40: AED 13.38 → 5 @ 2.68.
+* WhatsApp Sales 5158: AED 116.47 → 42 @ **2.77** (baseline 3.75, −26 %) PASS; CPM 20.64 (7-day 22.9), frequency 1.05
+  PASS; evening after 18:33 AED 44.52 → 22 conversations (marginal 2.02); 78 % of the 150 spent. Sat to 09:40:
+  AED 27.62 → 9 @ 3.07.
+* C3: AED 95.58 → 7 @ 13.65 (baseline ≈ 4.9, +179 %) FAIL → hold 90. C1: AED 90.45 → 0 website leads (baseline
+  AED 56/lead) FAIL → hold 105 (see §15 flag). C2: AED 78.99 → 2 leads @ 39.50, frequency 1.32 < 1.5, CPM 38.46
+  stable → PASS but held at 90 per §14 ("modest, no further"); re-checked at 16:00 (Stage 3b, below).
+* Capacity: Fri 8/12 done, Sat 7/12 (6 confirmed, all five 12:00 jobs staffed), Sun 3/12 → available. Booking
+  signal: 7 created Friday, 6 via the website form. No CPM or frequency spike (today ≤ 1.17 everywhere; C2's 49.87
+  CPM is on 522 impressions). Handling normal. T1/T2 and W1/W2 untouched.
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE (7d) | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn WhatsApp Sales 5158 120249855229580073 | 150 | **180** | +20 % | 3.75 | 2.77 Fri full day; 3.07 today | 7 bookings created Fri (6 web) | 8/12 Fri · 7/12 Sat · 3/12 Sun → available | ACTIVE, budget 180, delivery active, updated 10:28:21 Dubai (connector force-paused the edit → re-activated in the same minute; 6 live ad sets ACTIVE, the 3 "ZZ DO NOT USE" ad sets were PAUSED before and stay PAUSED) | Sun 00:30 Dubai (reduce routine) |
+| jn New Sales Campaign 120249855697050073 | 150 | **180** | +20 % | 3.41 | 3.14 Fri full day; 2.68 today | same | same | ACTIVE, budget 180, delivery active, updated 10:28:24 Dubai (force-paused → re-activated; 4 ad sets ACTIVE) | Sun 00:30 Dubai |
+| JN C2 Retargeting 120252107080200312 | 90 | 90 (hold) | — | AED 56/lead (C1 ref.) | 39.50 Fri (2 leads); 0 leads today on 26.03 | — | — | ACTIVE at 90 | **Sat 16:00 Stage 3b**: 90 → 100 only if ≥ 1 lead today and frequency < 1.5 |
+| JN C1 120252107068880312 | 105 | 105 (hold) | — | AED 56/lead | 0 leads on AED 132 since Fri 00:00 | none | — | ACTIVE at 105 | Sat 16:00 Stage 3b: 105 → 125 only if ≥ 2 leads today at ≤ AED 60 |
+| jn C3 120250020646250073 | 90 | 90 (hold) | — | ≈ 4.9 | 13.65 Fri; 0 on 7.45 today | — | — | ACTIVE at 90 | Sun 00:30 |
+| T1 / T2 · W1 / W2 | 60 / 30 · 80 | unchanged | — | — | §15 | — | — | ACTIVE | 16 Oct scorecard |
+
+Conversion accounts total daily budget: **755 → 815** (jn 540 = 180 + 180 + 90 + T1/T2 90; JN 275 = 105 + 90 + 80);
+brand 60 on top = **875**. This is below the owner's 950–1,000 Saturday target: the two mature CBOs are at their
+180 ceiling, and the remaining AED 75–125 sits in C1/C3 (gates failed) and C2 (modest step only). A one-shot
+Stage 3b check is armed for 16:00 Dubai (trig_01JshCwFSwBQEtb3fVsa6FwD): C1 105 → 125 and/or C2 90 → 100 only on
+the proof above, otherwise Saturday closes at 875 and I do not recommend lifting the 180 ceiling on the same day
+as a +20 % step. Writes this section: 2 budget edits + 2 re-activations (each approved on its prompt; the approval
+wait moved execution from 09:46 to 10:28). **Running total since 09:53 Thu: 72 successful production writes, 0
+rollbacks.**
