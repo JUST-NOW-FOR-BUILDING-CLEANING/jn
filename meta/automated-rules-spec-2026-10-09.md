@@ -95,3 +95,40 @@ Same settings as rows 1–20 (condition "Daily budget > 1", time range Today, em
 brand budget ≈ AED 470 (avg 67/day). The 11-booking capacity guard applies to this group too; a
 creative-fatigue flag (see `meta/brand-expansion-layer-2026-10-09.md` §7) never changes the budget, it
 rotates the creative.
+
+## Execution correction of 2026-10-11 (owner): native rules only, routines read-only
+
+Owner, 11 Oct: "The missed Sunday 00:30 reduction proves that session-based scheduled writes are not reliable enough
+for budget control … Keep scheduled routines READ-ONLY unless I am actively present to approve a write. Prioritize
+creating the Meta-native Automated Rules … Until the native rules exist, any time-sensitive budget change must be
+treated as MANUAL + OWNER-PRESENT execution."
+
+**Two ways to create the rules, both outside this session's own writes:**
+
+1. **Markifact → Meta Ads** exposes `meta_ads_create_automated_rule` / `list` / `update` (each creation prompts the owner).
+   Status 11 Oct 13:20: the Markifact workspace has **no Meta Ads connection yet** ("Connect the account at
+   https://www.markifact.com/app/connections first"). Once the owner connects Meta Ads there, the rules in
+   `meta/automated-rules-payloads-2026-10-11.json` can be created from this session with the owner approving each one;
+   the first rule is created DISABLED and read back to validate the payload format (day index, minor-unit amounts).
+2. **Ads Manager → Automated rules → Create rule → Custom rule**, by hand, from the table above.
+
+**Changes to the plan on 11 Oct:**
+
+* Groups: **W-jn = New Sales + 5158 only.** C3 is flat at AED 90 and C1 flat at AED 84 until the owner re-admits them
+  ("do not scale"; C1 has 0 website leads on AED 258, C3's CPM is 2× the mature campaigns — see
+  `meta/c1-c3-creative-diagnosis-2026-10-11.md`). Rows 10–18 are parked.
+* Action form: "Set daily budget to" is not available through the API, so the payload file uses **absolute AED deltas**
+  (increase/decrease daily budget by AED x) that sum to zero over the week: W-jn +18, +18, +18, −9, −18, −13, −14, +9,
+  −9; R-C2 +11 (Fri), −11 (Sun); BR +10, +10, +15, +5, −18, −14, −8. No rounding drift; a missed execution shows up in
+  the 00:40 / 12:40 verification as a fixed offset and is re-anchored by the owner.
+* **Monday 12 Oct one-offs** (because New Sales/5158 are at the manual weekend level 150, not the cycle's 99): `ONE-OFF |
+  W-jn | MON 00:00 | −30` (150 → 120), `ONE-OFF | W-jn | MON 12:00 | −30` (120 → 90), `ONE-OFF | R-C2 | MON 00:00 | −10`
+  (80 → 70). They repeat weekly unless removed: **disable or delete them Tue 13 Oct**, then enable W-jn rows 1–9.
+* Brand rows 21–27 start from Wed = 50; the brand is 60 flat this week, so **set 60 → 50 on Wed 15 Oct (owner-present)**
+  and enable rows 21–27 the same day; otherwise the first Thursday step lands at 72 instead of 60.
+* R-C2 rows 19–20 can be enabled any day; the first firing is Fri 16 Oct (+11 → 81).
+
+**Session routines after 11 Oct (all read-only):** 09:22 daily scorecard (unchanged), 00:40/12:40 budget verification
+(unchanged; compares with the expected level in the log), Mon 12 Oct 00:30 "prepare and request approval" (no write),
+Mon 13 Oct 09:30 exclusion-batch readiness check (no write). A write happens only when the owner approves it in a fresh
+message while present.

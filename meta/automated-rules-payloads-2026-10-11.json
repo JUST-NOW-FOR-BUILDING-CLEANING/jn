@@ -1,0 +1,1321 @@
+{
+ "generated": "2026-10-11 13:30 Dubai",
+ "unit_note": "amount/limit in fils (AED minor unit) — validate with the first DISABLED test rule and its read-back; Meta shows the rule text in Ads Manager → Automated rules",
+ "day_index_note": "days: 0=Sun … 6=Sat; minutes from midnight in the ad account time zone (Asia/Dubai); start=end = one execution at that time",
+ "excluded": "C1 120252107068880312 flat AED 84 and C3 120250020646250073 flat AED 90 until the owner re-admits them (decision 11 Oct: no scaling)",
+ "rules": [
+  {
+   "note": "one-off, Mon 12 Oct only; remove before Mon 19 Oct",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "ONE-OFF | W-jn | MON 00:00 | 150→120 (−30)",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -3000,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 12000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "one-off, Mon 12 Oct only; remove before Mon 19 Oct",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "ONE-OFF | W-jn | MON 12:00 | 120→90 (−30)",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -3000,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 9000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 720,
+       "end_minute": 720
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "one-off, Mon 12 Oct only; remove before Mon 19 Oct",
+   "markifact_input": {
+    "account": "9147325105346647",
+    "name": "ONE-OFF | R-C2 | MON 00:00 | 80→70 (−10)",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1000,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 1; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | THU 00:00 | 72→90 (+18)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1800,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 9000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 2; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | THU 12:00 | 90→108 (+18)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1800,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 10800
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 720,
+       "end_minute": 720
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 3; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | FRI 00:00 | 108→126 (+18)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1800,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 12600
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 4; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | SAT 00:00 | 126→117 (−9)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -900,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 11700
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        6
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 5; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | SUN 00:00 | 117→99 (−18)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1800,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 9900
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 6; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | MON 00:00 | 99→86 (−13)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1300,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 8600
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 7; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | MON 12:00 | 86→72 (−14)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1400,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 7200
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 720,
+       "end_minute": 720
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 8; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | TUE 00:00 | 72→81 (+9)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 900,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 8100
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        2
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 9; enable Tue 13 Oct after the one-offs are removed",
+   "markifact_input": {
+    "account": "1037126214908677",
+    "name": "WW | W-jn | WED 00:00 | 81→72 (−9)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -900,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 7200
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        3
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 19",
+   "markifact_input": {
+    "account": "9147325105346647",
+    "name": "WW | R-C2 | FRI 00:00 | 70→81 (+11)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1100,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 8100
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 20",
+   "markifact_input": {
+    "account": "9147325105346647",
+    "name": "WW | R-C2 | SUN 00:00 | 81→70 (−11)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1100,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 21; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | THU 00:00 | 50→60 (+10)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1000,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 6000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 22; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | THU 12:00 | 60→70 (+10)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1000,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 720,
+       "end_minute": 720
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 23; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | FRI 00:00 | 70→85 (+15)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 1500,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 8500
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 24; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | SAT 00:00 | 85→90 (+5)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 500,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 9000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        6
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 25; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | SUN 00:00 | 90→72 (−18)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1800,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 7200
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 26; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | MON 00:00 | 72→58 (−14)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -1400,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 5800
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "note": "spec row 27; enable Wed 15 Oct after brand is set to 50",
+   "markifact_input": {
+    "account": "1897980308260660",
+    "name": "BR | TUE 00:00 | 58→50 (−8)",
+    "status": "DISABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -800,
+        "unit": "ACCOUNT_CURRENCY",
+        "target_field": "daily_budget",
+        "limit": 5000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        2
+       ],
+       "start_minute": 0,
+       "end_minute": 0
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

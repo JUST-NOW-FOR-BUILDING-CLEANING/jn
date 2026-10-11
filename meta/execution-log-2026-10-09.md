@@ -625,3 +625,40 @@ Recommended next action (proposal only, nothing executed): T1/T2 and W1/W2 untou
 (both twins PASS-TRACK); union WATCH — if no new lead by Tuesday's scorecard, review the union creatives before
 any budget change; **C1: 0 website leads on AED 258 since Friday — owner decision requested: pause C1, or swap its
 landing page / creative; it stays at the AED 84 base until then**; brand unchanged.
+
+## 20. Owner's execution correction (Sun 11 Oct ≈ 13:00 Dubai) — routines read-only, native rules first, decisions
+
+Owner: "Do NOT rely on Claude/session-idle routines for critical scheduled budget changes … Keep scheduled routines
+READ-ONLY unless I am actively present to approve a write … Prioritize creating the Meta-native Automated Rules … Until
+the native rules exist, any time-sensitive budget change must be treated as MANUAL + OWNER-PRESENT execution."
+Decisions: T1/T2 untouched; W1/W2 kept as controls; C1 hold 84, no scaling, diagnosis + challenger plan, PAUSE proposal
+if still zero after another window; C3 hold 90, treat as creative; C2 per Monday plan; brand 60 flat week 1; brand
+audiences to be investigated, proposal only, nothing attached.
+
+Done 13:05–13:45 (no Meta write):
+
+* **Routines converted.** Mon 00:30 "Monday return" → read-only *prepare + PushNotification + wait for approval*
+  (trig_01Jag75D6rcCBXeZg2HDFCdL); Mon 13 Oct 09:30 exclusion batch → read-only readiness check
+  (trig_014NsPCkWqKtoh8PFrLtc1FN). Scorecard and verification routines were already read-only.
+* **Native rules path.** No Meta connector in this session can create Automated Rules except **Markifact**
+  (`meta_ads_create_automated_rule`, approval-gated) — and Markifact has **no Meta Ads connection yet**. Payloads for all
+  rules are ready in `meta/automated-rules-payloads-2026-10-11.json` (3 Monday one-offs ENABLED on creation, 18 weekly
+  rules DISABLED until their start dates); spec updated (`meta/automated-rules-spec-2026-10-09.md`, section "Execution
+  correction of 2026-10-11"): W-jn = New Sales + 5158 only, C1 and C3 parked flat, absolute AED deltas instead of
+  "set to".
+* **Monday 12 Oct transition — honest answer:** this session cannot guarantee it (a routine can be missed, as Sunday
+  proved). It cannot be silently missed only if (a) the owner connects Meta Ads in Markifact today and approves the three
+  one-off rules (Meta executes them at 00:00 and 12:00), or (b) the owner creates the same three rules in Ads Manager
+  today, or (c) the owner changes the budgets by hand at a time of their choosing. The read-only 00:30 routine prepares
+  the batch and pushes a notification either way; the 00:40 and 12:40 verifications report whichever state they find.
+* **Brand audiences** (`meta/brand-audience-proposal-2026-10-11.md`): delivery is 99.4 % Facebook, 0.6 % Instagram, so
+  the Instagram hypothesis is wrong; the three audiences carry a Page-wide rule with no `video.id` selection, which
+  Meta's product never builds (it requires selected videos, up to 200) — prime suspect. Proposal: three new audiences
+  with one rule each listing the 11 Page video IDs; optional IG-engaged 90 d tier; nothing created.
+* **C1 / C3** (`meta/c1-c3-creative-diagnosis-2026-10-11.md`): C1's leak is between click and landing-page view (CTR
+  5.0 %, LPV 20.6 % of clicks, 6.1 % of LPVs convert) — a page-speed / pixel / redirect problem, plus recycled organic
+  copy ("link in bio", WhatsApp instruction) on website ads; challenger plan + pause rule written. C3's 2× CPA is a
+  2× CPM from 10-mile pins and interest stacks (same creatives convert at AED 3.08 in 5158); creative challengers and
+  the targeting fix proposed. justnow.life could not be inspected (DNS blocked; not on the connected Webflow account).
+* Budgets at the end of this section: New Sales 150, 5158 150, C3 90, C1 84, C2 80, T1/T2 60/30, W1/W2 80, brand 60.
+  **Running total since 09:53 Thu: 81 successful production writes, 0 rollbacks** (no change).
