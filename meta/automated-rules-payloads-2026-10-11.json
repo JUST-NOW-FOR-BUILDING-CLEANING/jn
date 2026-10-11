@@ -1,14 +1,28 @@
 {
- "generated": "2026-10-11 13:30 Dubai",
- "unit_note": "amount/limit in fils (AED minor unit) — validate with the first DISABLED test rule and its read-back; Meta shows the rule text in Ads Manager → Automated rules",
- "day_index_note": "days: 0=Sun … 6=Sat; minutes from midnight in the ad account time zone (Asia/Dubai); start=end = one execution at that time",
- "excluded": "C1 120252107068880312 flat AED 84 and C3 120250020646250073 flat AED 90 until the owner re-admits them (decision 11 Oct: no scaling)",
+ "generated": "2026-10-11 14:10 Dubai",
+ "source": "meta/automated-rules-build-ads-manager-2026-10-11.md (Ads Manager is the build path; this file is the API twin for reference only — the owner declined third-party connectors)",
+ "calendar": "Sun 11 Oct, Mon 12, Tue 13, Wed 14, Thu 15, Fri 16, Sat 17, Sun 18 Oct 2026",
+ "excluded": "C1 120252107068880312 flat AED 84; C3 120250020646250073 flat AED 90; T1/T2, W1/W2, reactivation, Purchase never in a rule",
  "rules": [
   {
-   "note": "one-off, Mon 12 Oct only; remove before Mon 19 Oct",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "ONE-OFF | W-jn | MON 00:00 | 150→120 (−30)",
+   "spec_row": "6",
+   "name": "WW | W-jn | MON 00:00 | →86",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "99 (Sun level); Mon 12 Oct 2026: 150",
+   "target_budget_aed": 86,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 86",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 00:40 both campaigns = 86",
+   "meta_api_payload": {
+    "name": "WW | W-jn | MON 00:00 | →86",
     "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
@@ -44,511 +58,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -3000,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 12000
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        1
-       ],
-       "start_minute": 0,
-       "end_minute": 0
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "one-off, Mon 12 Oct only; remove before Mon 19 Oct",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "ONE-OFF | W-jn | MON 12:00 | 120→90 (−30)",
-    "status": "ENABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": -3000,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 9000
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        1
-       ],
-       "start_minute": 720,
-       "end_minute": 720
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "one-off, Mon 12 Oct only; remove before Mon 19 Oct",
-   "markifact_input": {
-    "account": "9147325105346647",
-    "name": "ONE-OFF | R-C2 | MON 00:00 | 80→70 (−10)",
-    "status": "ENABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120252107080200312"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": -1000,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 7000
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        1
-       ],
-       "start_minute": 0,
-       "end_minute": 0
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "spec row 1; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | THU 00:00 | 72→90 (+18)",
-    "status": "DISABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": 1800,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 9000
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        4
-       ],
-       "start_minute": 0,
-       "end_minute": 0
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "spec row 2; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | THU 12:00 | 90→108 (+18)",
-    "status": "DISABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": 1800,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 10800
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        4
-       ],
-       "start_minute": 720,
-       "end_minute": 720
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "spec row 3; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | FRI 00:00 | 108→126 (+18)",
-    "status": "DISABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": 1800,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 12600
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        5
-       ],
-       "start_minute": 0,
-       "end_minute": 0
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "spec row 4; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | SAT 00:00 | 126→117 (−9)",
-    "status": "DISABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": -900,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 11700
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        6
-       ],
-       "start_minute": 0,
-       "end_minute": 0
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "spec row 5; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | SUN 00:00 | 117→99 (−18)",
-    "status": "DISABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": -1800,
-        "unit": "ACCOUNT_CURRENCY",
-        "target_field": "daily_budget",
-        "limit": 9900
-       },
-       "operator": "EQUAL"
-      }
-     ]
-    },
-    "schedule_spec": {
-     "schedule_type": "CUSTOM",
-     "schedule": [
-      {
-       "days": [
-        0
-       ],
-       "start_minute": 0,
-       "end_minute": 0
-      }
-     ]
-    }
-   }
-  },
-  {
-   "note": "spec row 6; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | MON 00:00 | 99→86 (−13)",
-    "status": "DISABLED",
-    "evaluation_spec": {
-     "evaluation_type": "SCHEDULE",
-     "filters": [
-      {
-       "field": "entity_type",
-       "value": "CAMPAIGN",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "id",
-       "value": [
-        "120249855697050073",
-        "120249855229580073"
-       ],
-       "operator": "IN"
-      },
-      {
-       "field": "time_preset",
-       "value": "LIFETIME",
-       "operator": "EQUAL"
-      },
-      {
-       "field": "spent",
-       "value": 0,
-       "operator": "GREATER_THAN"
-      }
-     ]
-    },
-    "execution_spec": {
-     "execution_type": "CHANGE_BUDGET",
-     "execution_options": [
-      {
-       "field": "change_spec",
-       "value": {
-        "amount": -1300,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 8600
        },
@@ -564,18 +75,32 @@
         1
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 7; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | MON 12:00 | 86→72 (−14)",
-    "status": "DISABLED",
+   "spec_row": "7",
+   "name": "WW | W-jn | MON 12:00 | →72",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 720
+   },
+   "current_expected_budget_aed_before": "86",
+   "target_budget_aed": 72,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 72",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 12:40 = 72",
+   "meta_api_payload": {
+    "name": "WW | W-jn | MON 12:00 | →72",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -610,8 +135,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -1400,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 7200
        },
@@ -627,18 +152,32 @@
         1
        ],
        "start_minute": 720,
-       "end_minute": 720
+       "end_minute": 750
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 8; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | TUE 00:00 | 72→81 (+9)",
-    "status": "DISABLED",
+   "spec_row": "8",
+   "name": "WW | W-jn | TUE 00:00 | →81",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 2,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "72",
+   "target_budget_aed": 81,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 81",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Tue 00:40 = 81",
+   "meta_api_payload": {
+    "name": "WW | W-jn | TUE 00:00 | →81",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -673,8 +212,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": 900,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": 100,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 8100
        },
@@ -690,18 +229,32 @@
         2
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 9; enable Tue 13 Oct after the one-offs are removed",
-   "markifact_input": {
-    "account": "1037126214908677",
-    "name": "WW | W-jn | WED 00:00 | 81→72 (−9)",
-    "status": "DISABLED",
+   "spec_row": "9",
+   "name": "WW | W-jn | WED 00:00 | →72",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 3,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "81",
+   "target_budget_aed": 72,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 72",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Wed 00:40 = 72",
+   "meta_api_payload": {
+    "name": "WW | W-jn | WED 00:00 | →72",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -736,8 +289,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -900,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 7200
        },
@@ -753,18 +306,416 @@
         3
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 19",
-   "markifact_input": {
-    "account": "9147325105346647",
-    "name": "WW | R-C2 | FRI 00:00 | 70→81 (+11)",
-    "status": "DISABLED",
+   "spec_row": "1",
+   "name": "WW | W-jn | THU 00:00 | →90",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "72",
+   "target_budget_aed": 90,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 90",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 00:40 = 90",
+   "meta_api_payload": {
+    "name": "WW | W-jn | THU 00:00 | →90",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 9000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "2",
+   "name": "WW | W-jn | THU 12:00 | →108",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 720
+   },
+   "current_expected_budget_aed_before": "90",
+   "target_budget_aed": 108,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 108",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 12:40 = 108",
+   "meta_api_payload": {
+    "name": "WW | W-jn | THU 12:00 | →108",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 10800
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 720,
+       "end_minute": 750
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "3",
+   "name": "WW | W-jn | FRI 00:00 | →126",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 5,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "108",
+   "target_budget_aed": 126,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 126",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Fri 00:40 = 126",
+   "meta_api_payload": {
+    "name": "WW | W-jn | FRI 00:00 | →126",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 12600
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "4",
+   "name": "WW | W-jn | SAT 00:00 | →117",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 6,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "126",
+   "target_budget_aed": 117,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 117",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sat 00:40 = 117",
+   "meta_api_payload": {
+    "name": "WW | W-jn | SAT 00:00 | →117",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 11700
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        6
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "5",
+   "name": "WW | W-jn | SUN 00:00 | →99",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 0,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "117",
+   "target_budget_aed": 99,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 99",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sun 00:40 = 99",
+   "meta_api_payload": {
+    "name": "WW | W-jn | SUN 00:00 | →99",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 9900
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "20b",
+   "name": "WW | R-C2 | MON 00:00 | →70",
+   "account": "9147325105346647",
+   "campaign_ids": [
+    "120252107080200312"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "70 (Sun level); Mon 12 Oct 2026: 80",
+   "target_budget_aed": 70,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 70",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 00:40 = 70",
+   "meta_api_payload": {
+    "name": "WW | R-C2 | MON 00:00 | →70",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -798,8 +749,83 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": 1100,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "19",
+   "name": "WW | R-C2 | FRI 00:00 | →81",
+   "account": "9147325105346647",
+   "campaign_ids": [
+    "120252107080200312"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 5,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "70",
+   "target_budget_aed": 81,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 81",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Fri 00:40 = 81",
+   "meta_api_payload": {
+    "name": "WW | R-C2 | FRI 00:00 | →81",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 8100
        },
@@ -815,18 +841,31 @@
         5
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 20",
-   "markifact_input": {
-    "account": "9147325105346647",
-    "name": "WW | R-C2 | SUN 00:00 | 81→70 (−11)",
-    "status": "DISABLED",
+   "spec_row": "20",
+   "name": "WW | R-C2 | SUN 00:00 | →70",
+   "account": "9147325105346647",
+   "campaign_ids": [
+    "120252107080200312"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 0,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "81",
+   "target_budget_aed": 70,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 70",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sun 00:40 = 70",
+   "meta_api_payload": {
+    "name": "WW | R-C2 | SUN 00:00 | →70",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -860,8 +899,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -1100,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 7000
        },
@@ -877,18 +916,31 @@
         0
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 21; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | THU 00:00 | 50→60 (+10)",
-    "status": "DISABLED",
+   "spec_row": "21",
+   "name": "BR | THU 00:00 | →60",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "50 (Wed level); Thu 15 Oct 2026: 60 → no-op",
+   "target_budget_aed": 60,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 60",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 00:40 = 60",
+   "meta_api_payload": {
+    "name": "BR | THU 00:00 | →60",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -922,8 +974,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": 1000,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": 100,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 6000
        },
@@ -939,18 +991,31 @@
         4
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 22; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | THU 12:00 | 60→70 (+10)",
-    "status": "DISABLED",
+   "spec_row": "22",
+   "name": "BR | THU 12:00 | →70",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 720
+   },
+   "current_expected_budget_aed_before": "60",
+   "target_budget_aed": 70,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 70",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 12:40 = 70",
+   "meta_api_payload": {
+    "name": "BR | THU 12:00 | →70",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -984,8 +1049,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": 1000,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": 100,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 7000
        },
@@ -1001,18 +1066,31 @@
         4
        ],
        "start_minute": 720,
-       "end_minute": 720
+       "end_minute": 750
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 23; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | FRI 00:00 | 70→85 (+15)",
-    "status": "DISABLED",
+   "spec_row": "23",
+   "name": "BR | FRI 00:00 | →85",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 5,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "70",
+   "target_budget_aed": 85,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 85",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Fri 00:40 = 85",
+   "meta_api_payload": {
+    "name": "BR | FRI 00:00 | →85",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -1046,8 +1124,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": 1500,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": 100,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 8500
        },
@@ -1063,18 +1141,31 @@
         5
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 24; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | SAT 00:00 | 85→90 (+5)",
-    "status": "DISABLED",
+   "spec_row": "24",
+   "name": "BR | SAT 00:00 | →90",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 6,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "85",
+   "target_budget_aed": 90,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 90",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sat 00:40 = 90",
+   "meta_api_payload": {
+    "name": "BR | SAT 00:00 | →90",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -1108,8 +1199,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": 500,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": 100,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 9000
        },
@@ -1125,18 +1216,31 @@
         6
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 25; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | SUN 00:00 | 90→72 (−18)",
-    "status": "DISABLED",
+   "spec_row": "25",
+   "name": "BR | SUN 00:00 | →72",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 0,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "90",
+   "target_budget_aed": 72,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 72",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sun 00:40 = 72",
+   "meta_api_payload": {
+    "name": "BR | SUN 00:00 | →72",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -1170,8 +1274,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -1800,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 7200
        },
@@ -1187,18 +1291,31 @@
         0
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 26; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | MON 00:00 | 72→58 (−14)",
-    "status": "DISABLED",
+   "spec_row": "26",
+   "name": "BR | MON 00:00 | →58",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "72",
+   "target_budget_aed": 58,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 58",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 00:40 = 58",
+   "meta_api_payload": {
+    "name": "BR | MON 00:00 | →58",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -1232,8 +1349,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -1400,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 5800
        },
@@ -1249,18 +1366,31 @@
         1
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }
    }
   },
   {
-   "note": "spec row 27; enable Wed 15 Oct after brand is set to 50",
-   "markifact_input": {
-    "account": "1897980308260660",
-    "name": "BR | TUE 00:00 | 58→50 (−8)",
-    "status": "DISABLED",
+   "spec_row": "27",
+   "name": "BR | TUE 00:00 | →50",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 2,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "58",
+   "target_budget_aed": 50,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 50",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Tue 00:40 = 50 (holds Wednesday)",
+   "meta_api_payload": {
+    "name": "BR | TUE 00:00 | →50",
+    "status": "ENABLED",
     "evaluation_spec": {
      "evaluation_type": "SCHEDULE",
      "filters": [
@@ -1294,8 +1424,8 @@
       {
        "field": "change_spec",
        "value": {
-        "amount": -800,
-        "unit": "ACCOUNT_CURRENCY",
+        "amount": -50,
+        "unit": "PERCENTAGE",
         "target_field": "daily_budget",
         "limit": 5000
        },
@@ -1311,7 +1441,7 @@
         2
        ],
        "start_minute": 0,
-       "end_minute": 0
+       "end_minute": 30
       }
      ]
     }

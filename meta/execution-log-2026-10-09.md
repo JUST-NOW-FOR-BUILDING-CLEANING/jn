@@ -154,7 +154,7 @@ Both lists READY: 120251936408430312 "JN - Confirmed bookings 12mo" (ACTIVE, Nor
 already carries them (T1, T2, C1-1, union, C3-2/3). Not applied today to the nine legacy jn winners and
 W1/W2: the connector force-pauses an ACTIVE ad set on any targeting edit (pause → edit → re-activate) and
 the edit resets learning; on a peak-traffic Friday that is a delivery risk on the proven cells, and W1/W2
-must stay untouched for the parity test. Proposed instead: **Monday 13 Oct 09:30 Dubai batch** — one
+must stay untouched for the parity test. Proposed instead: **Monday 12 Oct 09:30 Dubai batch** — one
 bundled edit per ad set (exclusion only) on the nine jn winners, three at a time with read-back,
 owner-approved. Reactivation / C3-1 keep targeting customers (no exclusion, by design).
 
@@ -244,7 +244,7 @@ weekend-weighting proposal is in `meta/weekend-weighting-plan-2026-10-09.md`.
 | Approval | Action taken |
 |---|---|
 | Recommended multipliers; Meta-native rules only; five eligible campaigns; T1/T2, W1/W2, reactivation, justnow22, Purchase excluded; capacity guard kept | `meta/automated-rules-spec-2026-10-09.md`: 20 copy-ready rules (groups W-jn ×3 campaigns, W-C1, R-C2), staged steps ≤ +25 % / −20 %, one rule per campaign per slot. Owner creates them in Ads Manager (connector has no rule tool). Read-only verification routine at 00:40 and 12:40 Dubai daily until 23 Oct; daily 09:22 check-in carries the 11-booking capacity guard. |
-| Monday 13 Oct 09:30 exclusion batch on the 9 jn winners, one bundled edit each, baseline saved, read-back after | `meta/monday-exclusion-batch-2026-10-13.json`: baseline targeting (9 Oct read) + sanitized payloads adding 120249973174230073, pre-checks, 3-pass order (smallest spend first), rollback. One-shot routine fires 13 Oct 09:30 Dubai into this session; every write still prompts the owner. |
+| Monday 12 Oct 09:30 exclusion batch on the 9 jn winners, one bundled edit each, baseline saved, read-back after | `meta/monday-exclusion-batch-2026-10-12.json`: baseline targeting (9 Oct read) + sanitized payloads adding 120249973174230073, pre-checks, 3-pass order (smallest spend first), rollback. One-shot routine fires Mon 12 Oct 09:30 Dubai into this session; every write still prompts the owner. |
 | Lookalike: keep 120251936410460312, no new 1 %, verify UAE in Audiences UI, do not attach | Connector read: source 120251936408430312, ratio 0.01, ACTIVE, created 18 Sep, size at API floor; country not exposed → owner confirms "United Arab Emirates" in Audiences. Nothing attached. |
 | JustNow44 priority direct read | No browser in this session. New direct path found: Windsor.ai's Facebook (Meta Ads) connector was connected before and its token expired on 29 Sep (owner's inbox alert). Re-authorizing it with the owner's Facebook login lets this session read 2820299204977421 through Windsor, independent of the Meta MCP gate. Authorization link handed to the owner; export remains the fallback. Mission stays unassigned. |
 | Monitoring unchanged, no budget changes, no restructuring during the weekend | 16:15 Dubai delivery check and daily 09:22 scorecard remain; nothing else scheduled to write. |
@@ -311,7 +311,7 @@ Full spec, creative map, bench, audiences, metrics and rotation design: `meta/br
   edit adds it to BR-1.
 * Budget profile: AED 60 flat in week 1; Automated Rules group **BR** (rows 21–27 of
   `meta/automated-rules-spec-2026-10-09.md`: Mon 58 · Tue/Wed 50 · Thu 60→70 · Fri 85 · Sat 90 · Sun 72)
-  for the owner to create natively, first cycle Thu 16 Oct; brand share 8–10 % of planned totals.
+  for the owner to create natively, first cycle Thu 15 Oct; brand share 8–10 % of planned totals.
 * Monitoring: the daily 09:22 Dubai routine now also reads the brand campaign (ThruPlay rate, cost per
   ThruPlay, hook rate, frequency, audience growth, fatigue flags, 8–12 % share) — read-only.
 * Writes: 22 successful (1 campaign, 1 ad set, 8 creatives, 8 draft ads, 1 draft delete, 1 publish, 3
@@ -449,7 +449,7 @@ fatigue flag (frequency 1.02, day 2, first-week baseline forms on day 7), no rot
 Brand share of Meta spend: **Fri 5.1 %** (36.39 of 712.46 = jn 404.74 + JN 271.33 + justnow22 36.39) — below the
 8–12 % band because week 1 runs flat at AED 60 by design and Friday was a partial first day; Sat to 09:25 13.1 %
 (video delivers early in the day; full-day expectation ≈ 7 % of 875). No budget change proposed; the band is reached
-from Thu 16 Oct when rules 21–24 lift the brand to 60–90.
+from Thu 15 Oct when rules 21–24 lift the brand to 60–90.
 Warm audiences: video 25 % 120252228024070312, 50 % 120252228030340312, 75 % 120252228030930312 all still read
 "below 1,000" (delivery INACTIVE, status 441 = populating; Meta reports a size only above the 1,000 minimum, with a
 24–48 h lag, although the Page already has 8,765 25 %-plays); IG engagers 120251888118190312 31.4–36.9k (unchanged);
@@ -638,7 +638,7 @@ audiences to be investigated, proposal only, nothing attached.
 Done 13:05–13:45 (no Meta write):
 
 * **Routines converted.** Mon 00:30 "Monday return" → read-only *prepare + PushNotification + wait for approval*
-  (trig_01Jag75D6rcCBXeZg2HDFCdL); Mon 13 Oct 09:30 exclusion batch → read-only readiness check
+  (trig_01Jag75D6rcCBXeZg2HDFCdL); Mon 12 Oct 09:30 exclusion batch → read-only readiness check
   (trig_014NsPCkWqKtoh8PFrLtc1FN). Scorecard and verification routines were already read-only.
 * **Native rules path.** No Meta connector in this session can create Automated Rules except **Markifact**
   (`meta_ads_create_automated_rule`, approval-gated) — and Markifact has **no Meta Ads connection yet**. Payloads for all
@@ -662,3 +662,49 @@ Done 13:05–13:45 (no Meta write):
   the targeting fix proposed. justnow.life could not be inspected (DNS blocked; not on the connected Webflow account).
 * Budgets at the end of this section: New Sales 150, 5158 150, C3 90, C1 84, C2 80, T1/T2 60/30, W1/W2 80, brand 60.
   **Running total since 09:53 Thu: 81 successful production writes, 0 rollbacks** (no change).
+
+## 21. Owner's decisions of Sun 11 Oct ≈ 13:30 Dubai — audiences created, dates corrected, native-rule build doc, C1/C3 proposals
+
+Owner: C1/C3 out of the weekly rules (approved); brand audiences A1–A3 approved to create (old ones kept, nothing
+attached, read back, check population after 24–48 h); **do not connect Markifact** — Ads Manager native rules only, with
+exact target budgets and, for every rule, current expected budget / target / execution time / failsafe / read-back;
+**date correction: 11 Oct is Sunday, 12 Oct Monday, 13 Oct Tuesday** — audit and fix every "Monday 13 Oct" before any
+scheduled execution; C1: do not pause, verify the live /book-now destination (Webador, not Webflow) and return a real
+click→page-load vs pixel-undercount diagnosis, then prepare C1-1-f/g without launching; C3: one controlled challenger
+proposal (emirate-level Dubai/Sharjah/Ajman, no stacked interests/work positions/age cap, customer exclusion kept;
+Creator Reel 2 + the Arabic winner), do not execute; no Monday budget change through an idle session.
+
+Done 13:30–14:20 Dubai (3 Meta writes, all approved on their prompts):
+
+* **Audiences created on JN 9147325105346647** (ENGAGEMENT, Page 122098309970001876, 365 d, one rule each with the 11
+  video IDs, prefill on): **120252253817880312** `JN - Video 25% 365d (brand + winners, 11 videos)` 13:33:54;
+  **120252253818420312** `… 50% …` 13:33:58; **120252253818760312** `… 75% …` 13:34:04. Read-back: rules stored exactly
+  as sent (event + `video.id any [11 ids]`), delivery INACTIVE (not attached), size "below 1,000" (status 441 — same as
+  every unused new audience); population check from Mon 12 Oct in the scorecard, escalate if still below 1,000 on Tue
+  13 Oct. Old audiences 120252228024070312 / 120252228030340312 / 120252228030930312 untouched.
+* **Date audit.** Wrong weekday-date pairs fixed in `brand-expansion-layer` (Thu 15 Oct), `weekend-weighting-plan` (Thu 15
+  Oct), `automated-rules-spec` (Thursday 15 Oct, Wed 14 Oct, Mon 12 Oct exclusion check), this log (§8 M3 and §9 rows:
+  Monday 12 Oct; §11/§15: Thu 15 Oct; §20: Mon 12 Oct), and the exclusion batch file renamed
+  `meta/monday-exclusion-batch-2026-10-12.json` with `execute_at` 2026-10-12T09:30+04:00. Routines: exclusion readiness
+  check moved to **Mon 12 Oct 05:30Z (09:30 Dubai)**; scorecard and verification prompts now say Thu 15 Oct / Fri 16 Oct
+  and carry the new audience IDs; tasks #24/#25 renamed. Note: 16 Oct is a **Friday**, so "first rule cycle Thursday" means
+  **Thu 15 Oct**; the 7-day twin window still ends on the date 16 Oct.
+* **Native rules — Ads Manager build** (`meta/automated-rules-build-ads-manager-2026-10-11.md`): 19 rules (W-jn 9, R-C2 3
+  incl. a Monday re-anchor, BR 7), each landing on an **exact target** via "increase 100 % with max cap = target" /
+  "decrease 50 % with min cap = target" (idempotent, direction-safe, no chained deltas), with current expected budget,
+  target, execution time, failsafe and read-back per row. Build tonight first: rules 6, 7, 20b → Mon 12 Oct 00:00 New
+  Sales/5158 150 → 86, 12:00 → 72, C2 80 → 70 (day total 586 → 558 + brand 60). Manual fallback stated. The payload JSON
+  was regenerated as the API twin for reference only.
+* **C1 destination** (`meta/c1-c3-creative-diagnosis-2026-10-11.md` §1c): the site cannot be loaded from this environment
+  (justnow.life and googleapis.com blocked), so the pixel was read instead: active browser + server events; every event
+  of the week recorded at the root URL `https://www.justnow.life/` (no `/book-now` in 7 days); Lead/Contact/Schedule
+  arrive in even pairs (browser + server, no dedup); Fri 9 Oct ≈ 20 submissions vs 2 ad-attributed leads. **Verdict:
+  pixel/measurement undercount established (redirect or root-URL form loses `fbclid`, duplicated Leads); real load loss
+  possible, not proven** → three on-device checks for the owner (address bar on the ad link, Events Manager Test
+  events, Pixel Helper). C1-1-f/g specs written (§1e), not launched; C1 stays at 84, no pause.
+* **C3** (`meta/c3-challenger-proposal-2026-10-11.md`): one challenger campaign at AED 45 (C3 control 90 → 45 at
+  activation), ad set Dubai/Sharjah/Ajman regions 25–65, no interests/work positions/locales, customer exclusion kept,
+  ads from creatives 3592620130898135 (Creator Reel 2) and 1870108203957859 (Arabic stove-grease), 3-day and 7-day
+  thresholds, fold-into-5158 rule at CPA > 5.50. Not executed.
+* Budgets unchanged: New Sales 150, 5158 150, C3 90, C1 84, C2 80, T1/T2 60/30, W1/W2 80, brand 60.
+  **Running total since 09:53 Thu: 84 successful production writes (3 audience creations today), 0 rollbacks.**

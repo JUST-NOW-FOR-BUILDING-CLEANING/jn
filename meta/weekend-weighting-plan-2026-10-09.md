@@ -135,7 +135,7 @@ not scaled.
 
 ## 6. First-cycle option (if rules are not yet created by Thursday)
 
-The same values can be applied as owner-approved manual writes through this session on Thu 16 Oct
+The same values can be applied as owner-approved manual writes through this session on Thu 15 Oct
 12:00, Fri 00:00, Sat 00:00, Sun 00:00 and Mon 00:00 / 12:00 Dubai (each a prompted write with
 read-back). Not applied today: it is already Friday, T1/T2 went live two hours ago, and a +40 % jump on
 the proven campaigns the same morning would violate the owner's "no abrupt one-step change" rule.

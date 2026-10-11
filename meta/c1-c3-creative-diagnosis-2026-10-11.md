@@ -41,19 +41,42 @@ Three of five ads tell people to use "link in bio" or WhatsApp; four of five hav
 BOOK_TRAVEL (renders as "Book now", but it is the travel variant). None of the copy mentions the price range or the
 "see your price before booking" promise that the booking page actually delivers.
 
-### 1c. Landing page — could not be inspected from this session
+### 1c. Destination check — what could be measured from here, and the verdict
 
-justnow.life is not reachable from this environment (DNS blocked) and it is not on the connected Webflow account (the
-only Webflow site there is "Neighborhood Fix & Install"). Three checks for the owner, each takes minutes and settles the
-diagnosis:
+The live Webador site cannot be loaded from this environment (justnow.life and googleapis.com are both blocked at the
+proxy, so neither a direct fetch nor PageSpeed Insights was possible). What *could* be read is the pixel itself
+(dataset 614743294720303, last 7 days, 4–11 Oct):
 
-1. **PageSpeed Insights, mobile**, on https://www.justnow.life/book-now — note LCP and total page weight. Anything above
-   LCP 4 s on a mid-range Android explains an 80 % click-to-view loss on its own.
-2. **Meta Pixel Helper** (Chrome extension) on the same URL — PageView must fire on load without interaction; Lead must
-   fire on submit. If PageView fires only after a consent click or a language choice, the "landing page views" metric
-   under-counts and the real leak is smaller than it looks (then the AED 83/lead cost is the real problem, not the leak).
-3. **Open the ad link on a phone from the Facebook app** (the ad's URL with its utm parameters) and count redirects /
-   seconds to first paint; if the site redirects utm → canonical → /ar or /en, each hop loses in-app-browser users.
+| Fact from the pixel | Reading |
+|---|---|
+| Pixel is active; browser events last fired 13:24 Dubai today, **server (Conversions API) events last fired 13:11** | both a browser pixel and a server source exist |
+| Browser PageViews ≈ 200–400 per day on www.justnow.life (plus a few on the Google-translate proxy) | pages load and fire PageView for many visitors; this volume includes WhatsApp-link and organic traffic, so it cannot be split by source here |
+| **Every event of the week is recorded on the URL `https://www.justnow.life/` — not one `/book-now` URL in 7 days**, including the Lead/Schedule/Contact events of the booking form | either `/book-now` redirects to the root, or the booking form lives at the root; in both cases an ad click to `/book-now` arrives at a different URL than the one in the ad |
+| Lead, Contact and Schedule events arrive in **even pairs** (2, 2, 2 / 4, 4, 4 / 8, 8, 8) hour after hour | the same submission is counted twice — browser and server event without a shared event_id (no deduplication); real submissions ≈ half the Lead count |
+| Fri 9 Oct: ≈ 40 Lead events (≈ 20 submissions after de-dup) and 6–7 website bookings on the calendar, while ads were credited with **2 website leads (C2) and 0 (C1)** | most website bookings are not attributed to any ad — consistent with the WhatsApp agent sending the booking link into conversations, and also with attribution loss on the ad path |
+
+**Verdict: PIXEL / MEASUREMENT UNDERCOUNT is established; a REAL CLICK→PAGE-LOAD loss is possible but not proven.**
+The decisive evidence for an undercount is the URL pattern: the ad sends people to `/book-now`, Meta's click carries the
+`fbclid` parameter on that URL, and the page that fires PageView is `/`. A server-side redirect that drops the query
+string loses `fbclid`, the `_fbc` cookie is never set, and the in-app browser's PageView cannot be tied to the click — it
+is counted as a visit but not as a *landing page view* of the ad. That mechanism alone produces exactly the pattern seen:
+healthy CTR, 20–33 % "landing page views" on both cold and warm traffic, and leads that exist on the calendar but not in
+Ads Manager. The duplicated Lead events are a second measurement defect (inflated lead counts in Events Manager, and a
+risk that the Lead optimisation learns from duplicates).
+
+**Three on-device checks for the owner (5 minutes, settle the remaining question):**
+1. Open the C1 ad from the Facebook app on a phone and watch the address bar: does it end on `/book-now?…fbclid=…` or on
+   `/` without parameters? Count the seconds to the first visible content. A redirect to `/` confirms the attribution
+   loss; more than ≈ 4 s to first paint adds a real load loss on top.
+2. Events Manager → Data sources → pixel 614743294720303 → **Test events**: open the same ad link on the phone and watch
+   PageView arrive with its URL and timing; submit a test booking and watch whether Lead arrives once or twice.
+3. On desktop Chrome with Meta Pixel Helper, load `/book-now` and `/`: which URL carries the base code, whether PageView
+   fires before any consent or language prompt, and whether the booking form is an iframe (an iframe's events need the
+   parent page URL to be the ad URL).
+
+**Fixes that follow (site side, owner / developer):** point the ads at the exact final URL the page lives on (no redirect)
+and keep query parameters through any redirect; deduplicate browser and server events with a shared `event_id`; if the
+form is an iframe, pass the parent URL/fbclid into it or fire Lead from the parent page.
 
 ### 1d. Challenger plan (proposal; no write without approval)
 
@@ -77,7 +100,29 @@ diagnosis:
 **Observation window and pause rule:** 7 days from the landing-page fix (or from 14 Oct if no fix). Pass = ≥ 3 website
 leads at ≤ AED 60 and LPV ÷ clicks ≥ 40 %. If LPV ÷ clicks stays < 30 % after the fix, the destination is the problem
 whatever the creative; if it recovers but leads stay at zero after AED 250, **propose PAUSE of C1** and move its AED 84
-to the union retargeting (which converts the same page at 33 % LPV and AED 40–78/lead).
+to the union retargeting (which converts the same page at 33 % LPV and AED 40–78/lead). Owner, 11 Oct: do not pause C1
+yet; verify the destination first.
+
+### 1e. C1-1-f and C1-1-g — prepared, NOT launched (wait for the destination check)
+
+Both go into ad set C1-1 120252107075750312, budget unchanged at AED 84, created PAUSED and activated only after the
+owner's approval and after the destination check decides the final link. Link until then:
+`https://www.justnow.life/book-now?utm_source=facebook&utm_medium=paid&utm_campaign=c1&utm_content=<ad>` — to be replaced
+by the exact URL the page finally lives on if `/book-now` redirects.
+
+| | C1-1-f "See your price before you book" | C1-1-g "Same kitchen, before/after — for the website" |
+|---|---|---|
+| Video | 2163113240903678 (A-EN "Sticky kitchen": 48 % hook, 30 % ThruPlay rate in the brand layer; AED 3.98/conversation in 5158) | 28340961415525425 (the before/after testimonial behind C1-1-b, the only C1 ad with a lead cost under AED 20; Page 503162459555897) |
+| Primary text EN | "Choose your area and service, see the price, and book in one minute. Kitchen deep cleaning from AED 249 — team, steam machine, tools and materials included. Pay after the job, no deposit." | "Same kitchen, one deep clean later. A trained all-female team, high-temperature steam on the cooker, hood and cabinets. Book online in one minute and pay after the job." |
+| Primary text AR | "اختار منطقتك والخدمة، شوف السعر، واحجز في دقيقة. تنظيف المطبخ العميق من 249 درهم — الفريق وجهاز البخار والأدوات والمواد كلها شاملة. الدفع بعد الخدمة بدون عربون." | "نفس المطبخ، بعد تنظيف عميق واحد. فريق نسائي مدرّب وبخار بدرجة حرارة عالية للبوتاجاز والشفاط والخزائن. احجز أونلاين في دقيقة وادفع بعد الخدمة." |
+| Headline | "See your price, book in 1 minute" / "شوف السعر واحجز في دقيقة" | "Book online, pay after the job" / "احجز أونلاين وادفع بعد الخدمة" |
+| Description | "Everything included · Pay after the job" | "Kitchens from AED 249 · Everything included" |
+| CTA | BOOK_NOW (not BOOK_TRAVEL) | BOOK_NOW |
+| Replaces | nothing; runs beside C1-1-d | C1-1-b's copy (hashtags removed); C1-1-b stays live as the control for one week |
+| Proposed pauses at launch | C1-1-a 120252107427390312 and C1-1-e 120252109350130312 ("link in bio" copy, 0 leads on AED 70) | — |
+
+No hashtags, no "link in bio", no WhatsApp instruction, prices stated as on the page, and the message is the page's own
+promise, so the click-to-form path is one idea from ad to submit.
 
 ## 2. C3 — jn 120250020646250073 "C3 WhatsApp Bookings" (CONVERSATIONS → WhatsApp)
 

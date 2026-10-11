@@ -63,7 +63,7 @@ for that cycle, or approves a one-off hold write). Observed ceiling 12 jobs/day;
 1. Ads Manager → Automated rules → confirm 20 rules, each with the right "Applies to" list and schedule.
 2. Session verification (read-only): the 09:22 daily check-in compares the five campaigns' daily budgets
    with the expected level for that day; an extra read on Thursday and Monday at 12:40 Dubai verifies
-   the 12:00 steps. First live cycle: Thursday 16 Oct.
+   the 12:00 steps. First live cycle: Thursday 15 Oct.
 3. First-week scorecard: Fri–Sun conversations, cost per conversation, bookings created, booking rate
    (bookings ÷ conversations) vs the Tue–Wed baseline; if booking rate drops > 20 % on the peak days,
    cap at the Thursday level.
@@ -78,8 +78,8 @@ untouched. W1/W2 are never scheduled; they are paused after parity.
 
 Campaign: justnow22 1897980308260660 → **23860638577100791** "BR | Video Views ThruPlay | UAE excl. Abu
 Dhabi | Deep Cleaning | Oct 2026" (CBO, base AED 60). Owner's bands: midweek 40–60, Thu 60–80, Fri/Sat
-80–100, Sun 60–80, brand ≈ 8–12 % of total spend. Week 1 (to Wed 15 Oct) stays flat at AED 60 so the ad
-set exits learning on a stable budget; first rule cycle Thu 16 Oct.
+80–100, Sun 60–80, brand ≈ 8–12 % of total spend. Week 1 (to Wed 14 Oct) stays flat at AED 60 so the ad
+set exits learning on a stable budget; first rule cycle Thu 15 Oct.
 
 | # | Rule name | Schedule (Dubai) | Set daily budget to | Step | Brand share of planned total |
 |---|---|---|---|---|---|
@@ -117,18 +117,20 @@ treated as MANUAL + OWNER-PRESENT execution."
 * Groups: **W-jn = New Sales + 5158 only.** C3 is flat at AED 90 and C1 flat at AED 84 until the owner re-admits them
   ("do not scale"; C1 has 0 website leads on AED 258, C3's CPM is 2× the mature campaigns — see
   `meta/c1-c3-creative-diagnosis-2026-10-11.md`). Rows 10–18 are parked.
-* Action form: "Set daily budget to" is not available through the API, so the payload file uses **absolute AED deltas**
-  (increase/decrease daily budget by AED x) that sum to zero over the week: W-jn +18, +18, +18, −9, −18, −13, −14, +9,
-  −9; R-C2 +11 (Fri), −11 (Sun); BR +10, +10, +15, +5, −18, −14, −8. No rounding drift; a missed execution shows up in
-  the 00:40 / 12:40 verification as a fixed offset and is re-anchored by the owner.
-* **Monday 12 Oct one-offs** (because New Sales/5158 are at the manual weekend level 150, not the cycle's 99): `ONE-OFF |
-  W-jn | MON 00:00 | −30` (150 → 120), `ONE-OFF | W-jn | MON 12:00 | −30` (120 → 90), `ONE-OFF | R-C2 | MON 00:00 | −10`
-  (80 → 70). They repeat weekly unless removed: **disable or delete them Tue 13 Oct**, then enable W-jn rows 1–9.
-* Brand rows 21–27 start from Wed = 50; the brand is 60 flat this week, so **set 60 → 50 on Wed 15 Oct (owner-present)**
-  and enable rows 21–27 the same day; otherwise the first Thursday step lands at 72 instead of 60.
+* Action form (corrected 11 Oct, owner: exact targets, no chained deltas): every rule lands on an **exact target
+  budget** with the native actions "Increase daily budget by 100 % — maximum daily budget cap = target" (up) and
+  "Decrease daily budget by 50 % — minimum daily budget cap = target" (down). The cap makes the rule idempotent and
+  direction-safe, so a missed execution or a manual edit is corrected at the next slot instead of propagating. Click-by-
+  click build, per-rule current expected budget / target / time / failsafe / read-back:
+  `meta/automated-rules-build-ads-manager-2026-10-11.md` (19 rules). `meta/automated-rules-payloads-2026-10-11.json` is
+  the API twin for reference only (the owner declined third-party connectors such as Markifact).
+* **Monday 12 Oct** needs no one-off rules: with exact targets, spec rows 6 (Mon 00:00 → 86) and 7 (Mon 12:00 → 72) land
+  from 150 directly, and the added row 20b (R-C2 Mon 00:00 → 70) re-anchors C2 every week. Build those three first.
+* Brand rows 21–27 need no Wednesday reset: on Thu 15 Oct the brand is already 60, row 21 (→ 60) is a no-op and row 22
+  (12:00 → 70) starts the cycle correctly.
 * R-C2 rows 19–20 can be enabled any day; the first firing is Fri 16 Oct (+11 → 81).
 
 **Session routines after 11 Oct (all read-only):** 09:22 daily scorecard (unchanged), 00:40/12:40 budget verification
 (unchanged; compares with the expected level in the log), Mon 12 Oct 00:30 "prepare and request approval" (no write),
-Mon 13 Oct 09:30 exclusion-batch readiness check (no write). A write happens only when the owner approves it in a fresh
+Mon 12 Oct 09:30 exclusion-batch readiness check (no write). A write happens only when the owner approves it in a fresh
 message while present.

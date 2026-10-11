@@ -99,9 +99,15 @@ fresher tier is `JN - IG engaged 90d`:
 `JN - IG engaged 90d` OR FB engagers 365d, with the existing exclusions (confirmed bookings 12 mo, Book Now visitors 14 d,
 Lead event 14 d). Not part of this proposal.
 
-## 3. Sequence after approval
+## 3. Sequence after approval — status
 
-1. Create A1–A3 (3 writes, each prompted). Keep the three old audiences untouched until the new ones show a size.
+**Approved and created 11 Oct 13:33–13:34 Dubai** (owner: "APPROVED TO CREATE … Do NOT delete the old audiences. Do NOT
+attach the new audiences anywhere yet."): A1 = **120252253817880312**, A2 = **120252253818420312**, A3 =
+**120252253818760312**, all on JN 9147325105346647, rules read back exactly as proposed, delivery INACTIVE (unattached),
+size "below 1,000" at creation. Population check in the 09:22 scorecard from Mon 12 Oct; escalate on Tue 13 Oct if still
+below 1,000. Old audiences untouched.
+
+1. ~~Create A1–A3~~ done. Keep the three old audiences untouched until the new ones show a size.
 2. Read sizes after 24–48 h (daily scorecard). Expected: A1 ≫ 1,000 (A-EN alone has 19,890 25 %-plays).
 3. If A1 is still "below 1,000" after 48 h, the fault is in Meta's population pipeline, not the rule → owner opens a
    Meta Business Support case; fallback warm layer = IG/FB engager audiences (both grow daily).

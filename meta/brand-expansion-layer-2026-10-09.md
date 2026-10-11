@@ -61,7 +61,7 @@ https://business.facebook.com/ads/api/preview_iframe.php?d=AQK36iMSQVLOUU6UzIUig
   Mon 58 · Tue 50 · Wed 50 · Thu 60 → 70 at 12:00 · Fri 85 · Sat 90 · Sun 72 (≈ AED 470/week, 8–10 % of
   the planned 550–1,000/day totals; no step larger than +21 % / −20 %). Implemented as Meta Automated
   Rules group **BR** (rows 21–27 in `meta/automated-rules-spec-2026-10-09.md`), owner-created, first
-  cycle Thu 16 Oct — not as session writes, per the owner's rule.
+  cycle Thu 15 Oct — not as session writes, per the owner's rule.
 * Scale only on signal: after week 1, raise the base by ≤ 20 % per step when ThruPlay rate ≥ 15 %,
   cost per ThruPlay ≤ AED 0.25 and the warm audiences are growing; never above 12 % of total spend;
   the 11-booking capacity guard blocks brand increases too (brand views create next-week demand).
