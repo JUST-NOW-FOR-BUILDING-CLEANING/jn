@@ -708,3 +708,31 @@ Done 13:30–14:20 Dubai (3 Meta writes, all approved on their prompts):
   thresholds, fold-into-5158 rule at CPA > 5.50. Not executed.
 * Budgets unchanged: New Sales 150, 5158 150, C3 90, C1 84, C2 80, T1/T2 60/30, W1/W2 80, brand 60.
   **Running total since 09:53 Thu: 84 successful production writes (3 audience creations today), 0 rollbacks.**
+
+## 22. Mon 12 Oct 00:30 Dubai — read-only Monday check (no write), Sunday full day, 00:40 verification
+
+**No native rule fired at 00:00.** Budgets read at 00:4x: New Sales 150, 5158 150, C3 90, C1 84, C2 80, brand 60, T1 60,
+T2 30, W1/W2 80 — every `updated_time` is still Sun 12:44–12:45, so the Monday rules (build doc rows 6, 7, 20b) were not
+created or did not fire, and nothing was edited by hand. Per the owner's policy the session wrote nothing; one push
+notification was sent and the batch below waits for an explicit approval (or a manual edit in Ads Manager).
+
+Prepared Monday batch (owner chooses A or B; the session executes only on "APPROVE A/B" in a fresh message):
+
+| Campaign | Current | A = rule targets | B = return to baseline | % | CPA baseline | Sunday full-day CPA | Booking signal | Capacity |
+|---|---|---|---|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 150 | **86** (then 72 at 12:00, separate approval) | **90** | −43 % / −40 % | 3.41 | 4.81 on 38 (AED 182.59) | 2 website bookings created Sun | Mon 2/12 (both staffed), Tue 1/12 → available |
+| jn 5158 120249855229580073 | 150 | **86** (then 72) | **90** | −43 % / −40 % | 3.75 | 3.25 on 56 (AED 181.87) | same | same |
+| JN C2 120252107080200312 | 80 | **70** | **70** | −12.5 % | AED 56/lead ref. | 140.34 on 1 lead (AED 140.34) | — | — |
+| C1 84 · C3 90 · T1/T2 60/30 · W1/W2 80 · brand 60 | — | unchanged | unchanged | — | — | — | — | — |
+
+Sunday 11 Oct full day: New Sales AED 182.59 → 38 @ 4.81 (CPM 14.81, freq 1.10; the day ran at 180 until 12:44, so it
+spent 22 % above the 150 set then) · 5158 AED 181.87 → 56 @ 3.25 (CPM 17.87) · C3 AED 78.43 → 4 @ **19.61** (CPM 40.3) ·
+twins AED 105.72 → 26 @ 4.07 (T1 73.34 → 16 @ 4.58; T2 32.37 → 10 @ 3.24) · **C1 AED 105.82 → 0 website leads (Fri–Sun
+AED 304 → 0)** · C2 AED 140.34 → 1 lead @ 140.34 (the 12:44 cut to 80 did not stop Sunday's delivery) · W1/W2 AED 93.31 →
+29 @ 3.22 · brand AED 75.00 → 9,087 ThruPlays on 29,016 impressions (31.3 %; Meta's 25 % over-delivery on the flat 60).
+Sunday total ≈ AED 963 (jn 549 + JN 339 + brand 75) against the planned 784 — the cost of the morning at Saturday peaks
+plus Meta's over-delivery after mid-day cuts. Bookings created Sunday on the calendar: 2 (09:16 for Mon, 14:14 for Tue).
+
+**00:40 verification:** MISMATCH against the Monday plan on 3 of 6 — New Sales 150 (plan 86 if rule 6 exists), 5158 150
+(86), C2 80 (70); C3 90, C1 84 and brand 60 match; T1/T2 60/30 and W1/W2 80 untouched. Cause: native rules not created /
+not fired; budgets equal the last logged Sunday levels; no unlogged manual change. No write.
