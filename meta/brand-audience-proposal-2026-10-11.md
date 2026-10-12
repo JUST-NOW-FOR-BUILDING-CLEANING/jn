@@ -5,7 +5,7 @@ despite >14k ThruPlays … Do not attach anything yet; return the exact proposed
 
 ## 1. Findings
 
-**1a. The Instagram hypothesis is ruled out.** Brand campaign 23860638577100791 delivery since launch (Thu 9 Oct 11:47 →
+**1a. The Instagram hypothesis is ruled out.** Brand campaign 23860638577100791 delivery since launch (Fri 9 Oct 11:47 →
 Sun 11 Oct 12:44 Dubai, breakdown by publisher platform and position):
 
 | Platform / position | Spend | Impressions | Share | ThruPlays | 25 %-plays |

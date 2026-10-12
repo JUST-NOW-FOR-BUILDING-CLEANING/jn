@@ -16,15 +16,17 @@ challenger at 45 on top (total 135) — this is a scale, so it needs your explic
 **Ad set:** `C3-X-1 | Dubai + Sharjah + Ajman 25–65 | emirate regions | no interests`
 
 ```json
-{"geo_locations":{"regions":[{"key":"10","name":"Dubai"},{"key":"9","name":"Sharjah"},{"key":"13","name":"Ajman"}],
+{"geo_locations":{"regions":[{"key":"10","name":"Dubai"},{"key":"13","name":"Sharjah"},{"key":"9","name":"Ajman"}],
                   "location_types":["home","recent"]},
  "age_min":25,"age_max":65,
  "excluded_custom_audiences":[{"id":"120249973174230073","name":"jn - Customers Jan 2025-Sep 2026 (booking calendar, 889)"}],
  "targeting_automation":{"advantage_audience":0}}
 ```
 
-(Region keys 10 / 9 / 13 are the ones Meta returns inside C1's and C3's own custom-location pins for Dubai, Sharjah and
-Ajman; Abu Dhabi is simply not included. No genders, no locales, no interests, no behaviours, no work positions, no age cap
+(Region keys 10 / 13 / 9 are the ones Meta returns inside the jn ad sets' own custom-location pins: 10 = Dubai, 13 =
+Sharjah (the "A - Sharjah city" pin 25.3463/55.4209), 9 = Ajman (the second pin of "B - Arabic speakers Sharjah + Ajman");
+Abu Dhabi (8) is simply not included. Corrected 12 Oct — an earlier draft had the Sharjah/Ajman labels swapped; the key set
+was already right. No genders, no locales, no interests, no behaviours, no work positions, no age cap
 at 46; Advantage+ placements as in the control; Advantage audience off so the test measures the targeting as written.)
 
 **Ads (existing creatives of the jn account, both already click-to-WhatsApp):**
@@ -45,7 +47,7 @@ frequency 1.13–1.33. Reference for "what the same creatives do in a healthy au
 | Checkpoint | Minimum delivery | PASS-TRACK | FAIL |
 |---|---|---|---|
 | **3 days** (first read Thu 15 Oct 09:22 if activated Mon 12 Oct) | ≥ AED 100 spent and ≥ 15 conversations | CPA ≤ AED 5.00 **and** CPM ≤ 22 | CPA > 7.00, or CPM ≥ 30 with CTR < 1.5 % (then targeting is not the lever either) |
-| **7 days** (Sun 19 Oct) | ≥ AED 250 and ≥ 50 conversations | CPA ≤ AED 4.50 → fold the control's 45 into the challenger (or into 5158) | **CPA > 5.50 → fold C3's whole budget into 5158 and pause C3 + challenger** (the mission is already served there) |
+| **7 days** (day 7 = Sun 18 Oct; read Mon 19 Oct 09:22) | ≥ AED 250 and ≥ 50 conversations | CPA ≤ AED 4.50 → fold the control's 45 into the challenger (or into 5158) | **CPA > 5.50 → fold C3's whole budget into 5158 and pause C3 + challenger** (the mission is already served there) |
 
 Guards during the test: frequency < 1.6; no scaling of either side; capacity guard 11 bookings applies; bookings are
 handled by the WhatsApp agent as for every WhatsApp campaign (no separate attribution is possible, so the comparison is on

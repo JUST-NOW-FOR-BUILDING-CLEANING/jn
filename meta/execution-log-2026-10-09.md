@@ -736,3 +736,95 @@ plus Meta's over-delivery after mid-day cuts. Bookings created Sunday on the cal
 **00:40 verification:** MISMATCH against the Monday plan on 3 of 6 — New Sales 150 (plan 86 if rule 6 exists), 5158 150
 (86), C2 80 (70); C3 90, C1 84 and brand 60 match; T1/T2 60/30 and W1/W2 80 untouched. Cause: native rules not created /
 not fired; budgets equal the last logged Sunday levels; no unlogged manual change. No write.
+
+## 23. Daily scorecard — day 3 (Mon 12 Oct; routine fired 09:22, read-only) + 09:30 exclusion-batch readiness (read-only)
+
+Window: Fri 9 Oct 00:00 → Mon 12 Oct 09:22 Dubai (cumulative since go-live). **No Meta write in this section.** Both routines
+fired on time; the first reads were issued at 09:31 after the two notifications were read together.
+
+| Item | Day | Numbers | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 3 of 7 | AED 185.32 → **56 @ 3.31**, CPM 18.56, freq 1.07, reach 9,321; ACTIVE, both ads ACTIVE (V02 37 conv on AED 122.76, V01 19 on 62.56). Since Sun 12:44: +AED 65.43 → +22 @ 2.97 | **PASS-TRACK** — volume line already crossed (56 ≥ 50) at 3.31 ≤ 4.70, freq < 1.6; verdict stays with the 16 Oct scorecard |
+| T2 ad set 120250144457040073 (AED 30) | 3 of 7 | AED 87.44 → **28 @ 3.12**, CPM 18.05, freq 1.22, reach 3,987; ACTIVE, ad ACTIVE. Since Sun 12:44: +27.17 → +6 @ 4.53 | **PASS-TRACK** — 28 ≥ 25 at 3.12 ≤ 4.60 |
+| W1 / W2 control (must stay ACTIVE) | — | ACTIVE / ACTIVE, campaign budget 80 unchanged (updated 7 Oct). W1 AED 246.48 → 68 @ 3.62 (CPM 12.47, freq 1.09, 1 pixel lead); W2 AED 2.99 → 2 | parity: twins 84 @ 3.25 on AED 272.76 vs controls 70 @ 3.56 on 249.47 → **−9 % CPA, +20 % volume on +9 % spend** (day 1 −20 %, day 2 −17 %; the gap narrowed because the controls beat the twins on Sunday, 29 @ 3.22 vs 26 @ 4.07) |
+| Union ad set 120252226500410312 | 3 of 10 | AED 327.43 → **4 website leads @ 81.86, 1 attributed purchase**, CPM 37.72, freq 1.40, reach 6,210; ACTIVE. Since Sun 12:44: +AED 92.48 → +1 lead | **WATCH** — one lead short of the pass line (≥ 5 at ≤ 100); fail (< 3 leads after AED 500) is no longer reachable; cost per lead 42.77 → 78.32 → 81.86, still under 100 |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (late attribution onto pre-pause impressions unchanged: C2-1 1 purchase, C2-3 1 lead) | OK |
+| C2 campaign budget 120252107080200312 | — | **80** (expected 70 from Mon 12 Oct by rule 20b or a manual edit). Mon to 09:22 AED 45.40 → 0 leads, CPM 36.55 (57 % of the day's budget gone by 09:22) | **MISMATCH** — no rule, no manual edit; owner-present item |
+| C1 120252107068880312 (flat 84) | — | 84 ✓. Mon to 09:22 AED 26.71 → 0 leads (893 impressions, CPM 29.91); since Fri ≈ AED 331 → **0 pixel Leads**. Meanwhile the calendar received **5 website-form bookings between Sun 09:16 and Mon 08:53** (Ibrahim → Mon, Maria → Tue, Marwan → Sun evening then cancelled, Yasmin → Tue, Jhonalyn → Tue) | budget OK; 0 attributed Leads while the form keeps converting → consistent with the §21 undercount verdict; the owner's three on-device checks remain decisive; no pause (owner) |
+| C3 120250020646250073 (flat 90) | — | 90 ✓. Mon to 09:22 AED 11.00 → 0 conversations, CPM 40.15; Sun 78.43 → 4 @ 19.61 | budget OK; performance FAIL-TRACK vs 5158 → challenger proposal (`meta/c3-challenger-proposal-2026-10-11.md`) awaits the owner |
+| New Sales 120249855697050073 / 5158 120249855229580073 budgets | — | **150 / 150** (plan 86/86 at 00:00, 72 at 12:00). Mon to 09:22 New Sales AED 18.60 → 4 @ 4.65, 5158 AED 34.09 → 16 @ 2.13 | **MISMATCH** — see §22; approval A/B or a manual edit outstanding; the 12:00 step has no executor either |
+| Reactivation 120250144448010073 | — | PAUSED, 0 spend | OK |
+| Capacity (calendar) | — | **Sun 5 jobs done + 1 cancelled** (Al Mizhar kitchen, booked 15:41 for the same evening) · **Mon 2** (both confirmed and staffed) · Tue 3, all UNCONFIRMED | available, no CAPACITY FULL |
+| Bookings created | — | Sun **3** (09:16 → Mon, 14:14 → Tue, 15:41 → Sun, cancelled) · Mon to 09:22 **2** (08:40, 08:53, both → Tue). Sunday conversations 153 (New Sales 38 + 5158 56 + twins 26 + W1/W2 29 + C3 4) → booking-rate proxy **2.0 %** (Fri 5.4, Sat 2.5) | third day down; all five new bookings came through the website form, none is attributable to a WhatsApp campaign |
+
+### 23a. Brand layer (justnow22 23860638577100791, AED 60 flat) — day 4
+
+Campaign by day: Fri 9 Oct AED 36.44 → 12,529 impressions, 3,653 ThruPlays (29.2 %) · Sat 54.03 → 21,204, 6,569 (31.0 %) ·
+**Sun 75.28 → 29,179, 9,110 ThruPlays (31.2 %), 13,929 25 %-plays (47.7 %), CPM 2.58, freq 1.06** · Mon to 09:22 20.11 →
+9,582, 2,720 (28.4 %), CPM 2.10. Cumulative since launch: **AED 185.86 → 72,494 impressions, 22,052 ThruPlays (30.4 %),
+hook 47.4 %, cost per ThruPlay AED 0.0084, frequency 1.04.**
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN | 164.82 | 64,801 | 2.54 | 1.04 | 19,634 | 30.3 % | 31,275 | 48.3 % | 17,977 | 13,457 | 8,929 | 47,523 |
+| A-AR | 0.66 | 276 | 2.39 | 1.03 | 42 | 15.2 % | 42 | 15.2 % | 30 | 28 | 27 | 165 |
+| B | 2.32 | 885 | 2.62 | 1.04 | 272 | 30.7 % | 388 | 43.8 % | 282 | 199 | 157 | 595 |
+| C | 1.80 | 615 | 2.93 | 1.03 | 200 | 32.5 % | 180 | 29.3 % | 141 | 98 | 31 | 456 |
+| D | 0.61 | 262 | 2.33 | 1.07 | 76 | 29.0 % | 68 | 26.0 % | 55 | 45 | 39 | 171 |
+| E | 11.21 | 4,134 | 2.71 | 1.02 | 1,432 | 34.6 % | 1,307 | 31.6 % | 956 | 684 | 201 | 3,143 |
+| F | 4.44 | 1,521 | 2.92 | 1.02 | 397 | 26.1 % | 1,096 | 72.1 % | 730 | 483 | 383 | 1,187 |
+
+Benchmarks: all four PASS (ThruPlay rate 30.4 % ≥ 15; cost 0.0084 ≤ 0.25; hook 47.4 % ≥ 30; frequency 1.04 ≤ 2.0).
+ThruPlay rate by day 29.2 → 31.0 → 31.2 → 28.4 (partial day), cost per ThruPlay 0.010 → 0.008 → 0.008 → 0.007 → **no
+fatigue flag**, no rotation. A-EN carries 89.4 % of impressions (CBO winner). Brand share of Meta spend: **Sun 7.8 %**
+(75.28 of 963.36; below the 8–12 % band, flat-60 week by design — Meta delivered 125 % of the 60 budget), Mon to 09:22
+10.8 %. Flat 60 until the owner's BR rules start Thu 15 Oct.
+
+Warm audiences: NEW A1/A2/A3 (120252253817880312 / 120252253818420312 / 120252253818760312, created Sun 13:33 Dubai)
+**still "below 1,000"** (441, INACTIVE) ≈ 20 h after creation — inside the 24–48 h estimate lag for unattached
+audiences; re-check at Tuesday's 09:22 scorecard and escalate (Meta Business Support case) if still below 1,000 then. Old
+Page-wide trio unchanged (kept, not attached). IG engagers **31.5–37.1k** (+0.1–0.2k vs Sunday); FB engagers
+**26.6–31.3k** (+0.1k).
+
+Connector-required trend/benchmark reads (JN account, read-only): W1 CTR +14 % period over period, cost per result −5 %
+(improving); W2 noise (143 impressions); both W ad sets 52–55 % above the peer CTR benchmark for messaging prospecting.
+C1 ads: all three live ads trend BAD on CTR (−14 % to −46 %) and cost per link click (+63 % to +215 %) → the creative
+diagnosis of §21 stands.
+
+### 23b. Monday customer-exclusion batch — readiness (09:30 routine, read-only; nothing executed)
+
+| Check | Result |
+|---|---|
+| Exclusion audience 120249973174230073 "jn - Customers Jan 2025-Sep 2026 (booking calendar, 889)" | **ACTIVE, operation 200 Normal**, CUSTOM / USER_PROVIDED_ONLY, size "below 1,000" (889 phones uploaded), last updated 8 Oct 09:13 Dubai → PASS |
+| Targeting diff, 9 ad sets vs `baseline_targeting_raw` (snapshot 9 Oct 11:00) | **9/9 unchanged** — every `updated_time` is 7 Oct 20:11–20:12 Dubai (before the snapshot), `last_sig_edit_ts` unchanged, and the live age range / genders / custom locations / Abu Dhabi exclusion / locales / flexible_spec / advantage_audience match the baseline field for field; no ad set carries an excluded custom audience yet → none skipped |
+| Statuses | all 9 ACTIVE under New Sales (150) and 5158 (150) |
+| Capacity guard | Sun 5 done, Mon 2 (< 11) → PASS |
+| Scorecard decision pending? | none from the scorecards (T1/T2 PASS-TRACK, union WATCH, nothing proposed). **Open owner item: the Monday budget step (150 → 86 or 90) is not executed** — not a blocker for the exclusion, but if the owner is present for one write session, do the budgets first and then the three passes, so both significant edits on the same campaigns land on one day and the learning resets are not spread over two |
+
+Three-pass batch, unchanged from `meta/monday-exclusion-batch-2026-10-12.json` — per ad set: `ads_update_entity`
+entity_type ad_set, targeting = `monday_payload_targeting` (connector force-pauses) → `ads_activate_entity` → read back
+`excluded_custom_audiences` ∋ 120249973174230073, status ACTIVE, learning_stage_info, delivery_sub_status; read-back between
+passes; a declined prompt stops the batch; rollback = baseline targeting without the exclusion, then re-activate.
+
+| Pass | Ad set | Last 7 d (Mon 5 – Sun 11 Oct) | Payload summary (all: age 25–65, excl. Abu Dhabi region 8, Advantage audience on, **+ excl. customers 120249973174230073**) |
+|---|---|---|---|
+| 1 | D 120249855379980073 | AED 33.85 → 12 @ 2.82 | 4 Dubai inner-belt pins (4–5 km) |
+| 1 | C 120249855379550073 | 37.07 → 6 @ 6.18 | 6 Dubai premium pins (3–4 km) |
+| 1 | TEST E 120249947966990073 | 99.80 → 20 @ 4.99 | the same 6 pins, women only (genders [2]) |
+| 2 | Copy 2 120249855757070073 | 47.99 → 18 @ 2.67 | Dubai + Sharjah 10-mile pins, 6 locales, interests Jewelry / Online shopping + 4 teacher work positions |
+| 2 | B Arabic 120249855378300073 | 72.22 → 27 @ 2.67 | Sharjah 12 km + Ajman 10 km pins, locale 28 (Arabic) |
+| 2 | Copy B 120249855813520073 | 370.10 → 89 @ 4.16 | Sharjah 10-mile pin, 6 locales, home-improvement interests + Recently moved |
+| 3 | New Sales Ad Set 120249855697040073 | 136.81 → 30 @ 4.56 | Dubai 10-mile pin, 6 locales, luxury / property interests + 3 value-goods behaviours |
+| 3 | Copy A 120249855745520073 | 379.31 → 109 @ 3.48 | Sharjah 10-mile pin, 6 locales, parenting / shopping interests + Engaged Shoppers + Parents |
+| 3 | A Sharjah 120249855372950073 | **700.31 → 199 @ 3.52** | Sharjah 12 km pin, no interests (largest ad set, last) |
+
+Execution only on the owner's explicit approval in a fresh message while present; nothing was written.
+
+**Recommended next action (proposal only, nothing executed):** T1/T2 and W1/W2 untouched to 16 Oct (both twins
+PASS-TRACK with the volume lines already crossed; the parity gap narrowed to −9 % on Sunday's control strength) · union
+WATCH, no budget change, one more lead ≤ AED 100 passes it · **owner-present writes outstanding: New Sales/5158 150 → 86 or
+90 (and 72 at 12:00 under option A), C2 80 → 70, then the exclusion batch passes 1–3** · C1 stays at 84 with 0 attributed
+leads; the five website-form bookings since Sunday make the measurement check (three on-device tests) the decisive step
+before any pause · C3 challenger decision (45/45 split or 45 on top) · brand flat 60, no fatigue, rules from Thu 15 Oct ·
+audiences A1–A3 re-checked Tue 13 Oct. Running total since 09:53 Thu 8 Oct: **84 successful production writes, 0
+rollbacks** (none today).
