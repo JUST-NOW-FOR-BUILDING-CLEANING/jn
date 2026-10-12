@@ -828,3 +828,43 @@ leads; the five website-form bookings since Sunday make the measurement check (t
 before any pause · C3 challenger decision (45/45 split or 45 on top) · brand flat 60, no fatigue, rules from Thu 15 Oct ·
 audiences A1–A3 re-checked Tue 13 Oct. Running total since 09:53 Thu 8 Oct: **84 successful production writes, 0
 rollbacks** (none today).
+
+## 24. Tue 13 Oct 00:40 Dubai — read-only budget verification; owner's manual Monday edit found; Monday full day
+
+**Fault record first:** the Mon 12 Oct 12:40 verification routine fired (12:41 Dubai) but the session issued no reads and
+posted nothing — the second missed read-only run after Sun 00:40/09:22 (§18). No budget was affected (routines are
+read-only by policy), but the 12:00 "72" step had no verification. This 00:40 run covers the gap: every `updated_time`
+below says whether anything moved between 09:22 Mon and 00:40 Tue.
+
+**Verification (read 00:41–00:44 Dubai, no write):**
+
+| Campaign | Expected (plan if rules existed) | Actual | `updated_time` | Verdict / cause |
+|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 86 (Mon 00:00) → 72 (Mon 12:00) → 81 (Tue 00:00, row 8) | **80** | **Mon 12 Oct 23:32 Dubai** | **Manual edit by the owner** (jn activity log: "Campaign budget updated", actor Mohammed Bayoumi, Ads Manager App for Android, 150 → 80 "Per day"). Not a session write, not a rule (80 is no rule target and 23:32 is no slot). No Tue 00:00 rule fired either (a row-8 rule would have moved it to 81 after midnight). **Recorded level is now 80.** |
+| jn 5158 120249855229580073 | same | **80** | **Mon 23:33** | same manual edit, 150 → 80; recorded level 80 |
+| jn C3 120250020646250073 | 90 flat | 90 | 7 Oct | ✓ |
+| JN C1 120252107068880312 | 84 flat | 84 | Sun 12:45 | ✓ |
+| JN C2 120252107080200312 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH** — rule not created and no manual edit (JN activity log since Mon 00:00: only Meta's billing event); owner-present item, 80 → 70 |
+| justnow22 brand 23860638577100791 | 60 flat | 60 | 9 Oct | ✓ |
+| T1 120250144454520073 / T2 120250144457040073 | 60 / 30 | 60 / 30 | 9 Oct 10:12 | untouched ✓ |
+| JN W1/W2 campaign 120251948470120312 | 80 | 80 | 7 Oct | untouched ✓ |
+
+The owner's 23:32 edit lands between the plan's Monday levels (72 at 12:00) and Tuesday's (81) and was made one day late
+by hand — exactly the "MANUAL + OWNER-PRESENT" path of the 11 Oct policy, so it is logged, not corrected. The prepared
+batch of §22 (A/B) is therefore **superseded for New Sales/5158**; only **C2 80 → 70** remains outstanding from it. If the
+native rules go live before Thu 15 Oct, row 8 (Tue 00:00 → 81) and row 9 (Wed 00:00 → 72) would land from 80 without any
+drift because every rule carries an exact target.
+
+**Monday 12 Oct full day (from the 00:4x reads):** New Sales AED 166.44 → 54 @ 3.08 (CPM 15.85, freq 1.05; ran at 150 until
+23:32) · 5158 AED 179.91 → 51 @ 3.53 (CPM 16.80) · C3 AED 82.67 → 7 @ **11.81** (CPM 49.8) · twins AED 99.64 → 35 @ 2.85
+(T1 62.24 → 23 @ 2.71, CPM 17.54; T2 37.40 → 12 @ 3.12, CPM 15.83) · **C1 AED 88.85 → 0 website leads** (2,880 impressions,
+CPM 30.85; Fri–Mon ≈ AED 393 → 0) · C2 AED 106.62 → 1 lead @ 106.62 (CPM 37.15, freq 1.23; 133 % of the 80 budget) · W1/W2
+AED 93.37 → 32 @ 2.92 (CPM 10.91) · brand AED 51.62 → 23,729 impressions, 7,054 ThruPlays (29.7 %), 11,056 25 %-plays
+(46.6 %), CPM 2.18. **Monday total ≈ AED 869** (jn 528.66 + JN 288.84 + brand 51.62) against the plan's ≈ 646 — the cost of
+running 150/150 all day; brand share 5.9 %. Conversations Monday: 179 (New Sales 54, 5158 51, twins 35, W1/W2 32, C3 7).
+Parity Monday: twins 35 @ 2.85 on 99.64 vs controls 32 @ 2.92 on 93.37 → −2 % CPA, +9 % volume on +7 % spend (closest day
+so far). Cumulative since go-live (Fri–Mon): twins 119 @ 3.12 on AED 372.40 vs controls 102 @ 3.36 on 342.84 → **−7 % CPA,
++17 % volume on +9 % spend**.
+
+Running total since 09:53 Thu 8 Oct: **84 successful production writes, 0 rollbacks** (none in this section). Next
+read-only runs: 09:22 Tue scorecard (day 4 of 7; A1–A3 population check with the 48 h mark at 13:33), 12:40 verification.
