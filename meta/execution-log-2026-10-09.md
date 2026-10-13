@@ -978,3 +978,23 @@ published CAPI workflow sends the WhatsApp click id. Phase 2 = one booking-optim
 → WhatsApp conversions = Schedule, AED 80 from New Sales/5158; JN BOOK-WEB on Lead = booking request, AED 42 from C1),
 7-day test on cost per confirmed booking, controls kept. Three one-word decisions requested. **No Meta write; no Make or
 respond.io write.**
+
+## 27. Wed 14 Oct 00:40 Dubai — read-only budget verification; Tuesday full day
+
+| Campaign | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level; rule plan for Wed 00:00 = 72, row 9) | 80 / 80 | Mon 23:32 / 23:33 | ✓ vs recorded level; no Wed rule fired (none created) |
+| jn C3 | 90 | 90 | 7 Oct | ✓ |
+| JN C1 | 84 | 84 | Sun 12:45 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH** (3rd day) — rule not created, no manual edit (JN activity log since Tue 12:40: Meta billing only); owner-present item |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+
+**Tuesday 13 Oct full day:** New Sales AED 81.75 → 19 @ 4.30 (CPM 19.29) · 5158 83.50 → 30 @ 2.78 (CPM 19.09) · **C3 55.44 →
+0 conversations** (CPM 54.19; the first zero day) · twins 84.62 → 30 @ 2.82 (T1 56.37 → 20 @ 2.82; T2 28.25 → 10 @ 2.83) ·
+**C1 78.95 → 1 attributed lead @ 78.95** (first since Thu 8 Oct; Fri–Tue ≈ AED 471 → 1) · C2 77.99 → 1 lead @ 77.99 (CPM
+41.26) · W1/W2 76.05 → 21 @ 3.62 (+2 pixel leads) · brand 55.58 → 27,026 impressions, 7,380 ThruPlays (27.3 %), 11,729
+25 %-plays (43.4 %), CPM 2.06. **Tuesday total ≈ AED 594** (jn 305.31 + JN 232.99 + brand 55.58) — the first day at the
+owner's 80/80 level; brand share 9.4 %. Conversations 100 (New Sales 19, 5158 30, twins 30, W1/W2 21, C3 0).
+Cumulative Fri–Tue: twins 149 @ 3.06 on AED 457.08 vs controls 120 @ 3.49 on 418.89 → **−12 % CPA, +24 % volume on +9 %
+spend**. No write.
