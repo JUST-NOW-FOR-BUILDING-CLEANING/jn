@@ -868,3 +868,72 @@ so far). Cumulative since go-live (Fri–Mon): twins 119 @ 3.12 on AED 372.40 vs
 
 Running total since 09:53 Thu 8 Oct: **84 successful production writes, 0 rollbacks** (none in this section). Next
 read-only runs: 09:22 Tue scorecard (day 4 of 7; A1–A3 population check with the 48 h mark at 13:33), 12:40 verification.
+
+## 25. Daily scorecard — day 4 (Tue 13 Oct; routine fired 09:22, read-only; reads 09:25–09:40 Dubai)
+
+Window: Fri 9 Oct 00:00 → Tue 13 Oct 09:22 Dubai (cumulative since go-live). **No Meta write in this section.**
+
+| Item | Day | Numbers | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 4 of 7 | AED 248.22 → **81 @ 3.06**, CPM 18.11, freq 1.10, reach 12,447; ACTIVE, both ads ACTIVE (V02 48 conv on AED 148.42, V01 33 on 99.80). Last 24 h: +AED 62.90 → +25 @ 2.52 | **PASS-TRACK** — 81 ≥ 50 at 3.06 ≤ 4.70, freq < 1.6; verdict with the 16 Oct scorecard |
+| T2 ad set 120250144457040073 (AED 30) | 4 of 7 | AED 125.24 → **41 @ 3.05**, CPM 17.08, freq 1.21, reach 6,073; ACTIVE, ad ACTIVE. Last 24 h: +37.80 → +13 @ 2.91 | **PASS-TRACK** — 41 ≥ 25 at 3.05 ≤ 4.60 |
+| W1 / W2 control (must stay ACTIVE) | — | ACTIVE / ACTIVE, campaign 80 unchanged (7 Oct). W1 AED 340.16 → 97 @ 3.51 (CPM 11.99, freq 1.15, 2 pixel leads); W2 AED 3.69 → 2 | parity: twins **122 @ 3.06** on AED 373.46 vs controls **99 @ 3.47** on 343.85 → **−12 % CPA, +23 % volume on +9 % spend** (day 1 −20, day 2 −17, day 3 −9, day 4 −12) |
+| Union ad set 120252226500410312 | 4 of 10 | AED 408.76 → **5 website leads @ 81.75, 1 attributed purchase**, CPM 37.98, freq 1.45, reach 7,421; ACTIVE. Last 24 h: +AED 81.33 → +1 lead | **PASS line met** (≥ 5 leads at ≤ AED 100): PASS-TRACK to the window end 19 Oct; cost per lead 42.77 → 78.32 → 81.86 → 81.75 (stable); frequency 1.45 is the number to watch (guard 1.6) |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (late attribution unchanged) | OK |
+| C2 campaign budget 120252107080200312 | — | **80** (plan 70 since Mon). Tue to 09:22 AED 19.42 → 0 leads, CPM 43.25 | **MISMATCH** (no rule, no manual edit) — owner-present item, 80 → 70 |
+| C1 120252107068880312 (flat 84) | — | 84 ✓. Tue to 09:22 AED 18.53 → 0 leads (678 impressions, CPM 27.33); **Fri–Tue ≈ AED 412 → 0 pixel Leads**, while the calendar received 6 website-form bookings in the same days | budget OK; measurement verdict unchanged (§21); the owner's three on-device checks decide pause vs fix; no pause (owner) |
+| C3 120250020646250073 (flat 90) | — | 90 ✓. Mon full day AED 82.67 → 7 @ **11.81** (CPM 49.8); Tue to 09:22 AED 8.23 → 0 (CPM 45.72). Fri–Mon ≈ AED 300 → 19 @ ≈ 15.8 | budget OK; **FAIL-TRACK** vs 5158 (3.53) — challenger proposal awaits the owner |
+| New Sales 120249855697050073 / 5158 120249855229580073 | — | **80 / 80** (owner's manual edit Mon 23:32–23:33, §24); plan for Tue 00:00 was 81 (row 8), so the level is within AED 1 of plan. Tue to 09:22: New Sales AED 13.50 → 4 @ 3.38; 5158 AED 18.05 → 7 @ 2.58 | OK (no rule fired; level equals the plan by hand) |
+| Reactivation 120250144448010073 | — | PAUSED, 0 spend | OK |
+| Capacity (calendar) | — | **Mon 2 jobs done** (Reem 08:15, Noura 16:00) — the Monday 1 BHK Business Bay booking (Ibrahim, AED 659) **disappeared from the calendar** (cancelled or moved) · **Tue 5** (Yasmin Shj 08:00, Maria 12:00, Mirna 12:00, Kifah Al Qusais 12:00, Jhonalyn 17:30), all confirmed and staffed vs ceiling 12 / hold 11 | available, no CAPACITY FULL |
+| Bookings created | — | Mon **3** (Yasmin 08:40 and Jhonalyn 08:53 → Tue, Noura 12:43 → Mon evening; all website form) · Tue to 09:22 **2** (Kifah 01:08, Mirna 01:33 — both WhatsApp-template entries, **the first clearly WhatsApp-sourced bookings since Friday**). Monday conversations 179 → booking-rate proxy **1.7 %** (Fri 5.4, Sat 2.5, Sun 2.0) | proxy falling four days running, but Tuesday's two WhatsApp bookings arrived after the Monday conversations — read again Wed |
+
+### 25a. Brand layer (justnow22 23860638577100791, AED 60 flat) — day 5
+
+Campaign by day: Fri AED 36.44 → 3,653 ThruPlays (29.2 %) · Sat 54.03 → 6,569 (31.0 %) · Sun 75.28 → 9,110 (31.2 %) ·
+**Mon 51.73 → 23,807 impressions, 7,064 ThruPlays (29.7 %), 11,075 25 %-plays (46.5 %), CPM 2.17, freq 1.06** · Tue to
+09:22 21.48 → 10,580, 2,812 (26.6 %), 4,521 (42.7 %), CPM 2.03. Cumulative since launch: **AED 239.29 → 97,410
+impressions, 29,180 ThruPlays (30.0 %), hook 46.8 %, cost per ThruPlay AED 0.0082, frequency 1.08.**
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN | 213.47 | 87,557 | 2.44 | 1.08 | 26,063 | 29.8 % | 41,841 | 47.8 % | 23,831 | 17,818 | 11,821 | 63,836 |
+| A-AR | 0.67 | 282 | 2.38 | 1.03 | 44 | 15.6 % | 44 | 15.6 % | 31 | 29 | 28 | 168 |
+| B | 2.71 | 1,074 | 2.52 | 1.04 | 330 | 30.7 % | 471 | 43.9 % | 343 | 244 | 193 | 704 |
+| C | 2.03 | 730 | 2.78 | 1.02 | 242 | 33.2 % | 217 | 29.7 % | 171 | 119 | 37 | 544 |
+| D | 0.61 | 262 | 2.33 | 1.07 | 76 | 29.0 % | 68 | 26.0 % | 55 | 45 | 39 | 171 |
+| E | 15.23 | 5,924 | 2.57 | 1.05 | 2,005 | 33.8 % | 1,829 | 30.9 % | 1,338 | 960 | 296 | 4,449 |
+| F | 4.57 | 1,581 | 2.89 | 1.03 | 420 | 26.6 % | 1,138 | 72.0 % | 759 | 509 | 405 | 1,231 |
+
+Benchmarks: all four PASS (ThruPlay rate 30.0 % ≥ 15; cost 0.0082 ≤ 0.25; hook 46.8 % ≥ 30; frequency 1.08 ≤ 2.0).
+ThruPlay rate by day 29.2 → 31.0 → 31.2 → 29.7 → 26.6 (Tuesday morning only); the fatigue flag needs a fall of more than
+20 % below the first-week level (≈ 24 %) or cost per ThruPlay +30 % (it is falling, 0.0076 today) → **no flag**; Tuesday's
+full day is the next read. A-EN carries 89.9 % of impressions. Brand share of Meta spend: **Mon 6.0 %** (51.73 of ≈ 869;
+below the 8–12 % band because the acquisition campaigns ran at 150/150 all day), flat 60 until Thu 15 Oct.
+
+**Warm audiences — ESCALATION FLAG.** A1/A2/A3 (120252253817880312 / 120252253818420312 / 120252253818760312) are
+**still "below 1,000"** (441, INACTIVE) ≈ 44 h after creation; the old Page-wide trio (created Fri 9 Oct 11:45) is also
+still below 1,000 after 4 days, while the Page's videos have accumulated **45,608 25 %-plays and 29,180 ThruPlays** from
+the brand layer alone in the same window. The rule form is now Meta's own (explicit video list), so the remaining
+explanations are (a) Meta does not refresh size estimates for audiences that no ad set uses, or (b) the population
+pipeline for this Page's video events is not filling. Proposal, owner-side and read-only, before a support case: in Ads
+Manager open the JN account → create an ad set **as a draft, do not publish** → include audience A1 → read the "Audience
+definition / estimated audience size" gauge. If it shows a real number, (a) holds and the audiences are usable (attach
+when the owner approves). If it still shows "below 1,000", open a **Meta Business Support case** quoting: Page
+122098309970001876, audience IDs above, rule (video_view_25_percent, video.id any [11 ids]), created 11 Oct 13:33 Dubai,
+evidence 45k 25 %-plays since 9 Oct, "estimated size stays below 1,000 after 48 h". IG engagers **31.6–37.2k** (+0.1k vs
+Mon); FB engagers **26.9–31.6k** (+0.3k) — the fallback warm layer keeps growing.
+
+Connector-required trend/benchmark reads (JN, read-only): W1 CTR +14 % period over period, cost per result −5 %
+(improving), 54 % above the peer CTR benchmark; W2 noise (180 impressions). Union ads (retargeting cohort, 4-day basis):
+CTR C2-2-d −3 %, before-after video −15 %, stove-grease AR +8 %, cost per result flat. C1 ads were not returned in
+today's trend read.
+
+**Recommended next action (proposal only, nothing executed):** T1/T2 and W1/W2 untouched to 16 Oct (both twins
+PASS-TRACK; parity back to −12 %) · union has met its pass line on day 4 — no budget change, let the window run to 19 Oct
+and watch frequency (1.45 → guard 1.6) · **owner-present writes outstanding: C2 80 → 70, then the exclusion batch passes
+1–3** (readiness unchanged from §23b; the two campaigns now sit at 80) · C1 ≈ AED 412 → 0 attributed leads: the three
+on-device checks remain the decisive step; the owner may also decide pause vs fix without them, since the website form
+keeps converting · C3 challenger decision (45/45 split or 45 on top) · brand flat 60, no fatigue, rules from Thu 15 Oct ·
+**A1–A3: draft-ad-set estimate check today, Meta support case if still below 1,000.** Running total since 09:53 Thu 8 Oct:
+**84 successful production writes, 0 rollbacks** (none today).
