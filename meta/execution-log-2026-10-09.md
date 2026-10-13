@@ -967,8 +967,14 @@ Converted Leads" workflow depends on the Customer lifecycle stage, set on 17 con
 after 6 Oct. Website Lead events are duplicated (browser clusters + a server source without shared event_id) and
 undercounted (C1 ≈ AED 412 since Fri → 0 attributed; 6 form bookings in the calendar). Lead EMQ 7.8; no Purchase EMQ row.
 
-Plan written to `meta/booking-signal-plan-2026-10-13.md`: Phase 1 = hourly Make scenario "Booking confirmed → Schedule"
-from the calendar (both channels, idempotent event_id, action_source website/chat) + auto-complete rule for the Purchase
-flow (recommended) ; Phase 2 = one booking-optimised ad set per channel (jn BOOK-WA under Sales/CTWA conversions = Schedule
-at AED 80 from New Sales/5158; JN BOOK-WEB on Schedule at AED 42 from C1), 7-day test on cost per confirmed booking,
-controls kept. Three one-word decisions requested. **No Meta write; no Make or respond.io write.**
+Plan written to `meta/booking-signal-plan-2026-10-13.md`, revised at ≈ 13:45 after the owner added "also through website
+conversion as well" and after reading the Make workspace: the hourly **"Confirmed booking → Meta Purchase" scenario
+6410541 (≈ 30 events/week, both channels) has been INACTIVE since the 6–7 Oct cutover** — that is when the booking signal
+died; the website form and the agent's WhatsApp booking message both already land in Make 6369438, which creates the
+calendar entry. Phase 1 = three events for both channels: Lead = booking request (one CAPI module in 6369438, action_source
+website/chat, event_id = calendar id), Schedule = booking confirmed (clone of 6410541 with a new ledger; 158380 stays the
+legacy list for 6529499), Purchase = completed job with the auto-complete rule; respond.io lifecycle set by Make so the
+published CAPI workflow sends the WhatsApp click id. Phase 2 = one booking-optimised ad set per channel (jn BOOK-WA, Sales
+→ WhatsApp conversions = Schedule, AED 80 from New Sales/5158; JN BOOK-WEB on Lead = booking request, AED 42 from C1),
+7-day test on cost per confirmed booking, controls kept. Three one-word decisions requested. **No Meta write; no Make or
+respond.io write.**
