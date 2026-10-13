@@ -937,3 +937,18 @@ on-device checks remain the decisive step; the owner may also decide pause vs fi
 keeps converting · C3 challenger decision (45/45 split or 45 on top) · brand flat 60, no fatigue, rules from Thu 15 Oct ·
 **A1–A3: draft-ad-set estimate check today, Meta support case if still below 1,000.** Running total since 09:53 Thu 8 Oct:
 **84 successful production writes, 0 rollbacks** (none today).
+
+### 25b. Tue 13 Oct 12:40 Dubai — read-only budget verification (reads 12:41–12:43)
+
+| Campaign | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level of Mon 23:32; rule plan for Tue = 81, no 12:00 slot on Tuesday) | 80 / 80 | Mon 23:32 / 23:33 | ✓ |
+| jn C3 | 90 | 90 | 7 Oct | ✓ |
+| JN C1 | 84 | 84 | Sun 12:45 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH** — rule not created, no manual edit (JN activity log since Tue 00:40: Meta billing only); owner-present item |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+
+Tue to 12:40: New Sales AED 27.33 → 6 @ 4.56 · 5158 28.09 → 9 @ 3.12 · C3 12.85 → 0 (CPM 47.77) · C1 29.10 → 0 leads ·
+C2 26.12 → 0 leads (CPM 43.75) · W1/W2 21.43 → 10 @ 2.14 · T1 21.20 → 10 @ 2.12 · T2 11.58 → 3 @ 3.86 · brand 25.56 →
+3,334 ThruPlays on 12,676 impressions (26.3 %). No write.
