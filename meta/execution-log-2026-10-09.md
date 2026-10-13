@@ -952,3 +952,23 @@ keeps converting · C3 challenger decision (45/45 split or 45 on top) · brand f
 Tue to 12:40: New Sales AED 27.33 → 6 @ 4.56 · 5158 28.09 → 9 @ 3.12 · C3 12.85 → 0 (CPM 47.77) · C1 29.10 → 0 leads ·
 C2 26.12 → 0 leads (CPM 43.75) · W1/W2 21.43 → 10 @ 2.14 · T1 21.20 → 10 @ 2.12 · T2 11.58 → 3 @ 3.86 · brand 25.56 →
 3,334 ThruPlays on 12,676 impressions (26.3 %). No write.
+
+## 26. Tue 13 Oct ≈ 13:00 Dubai — owner asks why bookings do not improve the ads; diagnosis (read-only)
+
+Owner: "where is the optimization of the current booking … why there is no enhancement on the current ads … we can switch
+it off and create new ads to read properly from the meta optimization." Reads 13:05–13:25: pixel 614743294720303 event
+stats 6–13 Oct (all / server / browser), dataset quality, Make scenario 6529499 blueprint + executions + ledger datastore
+165821 + its alert calendar, respond.io lifecycle stages, workflows and Customer/Qualified contacts.
+
+Findings: every live ad set optimises for a proxy (WhatsApp conversation started; browser Lead) — no ad set uses a booking
+event. The completed-job Purchase flow runs nightly but sent **6 Purchases in 5 days** (all on 11 Oct, AED 2,377); 31
+completed jobs aged out past Meta's 7-day limit without a DONE line; 23 still pending. respond.io's "Send CAPI for
+Converted Leads" workflow depends on the Customer lifecycle stage, set on 17 contacts since 20 Sep and on none created
+after 6 Oct. Website Lead events are duplicated (browser clusters + a server source without shared event_id) and
+undercounted (C1 ≈ AED 412 since Fri → 0 attributed; 6 form bookings in the calendar). Lead EMQ 7.8; no Purchase EMQ row.
+
+Plan written to `meta/booking-signal-plan-2026-10-13.md`: Phase 1 = hourly Make scenario "Booking confirmed → Schedule"
+from the calendar (both channels, idempotent event_id, action_source website/chat) + auto-complete rule for the Purchase
+flow (recommended) ; Phase 2 = one booking-optimised ad set per channel (jn BOOK-WA under Sales/CTWA conversions = Schedule
+at AED 80 from New Sales/5158; JN BOOK-WEB on Schedule at AED 42 from C1), 7-day test on cost per confirmed booking,
+controls kept. Three one-word decisions requested. **No Meta write; no Make or respond.io write.**
