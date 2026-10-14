@@ -1151,3 +1151,31 @@ Today to 12:40: New Sales 23.62 → 5 @ 4.72 · 5158 24.12 → 7 @ 3.45 · twins
 · C1 35.93 → 2 @ 17.97 · C2 43.12 → 7 @ 6.16 (the server-sent booking Leads now match retargeting clicks too) · W1/W2
 18.38 → 2 · BOOK-WEB 24.94 → 0 · brand 22.32 → 2,518 ThruPlays. Booking signal keeps flowing: server Lead 4 + Contact 6 in
 the 10:00 hour, Lead 3 + Schedule 5 in the 11:00 hour (hourly Make runs on new and confirmed bookings). No write.
+
+## 31. Wed 14 Oct 15:24–16:12 Dubai — the owner's own changes (Ads Manager / iOS app), read 16:10–16:40 on "have a look"
+
+Activity logs (actor Mohammed Bayoumi) and live read-backs:
+
+| Time | Account | Change | State read back |
+|---|---|---|---|
+| 15:24 | jn | ad `Top creator reel` 120249855754670073 paused (5158 ad set C Dubai premium) | ad set C now has no active ad (its other ad was paused in §28c) |
+| 15:27 | JN | **C1 campaign budget 42 → 60** (iOS app) | 60, ACTIVE; website acquisition now C1 60 + BOOK-WEB 42 = **AED 102/day** (plan §28: 84). C1-1 learning reset to LEARNING (0 conv, sig edit 15:46) |
+| 15:38 | JN | **new ad set 120252296031040312 `WB \| RETARGETING \| UNION 30D \| BOOKING - Copy`** under C2 (CBO 80): same four warm audiences, same two exclusions, same Dubai/Sharjah 10-mile pins excl. Abu Dhabi, 20–65, Advantage+ audience on, pixel Lead; destination **website + instant form** (original: website); no WhatsApp placements | ACTIVE, LEARNING, AED 5.94 by 16:10 (102 impressions) |
+| 15:41–16:04 | JN | three ads in the copy, all with **new Book-button creatives** on Page 122098309970001876: 28775651848731448 (EN "Behind every sparkling space", existing post 122381682380006883, same photo as C1-1-d), 1861078528594328 (AR "كمّلي حجزك" finish-your-booking video 1397312108778647, display link book-now), 1583289796213887 (AR "تنظيف جوّة الخزائن" cabinets video 1811993813141327) | all ACTIVE and delivering 16:00–17:28 |
+| 15:45 | JN | **C1-1-a 120252107427390312 un-paused with a new creative 982787274862822** (EN "From stained to spotless", new video 1294773682762931, Book button) | ACTIVE, approved 15:50 |
+
+Assessment: (1) the C1 raise is the owner's scale decision; the BOOK-WEB vs C1 verdict stays on cost per confirmed booking,
+not volume. (2) The union copy duplicates the union's audience inside the same AED 80 CBO: the two ad sets bid against
+each other for ≈ 40k people, frequency climbs toward the 1.6 guard, and the union's 10-day verdict (PASS-TRACK, day 6) is
+muddied. Recommended: pause the copy and move its three Book-button creatives into the original union as new ads
+(creative refresh without a learning reset); alternative: pause the original and let the copy carry the AED 80.
+Owner decision. (3) The three copy creatives cannot be placed by the connector: `ads_create_ad` → "Terms of Service Not
+Accepted: You can't run lead ads until your Facebook Page accepts Facebook's Lead Generation Terms of Service … or this
+connection cannot read its acceptance status" (error 1815089) — they carry the instant-form destination; Ads Manager can
+still copy them. (4) The new C1-1-a creative is a plain website creative with a Book button, so it went into the
+booking-optimised ad set: **ad 120252297690530312 `BOOK-WEB-1-d \| From stained to spotless \| Book button \| EN`**
+created PAUSED 16:3x (prompt approved) and activated on its prompt — BOOK-WEB-1 now has four ads. The AR cabinets video
+with a button (the C1-1-d content the owner asked for this morning) still needs to be added from Ads Manager (existing
+post 122098309970001876_122383360754006883, Book Now → justnow.life/book-now) because the connector cannot read the
+Page video's thumbnail. Writes: 1 ad create + 1 activation; 2 ad creates rejected (lead-form creatives). **Running
+total: 97 successful Meta production writes, 0 rollbacks.**
