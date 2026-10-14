@@ -1121,3 +1121,16 @@ Fri 16 Oct 09:22 read (if PASS, the owner's approval folds W1/W2's AED 80 into T
 Oct; C2 80 → 70 and the A1–A3 support case remain owner-present items; the three mis-timed DONE lines should be corrected
 before 00:00 tonight. No write in this section. Running total unchanged: **95 successful Meta production writes, 0
 rollbacks.**
+
+**29a. 09:40 Dubai — owner wrote "done"; read-only verification of the three items.** (1) C2 campaign budget still **80**,
+`updated_time` unchanged (Sun 12:45) — not done. (2) Calendar: the three Tue 13 Oct jobs were edited 09:30–09:32 Dubai
+(yasmin end 12:00 → 11:00; Maria 3 h / AED 329 → 4 h / AED 439; كفاح last line removed) but the DONE times still read
+04:30 / 05:30 / 05:45 against job starts 12:00 / 13:00 / 14:15, i.e. 12-hour times without am/pm — 6529499 classifies
+them HOLD_TIME_CONFLICT (`doneX < startX`, module 10) and will not send them tonight; the fix is either the three lines as
+16:30 / 17:30 / 17:45 or a one-approval change to module 10 that reads a DONE time earlier than the job start as PM when
++12 h lands inside start … end + 24 h. (3) Warm video audiences: the rule of A1 (120252253817880312) is **correct** —
+event source Page 122098309970001876, the 11 video ids include the brand videos (BR-A-EN 2163113240903678, BR-E
+925115713754619), and the brand layer delivers **99.3 % on Facebook** (AED 288.03, 119,871 impressions, 35,451
+ThruPlays on Facebook vs AED 1.99 / 676 impressions on Instagram) from that same Page — so the audiences should hold tens
+of thousands of people; `operation_status_code` 441, delivery INACTIVE, never updated since creation. This is Meta-side,
+not a configuration mismatch: Meta support case (owner). No write.
