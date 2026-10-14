@@ -99,4 +99,8 @@ Owner-side checks: (a) open respond.io workflow "Send CAPI for Converted Leads" 
 (b) Events Manager → Lead event → connections, to name the second server source; (c) confirm the website script can
 fire the browser Lead with the returned calendar id as eventID (Webador custom code).
 
-Nothing in this file has been executed. No Meta, Make or respond.io write was made.
+**Execution status (Wed 14 Oct 06:40 Dubai):** on the owner's order "fix the optimization of the booking page now",
+Phase 1 events A and B are live (Make scenario 6624989, hourly, both channels — built as one scenario instead of the two
+edits above; event C / auto-complete still awaits the owner's yes/no) and the website row of Phase 2 is live (JN campaign
+120252289064660312, ad set 120252289067460312 at AED 42/day, three ads; C1 84 → 42). The WhatsApp row (BOOK-WA) is not
+built. Details and read-backs: `meta/execution-log-2026-10-09.md` §28.

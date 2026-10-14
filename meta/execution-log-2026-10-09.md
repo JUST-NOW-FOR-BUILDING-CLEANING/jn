@@ -998,3 +998,82 @@ respond.io write.**
 owner's 80/80 level; brand share 9.4 %. Conversations 100 (New Sales 19, 5158 30, twins 30, W1/W2 21, C3 0).
 Cumulative Fri–Tue: twins 149 @ 3.06 on AED 457.08 vs controls 120 @ 3.49 on 418.89 → **−12 % CPA, +24 % volume on +9 %
 spend**. No write.
+
+## 28. Wed 14 Oct 05:40–06:40 Dubai — owner: "fix the optimization of the booking page now" + "optimize all the active ads … pause … take an action" (owner-present; every write approved on its prompt)
+
+Owner, ≈ 05:40: "So from now on, the one instruction and very serious instruction: fix the optimization of the booking page
+now." Owner, ≈ 06:15: "so for now optimize all the active ads and the ads which is spending a lot of money without getting a
+good result you can pause it and take an action against it." Both executed below; Phase 1 + Phase 2 (website) of
+`meta/booking-signal-plan-2026-10-13.md` are therefore live, three weeks earlier than the plan's "after 7 clean days".
+
+### 28a. Booking signal — Make scenario 6624989 (team 1579313), live from 06:08 Dubai
+
+| Time (Dubai) | Write | Result / read-back |
+|---|---|---|
+| 05:46:33 | `scenarios_create` **6624989** "Booking -> Meta Lead (request) + Schedule (confirmed) - hourly, both channels" | INACTIVE; hourly; trigger Google Calendar watch-by-update (conn 11258189) → normaliser copied from 6410541 → name/phone/price/service/city → `ExistRecord` 158380 key `{id}:lead` → `ExistRecord` key `{id}:booked` → router: **Lead** (event_id `{id}:lead`, `action_source` website/chat from the description, ph/fn/ln/ct/country/external_id, value = price AED, content_category `booking_request`) + AddRecord; **Schedule** when UNCONFIRMED is gone from the title (event_id `{id}:booked`, content_category `booking_confirmed`) + AddRecord. Datastore quota is exhausted ("Not enough space in storage"), so the ledger lives in 158380 with suffixed keys — no collision with 6529499's exact-key legacy check. Data structure 535737 was created for a new store and is unused. |
+| 06:08:33 | `scenarios_activate` | first auto run 06:08:35: **201 ops, 0 events sent** — the watch pointer started at the oldest history (100 oldest-updated events, all dropped by the date filter after two paid SetVariables each). Pixel check 06:34: server events 01:00–06:34 = the known second source only (1 Lead + 1 Schedule + 1 Contact at 01:00). |
+| 06:34:50 | `scenarios_update` blueprint | date/cancel filter moved to module 2 (old history dropped at zero cost), trigger limit 100 → **2500**; everything else unchanged. |
+| 06:35:24 | `scenarios_run` | 1 op, 10.7 s, 2.46 MB: 2,500 old events consumed, nothing sent. |
+| 06:36:50 | `scenarios_run` | **307 ops, 15.3 s, 1.97 MB: the pointer reached the recent bookings** — Lead (and Schedule for confirmed ones) sent for every non-cancelled booking with a phone number starting after Mon 6 Oct; ledger rows `{id}:lead` / `{id}:booked` written (status SENT, `received` = Meta's count). Next hourly run 07:08 Dubai, then every hour. |
+
+Pixel confirmation of the 06:36 batch: see the 12:40 verification (Events Manager stats lag). Website dedup (browser Lead
+with `eventID` = calendar id) and the second server Lead source are still owner-side — until then the website Lead count
+is inflated by the browser clusters, which affects reporting but not the new ad set's optimisation (it learns from every
+Lead; the server-sent ones are the clean subset).
+
+### 28b. BOOK-WEB — the new website booking campaign in JN 9147325105346647 (plan §5, website row)
+
+| Time | Object | Write / state |
+|---|---|---|
+| 05:43:41 | campaign **120252289064660312** `JN \| BOOK-WEB \| Leads \| website booking \| Oct 2026` | created PAUSED (OUTCOME_LEADS, auction, ABO) → **owner activated 05:44:03** from the connector card |
+| 05:44:16 | ad set **120252289067460312** `BOOK-WEB-1 \| broad 25-65 \| UAE excl. Abu Dhabi \| Lead = booking request` | created PAUSED: **AED 42/day**, OFFSITE_CONVERSIONS, pixel 614743294720303 event **LEAD**, website, 7-day click / 1-day view, UAE excl. Abu Dhabi (home + recent), 25–65 as Advantage-audience suggestion, excl. 120251936408430312 / 120252107062990312 / 120252107064340312 → **owner activated 05:46:59**; read-back 06:33: ACTIVE, budget 42, LEARNING (0 conv) |
+| 05:44:36 | ad **120252289069660312** `BOOK-WEB-1-b \| Same kitchen, different result \| before-after \| EN+AR` (creative 2012729279425471, Page 503162459555897) | created PAUSED → **owner activated 05:49:13**; by 06:34 AED 6.57, 244 impressions, 2 link clicks |
+| 05:5x | ad from creative 1484505567067844 (C1-1-d, the only C1 creative with leads) | **rejected**: "Call to Action Required: Your campaign objective requires an external website URL" — the post has no button; a Book Now version needs the source video uploaded as an ad video (owner-side) |
+| 06:03:22 | ad **120252289192770312** `BOOK-WEB-1-a \| Book your deep clean online \| studio result \| EN+AR` (creative 1094497890116067, Page 122098309970001876, Book button → justnow.life/book-now) | created PAUSED → activated 06:34:23 (prompt approved) |
+| 06:06:33 | ad **120252289209820312** `BOOK-WEB-1-c \| Watch the grease melt \| steam proof \| EN` (creative 1627235728814682, Book button) | created PAUSED → activated 06:34:27 (prompt approved) |
+| 06:34:10 | **C1 campaign 120252107068880312 daily budget 84 → 42** (`ads_update_entity`, campaign level — the ad-set attempt failed "You can only set an ad set budget or a campaign budget": C1 is CBO) | not force-paused; read-back 06:35: ACTIVE, budget **42**. Website acquisition total unchanged at AED 84/day (C1 42 control + BOOK-WEB 42). |
+
+Draft read (`object_state=draft`) is gated for this account ("gradually rolled out") — read-backs above are live reads by
+id. The connector's draft mode is **not** active on these accounts: every update today was live (`is_draft=false`).
+
+**Pass/fail (plan §5):** read Wed 21 Oct 09:22 on cost per confirmed booking from the calendar, BOOK-WEB vs C1; PASS
+≤ 80 % of C1's → fold C1's 42 into BOOK-WEB and pause C1; FAIL ≥ C1's after ≥ AED 400 → pause BOOK-WEB, keep C1.
+Meta-side read: Events Manager Lead by `content_category` = booking_request, per ad set.
+
+### 28c. "Optimize all the active ads" — last 7 days (7–13 Oct) read 06:20–06:30, ad level, three accounts
+
+Healthy and untouched: jn New Sales 4 ads AED 900.6 → 248 conversations @ **3.63**; jn 5158 AED 921.7 → 273 @ **3.38**
+(ad set A Sharjah families 2.95–3.90; B Arabic 3.01); twins T1 287.7 → 91 @ 3.16, T2 145.7 → 49 @ 2.97 (protected to
+16 Oct); JN W1 563.1 → 155 @ 3.62 (W2 6.36 → 2: not delivering, protected); JN union 467.2 → 6 leads @ 77.9 (before-after
+ad 360 → 5 @ 72; C2-2-d 68 → 1; AR stove-grease 38.7 → 0 — left running, small); brand BR-1 273 → 33,791 ThruPlays @
+0.008, CPM 2.4. Reactivation, A1–A3: no spend.
+
+Paused (each a live `ads_update_entity status=PAUSED`, read back PAUSED):
+
+| Time | Account | Entity | Evidence (7–13 Oct) |
+|---|---|---|---|
+| 06:31:49 | jn | **campaign C3 120250020646250073** `JN \| C3 WhatsApp Bookings \| Oct 2026` (CBO 90) | AED 448.9 → 33 conversations @ **13.6** (C3-1-a 194.1 → 13 @ 14.93; C3-2-b 163.6 → 11 @ 14.87; C3-3-a 88.5 → 9 @ 9.83; the other six ads < AED 1.4 each), CPM 34–49, Tue 13 Oct AED 55 → 0. Same creatives in 5158 run at 3.0–3.9. 4× the account's CPA; the C3 proposal's own 7-day FAIL line was CPA > 5.50. Structure kept paused (the C3-X challenger proposal still stands if wanted). |
+| 06:32:09 | jn | ad 120249947970370073 `TEST 24 Sep - E - Sticky kitchen video` (5158 ad set E) | AED 52.26 → 7 @ 7.47; sibling Top creator reel 37.16 → 10 @ 3.72 stays |
+| 06:32:13 | jn | ad 120249855475010073 `Sticky kitchen video` (5158 ad set C Dubai premium) | AED 31.68 → 4 @ 7.92; the ad set keeps Top creator reel |
+| 06:32:21 | JN | ad 120252227059520312 `VIDEO \| STUDIO-FEEDBACK \| BOOK-NOW \| V01` (C1-1) | AED 66.82 → 0 leads (13 LPV) — the same creative now runs in BOOK-WEB with the booking-request signal |
+| 06:32:24 | JN | ad 120252107427390312 `C1-1-a \| Stove-grease reel \| AR` (C1-1) | AED 60.01 → 0 leads |
+
+C1-1 keeps C1-1-d (440.3 → 3 leads @ 146.8), C1-1-b (42.7 → 1 @ 42.7) and C1-1-e (18.3, too small to judge) at the new
+AED 42. Not paused on purpose: T1/T2/W1/W2 (test window to 16 Oct), the union's AR ad (AED 38.7), New Sales ad set
+`New Sales Ad Set` (107 → 24 @ 4.47, within band).
+
+**Budget consequence for the owner:** jn daily budgets are now New Sales 80 + 5158 80 + T1/T2 90 = **AED 250** (C3's 90
+is off, not reallocated). Capacity read 06:40: Wed 14 Oct 4 bookings (3 confirmed, 1 UNCONFIRMED), Thu 15 Oct 2
+UNCONFIRMED — far below the 11 guard, so a reallocation (e.g. 5158 80 → 130 and New Sales 80 → 120, both at CPA ≈ 3.4) is
+allowed by the guard; it is a scale decision and waits for the owner's word. C2 80 → 70 (row 20b) is still outstanding.
+
+**Writes today:** Meta 11 successful (3 creates + 2 ad creates + 5 pauses + 1 budget), 2 rejected attempts (ad without CTA;
+CBO budget at ad-set level), 0 rollbacks, plus 3 owner activations from the connector cards; Make 6 (data structure,
+scenario create, activate, update, 2 runs). **Running total since 09:53 Thu 8 Oct: 95 successful Meta production writes, 0
+rollbacks.** Protected account 1679026507158086 untouched.
+
+**Still open (in order):** (1) WhatsApp booking optimisation — BOOK-WA in jn (Sales → click-to-WhatsApp → conversions =
+Schedule) needs the respond.io "Send CAPI for Converted Leads" event name/pixel check and the lifecycle call from the
+Schedule route; (2) Webador: fire the browser Lead with `eventID` = the returned calendar id and switch off / align the
+second server Lead source; (3) a Book-Now version of the C1-1-d video (upload the video, `ads_create_creative`, add to
+BOOK-WEB-1); (4) C2 80 → 70; (5) C3 budget reallocation yes/no; (6) auto-complete rule for 6529499 yes/no.
