@@ -1179,3 +1179,14 @@ with a button (the C1-1-d content the owner asked for this morning) still needs 
 post 122098309970001876_122383360754006883, Book Now → justnow.life/book-now) because the connector cannot read the
 Page video's thumbnail. Writes: 1 ad create + 1 activation; 2 ad creates rejected (lead-form creatives). **Running
 total: 97 successful Meta production writes, 0 rollbacks.**
+
+**31a. 18:07 Dubai — owner "ok" on the clean-up; the executable version was applied.** Option 1 (move the three
+creatives into the original union) is not executable by the connector — the same lead-form refusal applies to any
+website ad set — so the clean-up is option 2: **original union 120252226500410312 PAUSED 18:07:37** (prompt approved;
+final numbers 9–14 Oct: AED 496 → 10 leads @ 49.6, 1 purchase; today 57.14 → 7 back-filled leads), the copy
+120252296031040312 stays ACTIVE as the single retargeting ad set under C2's AED 80 (LEARNING, AED 6.13 by 18:10).
+Read-back: PAUSED / ACTIVE. The 09:22 scorecard routine was re-pointed (update_trigger): union row = the copy from 14 Oct
+with the original's final numbers reported once, BOOK-WEB-1 row added, C1 expected 60, C3 paused, DONE-time check added.
+BOOK-WEB-1-d read back ACTIVE / PENDING_REVIEW 18:05. **Running total: 98 successful Meta production writes, 0 rollbacks.**
+Owner-side still open: C2 80 → 70; the cabinets-video Book-button ad into BOOK-WEB-1 from Ads Manager; the three 12-hour
+DONE times of Tue 13 Oct; Meta support case for the video audiences; Webador browser-Lead eventID.
