@@ -1096,3 +1096,28 @@ bookings (01:54 Dubai 11 ops, 03:54 16 ops) and none of the seven empty ticks. N
 06:36 and 08:08 (pixel 07:00–08:00: no Lead/Schedule), so an empty tick is the expected result. The booking signal is
 therefore complete: hourly, both channels, confirmed on the pixel. Task "fix the optimization of the booking page" closed;
 the next checks are the 09:22 scorecard and the 12:40 verification (both read-only).
+
+## 29. Daily scorecard — day 6 (Wed 14 Oct; routine fired 09:22, read-only; reads 09:23–09:30 Dubai, window Thu 9 Oct → now)
+
+| Item | Window numbers | Scorecard | Verdict |
+|---|---|---|---|
+| **T1** 120250144454520073 (AED 60) | AED 305.98 → **103 conversations @ 2.97**, freq 1.12, CPM 18.14, CTR 2.21 %, ACTIVE | pass ≤ 4.70 with ≥ 50, freq < 1.6 | **PASS-TRACK** (day 6 of 7) |
+| **T2** 120250144457040073 (AED 30) | AED 151.35 → **51 @ 2.97**, freq 1.22, CPM 16.76, ACTIVE | pass ≤ 4.60 with ≥ 25 | **PASS-TRACK** |
+| Controls W1 / W2 (JN, AED 80 campaign) | W1 410.75 → 116 @ 3.54 (freq 1.15, CPM 12.4, +3 pixel leads); W2 4.35 → 2 @ 2.18; both ACTIVE, untouched | parity | twins **−16 % CPA, +31 % volume on +10 % spend** (457.33 → 154 @ 2.97 vs 415.10 → 118 @ 3.52) |
+| **Union** 120252226500410312 | AED 496.06 → **10 leads @ 49.61**, 1 pixel purchase, freq **1.50** (guard 1.6), CPM 38.02, learning FAIL (10 conv) | pass ≥ 5 leads ≤ AED 100 or ≥ 3 purchases | **PASS-TRACK** (day 6 of 10); frequency WATCH |
+| C2-1 / C2-2 / C2-3 | PAUSED / PAUSED / PAUSED (AED 5.14 / 0.65 / 12.25 spent before the 9 Oct pause) | must stay paused | ✓ |
+| C2 campaign budget | **80** (expected 70 from Mon 12 Oct) — `updated_time` still Sun 12:45 | row 20b | **MISMATCH, 4th day** — owner-present manual edit or native rule |
+| C1 120252107068880312 | **42** since 06:34 today (owner order §28; routine's "flat 84" superseded); window AED 500.03 → 3 leads @ 166.68, 1 purchase, learning FAIL; today 27.31 → 2 back-filled server leads | — | control for BOOK-WEB, verdict Wed 21 Oct |
+| BOOK-WEB-1 120252289067460312 (new, AED 42) | day 1: AED 14.81, 575 impressions, 11 link clicks, 0 leads, LEARNING | — | too early |
+| C3 120250020646250073 | **PAUSED 06:31 today** (owner order §28c; budget field 90 kept); 0 spend today | routine expected flat 90 | superseded by the owner's instruction |
+| Reactivation 120250144448010073 | PAUSED, 0 spend | must stay paused | ✓ |
+| jn New Sales / 5158 | 80 / 80 (owner's Mon-night level); today to 09:25: 5.35 → 1 · 14.38 → 5 @ 2.88; twins today 23.90 → 14 @ 1.71 | — | — |
+| **Brand** 23860638577100791 (CBO 60 flat ✓) | Tue 13 Oct full day: AED 55.78 → 27,112 impressions, **7,389 ThruPlays @ 0.0075** (27.3 %), CPM 2.06, freq 1.07. Window 9–14 Oct: AED 287.29 → 119,503 impressions, reach ≈ 109,700, **35,346 ThruPlays (29.6 %) @ 0.0081**, hook rate (25 %-plays ÷ impressions) **46.3 %**, 100 %-plays 15,360 (12.9 %), post engagement 86,798, link clicks 116. Per ad: A-EN 257.02 / 107,613 imp / 31,599 TP (29.4 %) / hook 47.4 % / freq 1.09; E-BI 19.54 / 7,897 / 2,615 (33.1 %) / hook 30.2 %; F-BI 4.61 / 1,596 / 424 (26.6 %) / hook 72 %; B 2.74 / 1,088 / 333 (30.6 %); C 2.03 / 731 / 242 (33.1 %); D 0.68 / 296 / 89; A-AR 0.67 / 282 / 44 | ThruPlay ≥ 15 %, cost ≤ 0.25, hook ≥ 30 %, freq ≤ 2.0; share 8–12 % | **PASS-TRACK on all four**; brand share Tue 9.4 % ✓; **no fatigue flag** (A-EN freq 1.09, ThruPlay rate and cost flat vs the first days) |
+| Warm audiences | A1 / A2 / A3 (120252253817880312 / …818420312 / …818760312): still **"below 1,000", delivery INACTIVE** on day 3 — and the old Page-wide video audiences 120252228024070312 / …30340312 / …30930312 are **also still below 1,000 after 5 days** despite 119k brand impressions and 35k ThruPlays; IG engagers 120251888118190312 **31.6–37.2k** (+0.2–0.3k vs Tue); FB engagers 120241682713780312 **26.9–31.7k** (+0.6–0.7k) | population by Tue 13 Oct | **ESCALATION stands** — six video audiences that never fill while the videos clearly play points to a Page/video ownership mismatch in the audience rule rather than lag: owner to open each audience in Audiences, check the Page it is attached to (the brand creatives post from the Page the ads use), and raise the Meta support case |
+| **Capacity guard** | Tue 13 Oct: **4 jobs, all completed** (DONE lines written 03:22–03:25 Wed; three of them carry a DONE time earlier than the job start — 04:30 / 05:30 / 05:45 against 12:00 / 13:00 / 14:15 — so 6529499 will hold them tonight; the DONE time must be the finishing time in 24-hour form, e.g. 16:30); Wed 14 Oct: 4 (3 confirmed + 1 UNCONFIRMED); Thu 15: 2 UNCONFIRMED | ≥ 11 → FULL | far below; no block. Booking rate: Tue 100 conversations → ≥ 3 bookings created Tue among events starting 13–15 Oct (2 via the WhatsApp agent, 1 website) |
+
+**Recommended next action (proposal only):** hold all budgets; day 7 of the twins completes Thu 15 Oct → verdict at the
+Fri 16 Oct 09:22 read (if PASS, the owner's approval folds W1/W2's AED 80 into T1/T2 and pauses W1/W2); union verdict Mon 19
+Oct; C2 80 → 70 and the A1–A3 support case remain owner-present items; the three mis-timed DONE lines should be corrected
+before 00:00 tonight. No write in this section. Running total unchanged: **95 successful Meta production writes, 0
+rollbacks.**
