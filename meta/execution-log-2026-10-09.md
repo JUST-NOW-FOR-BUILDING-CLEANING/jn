@@ -1077,3 +1077,14 @@ Schedule) needs the respond.io "Send CAPI for Converted Leads" event name/pixel 
 Schedule route; (2) Webador: fire the browser Lead with `eventID` = the returned calendar id and switch off / align the
 second server Lead source; (3) a Book-Now version of the C1-1-d video (upload the video, `ads_create_creative`, add to
 BOOK-WEB-1); (4) C2 80 → 70; (5) C3 budget reallocation yes/no; (6) auto-complete rule for 6529499 yes/no.
+
+**28d. 08:00 Dubai read-only check (scheduled self check-in, no write).** Pixel 614743294720303, server events, hour
+06:00–07:00 Dubai: **Lead 38, Schedule 29** (plus Contact 2, PageView 8 from the known second source) — the 06:36 batch
+landed: 38 booking requests since Mon 6 Oct, 29 of them confirmed. Hour 07:00–08:00: no Lead/Schedule (no new or edited
+booking), Contact 2, PageView 13. BOOK-WEB-1 today to 08:00: AED 10.99, 421 impressions, 6 link clicks, 0 leads, LEARNING,
+CPM 26.1, CTR 1.66 %. C1 at 42 (read back): AED 21.99, 625 impressions, 17 link clicks, **2 leads @ 11.00** — these are
+server Leads from the 06:36 batch matched to C1 clicks of the past 7 days, a one-off catch-up, not new bookings; C1-1's
+learning info now shows 12 conversions and no longer carries the FAIL flag. **Open point:** Make shows the scenario
+ACTIVE with next run 08:08 Dubai, but no execution is logged for the 07:08 slot (only the three runs of 06:08, 06:35 and
+06:36); re-check after 08:08 — if the hourly cadence is not running, the fix is a re-save of the schedule (owner-present
+write).
