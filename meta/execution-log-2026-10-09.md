@@ -1134,3 +1134,20 @@ event source Page 122098309970001876, the 11 video ids include the brand videos 
 ThruPlays on Facebook vs AED 1.99 / 676 impressions on Instagram) from that same Page — so the audiences should hold tens
 of thousands of people; `operation_status_code` 441, delivery INACTIVE, never updated since creation. This is Meta-side,
 not a configuration mismatch: Meta support case (owner). No write.
+
+## 30. Wed 14 Oct 12:40 Dubai — read-only budget verification
+
+| Campaign / ad set | Expected (latest recorded level) | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level) | 80 / 80 | Mon 23:33 / 23:33 | ✓ |
+| jn C3 | PAUSED (§28c) | PAUSED, budget field 90 | Wed 06:31 | ✓ |
+| JN C1 | 42 (§28b) | 42 | Wed 06:34 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH, 4th day** — rule not created, no manual edit; owner-present item |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+| Reactivation | PAUSED | PAUSED, 0 spend | 9 Oct | ✓ |
+
+Today to 12:40: New Sales 23.62 → 5 @ 4.72 · 5158 24.12 → 7 @ 3.45 · twins 34.09 → 17 @ 2.01 (T1 24.53 → 15; T2 10.09 → 2)
+· C1 35.93 → 2 @ 17.97 · C2 43.12 → 7 @ 6.16 (the server-sent booking Leads now match retargeting clicks too) · W1/W2
+18.38 → 2 · BOOK-WEB 24.94 → 0 · brand 22.32 → 2,518 ThruPlays. Booking signal keeps flowing: server Lead 4 + Contact 6 in
+the 10:00 hour, Lead 3 + Schedule 5 in the 11:00 hour (hourly Make runs on new and confirmed bookings). No write.
