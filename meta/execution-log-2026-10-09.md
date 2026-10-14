@@ -1088,3 +1088,11 @@ learning info now shows 12 conversions and no longer carries the FAIL flag. **Op
 ACTIVE with next run 08:08 Dubai, but no execution is logged for the 07:08 slot (only the three runs of 06:08, 06:35 and
 06:36); re-check after 08:08 — if the hourly cadence is not running, the fix is a re-save of the schedule (owner-present
 write).
+
+**28e. 08:17 Dubai — cadence resolved, no write.** `nextExec` advanced 03:08 → 04:08 → 05:08 UTC (07:08 → 08:08 → 09:08
+Dubai), so the scheduler ticks hourly; Make simply does not log a polling run that returns no bundles. Proof from the
+hourly TikTok scenario 6415385 (active since 7 Oct): between 23:33 and 08:17 Dubai it logged only the two runs that found
+bookings (01:54 Dubai 11 ops, 03:54 16 ops) and none of the seven empty ticks. Nothing new was booked or confirmed between
+06:36 and 08:08 (pixel 07:00–08:00: no Lead/Schedule), so an empty tick is the expected result. The booking signal is
+therefore complete: hourly, both channels, confirmed on the pixel. Task "fix the optimization of the booking page" closed;
+the next checks are the 09:22 scorecard and the 12:40 verification (both read-only).
