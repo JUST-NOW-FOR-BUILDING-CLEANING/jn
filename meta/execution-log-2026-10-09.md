@@ -1190,3 +1190,29 @@ with the original's final numbers reported once, BOOK-WEB-1 row added, C1 expect
 BOOK-WEB-1-d read back ACTIVE / PENDING_REVIEW 18:05. **Running total: 98 successful Meta production writes, 0 rollbacks.**
 Owner-side still open: C2 80 → 70; the cabinets-video Book-button ad into BOOK-WEB-1 from Ads Manager; the three 12-hour
 DONE times of Tue 13 Oct; Meta support case for the video audiences; Webador browser-Lead eventID.
+
+## 32. Thu 15 Oct 00:40 Dubai — read-only budget verification; Wednesday full day
+
+| Campaign / ad set | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level); rule plan row 1 would have set 90 at Thu 00:00 | 80 / 80 | Mon 23:33 | ✓ vs recorded level; **no native rule fired** (row 1 not created — first rule cycle was due today) |
+| jn C3 | PAUSED (§28c) | PAUSED, field 90 | Wed 06:31 | ✓ |
+| JN C1 | 60 (owner, §31) | 60 | Wed 15:27 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH, 5th day** — owner-present item |
+| justnow22 brand | 60 (row 21: Thu 00:00 → 60, no-op) | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+| Reactivation | PAUSED | PAUSED | 9 Oct | ✓ |
+
+**Wednesday 14 Oct full day:** New Sales AED 70.27 → 19 @ 3.70 (CPM 16.0) · 5158 77.64 → 20 @ 3.88 (CPM 20.5) · twins
+87.85 → 33 @ **2.66** (T1 57.03 → 25 @ 2.28; T2 30.82 → 8 @ 3.85) · C3 0 (paused 06:31) · C1 62.54 → 2 leads @ 31.27
+(both back-filled server Leads; CPM 30.95; 57 link clicks, 13 LPV) · C2 82.25: union 57.92 → 7 @ 8.27 until its 18:07 pause,
+copy 24.33 → 1 @ 24.33 (CPM 52.3, learning, 2 conv) · W1/W2 73.46 → 22 @ 3.34 (+2 pixel leads) · **BOOK-WEB 41.20 → 0
+attributed leads** (1,357 impressions, 28 link clicks, 3 LPV, CPM 30.4, LEARNING — day 1) · brand 53.69 → 21,137
+impressions, 5,928 ThruPlays (28.0 %) @ 0.009, CPM 2.54. **Wednesday total ≈ AED 549** (jn 235.76 + JN 259.45 + brand
+53.69); brand share 9.8 %. Conversations 94 (New Sales 19, 5158 20, twins 33, W1/W2 22).
+
+**Booking signal, first full day:** Make 6624989 logged hourly runs whenever something changed (20:08 Dubai 19 ops, 21:08
+21, 22:08 11, 23:08 7, 00:08 9); pixel server events 20:00–03:00 Dubai: Lead 7, Schedule 2 (hours 20–01 Dubai). Nightly
+6529499 at 00:00: **4 Purchases sent, AED 1,136** (yasmin 249, Moukaram 279, jhonalyn 279, Maricar 329 — all with correct
+DONE times), 13 already-sent skipped, 2 excluded, **22 pending, 32 aged out**; the three 12-hour DONE jobs of Tue 13 Oct
+(Maria 439, كفاح 379, mirna 350) were held as expected and age out on Mon 20 Oct unless the lines are corrected. No write.
