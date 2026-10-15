@@ -1393,3 +1393,31 @@ verdict.
 | Reactivation · BOOK-WEB | PAUSED · ACTIVE | PAUSED · ACTIVE | 9 Oct · 14 Oct | ✓ |
 
 No write.
+
+## 37. Fri 16 Oct 01:20 Dubai — owner's standing mandate (verbatim) and how it is applied from now
+
+> Your job is NOT to make changes. Your job is to maximize profitable confirmed bookings and completed-service revenue.
+> A day with zero Meta writes can be a successful day. Never create, pause, restructure or scale simply because an
+> opportunity exists. Every decision must first answer: 1. Is the problem acquisition, creative, targeting, website
+> conversion, sales handling, booking confirmation, or operations? 2. Is there enough data to prove it? 3. What is the
+> lowest-risk intervention? 4. Can we learn more by holding instead of changing? 5. Will this improve confirmed bookings
+> or revenue, not just Meta metrics? Possible decisions are: SCALE, HOLD, OBSERVE, CREATIVE TEST, FUNNEL FIX, REDUCE,
+> PAUSE. HOLD and OBSERVE are valid outcomes. Do not build a new campaign when the existing structure can answer the
+> question. Do not pause a proven winner because one day is weak. Do not increase budgets only to hit a spend target.
+> Do not judge WhatsApp acquisition only by cost per conversation. Primary KPIs: 1. Confirmed bookings 2. Cost per
+> confirmed booking 3. Completed jobs 4. Revenue 5. Revenue / ad spend. Secondary diagnostics: CPA conversation,
+> Website lead cost, CTR, CPM, Frequency, Creative fatigue. Meta metrics are diagnostic signals, not the business
+> objective.
+
+**Applied immediately:**
+- §35's state is **HELD as is** — no reversal (a reversal is itself a change). C1 stays paused; the website role is
+  carried by BOOK-WEB-1 (42/day, ads b/c/d/e) untouched to Wed 21 Oct. The test now has a business KPI: website-form
+  bookings per day in the calendar vs the 9–15 Oct baseline; if they fall, that is the signal to restore website budget.
+- The 09:22 scorecard is re-pointed (routine prompt updated, §37a) to lead with the five primary KPIs computed from the
+  calendar (confirmed = no UNCONFIRMED / cancel in the title; completed = DONE line or nightly Purchase; revenue = sum of
+  Price / Final price) and total ad spend, and to state one decision per item from the owner's vocabulary. Routines
+  remain read-only.
+- Twins verdict (09:22): cost per conversation alone is no longer a sufficient basis, and bookings cannot be attributed
+  per WhatsApp ad set; default decision **HOLD** (T1/T2 and W1/W2 unchanged) unless a booking-level signal appears.
+- Email on the server booking events (§34) is classed FUNNEL FIX (measurement, no delivery change); proposed at 09:22
+  with the five answers, executed only on the owner's word.
