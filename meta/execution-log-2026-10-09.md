@@ -1421,3 +1421,34 @@ No write.
   per WhatsApp ad set; default decision **HOLD** (T1/T2 and W1/W2 unchanged) unless a booking-level signal appears.
 - Email on the server booking events (§34) is classed FUNNEL FIX (measurement, no delivery change); proposed at 09:22
   with the five answers, executed only on the owner's word.
+
+## 38. Fri 16 Oct 01:30–02:45 Dubai — owner-authorised overnight priority (via Codex): Reels hand-off, recent-event sender/ledger audit
+
+**Reels (organic).** Drive "Just Now Daily Videos" holds three clips (2 Oct, 3 Oct, 14 Oct). IG @justnow.life.ae has no
+Reel after 8 Oct 10:00 Dubai and one Story on 15 Oct 09:30; the 14 Oct clip (1Tmwkd9AbA2dsUZ2qVNWhaqQNVSvchfC5) was never
+posted as a Reel. No tool in this session can publish organic Reels (Windsor has only the read-only `instagram_public`
+connector, Make has no Instagram/Facebook Pages connection, Madgicx needs an inactive subscription, Meta tools have no
+organic publish action; Drive and Instagram hosts are denied by the network policy). Approved EN/AR captions delivered.
+Codex uploaded the 17-second clip in Meta Business Suite on both official accounts (copyright check passed); **final
+scheduling pending, no receipt** — not recorded as published. No connection or schedule created from this session.
+
+**September backfill.** Stopped on the owner's word: CAPI cannot accept true September timestamps (7-day limit for every
+action source except physical_store, which the owner rejects as untruthful). Partial reconciliation facts handed to Codex:
+of 164 September service events, 38 carry an explicit amount; HubSpot holds 21 deals keyed by calendar id (27 Sep–1 Oct);
+Make ledgers 158570/158811 hold confirmation-time values from 26 Sep. Sheet "JustNow — Completed Services" is Codex's.
+
+**8–15 Oct audit (read-only), full detail in `meta/sender-audit-2026-10-16.md`:** 43 calendar entries → 41 paid completed
+jobs (AED 21,097 as written), 1 cancelled, 1 blogger at AED 0. Sent as completion Purchases: 13 (AED 4,560), unique,
+all visible in the dataset at their DONE hour; 7 jobs already in Meta from the old confirmation-time sender (two
+under-reported: 279→369, 249→329); 5 jobs lost for CAPI (AED 3,555: one-paragraph website descriptions put `Price:`/
+`Mobile:` mid-line, one unlabelled phone); 16 jobs (AED 8,849) held and invisible, still fixable before per-job deadlines
+(DONE before the scheduled start, one-digit hours, `9:00 PM`, unlabelled phone, `المبلغ:` label). Attribution 8–15 Oct:
+4 of 13 purchases (JN C2 3 = AED 1,207; C1 1 = AED 350; jn 0). No live ad set optimises for Purchase; jn's 8 live ad sets
+optimise for conversations, JN C2-union copy and BOOK-WEB-1 for pixel Lead (any source), W1/W2 for conversations.
+BOOK-WEB-1: AED 85.77, 20 LPV, 0 attributed leads (server Leads carry no fbp/fbc/IP/UA). A second Lead/Schedule sender
+existed before 14 Oct (identical hourly pairs; respond.io workflow is the candidate) → possible double Lead per booking
+since 6624989 went live. Twelve reviewable fixes listed (label pre-split, phone fallback, price labels, DONE formats,
+zero-value exclusion, visible HOLD records, parseNumber guard, 12:00 second run, email match key, fbp/fbc from the booking
+page, single owner per event type, legacy value note). New campaign: none (HOLD).
+
+Writes this section: **0** (Meta 112 total, 0 rollbacks unchanged; Make, Calendar untouched).
