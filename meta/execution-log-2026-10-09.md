@@ -1216,3 +1216,43 @@ impressions, 5,928 ThruPlays (28.0 %) @ 0.009, CPM 2.54. **Wednesday total ≈ A
 6529499 at 00:00: **4 Purchases sent, AED 1,136** (yasmin 249, Moukaram 279, jhonalyn 279, Maricar 329 — all with correct
 DONE times), 13 already-sent skipped, 2 excluded, **22 pending, 32 aged out**; the three 12-hour DONE jobs of Tue 13 Oct
 (Maria 439, كفاح 379, mirna 350) were held as expected and age out on Mon 20 Oct unless the lines are corrected. No write.
+
+## 33. Daily scorecard — day 7 (Thu 15 Oct; routine fired 09:22; reads 09:23 and 12:41 Dubai, window Thu 9 Oct → now)
+
+**Fault record:** the 09:22 run's reads began 09:23 but the session answered the continuation prompt with "no response"
+and left the run unfinished; it was completed at 12:41 together with the 12:40 verification. Same fault class as §18/§24.
+
+| Item | Window numbers | Scorecard | Verdict |
+|---|---|---|---|
+| **T1** 120250144454520073 (AED 60) | AED 362.86 → **124 @ 2.93**, freq 1.13, CPM 18.45, CTR 2.26 % | pass ≤ 4.70 with ≥ 50, freq < 1.6 | **PASS-TRACK** (day 7 of 7 — verdict at the Fri 16 Oct read) |
+| **T2** 120250144457040073 (AED 30) | AED 182.51 → **59 @ 3.09**, freq 1.24, CPM 16.50 | pass ≤ 4.60 with ≥ 25 | **PASS-TRACK** |
+| Controls W1 / W2 (JN) | W1 513.55 → 144 @ 3.57 (freq 1.16, CPM 12.5, +6 pixel leads @ 85.6); W2 6.01 → 2 @ 3.01; both ACTIVE | parity | twins **−16 % CPA, +25 % volume on +5 % spend** (545.37 → 183 @ 2.98 vs 519.56 → 146 @ 3.56) |
+| Union original 120252226500410312 (PAUSED 14 Oct 18:07) | final AED 525.26 → 13 leads @ 40.4, 2 purchases, freq 1.53 | — | closed |
+| **Union copy** 120252296031040312 (live union row, day 1) | AED 85.48 → **8 leads @ 10.69** (indicator includes the server booking Leads), freq 1.27, CPM 47.5, LEARNING (8 conv) | pass ≥ 5 leads ≤ AED 100 | **PASS-TRACK** (window to 19 Oct) |
+| C2-1/2/3 | PAUSED ×3 | must stay paused | ✓ |
+| C2 campaign budget | **80** (expected 70) | row 20b | **MISMATCH, 5th day** |
+| **BOOK-WEB-1** 120252289067460312 (AED 42) | AED 72.83 → 0 attributed leads, 2,325 impressions, 42 link clicks, 12 LPV, CPM 31.3, freq 1.26, LEARNING; today to 12:40 AED 31.53 | — | day 2, too early (verdict Wed 21 Oct) |
+| C1 (60) / C1-1 | AED 575.61 → 3 leads @ 191.87, 1 purchase, LEARNING (reset 14 Oct 15:46); today 40.26 → 0 | — | control |
+| C3 · Reactivation | PAUSED · PAUSED | must stay paused | ✓ |
+| jn New Sales / 5158 | 80 / 80; today to 12:40: 38.90 → 7 @ 5.56 · 36.91 → 13 @ 2.84; twins 42.63 → 16 @ 2.66 | — | — |
+| **Brand** (CBO 60 ✓) | Window: AED 352.27 → 144,288 impressions, reach ≈ 132,700, **42,294 ThruPlays (29.3 %) @ 0.0083**, hook 45.9 % (25 %-plays 66,219), 100 %-plays 18,233 (12.6 %), post engagement 104,571. Per ad: A-EN 314.04 / 129,347 / 37,645 (29.1 %) / hook 47.2 % / freq 1.09; E-BI 27.22 / 10,813 / 3,483 (32.2 %); F 4.61 / 1,596 / 424; B 2.79 / 1,113 / 337; C 2.12 / 777 / 256; D 0.77 / 336 / 99; A-AR 0.72 / 306 / 50. Today to 12:40 AED 24.40 → 2,546 TP | ThruPlay ≥ 15 %, cost ≤ 0.25, hook ≥ 30 %, freq ≤ 2.0; share 8–12 % | **PASS-TRACK on all four**; Wed share 9.8 % ✓; no fatigue flag |
+| Warm audiences | A1/A2/A3 and the three Page-wide video audiences: **still below 1,000, INACTIVE** (day 4 / day 6); IG engagers 120251888118190312 31.8–37.4k (+0.2k); FB engagers 120241682713780312 27.2–32.0k (+0.3k) | — | escalation stands (Meta support case, owner) |
+| **Capacity guard** | Wed 14 Oct: 3 jobs, all done with correct DONE lines (sent 00:00); Thu 15 Oct: **5 confirmed bookings** (Rafik Shj 249, Hamisha Dxb 329, Porkodi Ajm 499, Dr Manoj Shj 499, Mariam Shj 749) — three of them created Wed evening through the website form, which now carries a reference number (JN-000035/37/39) | ≥ 11 → FULL | 5/12, no block. Wed 94 conversations → ≥ 3 website bookings created Wed among events starting 14–16 Oct. Tue's three 12-hour DONE lines still uncorrected (held) |
+
+**Recommended next action (proposal only):** hold all budgets today. Tomorrow's 09:22 read closes the twins' 7 days; on
+current numbers both PASS → proposed owner approval for Fri: fold W1/W2's AED 80 into the twins (T1 60 → 100, T2 30 → 70)
+and pause W1/W2 (owner-present writes). C2 80 → 70 still outstanding. No write in this section.
+
+## 34. Thu 15 Oct 12:40 Dubai — read-only budget verification
+
+| Campaign / ad set | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level); rule rows 1–2 would have set 90 at Thu 00:00 and 108 at Thu 12:00 | 80 / 80 | Mon 23:33 | ✓ vs recorded level; **no native rule fired at either Thursday slot — the rule plan's first cycle was missed; owner to build the rules or drop the plan** |
+| jn C3 | PAUSED | PAUSED, field 90 | Wed 06:31 | ✓ |
+| JN C1 | 60 | 60 | Wed 15:27 | ✓ |
+| JN C2 | 70 | **80** | Sun 12:45 | **MISMATCH, 5th day** |
+| justnow22 brand | 60 (row 22 would set 70 at Thu 12:00) | 60 | 9 Oct | ✓ vs recorded; rule not created |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+| Reactivation | PAUSED | PAUSED | 9 Oct | ✓ |
+
+No write.
