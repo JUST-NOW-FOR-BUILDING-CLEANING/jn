@@ -1314,3 +1314,67 @@ spec ready for the moment the connection exists: 15-minute poll of the two AR ad
 "LEAD FORM" entry in the main calendar (phone, wa.me link, service, answers); 6624989 then sends Lead on creation and
 Schedule on confirmation; unconverted leads get "cancel" in the title so the nightly flow ignores them. Expected-budget
 flag for C2 (80 vs 70) stays open until the owner confirms the level.
+
+## 34. Thu 15 Oct ≈22:30 Dubai — "why is Meta not getting more qualified day by day?" (read-only answer)
+
+14-day daily read of every live campaign plus the dataset quality report. Average cost per WhatsApp chat, 2–8 Oct vs
+9–15 Oct: 5158 3.95 → 3.39; New Sales 3.45 → 3.96 (5.17 on Thu 15); twins 2.86 (from 9 Oct); W1/W2 3.95 → 3.61 — a
+plateau, not a learning curve. Website path: ≈ 100 booking requests reached the site in 14 days; Meta attributed 12 to C1
+and 14 to the old C2 (≈ 1/day each, "learning limited" since day one). Dataset quality: Lead / Schedule / Purchase
+server events score **4.8 / 10** (phone, external_id, country, fn, ln, ct at 100 %; no email, fbp/fbc, IP or user agent);
+browser PageView / Contact 6.1–6.9. Answer given: Meta optimises exactly what it is asked for (a chat, a noisy pixel Lead)
+and nothing has ever optimised on a booking; the fixes are (1) email on the server events (two Make edits, offered as
+"go"), (2) one booking-optimised ad set per channel with ≥ 50 events/week (BOOK-WEB for web; WhatsApp needs the
+respond.io click-id hand-off), (3) budget concentration. No write.
+
+## 35. Fri 16 Oct 00:45–01:10 Dubai — owner order: full audit of the active ads, pause what is not working, publish a strong website conversion ad (owner present, writes with read-back)
+
+**Order (Thu 15 Oct ≈23:40, verbatim):** "Do for me a full audit on the active ads and check how it is and what's going on
+and why it's not optimizing well. Any ad set is not working properly or any ad is not working properly, switch it off and
+replace a strong website conversion ad and publish it online. I am not going to spend more money on that."
+
+**Window:** Thu 9 → Thu 15 Oct (7 days), every ACTIVE ad set and ad on jn, JN and justnow22. **Rule applied:** not
+working = ≥ AED 20 spent at ≥ 1.5× the campaign's median cost per result, or no delivery / no result in the window, or
+(website path) ≥ AED 100 per attributed lead.
+
+| Object | 7-day numbers | Verdict | Action |
+|---|---|---|---|
+| jn T1 120250144454520073 (60) · T2 120250144457040073 (30) | 397.33 → 133 @ 2.99 · 203.83 → 69 @ 2.95 | best in the account | untouched (verdict Fri 09:22) |
+| jn 5158 A 120249855372950073 | 650.67 → 206 @ 3.16 | working | kept; dead ads: "TEST 25 Sep existing post New Sales video" 120249948119150073 (no delivery) **PAUSED**; "Customer voice" 120249855465580073 (4.58 → 1) **pause refused** by Meta (error 3858720: legacy creative with no website URL, re-validated on any edit) — owner pauses it in Ads Manager |
+| jn 5158 B 120249855378300073 | 44.94 → 16 @ 2.81 | working, under-funded | kept |
+| jn 5158 C 120249855379550073 | 25.94 → 4 @ 6.49, all its ads already paused | not working | **ad set PAUSED** |
+| jn 5158 D 120249855379980073 | 40.86 → 10 @ 4.09 | borderline | kept with "Sticky kitchen video" (2.89); "Top creator reel" 120249855754890073 (20.40 → 3 @ 6.80) **PAUSED**; "Customer voice" 120249855480020073 (0.22 → 0) **pause refused** (same error) |
+| jn 5158 E "TEST 24 Sep Dubai women" 120249947966990073 | 88.35 → 18 @ 4.91 (1.55× median) | not working | **ad set PAUSED** |
+| jn New Sales original · Copy A · Copy B | 78.28 → 23 @ 3.40 · 372.58 → 98 @ 3.80 · 365.73 → 94 @ 3.89 (CTR 1.33 %) | working; B weakest | kept, B on watch |
+| jn New Sales Copy 2 120249855757070073 | 13.71 → 2 @ 6.86 | starved and weak | **ad set PAUSED** |
+| **JN C1 campaign 120252107068880312 / C1-1** | **598.60 → 3 attributed leads @ 199.53**, 497 clicks, 121 LPV (24 %), learning reset 14 Oct, 0 conversions since | not working — the main waste | **campaign PAUSED** (AED 60/day stops; not re-allocated — BOOK-WEB-1 has the same signal problem until match quality is fixed, §34) |
+| JN BOOK-WEB-1 120252289067460312 (42) | 85.68 → 0 attributed, 52 clicks, 20 LPV (38 %), day 2 | too early; ad a weakest (39.09 → 5 LPV) | **ad a 120252289192770312 PAUSED**; b, c, d kept; **new ad e published** (below) |
+| JN union copy 120252296031040312 | 114.83 → 11 instant-form leads @ 10.44 | results exist, collection missing (§33b) | kept |
+| JN W1 120251948470210312 · W2 120251948470250312 | 541.77 → 154 @ 3.52 · 6.93 → 2 | control pair | untouched until the 09:22 verdict (W2 and W1's dead reel ad fold with it) |
+| justnow22 BR-1 23860638584760791 | 386.48 → 45,654 ThruPlays @ 0.0085, CPM 2.47 | passes brand benchmarks | kept |
+| justnow22 "Post:" campaigns 23855087595560791, 23855087542980791, 23855087442510791, 23855087061240791 | ACTIVE, AED 10–14 budgets, 0 impressions in 7 days (dormant since 13 Apr) | not working | **4 campaigns PAUSED** (hygiene; no spend impact) |
+
+All 11 pauses read back PAUSED (`updated_time` 00:54–00:56). Two legacy ads stay ACTIVE but have no delivery
+(11 and 195 impressions in 7 days).
+
+**New website conversion ad, published ACTIVE:** creative **1635938014818066** → ad **120252319099340312**
+"BOOK-WEB-1-e | Sticky kitchen | steam root cause | Book Now | EN+AR" in BOOK-WEB-1. Video 2163113240903678 — the
+account's strongest creative on evidence (brand A-EN: 29.1 % ThruPlay, 47 % hook on 139k impressions; 5158 A: 40 chats
+@ 3.46) — thumbnail hash b0bd6549837e4ed80fc20485338c56d9, Page 122098309970001876, IG 17841461253086330, link
+https://www.justnow.life/book-now, CTA BOOK_NOW, display link justnow.life, EN + AR copy ("Why does your kitchen feel
+sticky?" / "ليش مطبخك دبق؟", AED 249 anchor, pay after the job, book online in 1 minute). Page-video ids are not listed by
+the account-videos endpoint (all three "unresolved") but are accepted in creatives, as the owner's own 982787274862822
+already proved. `ads_activate_entity` → ACTIVE; read-back 01:01: status ACTIVE, effective status **PENDING_REVIEW**
+(Meta's ad review, normally under 24 h); the creative read-back shows Meta re-registered the Page video as ad video
+1845048219845493 and created IG media 18209064466368909. BOOK-WEB-1 now runs b, c, d, e (a paused).
+
+**Owner, 01:05 (verbatim):** "on a daily basis when I'm asking you the same question. So you are switching off the current
+ads and you are publishing new ads without any reason means that you're not working properly. You are not creating a
+proper ads from the beginning." and "you don't have the confidence on each step you are taking … on daily basis, I'm got
+impacted by your decisions." Recorded as a standing complaint; answer and the stability rule given in chat (no structural
+change outside the 09:22 scorecard for 14 days except the three decided items: twins verdict, C2 lead collection, email
+match-quality fix).
+
+**Writes this section:** 11 pauses + 1 creative + 1 ad + 1 activation = **14** (2 pause attempts refused). Running total
+**112 Meta writes, 0 rollbacks.** Budgets unchanged; C1's AED 60/day is now idle. T1/T2/W1/W2 untouched for the 09:22
+verdict.
