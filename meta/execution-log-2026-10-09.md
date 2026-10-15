@@ -1378,3 +1378,18 @@ match-quality fix).
 **Writes this section:** 11 pauses + 1 creative + 1 ad + 1 activation = **14** (2 pause attempts refused). Running total
 **112 Meta writes, 0 rollbacks.** Budgets unchanged; C1's AED 60/day is now idle. T1/T2/W1/W2 untouched for the 09:22
 verdict.
+
+## 36. Fri 16 Oct 00:40 Dubai — read-only budget verification (routine fired 00:40; reads 01:12, after the §35 writes)
+
+| Campaign / ad set | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (no native rule exists; rule rows would have changed them at Fri 00:00) | 80 / 80 | Mon 12 Oct 23:33 | ✓ — no rule fired at the Friday slot either |
+| jn C3 | PAUSED | PAUSED, field 90 | Wed 14 Oct 06:31 | ✓ |
+| JN C1 | PAUSED since §35 (owner order, 00:55) | PAUSED, field 60 | Fri 00:55 | ✓ |
+| JN C2 | 70 (owner, Sun 11 Oct) | **80** | Sun 11 Oct 12:45 | **MISMATCH, 6th check** — never set by the owner, no native rule; C2 kept running per §33b pending the owner's word |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 | 60 / 30 | 60 / 30 | 9 Oct 10:12 | untouched ✓ |
+| JN W1/W2 campaign | 80 | 80 | 7 Oct | untouched ✓ |
+| Reactivation · BOOK-WEB | PAUSED · ACTIVE | PAUSED · ACTIVE | 9 Oct · 14 Oct | ✓ |
+
+No write.
