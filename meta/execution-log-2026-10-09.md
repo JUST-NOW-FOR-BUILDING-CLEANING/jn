@@ -1256,3 +1256,61 @@ and pause W1/W2 (owner-present writes). C2 80 → 70 still outstanding. No write
 | Reactivation | PAUSED | PAUSED | 9 Oct | ✓ |
 
 No write.
+
+## 33a. Thu 15 Oct ≈16:00–16:30 Dubai — owner status check, two clarifications (read-only)
+
+**Live check at 16:00 (owner: "every thing working fine ?"):** all three accounts delivering toward unchanged budgets;
+6624989 ran every hour since 06:08 (all successful, next 16:08) and the pixel shows 4 Lead + 4 Schedule server events
+today whose run sizes match the operation counts exactly (e.g. the 10:08 run, 25 ops = 1 + 4×4 + 1 Lead×2 + 3 Schedule×2);
+6529499 ran 00:00 successfully (140 ops). Calendar: Thu 7 confirmed jobs (AED 3,203), Fri already 7 (AED 2,283) — 7/12 both
+days, no capacity block. Today to 16:00: 5158 39.01 → 15 @ 2.60; twins 45.90 → 17 @ 2.70; New Sales 42.95 → 7 @ 6.14 (weak
+afternoon, watch); W1/W2 38.27 → 9 @ 4.25; C2 63.32 → 7 leads; C1 42.96 → 0; BOOK-WEB 32.53 → 0 (1,001 imp); brand 26.12 →
+2,667 TP.
+
+**Clarification 1 — the two Hamisha bookings today are both legitimate (owner, 16:05):** the morning job (08:30, AED 329
+card, 3 h) was extended by 2.5 h on site; the team had to leave for the next appointment and a second slot (17:30) was
+booked to finish the house. Not a duplicate: two calendar ids, two Lead + Schedule pairs already sent by 6624989, which is
+correct. For tonight's Purchase the morning event needs a `Final price: AED …` line (6529499 module 8 maps
+final/new/updated price → `cfinal`, preferred over `Price:`) and a `DONE 2026-10-15 HH:mm` line (24-hour, ≥ 08:30); the
+evening event gets its own DONE line after it ends. Rafik's `DONE 2026-10-15 11:15` is already correct (AED 249 goes out
+tonight).
+
+**Clarification 2 — C2 "not getting any reflection" (owner, 16:20: "If you see that we need to switch off C2, we can go
+ahead since it's not getting any reflection on any details"):** read of the union copy 120252296031040312, 14–15 Oct:
+AED 91.74 → 8 leads @ 11.47, **all 8 are on-Facebook instant-form leads** (`onsite_conversion_lead_grouped` = 8, pixel leads
+0; destination `WEBSITE_AND_LEAD_FORM`, 37 link clicks → 3 landing-page views). By ad: cabinets video 120252296031030312
+AED 71.51 → 7 leads @ 10.22; stove/"finish your booking" 120252296031050312 14.02 → 1; EN existing post 120252296031060312
+6.21 → 0. Both AR creatives (1583289796213887, 1861078528594328) carry instant forms (the 1815089 ToS error of §31 proved
+it). **No flow collects these leads:** Make team 1579313 has only the on-demand "Facebook Lead Ads Get Lead Details" tool
+(3469026, bound to a Nov-2025 form), no Watch-Leads trigger; nothing writes them to respond.io or the calendar. So the
+owner's observation is right (the leads never reach the team) but the cause is collection, not delivery: the copy is the
+account's cheapest lead source on paper (AED 11.47 vs C1's 191.87). **Recommendation given: do not switch C2 off yet.**
+Owner to open Meta Business Suite → Leads Center for Page 122098309970001876 and work the 8 leads; if real → build the
+auto-forward (Make: Facebook Lead Ads Watch Leads → respond.io contact + WhatsApp template + UNCONFIRMED calendar entry,
+one approval) and keep C2; if junk or unwanted → owner says "off" and C2 campaign 120252107080200312 is paused
+owner-present with read-back. The C2 80-vs-70 flag stays until that decision. No write.
+
+## 33b. Thu 15 Oct ≈17:40 Dubai — "why no bookings today?" and the C2 decision (read-only, no write)
+
+**Booking pipeline (6369438, the website-form / agent webhook):** Wed 14 Oct carried 12 booking requests into the
+calendar (10:09, 10:15, 10:16, 10:19, 10:31, 15:15, 16:04, 19:21, 19:57, 19:58, 21:20, 22:24 Dubai). Thu 15 Oct by
+17:30: **4** — 09:41 ZaQ (Fri, AED 249), 13:47 Hamisha evening (AED 329), 16:47 Priyanka (Fri 08:00, AED 409,
+UNCONFIRMED), 17:28 Motaz (Sun 18 Oct, AED 829, UNCONFIRMED) — plus three near-empty submissions 15:11–15:24 (4 ops,
+223 bytes each, filtered: not bookings). Webhook queue 0, scenario active, every run successful. Same-hour comparison:
+Wed 7 by 17:30 vs Thu 4; Wed's evening (5 of its 12 after 19:00) is still ahead today. Traffic is **not** down: browser
+PageView Thu 00:00–16:00 ≈ 143 vs Wed same window ≈ 111; C1 landing-page views 33 today vs 13 all of yesterday, BOOK-WEB
+10 vs 3; WhatsApp inbound normal (20 respond.io contacts created 14:41–17:35, agent filling service/area, "Price needed"
+tags). **Verdict: nothing is broken; a slower form-conversion afternoon on a higher-traffic day, small-number variance.**
+Two UNCONFIRMED requests are waiting for the team's call.
+
+**C2 decision (owner delegated it 16:30: "no results = waste; results we cannot measure = something else"):** results
+exist — 8 instant-form leads in 24 h @ AED 11.47, 7 of them today (§33a) — so this is the "not measured" case and
+**C2 stays ON.** Collection is the gap, and the automated collector cannot be built yet: Make team 1579313 has **no
+Facebook connection** (`connections_list` type facebook → empty; the old tool 3469026's connection 6213750 answers
+"Account doesn't exist"), and the Facebook Lead Ads app (v2: `WatchLeads` polling trigger, `listLeads`, `GetLeadDetails`;
+`LeadInterface` = leadgenId / formId / dateCreated / adId) needs one. Owner-side: (1) work today's leads from Meta Business
+Suite → Leads Center / Instant Forms for Page 122098309970001876; (2) add a Facebook Lead Ads connection in Make. Build
+spec ready for the moment the connection exists: 15-minute poll of the two AR ads' form → GetLeadDetails → UNCONFIRMED
+"LEAD FORM" entry in the main calendar (phone, wa.me link, service, answers); 6624989 then sends Lead on creation and
+Schedule on confirmation; unconverted leads get "cancel" in the title so the nightly flow ignores them. Expected-budget
+flag for C2 (80 vs 70) stays open until the owner confirms the level.
