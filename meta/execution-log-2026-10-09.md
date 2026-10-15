@@ -1,0 +1,1454 @@
+# META EXECUTION LOG — Batch 1 (Wave A1) — 2026-10-09
+
+Owner approval: "start" → write-approval check → "go" (09:50 Dubai). Session permission mode
+confirmed `default` before the first write, so every Meta write below was individually approved by the
+owner at execution time. Connector draft mode is not enabled on these accounts, so writes hit live
+objects directly: creates land **PAUSED**, pauses apply immediately. Each write was read back.
+
+```
+PRODUCTION WRITES: 33 succeeded (20 build + 13 go-live) · 2 rejected by Meta (no object created) · ROLLBACKS: 0
+```
+
+## 1. Pauses (clear waste) — live, 09:53–09:54 Dubai
+
+| Account | Object | Before (7d) | Write | Read-back | Rollback |
+|---|---|---|---|---|---|
+| JN 9147325105346647 | ad set 120251948470220312 "New Sales Ad Set - Copy" (women / jewelry, 0 results) | ACTIVE, AED 0 / 0 conv | status=PAUSED | status PAUSED · effective PAUSED · 09:53:58 | set status ACTIVE |
+| 658869122728885 | campaign 120249701767850032 "[10/3/2026] Promoting justnow.life/book-now" | ACTIVE, AED 15/day, AED 81 → 339 LPV, 0 leads | status=PAUSED | PAUSED · delivery off · 09:54:02 | set status ACTIVE |
+| jn 1037126214908677 | ad set 120250020898360073 "C3-4 \| Broad 25+" | ACTIVE, AED 328.84 → 51 conv @6.45 | status=PAUSED | PAUSED · effective PAUSED · 09:54:06 | set status ACTIVE |
+
+Waste removed: ≈ AED 15/day (boost) + C3-4's share of campaign 120250020646250073's CBO (≈ AED 47/day
+over the last 7 days, now redistributed to its siblings C3-1/C3-2/C3-3).
+
+## 2. Builds in jn 1037126214908677 — all PAUSED, 09:55–09:57 Dubai
+
+| Object | ID | Spec | Read-back |
+|---|---|---|---|
+| Campaign | **120250144447740073** | `WA \| PROSPECTING \| SHJ \| HOME-MOVERS` · OUTCOME_SALES · AUCTION · no campaign budget (ABO) · special categories none | PAUSED · OUTCOME_SALES ✓ |
+| Campaign | **120250144448010073** | `WA \| REACTIVATION \| CUSTOMERS 12M \| DEEP CLEANING` · same | PAUSED ✓ |
+| Creative | 1854637229249947 | existing post 122098309970001876_1116950464613349 · IG actor 17841461253086330 | created |
+| Creative | 2079695029320454 | existing post 122098309970001876_957062783432763 · IG actor | created |
+| Creative | 1888705535440387 | existing post 122098309970001876_1559790696189996 · IG actor | created |
+| Creative | 1647975023638278 | existing post 122098309970001876_1622838339212041 (AR stove-grease) · IG actor | created |
+| Creative | — | existing post …_122278001594006883 ("Customer voice AR/EN") | **REJECTED**: "Post not owned by ad's Page" — the post belongs to a different Page and cannot run with the WhatsApp destination on Page 122098309970001876 |
+| Ad set T1 | **120250144454520073** | `WA \| HOME-MOVERS \| SHJ \| CONVERSATIONS` · CONVERSATIONS → WHATSAPP (page 122098309970001876) · IMPRESSIONS · Highest volume · **AED 60/day** · targeting = JN W1 verbatim (18–65; pin 25.256651,55.356445 r10mi; excl. Abu Dhabi; Furniture / Home improvement / Modern furniture / Online shopping / Home / Luxury goods + Engaged Shoppers + Recently moved; Advantage audience ON) + **excluded 120249973174230073** (customers 889) | PAUSED · AED 60 · CONVERSATIONS · WHATSAPP · exclusion present ✓ |
+| Ad set T2 | **120250144457040073** | `WA \| MOTHERHOOD \| DXB+SHJ+AJM \| CONVERSATIONS` · same optimisation · **AED 30/day** · targeting = JN W2 verbatim (3 pins; excl. Fujairah + Abu Dhabi; locales 6/24/28; Motherhood / Parenting / Online shopping / Fashion accessories; married) + excluded 120249973174230073 + 120250006502540073 | PAUSED · AED 30 · both exclusions ✓ · see deviation D1 |
+| Ad set | **120250144457810073** | `WA \| CUSTOMERS 12M \| UAE \| REACTIVATION` · CONVERSATIONS → WHATSAPP · **AED 20/day** · custom audience 120249973174230073 only · AE excl. Abu Dhabi · Advantage audience OFF · no interests | PAUSED · AED 20 · audience + exclusion ✓ · A+A 0 ✓ |
+| Ad | **120250144462130073** | `REEL \| KITCHEN \| STICKY-GREASE \| V01` · T1 · creative 1854637229249947 | PAUSED (review in process) |
+| Ad | **120250144462600073** | `REEL \| KITCHEN \| STICKY-GREASE \| V02` · T1 · creative 2079695029320454 | PAUSED (pending review) |
+| Ad | **120250144463050073** | `VIDEO \| KITCHEN \| STEAM-PRECISION \| V01` · T2 · creative 1888705535440387 | PAUSED (review in process) |
+| Ad | **120250144463650073** | `VIDEO \| STOVE-GREASE \| AR \| REACTIVATION V01` · reactivation · creative 1647975023638278 | PAUSED (pending review) |
+| Ad | — | `VIDEO \| CUSTOMER-VOICE \| AR-EN \| REACTIVATION V01` · reuse of jn creative 1071526055876335 | **REJECTED**: "Replies optimization only with ads driving traffic to Messenger" — that creative's CTA is not WhatsApp-compatible; rebuild later from the video with a WhatsApp CTA (new post, no carried engagement) if the owner wants a second reactivation ad |
+
+Previews (Facebook Feed) rendered the original posts: T1 V01, T1 V02, T2 V01 — links in the chat report.
+
+## 3. Build in JN 9147325105346647 — PAUSED, 09:56–09:57 Dubai
+
+| Object | ID | Spec | Read-back |
+|---|---|---|---|
+| Ad set | **120252226500410312** | `WB \| RETARGETING \| UNION 30D \| BOOKING` under campaign 120252107080200312 (CBO AED 70, no ad-set budget) · OFFSITE_CONVERSIONS · pixel 614743294720303 event LEAD · WEBSITE · attribution 7d click / 1d view · audiences 120252107062990312 ∪ 120252107065720312 ∪ 120251888118190312 ∪ 120251888139630312 · excluded 120251936408430312 + 120252107064340312 · pins (25.09104,55.265808) + (25.344491,55.422363) r10mi · excl. Abu Dhabi · 20–65 · Advantage audience OFF | PAUSED · LEAD on 614743294720303 ✓ · 4 audiences + 2 exclusions ✓ · A+A 0 ✓ |
+| Ad | **120252226507840312** | `VIDEO \| STOVE-GREASE \| FINISH-YOUR-BOOKING \| AR \| V01` · creative 800898536451029 (C2-1-c) | PAUSED (pending review) |
+| Ad | **120252226508320312** | `VIDEO \| SAME-KITCHEN \| BEFORE-AFTER \| V01` · creative 1765887427985234 (C2-3-a) | PAUSED (review in process) |
+| Ad | **120252226511090312** | `AD \| RETARGETING \| C2-2-d \| V01` · creative 1132547542778119 (C2-2-d) | PAUSED (pending review) |
+
+Nothing else in JN changed: campaign 120251948470120312 (W1/W2) still ACTIVE; C2-1 / C2-2 / C2-3 still
+ACTIVE until the union ad set goes live.
+
+## 4. Deviations found in read-back
+
+* **D1 — T2 age.** JN W2 ran 25–65 as a hard range (its Advantage audience individual setting kept
+  age fixed). In T2, Meta stored 25–65 as a suggestion under Advantage+ audience, so the effective range
+  reads 18–65. Options: accept (Advantage audience ON is how T1/W1 run anyway) or set
+  `targeting_automation.advantage_audience=0` on T2 before go-live to hard-cap 25–65.
+* **D2 — placements.** jn's Advantage+ placements include Audience Network (classic, rewarded video);
+  JN's W1/W2 did not. This matches jn's own CTWA winners (e.g. C3-x), so it is left as is; if the twins'
+  CPM/quality diverge from W1, exclude Audience Network as the first fix.
+* **D3 — reactivation has one ad instead of two** (customer-voice creative rejected twice, see §2).
+
+## 5. Rollback (exact)
+
+* Pauses: `status=ACTIVE` on 120251948470220312 · 120249701767850032 · 120250020898360073.
+* New objects: they are PAUSED and have never delivered. To remove: `status=DELETED` on campaigns
+  120250144447740073 and 120250144448010073 (cascades), and on ad set 120252226500410312 (its 3 ads
+  cascade). Creatives 1854637229249947 / 2079695029320454 / 1888705535440387 / 1647975023638278 can stay.
+
+## 6. Go-live — NOT executed; separate approval
+
+| Option | Writes | New daily spend | Then |
+|---|---|---|---|
+| A — twins | activate campaign 120250144447740073, ad sets 120250144454520073 + 120250144457040073, ads 120250144462130073 / 120250144462600073 / 120250144463050073 | +AED 90/day in jn (JN W1/W2 keep running until the §2.3 scorecard passes) | 7-day scorecard; on pass pause JN campaign 120251948470120312 |
+| B — reactivation | activate campaign 120250144448010073, ad set 120250144457810073, ad 120250144463650073 | +AED 20/day | pause jn C3-1 120250020902640073 after 7 days |
+| C — JN retargeting union | activate ad set 120252226500410312 + its 3 ads; pause C2-1 120252107098030312, C2-2 120252107107740312, C2-3 120252107111220312 (shared CBO, so no new spend) | 0 | 10-day scorecard; fail → unpause C2-1 and C2-3 |
+
+Ads still in Meta review will start delivering only once approved, whichever option is chosen.
+
+## 7. Go-live executed — 10:12 Dubai — owner: "APPROVE GO-LIVE: A + C"
+
+Owner's conditions: T1/T2 exactly as built (no T2 hard-cap, Advantage audience behaviour unchanged so
+the test moves account/mission only); JN winners keep running; 7 days or the §2.3 thresholds; JN winner
+paused only after the twin scorecard passes. C: union live, C2-1/2/3 paused at the same time, CBO
+unchanged. B: reactivation stays PAUSED until the second creative is resolved or the single-ad version
+is chosen deliberately.
+
+13 writes, each approved by the owner at execution time; read back 10:13 Dubai.
+
+| Item | ID | Write | Read-back |
+|---|---|---|---|
+| T1 | 120250144454520073 | activate | **ACTIVE** / effective ACTIVE · AED 60/day · 10:12:31 |
+| T2 | 120250144457040073 | activate | **ACTIVE** / effective ACTIVE · AED 30/day · 10:12:34 |
+| jn twins campaign | 120250144447740073 | activate | ACTIVE · 10:12:09 |
+| T1 ads V01 / V02 | 120250144462130073 / 120250144462600073 | activate | ACTIVE · effective PENDING_REVIEW |
+| T2 ad V01 | 120250144463050073 | activate | ACTIVE · effective PENDING_REVIEW |
+| JN RETARGETING UNION | 120252226500410312 | activate | **ACTIVE** / effective ACTIVE · 10:12:54 |
+| union ads | 120252226507840312 / 120252226508320312 / 120252226511090312 | activate | ACTIVE · effective IN_PROCESS / IN_PROCESS / PENDING_REVIEW |
+| C2-1 | 120252107098030312 | status=PAUSED | **PAUSED** / PAUSED · 10:12:52 |
+| C2-2 | 120252107107740312 | status=PAUSED | **PAUSED** / PAUSED · 10:12:54 |
+| C2-3 | 120252107111220312 | status=PAUSED | **PAUSED** / PAUSED · 10:12:57 |
+| JN retargeting campaign | 120252107080200312 | none | ACTIVE · CBO **AED 70/day unchanged** |
+| OLD JN WINNERS | campaign 120251948470120312 · W1 120251948470210312 · W2 120251948470250312 | none | **STILL ACTIVE — YES** (CBO AED 80/day) |
+| Reactivation (B) | 120250144448010073 / 120250144457810073 / 120250144463650073 | none | PAUSED / PAUSED / PAUSED |
+
+```
+NEW DAILY SPEND ADDED:        AED 90/day maximum from A (T1 60 + T2 30), delivery starts once the ads clear review
+RETARGETING NET NEW SPEND:    AED 0 (same AED 70 CBO; the union ad set replaces C2-1/2/3)
+OLD JN WINNERS:               STILL ACTIVE — YES
+```
+
+Known gap: until the three union ads clear review, campaign 120252107080200312 has no delivering ad
+set (minutes to 24 h). If review rejects an ad, the first fix is to re-attach the same creative to a
+new ad, not to unpause C2-x.
+
+Observation windows: twins 9–16 Oct (T1 pass ≤ AED 4.70 with ≥50 conversations and booking rate ≥ W1's;
+T2 pass ≤ AED 4.60 with ≥25); union 9–19 Oct (pass ≥5 leads ≤ AED 100 each or ≥3 purchases; fail <3
+leads after AED 500). Monitoring: read-only check this afternoon for review approval and first delivery,
+then a daily 09:22 Dubai scorecard check-in into this session; no further write without the owner's
+approval.
+
+## 8. Continue-execution pass — 10:20–10:50 Dubai (owner brief "CONTINUE EXECUTION, CLEANUP & MIGRATION" + "WEEKEND WEIGHTING")
+
+### M1 — new cells
+All six new ads passed review (effective_status ACTIVE at 10:20); delivery "pending / preparing"; spend 0
+at read time. T1 120250144454520073 and T2 120250144457040073 ACTIVE at AED 60 / 30; union
+120252226500410312 ACTIVE under the AED 70 CBO. No error, no repair needed.
+
+### M2 — remaining JN/jn overlap (fresh read of all delivering ad sets)
+JN delivering: W1 120251948470210312 (CTWA, 7d AED 618 → 162 @3.81), W2 120251948470250312 (AED 22 → 8),
+C1-1 120252107075750312 (website Lead, AED 507 → 9 @56), union, and the Studio-feedback test ad set
+120252195374160312 (website Lead, AED 72.64 → 0 leads, CPM 41.75, own campaign AED 60/day).
+jn delivering: T1, T2, C3-1/2/3, TEST E, Copy A/B/2, New Sales Ad Set, A/B/C/D — all CONVERSATIONS →
+WhatsApp (three of them multi-destination IG-direct/Messenger/WhatsApp), Sharjah/Dubai/Ajman pins.
+
+| Pair | Decision |
+|---|---|
+| W1 (JN) ↔ T1 + jn Sharjah cluster (A, Copy A, Copy B) | **WAIT FOR TWIN TEST** — pause W1 only after T1 parity |
+| W2 (JN) ↔ T2 (+ Copy A parents) | **WAIT FOR TWIN TEST** |
+| C1-1 (JN website) ↔ jn | no live jn website prospecting → **KEEP JN**, no overlap |
+| union (JN retargeting) ↔ jn C3-3 (uses the shared LAL) | different audiences → **KEEP JN** |
+| Studio-feedback test campaign (JN) ↔ JN C1-1 (same pins, same goal, two budgets) | **MIGRATE NEXT → done**: ad moved into C1-1, test campaign paused (below) |
+| 658869122728885 boost ↔ C1-1 | already paused 09:54 |
+| **JustNow44 (unreadable) ↔ everything** | **UNKNOWN** — see M5: the Page has active ads that belong to neither jn nor JN |
+
+### M3 — customer exclusions
+Both lists READY: 120251936408430312 "JN - Confirmed bookings 12mo" (ACTIVE, Normal, updated 8 Oct) and
+120249973174230073 "jn - Customers 889" (ACTIVE, Normal, updated 8 Oct). Every new prospecting cell
+already carries them (T1, T2, C1-1, union, C3-2/3). Not applied today to the nine legacy jn winners and
+W1/W2: the connector force-pauses an ACTIVE ad set on any targeting edit (pause → edit → re-activate) and
+the edit resets learning; on a peak-traffic Friday that is a delivery risk on the proven cells, and W1/W2
+must stay untouched for the parity test. Proposed instead: **Monday 12 Oct 09:30 Dubai batch** — one
+bundled edit per ad set (exclusion only) on the nine jn winners, three at a time with read-back,
+owner-approved. Reactivation / C3-1 keep targeting customers (no exclusion, by design).
+
+### M4 — UAE 1 % lookalike
+Already exists: **120251936410460312 "JN - LAL 1% Confirmed bookings"** — origin 120251936408430312,
+ratio 0.01, delivery ACTIVE, created 18 Sep, size shown at the API's 1,000 floor; it is live-tested in jn
+C3-3 (7d AED 48 → 9 conv @5.30). No duplicate created. Rename to `JN | LAL 1% UAE | CONFIRMED CUSTOMERS`
+was attempted and **rejected by the connector** ("This audience type cannot be updated via this tool");
+rename in Audiences if wanted. Country is not exposed in the lookalike spec (`use_additional_countries`
+true, no `country` key) — verify "United Arab Emirates" in the Audiences UI before any new attach.
+
+### M5 — JustNow44 2820299204977421, direct evidence
+* **Connector:** `is_ads_mcp_enabled=false` (Meta staged rollout) — every ad-object read refused; business
+  list shows ACTIVE, AED, payment method present, no disable reason. No browser tool exists in this
+  session (re-checked). Google Drive: nothing.
+* **Mailbox evidence (owner's own receipts):** 20+ "Your Meta ads receipt (Account ID: 2820299204977421)"
+  emails 30 Jun – 21 Jul 2026, billed every 1–3 days at AED 150–425 (≈ AED 290/day), "You requested this
+  manual payment", Visa ····2662, line items only "New Sales Campaign" and "New Sales Campaign - Copy"
+  (impression-billed CTWA naming). "Your payment for Facebook Ads was declined" for JustNow44 on 11, 17,
+  19 and 22 Jul (and for JN on 22 Jul). No receipt for **any** account after 21 Jul in this mailbox — the
+  receipt links name a second notification address (mbayoumi2112@outlook.com), so later billing mail
+  likely lands there. A 24 Sep "Your ads are running again" notice links to ad account
+  **2043141456283110**, an ID not in the 32-account list — a 33rd account the connector cannot see.
+* **Ad Library (Page "Just Now" 122098309970001876, ACTIVE, AE): 38 active ads.** Matching their creation
+  times against every jn and JN ad created 15 Sep – 9 Oct leaves ≈ 20 unexplained, including a batch of
+  **16 ads created 29 Sep 15:28 Dubai** (jn's "Reel tests (rebuilt from JustNow44…)" were created at 22:13
+  that day and are PAUSED/WITH_ISSUES, so they are not these). Only one account with Page access is
+  unaccounted for: JustNow44. Snapshot URLs are in the Ad Library result (ids 4046185359019667,
+  27432568766420118, 1691958985795118, 2098580121531534, 1067474929246422, 1082208651079306 …).
+* **Conclusion:** CONNECTOR PROBLEM = Meta MCP rollout gate (unchanged). ACCOUNT: no restriction visible;
+  **very likely actively delivering CTWA ads right now from the same Page** → the JN/jn overlap cleanup is
+  incomplete until JustNow44 is read, and it may be the third bidder on the same Sharjah/Dubai audiences.
+  July evidence (manual-payment CTWA at ≈ AED 290/day) points to **HIGH-SCALE WHATSAPP** as the evidence-
+  based candidate mission, but it is not assigned until spend limit, Account Quality and campaign metrics
+  are read. Scale readiness: unknown (spend limit unreadable; payment declines in July are the one
+  historical risk). Unblock: export from Ads Manager (lifetime + 30d + 90d, Account overview, Account
+  Quality) into `meta/justnow44/`, or run the read from the owner's Claude-in-Chrome session.
+
+### M6 — shared dataset architecture (fresh)
+Dataset 614743294720303 last fired 10:23 Dubai today (browser + server). It appears in the dataset list of
+all four mission accounts.
+
+| ACCOUNT | DATASET 614743294720303 | PAGE | IG | CUSTOMER AUDIENCE ACCESS | STATUS |
+|---|---|---|---|---|---|
+| jn 1037126214908677 | yes (in use) | Just Now + CO LLC | justnow.life.ae | customers 889 own; JN LAL bookings shared | **CORRECT** |
+| JN 9147325105346647 | yes (in use, LEAD) | Just Now + CO LLC | justnow.life.ae | bookings 12mo, contacts csv, pixel audiences, LAL | **CORRECT** |
+| justnow22 1897980308260660 | yes (listed) | Just Now + CO LLC | not checked | only a site-visitor audience "jn" (22–26k); **no customer list** | FIX REQUIRED before CT: share 120249973174230073 + 120251936408430312 |
+| JNN 1304802461392117 | yes (listed) | **none** | none | **none** | FIX REQUIRED before any use: Page, IG, audiences |
+| JustNow44 2820299204977421 | unknown | unknown (BM-B owns only the CO LLC Page; "Just Now" is shared from BM-A) | unknown | unknown | VERIFY via export |
+| 658869122728885 | not used | 4 Pages | — | none | HOLD |
+
+Also visible: 16–23 legacy datasets per account (jn/JN.LIFE/NA3-7/Just Now 1,4/newpixel/wtp …), most
+last fired 7–15 Sep or never. No new pixel was created; the legacy ones are candidates for a later
+clean-up, not for use.
+
+### M7 — winner migration this pass
+* Studio-feedback video (creative 1094497890116067): new ad **120252227059520312** `VIDEO | STUDIO-FEEDBACK
+  | BOOK-NOW | V01` created in C1-1 120252107075750312 (10:45), activated (10:46; effective
+  PENDING_REVIEW); test campaign **120252195374070312 paused** (10:45:43, read back PAUSED; its ad set and
+  ad show CAMPAIGN_PAUSED). Saves AED 60/day of zero-lead spend; the creative keeps being tested inside the
+  learner. Rollback: set campaign ACTIVE.
+* W-c (jn "Sticky kitchen EN" into JN as a website ad) still needs the video file uploaded to JN (cross-
+  account video reuse is not possible); the second reactivation ad still needs a fresh build with a
+  WhatsApp CTA.
+* Running total WINNERS MIGRATED: T1, T2 (twins, in test) + 3 retargeting creatives consolidated + 1
+  studio ad moved.
+
+### M8 — account renames
+The connector cannot rename an ad account (`ads_update_entity` accepts campaign / ad set / ad only), so
+renames stay with the owner in Business Settings → Ad accounts: jn → `JUSTNOW | WHATSAPP SALES | jn`,
+JN → `JUSTNOW | WEBSITE BOOKINGS | JN`, justnow22 → `JUSTNOW | CREATIVE TESTING | justnow22`, JNN →
+`JUSTNOW | FUTURE REVENUE | JNN`; JustNow44 after its diagnosis; legacy shells untouched.
+
+### M9 — Purchase gate (re-check)
+Make scenario 6529499 ran 00:00 Dubai today: 9 completed jobs found, **0 Purchases sent**, 9 skipped as
+legacy (already sent by the old confirmation flow), 37 pending finalisation, **2 aged-out jobs requiring
+review**. Pixel 614743294720303: Purchase events arrived daily until 6 Oct (legacy flow), none on 7–8 Oct.
+Lead events ≈ 20–50/day. **FAIL** — 0 of 7 clean days; keep Purchase off everywhere.
+
+### Writes this pass
+3 successful (studio ad create, activate, test campaign pause), 1 rejected without change (LAL rename).
+Running total since 09:53: **36 successful production writes, 0 rollbacks.** Budgets: none changed; the
+weekend-weighting proposal is in `meta/weekend-weighting-plan-2026-10-09.md`.
+
+## 9. Owner approvals of 11:00 Dubai and what was prepared (no new Meta writes)
+
+| Approval | Action taken |
+|---|---|
+| Recommended multipliers; Meta-native rules only; five eligible campaigns; T1/T2, W1/W2, reactivation, justnow22, Purchase excluded; capacity guard kept | `meta/automated-rules-spec-2026-10-09.md`: 20 copy-ready rules (groups W-jn ×3 campaigns, W-C1, R-C2), staged steps ≤ +25 % / −20 %, one rule per campaign per slot. Owner creates them in Ads Manager (connector has no rule tool). Read-only verification routine at 00:40 and 12:40 Dubai daily until 23 Oct; daily 09:22 check-in carries the 11-booking capacity guard. |
+| Monday 12 Oct 09:30 exclusion batch on the 9 jn winners, one bundled edit each, baseline saved, read-back after | `meta/monday-exclusion-batch-2026-10-12.json`: baseline targeting (9 Oct read) + sanitized payloads adding 120249973174230073, pre-checks, 3-pass order (smallest spend first), rollback. One-shot routine fires Mon 12 Oct 09:30 Dubai into this session; every write still prompts the owner. |
+| Lookalike: keep 120251936410460312, no new 1 %, verify UAE in Audiences UI, do not attach | Connector read: source 120251936408430312, ratio 0.01, ACTIVE, created 18 Sep, size at API floor; country not exposed → owner confirms "United Arab Emirates" in Audiences. Nothing attached. |
+| JustNow44 priority direct read | No browser in this session. New direct path found: Windsor.ai's Facebook (Meta Ads) connector was connected before and its token expired on 29 Sep (owner's inbox alert). Re-authorizing it with the owner's Facebook login lets this session read 2820299204977421 through Windsor, independent of the Meta MCP gate. Authorization link handed to the owner; export remains the fallback. Mission stays unassigned. |
+| Monitoring unchanged, no budget changes, no restructuring during the weekend | 16:15 Dubai delivery check and daily 09:22 scorecard remain; nothing else scheduled to write. |
+
+## 10. Weekend controlled scale-up — Stage 1, 11:07 Dubai (owner brief "CONTROLLED SCALE-UP TO ~AED 1,000/DAY WEEKEND" + correction "today ≈ AED 750–800, then 850–900 after 16:15, Sat 950–1,000 staged")
+
+Scope: mature proven campaigns only. Never: T1/T2 (campaign 120250144447740073), W1/W2 control
+120251948470120312, reactivation, justnow22, Purchase. Progression 90 → 120 → 150 → 180 with read-back
+between stages. The connector force-pauses a campaign on a budget edit, so each change = edit + immediate
+re-activation (campaigns were paused for 20–40 s).
+
+Baseline 11:05 Dubai (today so far / 7 days): New Sales Campaign AED 22 → 9 conv @2.48 (7d 954 → 280
+@3.41, CPM 16); WhatsApp Sales 5158 AED 20 → 8 @2.53 (7d 911 → 243 @3.75, CPM 22); C3 AED 15 → 1 @14.78
+(7d ≈ 4.9 excl. C3-4, CPM 42 today) → held; JN C1 AED 35, 1,186 imp, CTR 4.4 %, 0 leads yet (7d 9 leads
+@56; learning status "limited"); JN C2 AED 21, union new. Capacity: 8 Oct 7 jobs (all DONE-marked),
+9 Oct 7 booked (6 via website form), 10 Oct 5 booked so far; ceiling 12 → available.
+
+| CAMPAIGN | OLD | NEW | % | STATUS (read-back) | LEARNING | SPEND AFTER CHANGE | CPA | BOOKING SIGNAL | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales Campaign 120249855697050073 | 90 | **120** | +33 % | ACTIVE 11:07:34 (re-activated after force-pause) | ad sets unchanged (no significant edit; CBO budget change) | AED 22.61 at 11:12 | 2.51 today / 3.41 7d | 7 bookings today, 6 from the site form | 14:00 Dubai |
+| jn WhatsApp Sales 5158 120249855229580073 | 90 | **120** | +33 % | ACTIVE 11:07:37 | unchanged | AED 20.34 | 2.54 / 3.75 | same | 14:00 |
+| JN C1 Website Acquisition 120252107068880312 | 84 | **105** | +25 % | ACTIVE 11:07:35 (not force-paused) | C1-1 "learning limited" (9 conv) — pre-existing | AED 35.03 | 0 leads today / AED 56 7d | website form active today | 14:00 |
+| JN C2 Retargeting 120252107080200312 | 70 | **80** | +14 % | ACTIVE 11:07:40 | union in learning (new) | AED 20.74 | n/a today | — | 16:40 |
+| jn C3 120250020646250073 | 90 | 90 | 0 | held — weakest today (1 conv on AED 15, CPM 42) | — | — | — | — | re-evaluate 16:40 |
+
+Account total daily budget: **594 → 685**. Planned path (each step gated, each write prompted):
+Stage 1b 14:00 Dubai → New Sales + 5158 to 150 (≈ 745); Stage 2 16:40 → toward 850–900 (C1 125, C3 110
+only if its CPA < 4.5, New Sales/5158 180 only if CPA holds, C2 90 only if frequency < 1.5); Sat 09:40 →
+toward 950–1,000 staged; Sun 00:30 → 800–900; Mon 00:30 → ≈ 600 baseline. Hold rules: CPA worse than
++25–30 % vs baseline, booking quality down, 11+ bookings yesterday/today, CPM/frequency spike without
+conversions, handling overload. Writes this stage: 4 budget edits + 3 re-activations = 7 (total since
+09:53: 43 successful, 0 rollbacks).
+
+## 11. Brand expansion layer — built and published 11:47 Dubai (owner brief "BUILD TOP-OF-FUNNEL BRAND EXPANSION LAYER")
+
+Full spec, creative map, bench, audiences, metrics and rotation design: `meta/brand-expansion-layer-2026-10-09.md`.
+
+* Home account **justnow22 1897980308260660** (BRAND / CREATIVE TESTING): mission separation kept — jn
+  stays WhatsApp sales, JN website bookings + retargeting. Draft mode is ON in this account, so every
+  object was staged as a draft (nothing spent), read back, and published in one call at 11:47.
+* Campaign **23860638577100791** `BR | Video Views ThruPlay | UAE excl. Abu Dhabi | Deep Cleaning | Oct 2026`
+  — OUTCOME_ENGAGEMENT, CBO **AED 60/day**, Highest volume → read back ACTIVE, budget AED 60, start
+  11:47:22, delivery pending (ads in review).
+* Ad set **23860638584760791** `BR-1 | Broad 25+ | UAE excl. Abu Dhabi (incl. Al Ain) | ThruPlay` —
+  THRUPLAY / IMPRESSIONS / ON_VIDEO, Page 122098309970001876; UAE (home + recent) minus region Abu Dhabi
+  key 8 (Al Ain is inside it); Facebook + Instagram placements only; Advantage+ audience on (25–65 as
+  suggestion) → read back ACTIVE with exactly that targeting.
+* Ads (ACTIVE, PENDING_REVIEW / IN_PROCESS at 11:50): A-EN 23860638592800791 (post _2163113240903678),
+  A-AR 23860638592980791 (_1622838339212041), B 23860638593040791 (_1559790696189996), C 23860638593450791
+  (_4303960699820816, branded-content post with an external creator tag — review result to be checked),
+  D 23860638593500791 (_890288284018661), E 23860638607180791 (new positioning creative 1427446799529368 on
+  Page video 1387153059699272, copy "JustNow specializes in professional deep cleaning. We do not provide
+  regular cleaning." EN + AR), F 23860638601130791 (_2187572902181730). Deviation: the first E creative
+  1396311642317311 produced the draft error "ObjectStorySpecRedundant" (connector wrote image_url and
+  image_hash); rebuilt with the hash only, the broken draft ad 23860638593520791 was set DELETED before
+  publish (never live, no history).
+* Warm audiences in JN: **created** 120252228024070312 (video 25 %), 120252228030340312 (50 %),
+  120252228030930312 (75 %) — Page-wide single-rule form, 365 d, prefill on (the 11-video form was
+  rejected: max 5 rules per audience); **verified** IG engagers 120251888118190312 (31.4–37k) and FB
+  engagers of the Just Now Page 120241682713780312 "just now . facebook" (26.2–30.8k; the union ad set
+  still uses only the CO LLC Page audience 120251888139630312, 2.7–3.2k). Nothing attached.
+* Customer exclusion **not applied**: no customer list exists in justnow22; owner shares 120251936408430312
+  (JN) or 120249973174230073 (jn) to ad account 1897980308260660 in Business Settings, then one prompted
+  edit adds it to BR-1.
+* Budget profile: AED 60 flat in week 1; Automated Rules group **BR** (rows 21–27 of
+  `meta/automated-rules-spec-2026-10-09.md`: Mon 58 · Tue/Wed 50 · Thu 60→70 · Fri 85 · Sat 90 · Sun 72)
+  for the owner to create natively, first cycle Thu 15 Oct; brand share 8–10 % of planned totals.
+* Monitoring: the daily 09:22 Dubai routine now also reads the brand campaign (ThruPlay rate, cost per
+  ThruPlay, hook rate, frequency, audience growth, fatigue flags, 8–12 % share) — read-only.
+* Writes: 22 successful (1 campaign, 1 ad set, 8 creatives, 8 draft ads, 1 draft delete, 1 publish, 3
+  audiences), 1 rejected audience attempt. **Running total since 09:53: 65 successful production writes, 0
+  rollbacks.** Untouched: T1/T2, W1/W2, NSC/5158/C1/C2/C3 budgets (Stage 1 levels), reactivation, Purchase,
+  protected account 1679026507158086.
+
+## 12. 16:15–16:30 Dubai — go-live delivery check #1, budget verification, and weekend Stage 1b (delayed from 14:00)
+
+### 12a. Delivery check #1 (routine "review approval + first delivery check", read-only)
+
+| Object | State at 16:20 Dubai | Today (since 00:00) |
+|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | ACTIVE, budget 60 untouched | AED 22.95 → 7 conversations @ 3.28, CPM 15.3, freq 1.03 |
+| T2 ad set 120250144457040073 (AED 30) | ACTIVE, budget 30 untouched | AED 10.43 → 3 @ 3.48, CPM 23.0, freq 1.08 |
+| T1/T2 ads 120250144462130073 / 120250144462600073 / 120250144463050073 | all ACTIVE, delivery `active` (review passed) | 5.63 / 17.25 / 10.26 spend, 3 / 4 / 3 conversations |
+| Twin campaign 120250144447740073 | ACTIVE | AED 33.14 → 10 @ 3.31 (W1 control today: AED 41.57 → 7 @ 5.94) |
+| Reactivation 120250144448010073 + ad 120250144463650073 | PAUSED / PAUSED, 0 spend | — |
+| JN union ad set 120252226500410312 | ACTIVE, LEARNING (1 conversion) | AED 24.63 → 1 website lead, CPM 42.9, freq 1.25 |
+| Union ads 120252226507840312 / 120252226508320312 / 120252226511090312 | all ACTIVE, `ad_set_in_learning_phase` (review passed) | 1.22 / 18.38 (the lead) / 5.03 |
+| C2-1 / C2-2 / C2-3 | PAUSED / PAUSED / PAUSED (residual spend 5.00 / 0.65 / 12.23 is from before the 10:12 pause) | — |
+| W1 120251948470210312 / W2 120251948470250312 | ACTIVE / ACTIVE (W2 barely delivering: AED 0.61, 40 impressions) | W1 AED 41.57 → 7 @ 5.94 |
+| Studio ad 120252227059520312 in C1-1 | ACTIVE, warning `ad_set_learning_exit_unsuccessfully` (pre-existing C1-1 learning-limited) | AED 1.51, 46 impressions |
+| Brand layer (justnow22) | all 7 ads ACTIVE, delivery `active` (review passed within ~4 h) | AED 19.70 → 1,319 ThruPlays @ ≈ AED 0.015; A-EN carries 4,536 of 5,502 impressions (ThruPlay rate 24 %), E 157 imp / 40 ThruPlays (25 %), F 513 / 112 (22 %) |
+
+No rejected ad, no policy issue, no delivery error. Nothing to fix.
+
+### 12b. Budget verification (routine 12:40 Dubai, completed here; the 12:40 run read jn and the brand campaign, the JN and T1/T2 reads were cut off by the next event)
+
+| Campaign | Expected (approved Stage 1 level) | Actual | OK |
+|---|---|---|---|
+| jn New Sales Campaign | 120 | 120 (until 16:28, see 12c) | yes |
+| jn WhatsApp Sales 5158 | 120 | 120 (until 16:28) | yes |
+| jn C3 | 90 | 90 | yes |
+| JN C1 | 105 | 105 | yes |
+| JN C2 | 80 | 80 | yes |
+| JN W1/W2 control | 80 | 80 | yes |
+| T1 / T2 | 60 / 30 | 60 / 30 | yes |
+| justnow22 brand | 60 | 60 | yes |
+
+The verification routine's prompt was pointed at "the latest approved level recorded in this log" (it still said "base" from before the weekend scale-up); from 16 Oct it compares with the rule values.
+
+### 12c. Weekend Stage 1b — executed 16:28 Dubai (routine fired 14:00; the session was idle until 16:16)
+
+Gates at 16:20: New Sales Campaign CPA 2.76 today vs 3.41 baseline (−19 %); 5158 CPA 4.20 vs 3.75 (+12 %, inside the +25–30 % tolerance; its CPM 22.9 equals its 7-day CPM, so no spike without conversions); frequency 1.05–1.06; capacity 7 bookings today (all confirmed), 7 booked tomorrow (4 still UNCONFIRMED) vs the 11-booking hold line; handling normal. All gates PASS. Weak campaigns not raised: C3 (AED 49 → 4 conversations @ 12.36, CPM 34), JN C1 (AED 62 → 0 website leads today; 7-day AED 56/lead).
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE (7d) | CURRENT CPA (today) | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales Campaign 120249855697050073 | 120 | **150** | +25 % | 3.41 | 2.76 (24 conv on AED 66) | 7 bookings today, 6 via the site form; 7 tomorrow | 7/12 today, 7/12 tomorrow → available | ACTIVE, budget 150, delivery active, 16:28:45 (not force-paused this time) | 16:40 Dubai (Stage 2 routine) |
+| jn WhatsApp Sales 5158 120249855229580073 | 120 | **150** | +25 % | 3.75 | 4.20 (13 conv on AED 55) | same | same | ACTIVE, budget 150, delivery active, 16:28:52 | 16:40 Dubai |
+
+Conversion accounts total daily budget: **685 → 745** (jn 480 incl. T1/T2 90; JN 265). Brand layer 60 on top (7.5 %
+of 805). Stage 2 at 16:40: C1 HOLD (0 leads today), C3 HOLD (CPA 12.4), C2 80 → 90 eligible (frequency 1.25 < 1.5,
+1 lead), New Sales/5158 150 → 180 only after ≥ 2 hours of read-back at 150 (earliest ≈ 18:30 Dubai), so today's
+realistic ceiling is ≈ 755–815 rather than 850–900 unless C1 produces leads this evening. Writes this section: 2
+budget edits (no re-activation needed). **Running total since 09:53: 67 successful production writes, 0 rollbacks.**
+
+## 13. Weekend Stage 2 — 16:43 Dubai (routine 16:40; owner: "after the 16:15 checkpoint … prepare the next increase toward AED 850–900 … do not force 900")
+
+Fresh read 16:43 (today): New Sales AED 68.47 → 24 conversations @ 2.85 (baseline 3.41), CPM 17.5, freq 1.05;
+5158 AED 56.09 → 15 @ 3.74 (baseline 3.75), CPM 22.8, freq 1.06; C3 AED 51.20 → 5 @ 10.24 (gate < 4.5: FAIL);
+C1 AED 63.57 → 0 website leads (gate "leads/bookings came in": FAIL); C2 AED 44.12 → 1 lead @ 44.12, CPM 39.0,
+freq 1.26 (gate < 1.5: PASS). Capacity unchanged since 16:20: 7 today / 7 tomorrow (4 unconfirmed), 4 bookings
+created today (3 via the website form) — available, handling normal.
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| JN C2 Retargeting 120252107080200312 | 80 | **90** | +12.5 % (modest, retargeting) | union new (10-day window); C2 7-day n/a | AED 44.12/lead (1 lead) | 4 bookings created today | 7/12 · 7/12 → available | ACTIVE, budget 90, 16:44:50; effective IN_PROCESS (Meta re-processing after the edit, normal) | Sat 09:40 Dubai |
+| jn New Sales Campaign | 150 | 150 (hold) | — | 3.41 | 2.85 | — | — | ACTIVE at 150 since 16:28 — only 15 min of read-back | **18:30 Dubai Stage 2b**: 150 → 180 if CPA holds |
+| jn WhatsApp Sales 5158 | 150 | 150 (hold) | — | 3.75 | 3.74 | — | — | same | 18:30 Dubai Stage 2b |
+| JN C1 | 105 | 105 (hold) | — | AED 56/lead | 0 leads on AED 64 today | no website leads yet today | — | ACTIVE | Sat 09:40 |
+| jn C3 | 90 | 90 (hold) | — | ≈ 4.9 | 10.24 | — | — | ACTIVE | Sat 09:40 |
+
+Conversion accounts total daily budget: **745 → 755** (brand 60 on top = 815). Stage 2b one-shot routine armed for
+18:30 Dubai (two hours of read-back at 150 before the 180 step, each write prompted). Writes this section: 1 budget
+edit (not force-paused). **Running total since 09:53: 68 successful production writes, 0 rollbacks.**
+
+## 14. Weekend Stage 2b — 18:33 Dubai: 150 → 180 step HELD until Saturday 09:40 (no writes)
+
+Read 18:33 (today): New Sales AED 92.29 → 29 conversations @ 3.18 (baseline 3.41, −7 %), CPM 17.8, freq 1.05;
+5158 AED 71.95 → 20 @ 3.60 (baseline 3.75, −4 %), CPM 21.8, freq 1.08; C3 AED 72.76 → 5 @ 14.55 (held); C1
+AED 69.44 → 0 website leads (held); C2 AED 52.31 → 1 lead, freq 1.28, ACTIVE at 90 (edit processed). Increment
+since the 16:28 step: New Sales +AED 23.82 → +5 conversations (marginal 4.76 = +40 % vs baseline, 5-conversation
+sample); 5158 +AED 15.86 → +5 (marginal 3.17, healthy). Capacity: 8 jobs today (Harinder 19:30 added at 17:17 via
+the website form), 7 tomorrow (3 still unconfirmed) → available; booking signal positive (5 created today).
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | DECISION | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales Campaign 120249855697050073 | 150 | 150 | 0 | 3.41 | 3.18 today; 4.76 on the last 5 conversations | 5 bookings created today | 8/12 today, 7/12 tomorrow | HOLD — marginal CPA at 150 inconclusive (+40 % on 5 conversations) and only 61 % of the day's 150 spent by 18:33; a +20 % raise now would force ≈ 5× faster evening pacing | Sat 09:40 Stage 3: 150 → 180 if Friday's full-day CPA at 150 ≤ baseline +25 % |
+| jn WhatsApp Sales 5158 120249855229580073 | 150 | 150 | 0 | 3.75 | 3.60 today; 3.17 marginal | same | same | HOLD — passes the CPA gate, held only for pacing (48 % of 150 spent by 18:33); first in line on Saturday | Sat 09:40 Stage 3 |
+
+Day total stays at **AED 755 conversion + 60 brand = 815** (owner's envelope for today 750–800, stretch 850–900 "if
+healthy" — not forced: C1 had no lead all day and C3 stayed above AED 10 per conversation). Stage 3 (Sat 09:40)
+inherits: 5158 → 180 first, New Sales → 180 if its Friday evening holds, C2 90 (modest, no further), C1/C3 only on
+proof. No writes this section. **Running total since 09:53: 68 successful production writes, 0 rollbacks.**
+
+## 15. Daily scorecard — day 1 (Sat 10 Oct, read 09:25–09:40 Dubai; routine 09:22, read-only)
+
+Window: since go-live 2026-10-09 10:12 Dubai (metrics from 00:00 Fri) to the read. No Meta write in this section.
+
+| Item | Day | Numbers (Fri 00:00 → Sat 09:25) | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 1 of 7 | AED 58.32 → 19 conversations @ **3.07**, CPM 17.77, freq 1.03, reach 3,185; ACTIVE, both ads ACTIVE (review passed) | **PASS-TRACK** (pass line ≤ 4.70 with ≥ 50; pace ≈ 19/day) |
+| T2 ad set 120250144457040073 (AED 30) | 1 of 7 | AED 29.09 → 8 @ **3.64**, CPM 23.35, freq 1.09, reach 1,141; ACTIVE, ad ACTIVE | **PASS-TRACK** (pass line ≤ 4.60 with ≥ 25; pace ≈ 8/day) |
+| Twin campaign 120250144447740073 | — | Fri full day AED 66.98 → 21 @ 3.19 (CPM 19.13, freq 1.06); Sat to 09:25 AED 21.01 → 7 @ 3.00 | — |
+| W1 120251948470210312 / W2 120251948470250312 (control, must stay ACTIVE) | — | ACTIVE / ACTIVE. W1 AED 75.42 → 17 @ 4.44 (CPM 13.87, freq 1.05); W2 AED 1.43 → 2 (62 impressions, barely delivering). Campaign 120251948470120312 at AED 80: Fri AED 75.73 → 19 @ 3.99 | parity window open; twins 27 @ 3.24 vs W1+W2 19 @ 4.04 on the same window (−20 % CPA, +42 % volume on +14 % spend) |
+| Union ad set 120252226500410312 | 1 of 10 | AED 85.54 → **2 website leads @ 42.77**, 0 purchases, CPM 42.26, freq 1.36, reach 1,485; ACTIVE. Fri (campaign) AED 78.99 → 2 @ 39.50; Sat to 09:25 AED 26.03 → 0 (CPM 49.87 on 522 impressions) | **PASS-TRACK** (≥ 5 leads ≤ AED 100 by 19 Oct; 17 % of the AED 500 fail-spend used) |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (residual 5.14 / 0.65 / 12.25, pre-pause attribution) | OK |
+| C2 campaign 120252107080200312 budget | — | AED 90 = §13 weekend level | OK |
+| Reactivation 120250144448010073 | — | PAUSED | OK |
+| Capacity (calendar) | — | **Fri 8 jobs** (all confirmed, all DONE) · **Sat 7** (6 confirmed and staffed, 1 UNCONFIRMED 16:00) · **Sun 3** (1 confirmed villa 5+, 2 UNCONFIRMED) vs ceiling 12 / hold 11 | available, no CAPACITY FULL |
+| Bookings created | — | **Fri 7** = 6 via the website form (08:52, 12:43, 14:45, 15:32, 17:17, 22:07 Dubai) + 1 phone (02:15); Sat none by 09:25. Fri conversations across all WhatsApp campaigns 129 (New Sales 40, 5158 42, C3 7, twins 21, W1/W2 19); website leads 2 (C2) + 0 (C1) | booking-rate proxy Fri ≈ 5.4 % (7 ÷ 129; account level, the calendar carries no ad-set source, so T1-vs-W1 booking rate is not measurable yet) |
+
+### 15a. Brand layer (justnow22, campaign 23860638577100791 at AED 60 flat) — day 2
+
+Campaign: Fri AED 36.39 → 12,506 impressions, reach 12,226, CPM 2.91, freq 1.02, **3,649 ThruPlays @ AED 0.010**,
+5,896 25 %-plays; Sat to 09:25 AED 18.96 → 6,464 impressions, 1,861 ThruPlays, 2,869 25 %-plays. Cumulative
+AED 55.35 → 18,970 impressions, **5,510 ThruPlays (ThruPlay rate 29.0 %), hook rate 46.2 %, cost per ThruPlay
+AED 0.010, frequency 1.02–1.05**. Instagram profile visits: not returned at ad level for this objective.
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | AED/TP | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN 23860638592800791 | 45.63 | 15,716 | 2.90 | 1.02 | 4,680 | 0.010 | 29.8 % | 7,373 | 46.9 % | 4,281 | 3,219 | 2,164 | 11,401 |
+| A-AR 23860638592980791 | 0.54 | 217 | 2.49 | 1.01 | 34 | 0.016 | 15.7 % | 34 | 15.7 % | 22 | 21 | 20 | 128 |
+| B 23860638593040791 | 1.70 | 634 | 2.68 | 1.02 | 176 | 0.010 | 27.8 % | 256 | 40.4 % | 183 | 125 | 95 | 418 |
+| C 23860638593450791 | 0.68 | 158 | 4.30 | 1.01 | 39 | 0.017 | 24.7 % | 36 | 22.8 % | 29 | 20 | 7 | 103 |
+| D 23860638593500791 | 0.32 | 152 | 2.11 | 1.03 | 43 | 0.007 | 28.3 % | 39 | 25.7 % | 28 | 24 | 22 | 97 |
+| E 23860638607180791 | 2.95 | 945 | 3.12 | 1.04 | 316 | 0.009 | 33.4 % | 292 | 30.9 % | 214 | 153 | 37 | 685 |
+| F 23860638601130791 | 3.53 | 1,148 | 3.07 | 1.01 | 276 | 0.013 | 24.0 % | 816 | 71.1 % | 524 | 340 | 264 | 892 |
+
+Benchmarks (first week, report only): ThruPlay rate ≥ 15 % → 29.0 % PASS · cost per ThruPlay ≤ AED 0.25 → 0.010
+PASS · hook ≥ 30 % → 46.2 % PASS · 7-day frequency ≤ 2.0 → 1.05 PASS. A-AR, C and D sit under the 30 % hook line
+on ≤ 220 impressions each (not judged yet). CBO concentration: A-EN carries 83 % of impressions and spend; no
+fatigue flag (frequency 1.02, day 2, first-week baseline forms on day 7), no rotation proposed.
+Brand share of Meta spend: **Fri 5.1 %** (36.39 of 712.46 = jn 404.74 + JN 271.33 + justnow22 36.39) — below the
+8–12 % band because week 1 runs flat at AED 60 by design and Friday was a partial first day; Sat to 09:25 13.1 %
+(video delivers early in the day; full-day expectation ≈ 7 % of 875). No budget change proposed; the band is reached
+from Thu 15 Oct when rules 21–24 lift the brand to 60–90.
+Warm audiences: video 25 % 120252228024070312, 50 % 120252228030340312, 75 % 120252228030930312 all still read
+"below 1,000" (delivery INACTIVE, status 441 = populating; Meta reports a size only above the 1,000 minimum, with a
+24–48 h lag, although the Page already has 8,765 25 %-plays); IG engagers 120251888118190312 31.4–36.9k (unchanged);
+FB engagers 120241682713780312 26.3–31.0k (+0.1–0.2k vs 26.2–30.8k yesterday).
+
+Recommended next action (proposal only, nothing executed): keep T1/T2 and W1/W2 untouched until the 16 Oct
+scorecard; union continues; brand stays flat at 60 with no rotation. **Flag for the owner: JN C1 120252107068880312
+has 0 website leads on AED 132 since Friday 00:00 (90.45 Fri + 41.94 Sat to 09:40)** — proposal: let Sunday's 00:30
+reduce routine take C1 back to its AED 84 base rather than a proportional cut, and review the book-now path and C1's
+creatives on Sunday.
+
+## 16. Weekend Stage 3 — Sat 10 Oct 09:40 Dubai: New Sales and 5158 150 → 180 (writes approved and executed 10:28)
+
+Gates on Friday's full day (owner: "if Friday remains healthy, allow staged scale toward AED 950–1,000. Do not
+jump directly … in one step"):
+
+* New Sales Campaign: AED 125.75 → 40 conversations @ **3.14** (baseline 3.41, −8 %; tolerance 4.26–4.43) PASS; CPM
+  17.06, frequency 1.05 PASS; the §14 worry (marginal 4.76 on 5 conversations) cleared — the evening after 18:33
+  added AED 33.46 → 11 conversations (marginal 3.04); 84 % of the 150 spent (budget was lifted mid-day). Sat to
+  09:40: AED 13.38 → 5 @ 2.68.
+* WhatsApp Sales 5158: AED 116.47 → 42 @ **2.77** (baseline 3.75, −26 %) PASS; CPM 20.64 (7-day 22.9), frequency 1.05
+  PASS; evening after 18:33 AED 44.52 → 22 conversations (marginal 2.02); 78 % of the 150 spent. Sat to 09:40:
+  AED 27.62 → 9 @ 3.07.
+* C3: AED 95.58 → 7 @ 13.65 (baseline ≈ 4.9, +179 %) FAIL → hold 90. C1: AED 90.45 → 0 website leads (baseline
+  AED 56/lead) FAIL → hold 105 (see §15 flag). C2: AED 78.99 → 2 leads @ 39.50, frequency 1.32 < 1.5, CPM 38.46
+  stable → PASS but held at 90 per §14 ("modest, no further"); re-checked at 16:00 (Stage 3b, below).
+* Capacity: Fri 8/12 done, Sat 7/12 (6 confirmed, all five 12:00 jobs staffed), Sun 3/12 → available. Booking
+  signal: 7 created Friday, 6 via the website form. No CPM or frequency spike (today ≤ 1.17 everywhere; C2's 49.87
+  CPM is on 522 impressions). Handling normal. T1/T2 and W1/W2 untouched.
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE (7d) | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn WhatsApp Sales 5158 120249855229580073 | 150 | **180** | +20 % | 3.75 | 2.77 Fri full day; 3.07 today | 7 bookings created Fri (6 web) | 8/12 Fri · 7/12 Sat · 3/12 Sun → available | ACTIVE, budget 180, delivery active, updated 10:28:21 Dubai (connector force-paused the edit → re-activated in the same minute; 6 live ad sets ACTIVE, the 3 "ZZ DO NOT USE" ad sets were PAUSED before and stay PAUSED) | Sun 00:30 Dubai (reduce routine) |
+| jn New Sales Campaign 120249855697050073 | 150 | **180** | +20 % | 3.41 | 3.14 Fri full day; 2.68 today | same | same | ACTIVE, budget 180, delivery active, updated 10:28:24 Dubai (force-paused → re-activated; 4 ad sets ACTIVE) | Sun 00:30 Dubai |
+| JN C2 Retargeting 120252107080200312 | 90 | 90 (hold) | — | AED 56/lead (C1 ref.) | 39.50 Fri (2 leads); 0 leads today on 26.03 | — | — | ACTIVE at 90 | **Sat 16:00 Stage 3b**: 90 → 100 only if ≥ 1 lead today and frequency < 1.5 |
+| JN C1 120252107068880312 | 105 | 105 (hold) | — | AED 56/lead | 0 leads on AED 132 since Fri 00:00 | none | — | ACTIVE at 105 | Sat 16:00 Stage 3b: 105 → 125 only if ≥ 2 leads today at ≤ AED 60 |
+| jn C3 120250020646250073 | 90 | 90 (hold) | — | ≈ 4.9 | 13.65 Fri; 0 on 7.45 today | — | — | ACTIVE at 90 | Sun 00:30 |
+| T1 / T2 · W1 / W2 | 60 / 30 · 80 | unchanged | — | — | §15 | — | — | ACTIVE | 16 Oct scorecard |
+
+Conversion accounts total daily budget: **755 → 815** (jn 540 = 180 + 180 + 90 + T1/T2 90; JN 275 = 105 + 90 + 80);
+brand 60 on top = **875**. This is below the owner's 950–1,000 Saturday target: the two mature CBOs are at their
+180 ceiling, and the remaining AED 75–125 sits in C1/C3 (gates failed) and C2 (modest step only). A one-shot
+Stage 3b check is armed for 16:00 Dubai (trig_01JshCwFSwBQEtb3fVsa6FwD): C1 105 → 125 and/or C2 90 → 100 only on
+the proof above, otherwise Saturday closes at 875 and I do not recommend lifting the 180 ceiling on the same day
+as a +20 % step. Writes this section: 2 budget edits + 2 re-activations (each approved on its prompt; the approval
+wait moved execution from 09:46 to 10:28). **Running total since 09:53 Thu: 72 successful production writes, 0
+rollbacks.**
+
+## 17. Weekend Stage 3b — Sat 10 Oct 16:01 Dubai read, C2 90 → 100 (write approved and applied 20:41)
+
+Read at 16:01 (today): New Sales AED 75.11 → 22 @ 3.41 (= baseline), CPM 19.51, freq 1.10; since the 09:40 snapshot
++61.73 → +17 (marginal 3.63). 5158 AED 81.81 → 24 @ 3.41 (baseline 3.75, −9 %), CPM 20.39, freq 1.07; marginal since
+09:40 3.61. C3 AED 50.28 → 4 @ 12.57 (CPM 44). **C1 AED 84.09 → 0 website leads** (CPM 39.06, freq 1.13) → the
+105 → 125 condition (≥ 2 leads ≤ AED 60) FAILED → hold. **C2 AED 53.14 → 1 lead @ 53.14, freq 1.28 < 1.5** → the
+90 → 100 condition (≥ 1 lead, frequency < 1.5) MET. Capacity: Sat 7/12 (6 confirmed, all staffed; 1 UNCONFIRMED
+16:00), Sun 6/12 (villa 5+ confirmed, one WhatsApp booking request 12:00, 3 UNCONFIRMED) → available. Bookings
+created today by 16:01: 2 (12:23 WhatsApp booking-request flow, 14:49 website form), both for Sunday — slower than
+Friday (4 by the same hour).
+
+Write: JN C2 120252107080200312 daily_budget 9000 → **10000 fils** — the approval prompt was answered at 20:41:40
+Dubai, so the edit landed 4 h 40 min after the decision; connector force-paused → `ads_activate_entity` → ACTIVE.
+Read-back 20:43: ACTIVE, budget 100, delivery active; union ad set ACTIVE, C2-1/2/3 still PAUSED. Practical effect on
+Saturday ≈ nil (3 h 20 min left in the day).
+
+Evening read 20:45 (today, for the Sunday decision):
+
+| Campaign | Budget | Today | CPA vs baseline | Since 16:01 (marginal) | Note |
+|---|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 180 | AED 119.81 → 32 @ 3.74, CPM 18.98, freq 1.09 | +10 % (tolerance to 4.26–4.43) | +44.70 → +10 = **4.47** | evening marginal at the edge of the band → 180 is the efficient ceiling, not a base for more |
+| jn 5158 120249855229580073 | 180 | AED 118.29 → 29 @ 4.08, CPM 19.49, freq 1.10 | +9 % (tolerance to 4.69–4.88) | +36.48 → +5 = **7.30** (5-conversion sample) | Friday's evening marginal was 2.02; today's is weak → supports Sunday's reduction |
+| jn C3 120250020646250073 | 90 | AED 74.27 → 9 @ 8.25, CPM 42.51 | +68 % vs ≈ 4.9 | +23.99 → +5 = 4.80 | improved in the evening, still above baseline on the day |
+| Twin campaign 120250144447740073 (T1/T2) | 90 ABO | AED 66.75 → 22 @ 3.03 | −11 % vs 3.41 | — | untouched |
+| JN C1 120252107068880312 | 105 | AED 96.80 → **0 website leads**, CPM 38.89, freq 1.14 | n/a (0 on AED 187.25 Fri + Sat) | — | see §15 flag; Sunday → 84 base proposed |
+| JN C2 120252107080200312 | 100 (since 20:41) | AED 67.37 → 1 lead @ 67.37, freq 1.31 | +20 % vs AED 56 ref. | no new lead since 16:01 | step kept (pre-committed rule met at 16:01); Sunday routine decides |
+| JN W1/W2 120251948470120312 | 80 | AED 67.39 → 16 @ 4.21, CPM 15.23, freq 1.07 (+ 1 pixel lead attributed) | control | — | untouched |
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CURRENT CPA | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| JN C2 Retargeting 120252107080200312 | 90 | **100** | +11 % | AED 56/lead (ref.) | 53.14 at decision (1 lead), 67.37 at 20:45 | 2 bookings created today | 7/12 Sat · 6/12 Sun → available | ACTIVE, budget 100, delivery active, 20:41:40 Dubai (force-paused → re-activated) | Sun 00:30 Dubai (reduce routine) |
+| JN C1 | 105 | 105 (hold) | — | AED 56/lead | 0 leads on AED 96.80 today | none from C1 | — | ACTIVE at 105 | Sun 00:30 → proposal: back to the AED 84 base |
+| jn New Sales / 5158 | 180 / 180 | hold (ceiling) | — | 3.41 / 3.75 | 3.74 / 4.08 | — | — | ACTIVE at 180 | Sun 00:30 |
+| jn C3 | 90 | 90 (hold) | — | ≈ 4.9 | 8.25 | — | — | ACTIVE at 90 | Sun 00:30 |
+
+Conversion accounts total daily budget: **815 → 825** (jn 540; JN 285 = 105 + 100 + 80); brand 60 on top = **885**.
+Saturday closes at 885 against the 950–1,000 target: the gap stayed in C1 (no leads two days running) and C3 (above
+baseline all day), and the evening marginal CPAs at 180 (4.47 and 7.30) say the mature CBOs should not go higher.
+Recommendation for the Sun 00:30 reduce routine: apply its planned Sunday levels; C1 to the AED 84 base (−20 %) rather
+than a proportional cut; nothing on T1/T2 or W1/W2. Writes this section: 1 budget edit + 1 re-activation. **Running
+total since 09:53 Thu: 74 successful production writes, 0 rollbacks.**
+
+## 18. Sunday reduction — planned 00:30 Dubai, EXECUTED LATE at 12:44 (session fault), and the 00:40 / 12:40 verifications
+
+**Fault record.** The Sun 00:30 routine fired on time and Saturday's full-day results and the calendar were read at
+00:31, but the session then went idle without issuing the four budget writes, and it also skipped the 00:40 budget
+verification and the 09:22 scorecard. The Saturday peak budgets (New Sales 180, 5158 180, C1 105, C2 100) therefore
+ran 12 h 44 min into Sunday against the owner's instruction "Do NOT leave Friday/Saturday peak budgets running into
+the low-demand week." Caught by the 12:40 verification and corrected at 12:44–12:45. Because Meta caps a day at the
+daily budget in force, the full-day totals still land at the Sunday levels except C2, which had already spent
+AED 93.43 of its old 100 when it was cut to 80 and will not deliver again today; the real cost of the lapse is
+front-loaded morning spend (jn AED 191.66 + JN 172.96 by 12:44), not a higher day total.
+
+Saturday full day (read 00:31): New Sales AED 124.31 → 32 @ 3.88 (baseline 3.41, +14 %), CPM 18.72, freq 1.07 ·
+5158 AED 136.15 → 34 @ 4.00 (baseline 3.75, +7 %), CPM 19.06, freq 1.10 · C3 AED 77.56 → 9 @ 8.62 · twins AED 75.30
+→ 28 @ 2.69 · **C1 AED 107.81 → 0 website leads** (Fri + Sat AED 198.26 → 0) · C2 AED 80.39 → 2 leads @ 40.20, freq
+1.36 · W1/W2 AED 71.90 → 17 @ 4.23. Accounts: jn 413.84 + JN 260.44 + justnow22 54.00 = **AED 728.28**. Bookings
+created Saturday: **3** (12:23 WhatsApp request, 14:49 and 18:35 website form) on 120 conversations (Friday 7 on 129)
+— demand not "unusually strong", so the planned reduction applies in full. Sunday calendar at 12:40: 6 jobs (5
+confirmed and staffed, 1 UNCONFIRMED 14:00), Monday 2 (one created today 09:16) → capacity available.
+
+| CAMPAIGN | OLD | NEW | % | CPA BASELINE | CPA SAT FULL DAY | BOOKING SIGNAL | CAPACITY STATUS | STATUS (read-back 12:45) | NEXT REVIEW |
+|---|---|---|---|---|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 180 | **150** | −17 % | 3.41 | 3.88 (today to 12:44: 5.82 on 11) | 3 bookings created Sat | 6/12 Sun · 2/12 Mon | ACTIVE, budget 150, delivery active, 12:44:51 (edit not force-paused this time) | Mon 00:30 Dubai |
+| jn WhatsApp Sales 5158 120249855229580073 | 180 | **150** | −17 % | 3.75 | 4.00 (today: 2.58 on 27) | same | same | ACTIVE, budget 150, delivery active, 12:45:11 (force-paused → re-activated) | Mon 00:30 |
+| JN C1 120252107068880312 | 105 | **84** (base) | −20 % | AED 56/lead | 0 leads on AED 257.91 Fri–Sun 12:44 | none from C1 | — | ACTIVE, budget 84, delivery active, 12:45:15 (force-paused → re-activated) | Mon 00:30 — owner decision on C1 (pause or new landing/creative) proposed |
+| JN C2 120252107080200312 | 100 | **80** | −20 % | AED 56/lead (ref.) | 40.20 Sat (2 leads); 0 today on 93.43 | — | — | ACTIVE, budget 80, delivery active, 12:45:17 (force-paused → re-activated); already past today's new budget | Mon 00:30 |
+| jn C3 120250020646250073 | 90 | 90 (floor) | — | ≈ 4.9 | 8.62 | — | — | ACTIVE at 90 | Mon 00:30 |
+| T1 / T2 · W1 / W2 · brand | 60 / 30 · 80 · 60 | unchanged | — | — | — | — | — | ACTIVE, untouched | 16 Oct · 16 Oct · Thu rule 21 |
+
+Conversion accounts total daily budget: **825 → 724** (jn 480 = 150 + 150 + 90 + T1/T2 90; JN 244 = 84 + 80 + 80);
+brand 60 on top = **784** (owner's Sunday band 800–900, undershot on purpose: no spend on C1 just to reach the band).
+
+Verification routine (00:40 and 12:40 Dubai): 00:40 run — no reply was produced (same lapse). 12:40 run — **MISMATCH
+on 4 of 6**: New Sales 180 vs expected 150, 5158 180 vs 150, C1 105 vs 84, C2 100 vs 80; C3 90 = 90, brand 60 = 60;
+T1/T2 60/30 and W1/W2 80 untouched. Cause: the Sunday reduce routine's writes were never issued (session idle), not a
+missing Meta rule and not an unlogged manual change. Corrected as above. Writes this section: 4 budget edits + 3
+re-activations (each approved on its prompt within seconds). **Running total since 09:53 Thu: 81 successful
+production writes, 0 rollbacks.**
+
+## 19. Daily scorecard — day 2 (Sun 11 Oct; routine fired 09:22, run at 12:44 with §18; read-only)
+
+Window: Fri 00:00 → Sun 12:44 Dubai.
+
+| Item | Day | Numbers | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 2 of 7 | AED 119.89 → **34 @ 3.53**, CPM 19.62, freq 1.07, reach 5,688; ACTIVE, both ads ACTIVE (V01 19 conv, V02 15) | **PASS-TRACK** (≤ 4.70 with ≥ 50: 16 to go, ≈ day 3–4) |
+| T2 ad set 120250144457040073 (AED 30) | 2 of 7 | AED 60.27 → **22 @ 2.74**, CPM 19.53, freq 1.21, reach 2,559; ACTIVE, ad ACTIVE | **PASS-TRACK** (≤ 4.60 with ≥ 25: 3 to go) |
+| W1 / W2 control (must stay ACTIVE) | — | ACTIVE / ACTIVE. W1 AED 165.94 → 41 @ 4.05 (CPM 13.71, freq 1.09, + 1 pixel lead attributed); W2 AED 1.83 → 2 (100 impressions) | parity: twins 56 @ 3.22 vs W1+W2 43 @ 3.90 → **−17 % CPA, +30 % volume on +7 % spend** (day 1: −20 %) |
+| Union ad set 120252226500410312 | 2 of 10 | AED 234.95 → **3 website leads @ 78.32, 1 attributed purchase**, CPM 38.43, freq 1.35, reach 4,523; Sat AED 80.39 → 2 @ 40.20; Sun to 12:44 AED 93.43 → 0. Status IN_PROCESS at 12:44 (Meta re-processing the C2 budget edit; ACTIVE at 20:43 Sat) | **WATCH** — still inside the pass path (3 leads ≤ AED 100, 1 purchase; 47 % of the AED 500 fail-spend used) but cost per lead climbed 42.77 → 78.32 and Sunday morning produced none on AED 93 |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (late attribution onto pre-pause impressions: C2-1 1 purchase, C2-3 1 lead) | OK |
+| C2 campaign budget | — | 100 (Sat, §17) → **80** at 12:45 (§18) | OK after correction |
+| Reactivation 120250144448010073 | — | PAUSED, 0 spend | OK |
+| Capacity (calendar) | — | **Sat 6 jobs done** (one Saturday booking disappeared from the calendar vs the 7 counted at 16:01 — cancelled or moved) · **Sun 6** (5 confirmed and staffed, 1 UNCONFIRMED) · **Mon 2** (both confirmed) vs ceiling 12 / hold 11 | available, no CAPACITY FULL |
+| Bookings created | — | Fri 7 · **Sat 3** · Sun 1 by 12:40 (09:16, for Monday). Conversations Sat 120 → booking-rate proxy **2.5 %** (Fri 5.4 %) | trend down on Saturday; Sunday too early |
+
+### 19a. Brand layer (justnow22 23860638577100791, AED 60 flat) — day 3
+
+Campaign: Sat AED 54.00 → 21,186 impressions, reach 20,021, CPM 2.55, freq 1.06, **6,565 ThruPlays (31.0 %)**, 10,205
+25 %-plays (48.2 %); Sun to 12:44 AED 35.56 → 12,781 impressions, 3,901 ThruPlays (30.5 %), 6,017 25 %-plays
+(47.1 %). Cumulative since launch: **AED 126.00 → 46,496 impressions, 14,119 ThruPlays (30.4 %), hook 47.6 %, cost per
+ThruPlay AED 0.009, frequency 1.03–1.06.**
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN | 111.32 | 41,399 | 2.69 | 1.03 | 12,577 | 30.4 % | 19,890 | 48.0 % | 11,535 | 8,661 | 5,768 | 30,470 |
+| A-AR | 0.66 | 272 | 2.43 | 1.03 | 41 | 15.1 % | 41 | 15.1 % | 29 | 27 | 26 | 161 |
+| B | 2.11 | 801 | 2.63 | 1.04 | 240 | 30.0 % | 339 | 42.3 % | 249 | 178 | 137 | 532 |
+| C | 1.30 | 401 | 3.24 | 1.03 | 141 | 35.2 % | 127 | 31.7 % | 97 | 64 | 19 | 293 |
+| D | 0.61 | 256 | 2.38 | 1.08 | 74 | 28.9 % | 66 | 25.8 % | 53 | 44 | 38 | 167 |
+| E | 5.71 | 1,911 | 2.99 | 1.05 | 671 | 35.1 % | 615 | 32.2 % | 466 | 337 | 95 | 1,475 |
+| F | 4.29 | 1,456 | 2.95 | 1.02 | 375 | 25.8 % | 1,050 | 72.1 % | 694 | 457 | 361 | 1,139 |
+
+Benchmarks: all four PASS (ThruPlay rate 30.4 % ≥ 15; cost 0.009 ≤ 0.25; hook 47.6 % ≥ 30; frequency 1.06 ≤ 2.0).
+ThruPlay rate day by day 29.0 → 31.0 → 30.5 %, cost per ThruPlay flat → **no fatigue flag**, no rotation. A-EN now
+carries 89 % of impressions (CBO winner; the six others have < 2,000 impressions each). Brand share of Meta spend:
+**Sat 7.4 %** (54.00 of 728.28; below the 8–12 % band, flat-60 week by design), Sun to 12:44 8.9 %.
+Warm audiences: video 25 % / 50 % / 75 % **still "below 1,000"** (status 441, INACTIVE) after three days and 22k
+25 %-plays on the Page — most of the brand delivery is Instagram placement, and Page-video-view audiences count
+Facebook video views only, so the feed may be structurally thin; **proposal: if still below 1,000 at Tuesday's
+scorecard, create the Instagram equivalents (ig_business source, video engagement) or base the warm retargeting on the
+IG/FB engager audiences, which do grow**. IG engagers 31.4–36.9k (unchanged); FB engagers 26.5–31.2k (+0.2k).
+
+Recommended next action (proposal only, nothing executed): T1/T2 and W1/W2 untouched until the 16 Oct scorecard
+(both twins PASS-TRACK); union WATCH — if no new lead by Tuesday's scorecard, review the union creatives before
+any budget change; **C1: 0 website leads on AED 258 since Friday — owner decision requested: pause C1, or swap its
+landing page / creative; it stays at the AED 84 base until then**; brand unchanged.
+
+## 20. Owner's execution correction (Sun 11 Oct ≈ 13:00 Dubai) — routines read-only, native rules first, decisions
+
+Owner: "Do NOT rely on Claude/session-idle routines for critical scheduled budget changes … Keep scheduled routines
+READ-ONLY unless I am actively present to approve a write … Prioritize creating the Meta-native Automated Rules … Until
+the native rules exist, any time-sensitive budget change must be treated as MANUAL + OWNER-PRESENT execution."
+Decisions: T1/T2 untouched; W1/W2 kept as controls; C1 hold 84, no scaling, diagnosis + challenger plan, PAUSE proposal
+if still zero after another window; C3 hold 90, treat as creative; C2 per Monday plan; brand 60 flat week 1; brand
+audiences to be investigated, proposal only, nothing attached.
+
+Done 13:05–13:45 (no Meta write):
+
+* **Routines converted.** Mon 00:30 "Monday return" → read-only *prepare + PushNotification + wait for approval*
+  (trig_01Jag75D6rcCBXeZg2HDFCdL); Mon 12 Oct 09:30 exclusion batch → read-only readiness check
+  (trig_014NsPCkWqKtoh8PFrLtc1FN). Scorecard and verification routines were already read-only.
+* **Native rules path.** No Meta connector in this session can create Automated Rules except **Markifact**
+  (`meta_ads_create_automated_rule`, approval-gated) — and Markifact has **no Meta Ads connection yet**. Payloads for all
+  rules are ready in `meta/automated-rules-payloads-2026-10-11.json` (3 Monday one-offs ENABLED on creation, 18 weekly
+  rules DISABLED until their start dates); spec updated (`meta/automated-rules-spec-2026-10-09.md`, section "Execution
+  correction of 2026-10-11"): W-jn = New Sales + 5158 only, C1 and C3 parked flat, absolute AED deltas instead of
+  "set to".
+* **Monday 12 Oct transition — honest answer:** this session cannot guarantee it (a routine can be missed, as Sunday
+  proved). It cannot be silently missed only if (a) the owner connects Meta Ads in Markifact today and approves the three
+  one-off rules (Meta executes them at 00:00 and 12:00), or (b) the owner creates the same three rules in Ads Manager
+  today, or (c) the owner changes the budgets by hand at a time of their choosing. The read-only 00:30 routine prepares
+  the batch and pushes a notification either way; the 00:40 and 12:40 verifications report whichever state they find.
+* **Brand audiences** (`meta/brand-audience-proposal-2026-10-11.md`): delivery is 99.4 % Facebook, 0.6 % Instagram, so
+  the Instagram hypothesis is wrong; the three audiences carry a Page-wide rule with no `video.id` selection, which
+  Meta's product never builds (it requires selected videos, up to 200) — prime suspect. Proposal: three new audiences
+  with one rule each listing the 11 Page video IDs; optional IG-engaged 90 d tier; nothing created.
+* **C1 / C3** (`meta/c1-c3-creative-diagnosis-2026-10-11.md`): C1's leak is between click and landing-page view (CTR
+  5.0 %, LPV 20.6 % of clicks, 6.1 % of LPVs convert) — a page-speed / pixel / redirect problem, plus recycled organic
+  copy ("link in bio", WhatsApp instruction) on website ads; challenger plan + pause rule written. C3's 2× CPA is a
+  2× CPM from 10-mile pins and interest stacks (same creatives convert at AED 3.08 in 5158); creative challengers and
+  the targeting fix proposed. justnow.life could not be inspected (DNS blocked; not on the connected Webflow account).
+* Budgets at the end of this section: New Sales 150, 5158 150, C3 90, C1 84, C2 80, T1/T2 60/30, W1/W2 80, brand 60.
+  **Running total since 09:53 Thu: 81 successful production writes, 0 rollbacks** (no change).
+
+## 21. Owner's decisions of Sun 11 Oct ≈ 13:30 Dubai — audiences created, dates corrected, native-rule build doc, C1/C3 proposals
+
+Owner: C1/C3 out of the weekly rules (approved); brand audiences A1–A3 approved to create (old ones kept, nothing
+attached, read back, check population after 24–48 h); **do not connect Markifact** — Ads Manager native rules only, with
+exact target budgets and, for every rule, current expected budget / target / execution time / failsafe / read-back;
+**date correction: 11 Oct is Sunday, 12 Oct Monday, 13 Oct Tuesday** — audit and fix every "Monday 13 Oct" before any
+scheduled execution; C1: do not pause, verify the live /book-now destination (Webador, not Webflow) and return a real
+click→page-load vs pixel-undercount diagnosis, then prepare C1-1-f/g without launching; C3: one controlled challenger
+proposal (emirate-level Dubai/Sharjah/Ajman, no stacked interests/work positions/age cap, customer exclusion kept;
+Creator Reel 2 + the Arabic winner), do not execute; no Monday budget change through an idle session.
+
+Done 13:30–14:20 Dubai (3 Meta writes, all approved on their prompts):
+
+* **Audiences created on JN 9147325105346647** (ENGAGEMENT, Page 122098309970001876, 365 d, one rule each with the 11
+  video IDs, prefill on): **120252253817880312** `JN - Video 25% 365d (brand + winners, 11 videos)` 13:33:54;
+  **120252253818420312** `… 50% …` 13:33:58; **120252253818760312** `… 75% …` 13:34:04. Read-back: rules stored exactly
+  as sent (event + `video.id any [11 ids]`), delivery INACTIVE (not attached), size "below 1,000" (status 441 — same as
+  every unused new audience); population check from Mon 12 Oct in the scorecard, escalate if still below 1,000 on Tue
+  13 Oct. Old audiences 120252228024070312 / 120252228030340312 / 120252228030930312 untouched.
+* **Date audit.** Wrong weekday-date pairs fixed in `brand-expansion-layer` (Thu 15 Oct), `weekend-weighting-plan` (Thu 15
+  Oct), `automated-rules-spec` (Thursday 15 Oct, Wed 14 Oct, Mon 12 Oct exclusion check), this log (§8 M3 and §9 rows:
+  Monday 12 Oct; §11/§15: Thu 15 Oct; §20: Mon 12 Oct), and the exclusion batch file renamed
+  `meta/monday-exclusion-batch-2026-10-12.json` with `execute_at` 2026-10-12T09:30+04:00. Routines: exclusion readiness
+  check moved to **Mon 12 Oct 05:30Z (09:30 Dubai)**; scorecard and verification prompts now say Thu 15 Oct / Fri 16 Oct
+  and carry the new audience IDs; tasks #24/#25 renamed. Note: 16 Oct is a **Friday**, so "first rule cycle Thursday" means
+  **Thu 15 Oct**; the 7-day twin window still ends on the date 16 Oct.
+* **Native rules — Ads Manager build** (`meta/automated-rules-build-ads-manager-2026-10-11.md`): 19 rules (W-jn 9, R-C2 3
+  incl. a Monday re-anchor, BR 7), each landing on an **exact target** via "increase 100 % with max cap = target" /
+  "decrease 50 % with min cap = target" (idempotent, direction-safe, no chained deltas), with current expected budget,
+  target, execution time, failsafe and read-back per row. Build tonight first: rules 6, 7, 20b → Mon 12 Oct 00:00 New
+  Sales/5158 150 → 86, 12:00 → 72, C2 80 → 70 (day total 586 → 558 + brand 60). Manual fallback stated. The payload JSON
+  was regenerated as the API twin for reference only.
+* **C1 destination** (`meta/c1-c3-creative-diagnosis-2026-10-11.md` §1c): the site cannot be loaded from this environment
+  (justnow.life and googleapis.com blocked), so the pixel was read instead: active browser + server events; every event
+  of the week recorded at the root URL `https://www.justnow.life/` (no `/book-now` in 7 days); Lead/Contact/Schedule
+  arrive in even pairs (browser + server, no dedup); Fri 9 Oct ≈ 20 submissions vs 2 ad-attributed leads. **Verdict:
+  pixel/measurement undercount established (redirect or root-URL form loses `fbclid`, duplicated Leads); real load loss
+  possible, not proven** → three on-device checks for the owner (address bar on the ad link, Events Manager Test
+  events, Pixel Helper). C1-1-f/g specs written (§1e), not launched; C1 stays at 84, no pause.
+* **C3** (`meta/c3-challenger-proposal-2026-10-11.md`): one challenger campaign at AED 45 (C3 control 90 → 45 at
+  activation), ad set Dubai/Sharjah/Ajman regions 25–65, no interests/work positions/locales, customer exclusion kept,
+  ads from creatives 3592620130898135 (Creator Reel 2) and 1870108203957859 (Arabic stove-grease), 3-day and 7-day
+  thresholds, fold-into-5158 rule at CPA > 5.50. Not executed.
+* Budgets unchanged: New Sales 150, 5158 150, C3 90, C1 84, C2 80, T1/T2 60/30, W1/W2 80, brand 60.
+  **Running total since 09:53 Thu: 84 successful production writes (3 audience creations today), 0 rollbacks.**
+
+## 22. Mon 12 Oct 00:30 Dubai — read-only Monday check (no write), Sunday full day, 00:40 verification
+
+**No native rule fired at 00:00.** Budgets read at 00:4x: New Sales 150, 5158 150, C3 90, C1 84, C2 80, brand 60, T1 60,
+T2 30, W1/W2 80 — every `updated_time` is still Sun 12:44–12:45, so the Monday rules (build doc rows 6, 7, 20b) were not
+created or did not fire, and nothing was edited by hand. Per the owner's policy the session wrote nothing; one push
+notification was sent and the batch below waits for an explicit approval (or a manual edit in Ads Manager).
+
+Prepared Monday batch (owner chooses A or B; the session executes only on "APPROVE A/B" in a fresh message):
+
+| Campaign | Current | A = rule targets | B = return to baseline | % | CPA baseline | Sunday full-day CPA | Booking signal | Capacity |
+|---|---|---|---|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 150 | **86** (then 72 at 12:00, separate approval) | **90** | −43 % / −40 % | 3.41 | 4.81 on 38 (AED 182.59) | 2 website bookings created Sun | Mon 2/12 (both staffed), Tue 1/12 → available |
+| jn 5158 120249855229580073 | 150 | **86** (then 72) | **90** | −43 % / −40 % | 3.75 | 3.25 on 56 (AED 181.87) | same | same |
+| JN C2 120252107080200312 | 80 | **70** | **70** | −12.5 % | AED 56/lead ref. | 140.34 on 1 lead (AED 140.34) | — | — |
+| C1 84 · C3 90 · T1/T2 60/30 · W1/W2 80 · brand 60 | — | unchanged | unchanged | — | — | — | — | — |
+
+Sunday 11 Oct full day: New Sales AED 182.59 → 38 @ 4.81 (CPM 14.81, freq 1.10; the day ran at 180 until 12:44, so it
+spent 22 % above the 150 set then) · 5158 AED 181.87 → 56 @ 3.25 (CPM 17.87) · C3 AED 78.43 → 4 @ **19.61** (CPM 40.3) ·
+twins AED 105.72 → 26 @ 4.07 (T1 73.34 → 16 @ 4.58; T2 32.37 → 10 @ 3.24) · **C1 AED 105.82 → 0 website leads (Fri–Sun
+AED 304 → 0)** · C2 AED 140.34 → 1 lead @ 140.34 (the 12:44 cut to 80 did not stop Sunday's delivery) · W1/W2 AED 93.31 →
+29 @ 3.22 · brand AED 75.00 → 9,087 ThruPlays on 29,016 impressions (31.3 %; Meta's 25 % over-delivery on the flat 60).
+Sunday total ≈ AED 963 (jn 549 + JN 339 + brand 75) against the planned 784 — the cost of the morning at Saturday peaks
+plus Meta's over-delivery after mid-day cuts. Bookings created Sunday on the calendar: 2 (09:16 for Mon, 14:14 for Tue).
+
+**00:40 verification:** MISMATCH against the Monday plan on 3 of 6 — New Sales 150 (plan 86 if rule 6 exists), 5158 150
+(86), C2 80 (70); C3 90, C1 84 and brand 60 match; T1/T2 60/30 and W1/W2 80 untouched. Cause: native rules not created /
+not fired; budgets equal the last logged Sunday levels; no unlogged manual change. No write.
+
+## 23. Daily scorecard — day 3 (Mon 12 Oct; routine fired 09:22, read-only) + 09:30 exclusion-batch readiness (read-only)
+
+Window: Fri 9 Oct 00:00 → Mon 12 Oct 09:22 Dubai (cumulative since go-live). **No Meta write in this section.** Both routines
+fired on time; the first reads were issued at 09:31 after the two notifications were read together.
+
+| Item | Day | Numbers | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 3 of 7 | AED 185.32 → **56 @ 3.31**, CPM 18.56, freq 1.07, reach 9,321; ACTIVE, both ads ACTIVE (V02 37 conv on AED 122.76, V01 19 on 62.56). Since Sun 12:44: +AED 65.43 → +22 @ 2.97 | **PASS-TRACK** — volume line already crossed (56 ≥ 50) at 3.31 ≤ 4.70, freq < 1.6; verdict stays with the 16 Oct scorecard |
+| T2 ad set 120250144457040073 (AED 30) | 3 of 7 | AED 87.44 → **28 @ 3.12**, CPM 18.05, freq 1.22, reach 3,987; ACTIVE, ad ACTIVE. Since Sun 12:44: +27.17 → +6 @ 4.53 | **PASS-TRACK** — 28 ≥ 25 at 3.12 ≤ 4.60 |
+| W1 / W2 control (must stay ACTIVE) | — | ACTIVE / ACTIVE, campaign budget 80 unchanged (updated 7 Oct). W1 AED 246.48 → 68 @ 3.62 (CPM 12.47, freq 1.09, 1 pixel lead); W2 AED 2.99 → 2 | parity: twins 84 @ 3.25 on AED 272.76 vs controls 70 @ 3.56 on 249.47 → **−9 % CPA, +20 % volume on +9 % spend** (day 1 −20 %, day 2 −17 %; the gap narrowed because the controls beat the twins on Sunday, 29 @ 3.22 vs 26 @ 4.07) |
+| Union ad set 120252226500410312 | 3 of 10 | AED 327.43 → **4 website leads @ 81.86, 1 attributed purchase**, CPM 37.72, freq 1.40, reach 6,210; ACTIVE. Since Sun 12:44: +AED 92.48 → +1 lead | **WATCH** — one lead short of the pass line (≥ 5 at ≤ 100); fail (< 3 leads after AED 500) is no longer reachable; cost per lead 42.77 → 78.32 → 81.86, still under 100 |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (late attribution onto pre-pause impressions unchanged: C2-1 1 purchase, C2-3 1 lead) | OK |
+| C2 campaign budget 120252107080200312 | — | **80** (expected 70 from Mon 12 Oct by rule 20b or a manual edit). Mon to 09:22 AED 45.40 → 0 leads, CPM 36.55 (57 % of the day's budget gone by 09:22) | **MISMATCH** — no rule, no manual edit; owner-present item |
+| C1 120252107068880312 (flat 84) | — | 84 ✓. Mon to 09:22 AED 26.71 → 0 leads (893 impressions, CPM 29.91); since Fri ≈ AED 331 → **0 pixel Leads**. Meanwhile the calendar received **5 website-form bookings between Sun 09:16 and Mon 08:53** (Ibrahim → Mon, Maria → Tue, Marwan → Sun evening then cancelled, Yasmin → Tue, Jhonalyn → Tue) | budget OK; 0 attributed Leads while the form keeps converting → consistent with the §21 undercount verdict; the owner's three on-device checks remain decisive; no pause (owner) |
+| C3 120250020646250073 (flat 90) | — | 90 ✓. Mon to 09:22 AED 11.00 → 0 conversations, CPM 40.15; Sun 78.43 → 4 @ 19.61 | budget OK; performance FAIL-TRACK vs 5158 → challenger proposal (`meta/c3-challenger-proposal-2026-10-11.md`) awaits the owner |
+| New Sales 120249855697050073 / 5158 120249855229580073 budgets | — | **150 / 150** (plan 86/86 at 00:00, 72 at 12:00). Mon to 09:22 New Sales AED 18.60 → 4 @ 4.65, 5158 AED 34.09 → 16 @ 2.13 | **MISMATCH** — see §22; approval A/B or a manual edit outstanding; the 12:00 step has no executor either |
+| Reactivation 120250144448010073 | — | PAUSED, 0 spend | OK |
+| Capacity (calendar) | — | **Sun 5 jobs done + 1 cancelled** (Al Mizhar kitchen, booked 15:41 for the same evening) · **Mon 2** (both confirmed and staffed) · Tue 3, all UNCONFIRMED | available, no CAPACITY FULL |
+| Bookings created | — | Sun **3** (09:16 → Mon, 14:14 → Tue, 15:41 → Sun, cancelled) · Mon to 09:22 **2** (08:40, 08:53, both → Tue). Sunday conversations 153 (New Sales 38 + 5158 56 + twins 26 + W1/W2 29 + C3 4) → booking-rate proxy **2.0 %** (Fri 5.4, Sat 2.5) | third day down; all five new bookings came through the website form, none is attributable to a WhatsApp campaign |
+
+### 23a. Brand layer (justnow22 23860638577100791, AED 60 flat) — day 4
+
+Campaign by day: Fri 9 Oct AED 36.44 → 12,529 impressions, 3,653 ThruPlays (29.2 %) · Sat 54.03 → 21,204, 6,569 (31.0 %) ·
+**Sun 75.28 → 29,179, 9,110 ThruPlays (31.2 %), 13,929 25 %-plays (47.7 %), CPM 2.58, freq 1.06** · Mon to 09:22 20.11 →
+9,582, 2,720 (28.4 %), CPM 2.10. Cumulative since launch: **AED 185.86 → 72,494 impressions, 22,052 ThruPlays (30.4 %),
+hook 47.4 %, cost per ThruPlay AED 0.0084, frequency 1.04.**
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN | 164.82 | 64,801 | 2.54 | 1.04 | 19,634 | 30.3 % | 31,275 | 48.3 % | 17,977 | 13,457 | 8,929 | 47,523 |
+| A-AR | 0.66 | 276 | 2.39 | 1.03 | 42 | 15.2 % | 42 | 15.2 % | 30 | 28 | 27 | 165 |
+| B | 2.32 | 885 | 2.62 | 1.04 | 272 | 30.7 % | 388 | 43.8 % | 282 | 199 | 157 | 595 |
+| C | 1.80 | 615 | 2.93 | 1.03 | 200 | 32.5 % | 180 | 29.3 % | 141 | 98 | 31 | 456 |
+| D | 0.61 | 262 | 2.33 | 1.07 | 76 | 29.0 % | 68 | 26.0 % | 55 | 45 | 39 | 171 |
+| E | 11.21 | 4,134 | 2.71 | 1.02 | 1,432 | 34.6 % | 1,307 | 31.6 % | 956 | 684 | 201 | 3,143 |
+| F | 4.44 | 1,521 | 2.92 | 1.02 | 397 | 26.1 % | 1,096 | 72.1 % | 730 | 483 | 383 | 1,187 |
+
+Benchmarks: all four PASS (ThruPlay rate 30.4 % ≥ 15; cost 0.0084 ≤ 0.25; hook 47.4 % ≥ 30; frequency 1.04 ≤ 2.0).
+ThruPlay rate by day 29.2 → 31.0 → 31.2 → 28.4 (partial day), cost per ThruPlay 0.010 → 0.008 → 0.008 → 0.007 → **no
+fatigue flag**, no rotation. A-EN carries 89.4 % of impressions (CBO winner). Brand share of Meta spend: **Sun 7.8 %**
+(75.28 of 963.36; below the 8–12 % band, flat-60 week by design — Meta delivered 125 % of the 60 budget), Mon to 09:22
+10.8 %. Flat 60 until the owner's BR rules start Thu 15 Oct.
+
+Warm audiences: NEW A1/A2/A3 (120252253817880312 / 120252253818420312 / 120252253818760312, created Sun 13:33 Dubai)
+**still "below 1,000"** (441, INACTIVE) ≈ 20 h after creation — inside the 24–48 h estimate lag for unattached
+audiences; re-check at Tuesday's 09:22 scorecard and escalate (Meta Business Support case) if still below 1,000 then. Old
+Page-wide trio unchanged (kept, not attached). IG engagers **31.5–37.1k** (+0.1–0.2k vs Sunday); FB engagers
+**26.6–31.3k** (+0.1k).
+
+Connector-required trend/benchmark reads (JN account, read-only): W1 CTR +14 % period over period, cost per result −5 %
+(improving); W2 noise (143 impressions); both W ad sets 52–55 % above the peer CTR benchmark for messaging prospecting.
+C1 ads: all three live ads trend BAD on CTR (−14 % to −46 %) and cost per link click (+63 % to +215 %) → the creative
+diagnosis of §21 stands.
+
+### 23b. Monday customer-exclusion batch — readiness (09:30 routine, read-only; nothing executed)
+
+| Check | Result |
+|---|---|
+| Exclusion audience 120249973174230073 "jn - Customers Jan 2025-Sep 2026 (booking calendar, 889)" | **ACTIVE, operation 200 Normal**, CUSTOM / USER_PROVIDED_ONLY, size "below 1,000" (889 phones uploaded), last updated 8 Oct 09:13 Dubai → PASS |
+| Targeting diff, 9 ad sets vs `baseline_targeting_raw` (snapshot 9 Oct 11:00) | **9/9 unchanged** — every `updated_time` is 7 Oct 20:11–20:12 Dubai (before the snapshot), `last_sig_edit_ts` unchanged, and the live age range / genders / custom locations / Abu Dhabi exclusion / locales / flexible_spec / advantage_audience match the baseline field for field; no ad set carries an excluded custom audience yet → none skipped |
+| Statuses | all 9 ACTIVE under New Sales (150) and 5158 (150) |
+| Capacity guard | Sun 5 done, Mon 2 (< 11) → PASS |
+| Scorecard decision pending? | none from the scorecards (T1/T2 PASS-TRACK, union WATCH, nothing proposed). **Open owner item: the Monday budget step (150 → 86 or 90) is not executed** — not a blocker for the exclusion, but if the owner is present for one write session, do the budgets first and then the three passes, so both significant edits on the same campaigns land on one day and the learning resets are not spread over two |
+
+Three-pass batch, unchanged from `meta/monday-exclusion-batch-2026-10-12.json` — per ad set: `ads_update_entity`
+entity_type ad_set, targeting = `monday_payload_targeting` (connector force-pauses) → `ads_activate_entity` → read back
+`excluded_custom_audiences` ∋ 120249973174230073, status ACTIVE, learning_stage_info, delivery_sub_status; read-back between
+passes; a declined prompt stops the batch; rollback = baseline targeting without the exclusion, then re-activate.
+
+| Pass | Ad set | Last 7 d (Mon 5 – Sun 11 Oct) | Payload summary (all: age 25–65, excl. Abu Dhabi region 8, Advantage audience on, **+ excl. customers 120249973174230073**) |
+|---|---|---|---|
+| 1 | D 120249855379980073 | AED 33.85 → 12 @ 2.82 | 4 Dubai inner-belt pins (4–5 km) |
+| 1 | C 120249855379550073 | 37.07 → 6 @ 6.18 | 6 Dubai premium pins (3–4 km) |
+| 1 | TEST E 120249947966990073 | 99.80 → 20 @ 4.99 | the same 6 pins, women only (genders [2]) |
+| 2 | Copy 2 120249855757070073 | 47.99 → 18 @ 2.67 | Dubai + Sharjah 10-mile pins, 6 locales, interests Jewelry / Online shopping + 4 teacher work positions |
+| 2 | B Arabic 120249855378300073 | 72.22 → 27 @ 2.67 | Sharjah 12 km + Ajman 10 km pins, locale 28 (Arabic) |
+| 2 | Copy B 120249855813520073 | 370.10 → 89 @ 4.16 | Sharjah 10-mile pin, 6 locales, home-improvement interests + Recently moved |
+| 3 | New Sales Ad Set 120249855697040073 | 136.81 → 30 @ 4.56 | Dubai 10-mile pin, 6 locales, luxury / property interests + 3 value-goods behaviours |
+| 3 | Copy A 120249855745520073 | 379.31 → 109 @ 3.48 | Sharjah 10-mile pin, 6 locales, parenting / shopping interests + Engaged Shoppers + Parents |
+| 3 | A Sharjah 120249855372950073 | **700.31 → 199 @ 3.52** | Sharjah 12 km pin, no interests (largest ad set, last) |
+
+Execution only on the owner's explicit approval in a fresh message while present; nothing was written.
+
+**Recommended next action (proposal only, nothing executed):** T1/T2 and W1/W2 untouched to 16 Oct (both twins
+PASS-TRACK with the volume lines already crossed; the parity gap narrowed to −9 % on Sunday's control strength) · union
+WATCH, no budget change, one more lead ≤ AED 100 passes it · **owner-present writes outstanding: New Sales/5158 150 → 86 or
+90 (and 72 at 12:00 under option A), C2 80 → 70, then the exclusion batch passes 1–3** · C1 stays at 84 with 0 attributed
+leads; the five website-form bookings since Sunday make the measurement check (three on-device tests) the decisive step
+before any pause · C3 challenger decision (45/45 split or 45 on top) · brand flat 60, no fatigue, rules from Thu 15 Oct ·
+audiences A1–A3 re-checked Tue 13 Oct. Running total since 09:53 Thu 8 Oct: **84 successful production writes, 0
+rollbacks** (none today).
+
+## 24. Tue 13 Oct 00:40 Dubai — read-only budget verification; owner's manual Monday edit found; Monday full day
+
+**Fault record first:** the Mon 12 Oct 12:40 verification routine fired (12:41 Dubai) but the session issued no reads and
+posted nothing — the second missed read-only run after Sun 00:40/09:22 (§18). No budget was affected (routines are
+read-only by policy), but the 12:00 "72" step had no verification. This 00:40 run covers the gap: every `updated_time`
+below says whether anything moved between 09:22 Mon and 00:40 Tue.
+
+**Verification (read 00:41–00:44 Dubai, no write):**
+
+| Campaign | Expected (plan if rules existed) | Actual | `updated_time` | Verdict / cause |
+|---|---|---|---|---|
+| jn New Sales 120249855697050073 | 86 (Mon 00:00) → 72 (Mon 12:00) → 81 (Tue 00:00, row 8) | **80** | **Mon 12 Oct 23:32 Dubai** | **Manual edit by the owner** (jn activity log: "Campaign budget updated", actor Mohammed Bayoumi, Ads Manager App for Android, 150 → 80 "Per day"). Not a session write, not a rule (80 is no rule target and 23:32 is no slot). No Tue 00:00 rule fired either (a row-8 rule would have moved it to 81 after midnight). **Recorded level is now 80.** |
+| jn 5158 120249855229580073 | same | **80** | **Mon 23:33** | same manual edit, 150 → 80; recorded level 80 |
+| jn C3 120250020646250073 | 90 flat | 90 | 7 Oct | ✓ |
+| JN C1 120252107068880312 | 84 flat | 84 | Sun 12:45 | ✓ |
+| JN C2 120252107080200312 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH** — rule not created and no manual edit (JN activity log since Mon 00:00: only Meta's billing event); owner-present item, 80 → 70 |
+| justnow22 brand 23860638577100791 | 60 flat | 60 | 9 Oct | ✓ |
+| T1 120250144454520073 / T2 120250144457040073 | 60 / 30 | 60 / 30 | 9 Oct 10:12 | untouched ✓ |
+| JN W1/W2 campaign 120251948470120312 | 80 | 80 | 7 Oct | untouched ✓ |
+
+The owner's 23:32 edit lands between the plan's Monday levels (72 at 12:00) and Tuesday's (81) and was made one day late
+by hand — exactly the "MANUAL + OWNER-PRESENT" path of the 11 Oct policy, so it is logged, not corrected. The prepared
+batch of §22 (A/B) is therefore **superseded for New Sales/5158**; only **C2 80 → 70** remains outstanding from it. If the
+native rules go live before Thu 15 Oct, row 8 (Tue 00:00 → 81) and row 9 (Wed 00:00 → 72) would land from 80 without any
+drift because every rule carries an exact target.
+
+**Monday 12 Oct full day (from the 00:4x reads):** New Sales AED 166.44 → 54 @ 3.08 (CPM 15.85, freq 1.05; ran at 150 until
+23:32) · 5158 AED 179.91 → 51 @ 3.53 (CPM 16.80) · C3 AED 82.67 → 7 @ **11.81** (CPM 49.8) · twins AED 99.64 → 35 @ 2.85
+(T1 62.24 → 23 @ 2.71, CPM 17.54; T2 37.40 → 12 @ 3.12, CPM 15.83) · **C1 AED 88.85 → 0 website leads** (2,880 impressions,
+CPM 30.85; Fri–Mon ≈ AED 393 → 0) · C2 AED 106.62 → 1 lead @ 106.62 (CPM 37.15, freq 1.23; 133 % of the 80 budget) · W1/W2
+AED 93.37 → 32 @ 2.92 (CPM 10.91) · brand AED 51.62 → 23,729 impressions, 7,054 ThruPlays (29.7 %), 11,056 25 %-plays
+(46.6 %), CPM 2.18. **Monday total ≈ AED 869** (jn 528.66 + JN 288.84 + brand 51.62) against the plan's ≈ 646 — the cost of
+running 150/150 all day; brand share 5.9 %. Conversations Monday: 179 (New Sales 54, 5158 51, twins 35, W1/W2 32, C3 7).
+Parity Monday: twins 35 @ 2.85 on 99.64 vs controls 32 @ 2.92 on 93.37 → −2 % CPA, +9 % volume on +7 % spend (closest day
+so far). Cumulative since go-live (Fri–Mon): twins 119 @ 3.12 on AED 372.40 vs controls 102 @ 3.36 on 342.84 → **−7 % CPA,
++17 % volume on +9 % spend**.
+
+Running total since 09:53 Thu 8 Oct: **84 successful production writes, 0 rollbacks** (none in this section). Next
+read-only runs: 09:22 Tue scorecard (day 4 of 7; A1–A3 population check with the 48 h mark at 13:33), 12:40 verification.
+
+## 25. Daily scorecard — day 4 (Tue 13 Oct; routine fired 09:22, read-only; reads 09:25–09:40 Dubai)
+
+Window: Fri 9 Oct 00:00 → Tue 13 Oct 09:22 Dubai (cumulative since go-live). **No Meta write in this section.**
+
+| Item | Day | Numbers | Status |
+|---|---|---|---|
+| T1 ad set 120250144454520073 (AED 60) | 4 of 7 | AED 248.22 → **81 @ 3.06**, CPM 18.11, freq 1.10, reach 12,447; ACTIVE, both ads ACTIVE (V02 48 conv on AED 148.42, V01 33 on 99.80). Last 24 h: +AED 62.90 → +25 @ 2.52 | **PASS-TRACK** — 81 ≥ 50 at 3.06 ≤ 4.70, freq < 1.6; verdict with the 16 Oct scorecard |
+| T2 ad set 120250144457040073 (AED 30) | 4 of 7 | AED 125.24 → **41 @ 3.05**, CPM 17.08, freq 1.21, reach 6,073; ACTIVE, ad ACTIVE. Last 24 h: +37.80 → +13 @ 2.91 | **PASS-TRACK** — 41 ≥ 25 at 3.05 ≤ 4.60 |
+| W1 / W2 control (must stay ACTIVE) | — | ACTIVE / ACTIVE, campaign 80 unchanged (7 Oct). W1 AED 340.16 → 97 @ 3.51 (CPM 11.99, freq 1.15, 2 pixel leads); W2 AED 3.69 → 2 | parity: twins **122 @ 3.06** on AED 373.46 vs controls **99 @ 3.47** on 343.85 → **−12 % CPA, +23 % volume on +9 % spend** (day 1 −20, day 2 −17, day 3 −9, day 4 −12) |
+| Union ad set 120252226500410312 | 4 of 10 | AED 408.76 → **5 website leads @ 81.75, 1 attributed purchase**, CPM 37.98, freq 1.45, reach 7,421; ACTIVE. Last 24 h: +AED 81.33 → +1 lead | **PASS line met** (≥ 5 leads at ≤ AED 100): PASS-TRACK to the window end 19 Oct; cost per lead 42.77 → 78.32 → 81.86 → 81.75 (stable); frequency 1.45 is the number to watch (guard 1.6) |
+| C2-1 / C2-2 / C2-3 | — | PAUSED / PAUSED / PAUSED (late attribution unchanged) | OK |
+| C2 campaign budget 120252107080200312 | — | **80** (plan 70 since Mon). Tue to 09:22 AED 19.42 → 0 leads, CPM 43.25 | **MISMATCH** (no rule, no manual edit) — owner-present item, 80 → 70 |
+| C1 120252107068880312 (flat 84) | — | 84 ✓. Tue to 09:22 AED 18.53 → 0 leads (678 impressions, CPM 27.33); **Fri–Tue ≈ AED 412 → 0 pixel Leads**, while the calendar received 6 website-form bookings in the same days | budget OK; measurement verdict unchanged (§21); the owner's three on-device checks decide pause vs fix; no pause (owner) |
+| C3 120250020646250073 (flat 90) | — | 90 ✓. Mon full day AED 82.67 → 7 @ **11.81** (CPM 49.8); Tue to 09:22 AED 8.23 → 0 (CPM 45.72). Fri–Mon ≈ AED 300 → 19 @ ≈ 15.8 | budget OK; **FAIL-TRACK** vs 5158 (3.53) — challenger proposal awaits the owner |
+| New Sales 120249855697050073 / 5158 120249855229580073 | — | **80 / 80** (owner's manual edit Mon 23:32–23:33, §24); plan for Tue 00:00 was 81 (row 8), so the level is within AED 1 of plan. Tue to 09:22: New Sales AED 13.50 → 4 @ 3.38; 5158 AED 18.05 → 7 @ 2.58 | OK (no rule fired; level equals the plan by hand) |
+| Reactivation 120250144448010073 | — | PAUSED, 0 spend | OK |
+| Capacity (calendar) | — | **Mon 2 jobs done** (Reem 08:15, Noura 16:00) — the Monday 1 BHK Business Bay booking (Ibrahim, AED 659) **disappeared from the calendar** (cancelled or moved) · **Tue 5** (Yasmin Shj 08:00, Maria 12:00, Mirna 12:00, Kifah Al Qusais 12:00, Jhonalyn 17:30), all confirmed and staffed vs ceiling 12 / hold 11 | available, no CAPACITY FULL |
+| Bookings created | — | Mon **3** (Yasmin 08:40 and Jhonalyn 08:53 → Tue, Noura 12:43 → Mon evening; all website form) · Tue to 09:22 **2** (Kifah 01:08, Mirna 01:33 — both WhatsApp-template entries, **the first clearly WhatsApp-sourced bookings since Friday**). Monday conversations 179 → booking-rate proxy **1.7 %** (Fri 5.4, Sat 2.5, Sun 2.0) | proxy falling four days running, but Tuesday's two WhatsApp bookings arrived after the Monday conversations — read again Wed |
+
+### 25a. Brand layer (justnow22 23860638577100791, AED 60 flat) — day 5
+
+Campaign by day: Fri AED 36.44 → 3,653 ThruPlays (29.2 %) · Sat 54.03 → 6,569 (31.0 %) · Sun 75.28 → 9,110 (31.2 %) ·
+**Mon 51.73 → 23,807 impressions, 7,064 ThruPlays (29.7 %), 11,075 25 %-plays (46.5 %), CPM 2.17, freq 1.06** · Tue to
+09:22 21.48 → 10,580, 2,812 (26.6 %), 4,521 (42.7 %), CPM 2.03. Cumulative since launch: **AED 239.29 → 97,410
+impressions, 29,180 ThruPlays (30.0 %), hook 46.8 %, cost per ThruPlay AED 0.0082, frequency 1.08.**
+
+| Ad | Spend | Impr. | CPM | Freq | ThruPlays | TP rate | 25 % | Hook | 50 % | 75 % | 100 % | Post eng. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-EN | 213.47 | 87,557 | 2.44 | 1.08 | 26,063 | 29.8 % | 41,841 | 47.8 % | 23,831 | 17,818 | 11,821 | 63,836 |
+| A-AR | 0.67 | 282 | 2.38 | 1.03 | 44 | 15.6 % | 44 | 15.6 % | 31 | 29 | 28 | 168 |
+| B | 2.71 | 1,074 | 2.52 | 1.04 | 330 | 30.7 % | 471 | 43.9 % | 343 | 244 | 193 | 704 |
+| C | 2.03 | 730 | 2.78 | 1.02 | 242 | 33.2 % | 217 | 29.7 % | 171 | 119 | 37 | 544 |
+| D | 0.61 | 262 | 2.33 | 1.07 | 76 | 29.0 % | 68 | 26.0 % | 55 | 45 | 39 | 171 |
+| E | 15.23 | 5,924 | 2.57 | 1.05 | 2,005 | 33.8 % | 1,829 | 30.9 % | 1,338 | 960 | 296 | 4,449 |
+| F | 4.57 | 1,581 | 2.89 | 1.03 | 420 | 26.6 % | 1,138 | 72.0 % | 759 | 509 | 405 | 1,231 |
+
+Benchmarks: all four PASS (ThruPlay rate 30.0 % ≥ 15; cost 0.0082 ≤ 0.25; hook 46.8 % ≥ 30; frequency 1.08 ≤ 2.0).
+ThruPlay rate by day 29.2 → 31.0 → 31.2 → 29.7 → 26.6 (Tuesday morning only); the fatigue flag needs a fall of more than
+20 % below the first-week level (≈ 24 %) or cost per ThruPlay +30 % (it is falling, 0.0076 today) → **no flag**; Tuesday's
+full day is the next read. A-EN carries 89.9 % of impressions. Brand share of Meta spend: **Mon 6.0 %** (51.73 of ≈ 869;
+below the 8–12 % band because the acquisition campaigns ran at 150/150 all day), flat 60 until Thu 15 Oct.
+
+**Warm audiences — ESCALATION FLAG.** A1/A2/A3 (120252253817880312 / 120252253818420312 / 120252253818760312) are
+**still "below 1,000"** (441, INACTIVE) ≈ 44 h after creation; the old Page-wide trio (created Fri 9 Oct 11:45) is also
+still below 1,000 after 4 days, while the Page's videos have accumulated **45,608 25 %-plays and 29,180 ThruPlays** from
+the brand layer alone in the same window. The rule form is now Meta's own (explicit video list), so the remaining
+explanations are (a) Meta does not refresh size estimates for audiences that no ad set uses, or (b) the population
+pipeline for this Page's video events is not filling. Proposal, owner-side and read-only, before a support case: in Ads
+Manager open the JN account → create an ad set **as a draft, do not publish** → include audience A1 → read the "Audience
+definition / estimated audience size" gauge. If it shows a real number, (a) holds and the audiences are usable (attach
+when the owner approves). If it still shows "below 1,000", open a **Meta Business Support case** quoting: Page
+122098309970001876, audience IDs above, rule (video_view_25_percent, video.id any [11 ids]), created 11 Oct 13:33 Dubai,
+evidence 45k 25 %-plays since 9 Oct, "estimated size stays below 1,000 after 48 h". IG engagers **31.6–37.2k** (+0.1k vs
+Mon); FB engagers **26.9–31.6k** (+0.3k) — the fallback warm layer keeps growing.
+
+Connector-required trend/benchmark reads (JN, read-only): W1 CTR +14 % period over period, cost per result −5 %
+(improving), 54 % above the peer CTR benchmark; W2 noise (180 impressions). Union ads (retargeting cohort, 4-day basis):
+CTR C2-2-d −3 %, before-after video −15 %, stove-grease AR +8 %, cost per result flat. C1 ads were not returned in
+today's trend read.
+
+**Recommended next action (proposal only, nothing executed):** T1/T2 and W1/W2 untouched to 16 Oct (both twins
+PASS-TRACK; parity back to −12 %) · union has met its pass line on day 4 — no budget change, let the window run to 19 Oct
+and watch frequency (1.45 → guard 1.6) · **owner-present writes outstanding: C2 80 → 70, then the exclusion batch passes
+1–3** (readiness unchanged from §23b; the two campaigns now sit at 80) · C1 ≈ AED 412 → 0 attributed leads: the three
+on-device checks remain the decisive step; the owner may also decide pause vs fix without them, since the website form
+keeps converting · C3 challenger decision (45/45 split or 45 on top) · brand flat 60, no fatigue, rules from Thu 15 Oct ·
+**A1–A3: draft-ad-set estimate check today, Meta support case if still below 1,000.** Running total since 09:53 Thu 8 Oct:
+**84 successful production writes, 0 rollbacks** (none today).
+
+### 25b. Tue 13 Oct 12:40 Dubai — read-only budget verification (reads 12:41–12:43)
+
+| Campaign | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level of Mon 23:32; rule plan for Tue = 81, no 12:00 slot on Tuesday) | 80 / 80 | Mon 23:32 / 23:33 | ✓ |
+| jn C3 | 90 | 90 | 7 Oct | ✓ |
+| JN C1 | 84 | 84 | Sun 12:45 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH** — rule not created, no manual edit (JN activity log since Tue 00:40: Meta billing only); owner-present item |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+
+Tue to 12:40: New Sales AED 27.33 → 6 @ 4.56 · 5158 28.09 → 9 @ 3.12 · C3 12.85 → 0 (CPM 47.77) · C1 29.10 → 0 leads ·
+C2 26.12 → 0 leads (CPM 43.75) · W1/W2 21.43 → 10 @ 2.14 · T1 21.20 → 10 @ 2.12 · T2 11.58 → 3 @ 3.86 · brand 25.56 →
+3,334 ThruPlays on 12,676 impressions (26.3 %). No write.
+
+## 26. Tue 13 Oct ≈ 13:00 Dubai — owner asks why bookings do not improve the ads; diagnosis (read-only)
+
+Owner: "where is the optimization of the current booking … why there is no enhancement on the current ads … we can switch
+it off and create new ads to read properly from the meta optimization." Reads 13:05–13:25: pixel 614743294720303 event
+stats 6–13 Oct (all / server / browser), dataset quality, Make scenario 6529499 blueprint + executions + ledger datastore
+165821 + its alert calendar, respond.io lifecycle stages, workflows and Customer/Qualified contacts.
+
+Findings: every live ad set optimises for a proxy (WhatsApp conversation started; browser Lead) — no ad set uses a booking
+event. The completed-job Purchase flow runs nightly but sent **6 Purchases in 5 days** (all on 11 Oct, AED 2,377); 31
+completed jobs aged out past Meta's 7-day limit without a DONE line; 23 still pending. respond.io's "Send CAPI for
+Converted Leads" workflow depends on the Customer lifecycle stage, set on 17 contacts since 20 Sep and on none created
+after 6 Oct. Website Lead events are duplicated (browser clusters + a server source without shared event_id) and
+undercounted (C1 ≈ AED 412 since Fri → 0 attributed; 6 form bookings in the calendar). Lead EMQ 7.8; no Purchase EMQ row.
+
+Plan written to `meta/booking-signal-plan-2026-10-13.md`, revised at ≈ 13:45 after the owner added "also through website
+conversion as well" and after reading the Make workspace: the hourly **"Confirmed booking → Meta Purchase" scenario
+6410541 (≈ 30 events/week, both channels) has been INACTIVE since the 6–7 Oct cutover** — that is when the booking signal
+died; the website form and the agent's WhatsApp booking message both already land in Make 6369438, which creates the
+calendar entry. Phase 1 = three events for both channels: Lead = booking request (one CAPI module in 6369438, action_source
+website/chat, event_id = calendar id), Schedule = booking confirmed (clone of 6410541 with a new ledger; 158380 stays the
+legacy list for 6529499), Purchase = completed job with the auto-complete rule; respond.io lifecycle set by Make so the
+published CAPI workflow sends the WhatsApp click id. Phase 2 = one booking-optimised ad set per channel (jn BOOK-WA, Sales
+→ WhatsApp conversions = Schedule, AED 80 from New Sales/5158; JN BOOK-WEB on Lead = booking request, AED 42 from C1),
+7-day test on cost per confirmed booking, controls kept. Three one-word decisions requested. **No Meta write; no Make or
+respond.io write.**
+
+## 27. Wed 14 Oct 00:40 Dubai — read-only budget verification; Tuesday full day
+
+| Campaign | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level; rule plan for Wed 00:00 = 72, row 9) | 80 / 80 | Mon 23:32 / 23:33 | ✓ vs recorded level; no Wed rule fired (none created) |
+| jn C3 | 90 | 90 | 7 Oct | ✓ |
+| JN C1 | 84 | 84 | Sun 12:45 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH** (3rd day) — rule not created, no manual edit (JN activity log since Tue 12:40: Meta billing only); owner-present item |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+
+**Tuesday 13 Oct full day:** New Sales AED 81.75 → 19 @ 4.30 (CPM 19.29) · 5158 83.50 → 30 @ 2.78 (CPM 19.09) · **C3 55.44 →
+0 conversations** (CPM 54.19; the first zero day) · twins 84.62 → 30 @ 2.82 (T1 56.37 → 20 @ 2.82; T2 28.25 → 10 @ 2.83) ·
+**C1 78.95 → 1 attributed lead @ 78.95** (first since Thu 8 Oct; Fri–Tue ≈ AED 471 → 1) · C2 77.99 → 1 lead @ 77.99 (CPM
+41.26) · W1/W2 76.05 → 21 @ 3.62 (+2 pixel leads) · brand 55.58 → 27,026 impressions, 7,380 ThruPlays (27.3 %), 11,729
+25 %-plays (43.4 %), CPM 2.06. **Tuesday total ≈ AED 594** (jn 305.31 + JN 232.99 + brand 55.58) — the first day at the
+owner's 80/80 level; brand share 9.4 %. Conversations 100 (New Sales 19, 5158 30, twins 30, W1/W2 21, C3 0).
+Cumulative Fri–Tue: twins 149 @ 3.06 on AED 457.08 vs controls 120 @ 3.49 on 418.89 → **−12 % CPA, +24 % volume on +9 %
+spend**. No write.
+
+## 28. Wed 14 Oct 05:40–06:40 Dubai — owner: "fix the optimization of the booking page now" + "optimize all the active ads … pause … take an action" (owner-present; every write approved on its prompt)
+
+Owner, ≈ 05:40: "So from now on, the one instruction and very serious instruction: fix the optimization of the booking page
+now." Owner, ≈ 06:15: "so for now optimize all the active ads and the ads which is spending a lot of money without getting a
+good result you can pause it and take an action against it." Both executed below; Phase 1 + Phase 2 (website) of
+`meta/booking-signal-plan-2026-10-13.md` are therefore live, three weeks earlier than the plan's "after 7 clean days".
+
+### 28a. Booking signal — Make scenario 6624989 (team 1579313), live from 06:08 Dubai
+
+| Time (Dubai) | Write | Result / read-back |
+|---|---|---|
+| 05:46:33 | `scenarios_create` **6624989** "Booking -> Meta Lead (request) + Schedule (confirmed) - hourly, both channels" | INACTIVE; hourly; trigger Google Calendar watch-by-update (conn 11258189) → normaliser copied from 6410541 → name/phone/price/service/city → `ExistRecord` 158380 key `{id}:lead` → `ExistRecord` key `{id}:booked` → router: **Lead** (event_id `{id}:lead`, `action_source` website/chat from the description, ph/fn/ln/ct/country/external_id, value = price AED, content_category `booking_request`) + AddRecord; **Schedule** when UNCONFIRMED is gone from the title (event_id `{id}:booked`, content_category `booking_confirmed`) + AddRecord. Datastore quota is exhausted ("Not enough space in storage"), so the ledger lives in 158380 with suffixed keys — no collision with 6529499's exact-key legacy check. Data structure 535737 was created for a new store and is unused. |
+| 06:08:33 | `scenarios_activate` | first auto run 06:08:35: **201 ops, 0 events sent** — the watch pointer started at the oldest history (100 oldest-updated events, all dropped by the date filter after two paid SetVariables each). Pixel check 06:34: server events 01:00–06:34 = the known second source only (1 Lead + 1 Schedule + 1 Contact at 01:00). |
+| 06:34:50 | `scenarios_update` blueprint | date/cancel filter moved to module 2 (old history dropped at zero cost), trigger limit 100 → **2500**; everything else unchanged. |
+| 06:35:24 | `scenarios_run` | 1 op, 10.7 s, 2.46 MB: 2,500 old events consumed, nothing sent. |
+| 06:36:50 | `scenarios_run` | **307 ops, 15.3 s, 1.97 MB: the pointer reached the recent bookings** — Lead (and Schedule for confirmed ones) sent for every non-cancelled booking with a phone number starting after Mon 6 Oct; ledger rows `{id}:lead` / `{id}:booked` written (status SENT, `received` = Meta's count). Next hourly run 07:08 Dubai, then every hour. |
+
+Pixel confirmation of the 06:36 batch: see the 12:40 verification (Events Manager stats lag). Website dedup (browser Lead
+with `eventID` = calendar id) and the second server Lead source are still owner-side — until then the website Lead count
+is inflated by the browser clusters, which affects reporting but not the new ad set's optimisation (it learns from every
+Lead; the server-sent ones are the clean subset).
+
+### 28b. BOOK-WEB — the new website booking campaign in JN 9147325105346647 (plan §5, website row)
+
+| Time | Object | Write / state |
+|---|---|---|
+| 05:43:41 | campaign **120252289064660312** `JN \| BOOK-WEB \| Leads \| website booking \| Oct 2026` | created PAUSED (OUTCOME_LEADS, auction, ABO) → **owner activated 05:44:03** from the connector card |
+| 05:44:16 | ad set **120252289067460312** `BOOK-WEB-1 \| broad 25-65 \| UAE excl. Abu Dhabi \| Lead = booking request` | created PAUSED: **AED 42/day**, OFFSITE_CONVERSIONS, pixel 614743294720303 event **LEAD**, website, 7-day click / 1-day view, UAE excl. Abu Dhabi (home + recent), 25–65 as Advantage-audience suggestion, excl. 120251936408430312 / 120252107062990312 / 120252107064340312 → **owner activated 05:46:59**; read-back 06:33: ACTIVE, budget 42, LEARNING (0 conv) |
+| 05:44:36 | ad **120252289069660312** `BOOK-WEB-1-b \| Same kitchen, different result \| before-after \| EN+AR` (creative 2012729279425471, Page 503162459555897) | created PAUSED → **owner activated 05:49:13**; by 06:34 AED 6.57, 244 impressions, 2 link clicks |
+| 05:5x | ad from creative 1484505567067844 (C1-1-d, the only C1 creative with leads) | **rejected**: "Call to Action Required: Your campaign objective requires an external website URL" — the post has no button; a Book Now version needs the source video uploaded as an ad video (owner-side) |
+| 06:03:22 | ad **120252289192770312** `BOOK-WEB-1-a \| Book your deep clean online \| studio result \| EN+AR` (creative 1094497890116067, Page 122098309970001876, Book button → justnow.life/book-now) | created PAUSED → activated 06:34:23 (prompt approved) |
+| 06:06:33 | ad **120252289209820312** `BOOK-WEB-1-c \| Watch the grease melt \| steam proof \| EN` (creative 1627235728814682, Book button) | created PAUSED → activated 06:34:27 (prompt approved) |
+| 06:34:10 | **C1 campaign 120252107068880312 daily budget 84 → 42** (`ads_update_entity`, campaign level — the ad-set attempt failed "You can only set an ad set budget or a campaign budget": C1 is CBO) | not force-paused; read-back 06:35: ACTIVE, budget **42**. Website acquisition total unchanged at AED 84/day (C1 42 control + BOOK-WEB 42). |
+
+Draft read (`object_state=draft`) is gated for this account ("gradually rolled out") — read-backs above are live reads by
+id. The connector's draft mode is **not** active on these accounts: every update today was live (`is_draft=false`).
+
+**Pass/fail (plan §5):** read Wed 21 Oct 09:22 on cost per confirmed booking from the calendar, BOOK-WEB vs C1; PASS
+≤ 80 % of C1's → fold C1's 42 into BOOK-WEB and pause C1; FAIL ≥ C1's after ≥ AED 400 → pause BOOK-WEB, keep C1.
+Meta-side read: Events Manager Lead by `content_category` = booking_request, per ad set.
+
+### 28c. "Optimize all the active ads" — last 7 days (7–13 Oct) read 06:20–06:30, ad level, three accounts
+
+Healthy and untouched: jn New Sales 4 ads AED 900.6 → 248 conversations @ **3.63**; jn 5158 AED 921.7 → 273 @ **3.38**
+(ad set A Sharjah families 2.95–3.90; B Arabic 3.01); twins T1 287.7 → 91 @ 3.16, T2 145.7 → 49 @ 2.97 (protected to
+16 Oct); JN W1 563.1 → 155 @ 3.62 (W2 6.36 → 2: not delivering, protected); JN union 467.2 → 6 leads @ 77.9 (before-after
+ad 360 → 5 @ 72; C2-2-d 68 → 1; AR stove-grease 38.7 → 0 — left running, small); brand BR-1 273 → 33,791 ThruPlays @
+0.008, CPM 2.4. Reactivation, A1–A3: no spend.
+
+Paused (each a live `ads_update_entity status=PAUSED`, read back PAUSED):
+
+| Time | Account | Entity | Evidence (7–13 Oct) |
+|---|---|---|---|
+| 06:31:49 | jn | **campaign C3 120250020646250073** `JN \| C3 WhatsApp Bookings \| Oct 2026` (CBO 90) | AED 448.9 → 33 conversations @ **13.6** (C3-1-a 194.1 → 13 @ 14.93; C3-2-b 163.6 → 11 @ 14.87; C3-3-a 88.5 → 9 @ 9.83; the other six ads < AED 1.4 each), CPM 34–49, Tue 13 Oct AED 55 → 0. Same creatives in 5158 run at 3.0–3.9. 4× the account's CPA; the C3 proposal's own 7-day FAIL line was CPA > 5.50. Structure kept paused (the C3-X challenger proposal still stands if wanted). |
+| 06:32:09 | jn | ad 120249947970370073 `TEST 24 Sep - E - Sticky kitchen video` (5158 ad set E) | AED 52.26 → 7 @ 7.47; sibling Top creator reel 37.16 → 10 @ 3.72 stays |
+| 06:32:13 | jn | ad 120249855475010073 `Sticky kitchen video` (5158 ad set C Dubai premium) | AED 31.68 → 4 @ 7.92; the ad set keeps Top creator reel |
+| 06:32:21 | JN | ad 120252227059520312 `VIDEO \| STUDIO-FEEDBACK \| BOOK-NOW \| V01` (C1-1) | AED 66.82 → 0 leads (13 LPV) — the same creative now runs in BOOK-WEB with the booking-request signal |
+| 06:32:24 | JN | ad 120252107427390312 `C1-1-a \| Stove-grease reel \| AR` (C1-1) | AED 60.01 → 0 leads |
+
+C1-1 keeps C1-1-d (440.3 → 3 leads @ 146.8), C1-1-b (42.7 → 1 @ 42.7) and C1-1-e (18.3, too small to judge) at the new
+AED 42. Not paused on purpose: T1/T2/W1/W2 (test window to 16 Oct), the union's AR ad (AED 38.7), New Sales ad set
+`New Sales Ad Set` (107 → 24 @ 4.47, within band).
+
+**Budget consequence for the owner:** jn daily budgets are now New Sales 80 + 5158 80 + T1/T2 90 = **AED 250** (C3's 90
+is off, not reallocated). Capacity read 06:40: Wed 14 Oct 4 bookings (3 confirmed, 1 UNCONFIRMED), Thu 15 Oct 2
+UNCONFIRMED — far below the 11 guard, so a reallocation (e.g. 5158 80 → 130 and New Sales 80 → 120, both at CPA ≈ 3.4) is
+allowed by the guard; it is a scale decision and waits for the owner's word. C2 80 → 70 (row 20b) is still outstanding.
+
+**Writes today:** Meta 11 successful (3 creates + 2 ad creates + 5 pauses + 1 budget), 2 rejected attempts (ad without CTA;
+CBO budget at ad-set level), 0 rollbacks, plus 3 owner activations from the connector cards; Make 6 (data structure,
+scenario create, activate, update, 2 runs). **Running total since 09:53 Thu 8 Oct: 95 successful Meta production writes, 0
+rollbacks.** Protected account 1679026507158086 untouched.
+
+**Still open (in order):** (1) WhatsApp booking optimisation — BOOK-WA in jn (Sales → click-to-WhatsApp → conversions =
+Schedule) needs the respond.io "Send CAPI for Converted Leads" event name/pixel check and the lifecycle call from the
+Schedule route; (2) Webador: fire the browser Lead with `eventID` = the returned calendar id and switch off / align the
+second server Lead source; (3) a Book-Now version of the C1-1-d video (upload the video, `ads_create_creative`, add to
+BOOK-WEB-1); (4) C2 80 → 70; (5) C3 budget reallocation yes/no; (6) auto-complete rule for 6529499 yes/no.
+
+**28d. 08:00 Dubai read-only check (scheduled self check-in, no write).** Pixel 614743294720303, server events, hour
+06:00–07:00 Dubai: **Lead 38, Schedule 29** (plus Contact 2, PageView 8 from the known second source) — the 06:36 batch
+landed: 38 booking requests since Mon 6 Oct, 29 of them confirmed. Hour 07:00–08:00: no Lead/Schedule (no new or edited
+booking), Contact 2, PageView 13. BOOK-WEB-1 today to 08:00: AED 10.99, 421 impressions, 6 link clicks, 0 leads, LEARNING,
+CPM 26.1, CTR 1.66 %. C1 at 42 (read back): AED 21.99, 625 impressions, 17 link clicks, **2 leads @ 11.00** — these are
+server Leads from the 06:36 batch matched to C1 clicks of the past 7 days, a one-off catch-up, not new bookings; C1-1's
+learning info now shows 12 conversions and no longer carries the FAIL flag. **Open point:** Make shows the scenario
+ACTIVE with next run 08:08 Dubai, but no execution is logged for the 07:08 slot (only the three runs of 06:08, 06:35 and
+06:36); re-check after 08:08 — if the hourly cadence is not running, the fix is a re-save of the schedule (owner-present
+write).
+
+**28e. 08:17 Dubai — cadence resolved, no write.** `nextExec` advanced 03:08 → 04:08 → 05:08 UTC (07:08 → 08:08 → 09:08
+Dubai), so the scheduler ticks hourly; Make simply does not log a polling run that returns no bundles. Proof from the
+hourly TikTok scenario 6415385 (active since 7 Oct): between 23:33 and 08:17 Dubai it logged only the two runs that found
+bookings (01:54 Dubai 11 ops, 03:54 16 ops) and none of the seven empty ticks. Nothing new was booked or confirmed between
+06:36 and 08:08 (pixel 07:00–08:00: no Lead/Schedule), so an empty tick is the expected result. The booking signal is
+therefore complete: hourly, both channels, confirmed on the pixel. Task "fix the optimization of the booking page" closed;
+the next checks are the 09:22 scorecard and the 12:40 verification (both read-only).
+
+## 29. Daily scorecard — day 6 (Wed 14 Oct; routine fired 09:22, read-only; reads 09:23–09:30 Dubai, window Thu 9 Oct → now)
+
+| Item | Window numbers | Scorecard | Verdict |
+|---|---|---|---|
+| **T1** 120250144454520073 (AED 60) | AED 305.98 → **103 conversations @ 2.97**, freq 1.12, CPM 18.14, CTR 2.21 %, ACTIVE | pass ≤ 4.70 with ≥ 50, freq < 1.6 | **PASS-TRACK** (day 6 of 7) |
+| **T2** 120250144457040073 (AED 30) | AED 151.35 → **51 @ 2.97**, freq 1.22, CPM 16.76, ACTIVE | pass ≤ 4.60 with ≥ 25 | **PASS-TRACK** |
+| Controls W1 / W2 (JN, AED 80 campaign) | W1 410.75 → 116 @ 3.54 (freq 1.15, CPM 12.4, +3 pixel leads); W2 4.35 → 2 @ 2.18; both ACTIVE, untouched | parity | twins **−16 % CPA, +31 % volume on +10 % spend** (457.33 → 154 @ 2.97 vs 415.10 → 118 @ 3.52) |
+| **Union** 120252226500410312 | AED 496.06 → **10 leads @ 49.61**, 1 pixel purchase, freq **1.50** (guard 1.6), CPM 38.02, learning FAIL (10 conv) | pass ≥ 5 leads ≤ AED 100 or ≥ 3 purchases | **PASS-TRACK** (day 6 of 10); frequency WATCH |
+| C2-1 / C2-2 / C2-3 | PAUSED / PAUSED / PAUSED (AED 5.14 / 0.65 / 12.25 spent before the 9 Oct pause) | must stay paused | ✓ |
+| C2 campaign budget | **80** (expected 70 from Mon 12 Oct) — `updated_time` still Sun 12:45 | row 20b | **MISMATCH, 4th day** — owner-present manual edit or native rule |
+| C1 120252107068880312 | **42** since 06:34 today (owner order §28; routine's "flat 84" superseded); window AED 500.03 → 3 leads @ 166.68, 1 purchase, learning FAIL; today 27.31 → 2 back-filled server leads | — | control for BOOK-WEB, verdict Wed 21 Oct |
+| BOOK-WEB-1 120252289067460312 (new, AED 42) | day 1: AED 14.81, 575 impressions, 11 link clicks, 0 leads, LEARNING | — | too early |
+| C3 120250020646250073 | **PAUSED 06:31 today** (owner order §28c; budget field 90 kept); 0 spend today | routine expected flat 90 | superseded by the owner's instruction |
+| Reactivation 120250144448010073 | PAUSED, 0 spend | must stay paused | ✓ |
+| jn New Sales / 5158 | 80 / 80 (owner's Mon-night level); today to 09:25: 5.35 → 1 · 14.38 → 5 @ 2.88; twins today 23.90 → 14 @ 1.71 | — | — |
+| **Brand** 23860638577100791 (CBO 60 flat ✓) | Tue 13 Oct full day: AED 55.78 → 27,112 impressions, **7,389 ThruPlays @ 0.0075** (27.3 %), CPM 2.06, freq 1.07. Window 9–14 Oct: AED 287.29 → 119,503 impressions, reach ≈ 109,700, **35,346 ThruPlays (29.6 %) @ 0.0081**, hook rate (25 %-plays ÷ impressions) **46.3 %**, 100 %-plays 15,360 (12.9 %), post engagement 86,798, link clicks 116. Per ad: A-EN 257.02 / 107,613 imp / 31,599 TP (29.4 %) / hook 47.4 % / freq 1.09; E-BI 19.54 / 7,897 / 2,615 (33.1 %) / hook 30.2 %; F-BI 4.61 / 1,596 / 424 (26.6 %) / hook 72 %; B 2.74 / 1,088 / 333 (30.6 %); C 2.03 / 731 / 242 (33.1 %); D 0.68 / 296 / 89; A-AR 0.67 / 282 / 44 | ThruPlay ≥ 15 %, cost ≤ 0.25, hook ≥ 30 %, freq ≤ 2.0; share 8–12 % | **PASS-TRACK on all four**; brand share Tue 9.4 % ✓; **no fatigue flag** (A-EN freq 1.09, ThruPlay rate and cost flat vs the first days) |
+| Warm audiences | A1 / A2 / A3 (120252253817880312 / …818420312 / …818760312): still **"below 1,000", delivery INACTIVE** on day 3 — and the old Page-wide video audiences 120252228024070312 / …30340312 / …30930312 are **also still below 1,000 after 5 days** despite 119k brand impressions and 35k ThruPlays; IG engagers 120251888118190312 **31.6–37.2k** (+0.2–0.3k vs Tue); FB engagers 120241682713780312 **26.9–31.7k** (+0.6–0.7k) | population by Tue 13 Oct | **ESCALATION stands** — six video audiences that never fill while the videos clearly play points to a Page/video ownership mismatch in the audience rule rather than lag: owner to open each audience in Audiences, check the Page it is attached to (the brand creatives post from the Page the ads use), and raise the Meta support case |
+| **Capacity guard** | Tue 13 Oct: **4 jobs, all completed** (DONE lines written 03:22–03:25 Wed; three of them carry a DONE time earlier than the job start — 04:30 / 05:30 / 05:45 against 12:00 / 13:00 / 14:15 — so 6529499 will hold them tonight; the DONE time must be the finishing time in 24-hour form, e.g. 16:30); Wed 14 Oct: 4 (3 confirmed + 1 UNCONFIRMED); Thu 15: 2 UNCONFIRMED | ≥ 11 → FULL | far below; no block. Booking rate: Tue 100 conversations → ≥ 3 bookings created Tue among events starting 13–15 Oct (2 via the WhatsApp agent, 1 website) |
+
+**Recommended next action (proposal only):** hold all budgets; day 7 of the twins completes Thu 15 Oct → verdict at the
+Fri 16 Oct 09:22 read (if PASS, the owner's approval folds W1/W2's AED 80 into T1/T2 and pauses W1/W2); union verdict Mon 19
+Oct; C2 80 → 70 and the A1–A3 support case remain owner-present items; the three mis-timed DONE lines should be corrected
+before 00:00 tonight. No write in this section. Running total unchanged: **95 successful Meta production writes, 0
+rollbacks.**
+
+**29a. 09:40 Dubai — owner wrote "done"; read-only verification of the three items.** (1) C2 campaign budget still **80**,
+`updated_time` unchanged (Sun 12:45) — not done. (2) Calendar: the three Tue 13 Oct jobs were edited 09:30–09:32 Dubai
+(yasmin end 12:00 → 11:00; Maria 3 h / AED 329 → 4 h / AED 439; كفاح last line removed) but the DONE times still read
+04:30 / 05:30 / 05:45 against job starts 12:00 / 13:00 / 14:15, i.e. 12-hour times without am/pm — 6529499 classifies
+them HOLD_TIME_CONFLICT (`doneX < startX`, module 10) and will not send them tonight; the fix is either the three lines as
+16:30 / 17:30 / 17:45 or a one-approval change to module 10 that reads a DONE time earlier than the job start as PM when
++12 h lands inside start … end + 24 h. (3) Warm video audiences: the rule of A1 (120252253817880312) is **correct** —
+event source Page 122098309970001876, the 11 video ids include the brand videos (BR-A-EN 2163113240903678, BR-E
+925115713754619), and the brand layer delivers **99.3 % on Facebook** (AED 288.03, 119,871 impressions, 35,451
+ThruPlays on Facebook vs AED 1.99 / 676 impressions on Instagram) from that same Page — so the audiences should hold tens
+of thousands of people; `operation_status_code` 441, delivery INACTIVE, never updated since creation. This is Meta-side,
+not a configuration mismatch: Meta support case (owner). No write.
+
+## 30. Wed 14 Oct 12:40 Dubai — read-only budget verification
+
+| Campaign / ad set | Expected (latest recorded level) | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level) | 80 / 80 | Mon 23:33 / 23:33 | ✓ |
+| jn C3 | PAUSED (§28c) | PAUSED, budget field 90 | Wed 06:31 | ✓ |
+| JN C1 | 42 (§28b) | 42 | Wed 06:34 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH, 4th day** — rule not created, no manual edit; owner-present item |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+| Reactivation | PAUSED | PAUSED, 0 spend | 9 Oct | ✓ |
+
+Today to 12:40: New Sales 23.62 → 5 @ 4.72 · 5158 24.12 → 7 @ 3.45 · twins 34.09 → 17 @ 2.01 (T1 24.53 → 15; T2 10.09 → 2)
+· C1 35.93 → 2 @ 17.97 · C2 43.12 → 7 @ 6.16 (the server-sent booking Leads now match retargeting clicks too) · W1/W2
+18.38 → 2 · BOOK-WEB 24.94 → 0 · brand 22.32 → 2,518 ThruPlays. Booking signal keeps flowing: server Lead 4 + Contact 6 in
+the 10:00 hour, Lead 3 + Schedule 5 in the 11:00 hour (hourly Make runs on new and confirmed bookings). No write.
+
+## 31. Wed 14 Oct 15:24–16:12 Dubai — the owner's own changes (Ads Manager / iOS app), read 16:10–16:40 on "have a look"
+
+Activity logs (actor Mohammed Bayoumi) and live read-backs:
+
+| Time | Account | Change | State read back |
+|---|---|---|---|
+| 15:24 | jn | ad `Top creator reel` 120249855754670073 paused (5158 ad set C Dubai premium) | ad set C now has no active ad (its other ad was paused in §28c) |
+| 15:27 | JN | **C1 campaign budget 42 → 60** (iOS app) | 60, ACTIVE; website acquisition now C1 60 + BOOK-WEB 42 = **AED 102/day** (plan §28: 84). C1-1 learning reset to LEARNING (0 conv, sig edit 15:46) |
+| 15:38 | JN | **new ad set 120252296031040312 `WB \| RETARGETING \| UNION 30D \| BOOKING - Copy`** under C2 (CBO 80): same four warm audiences, same two exclusions, same Dubai/Sharjah 10-mile pins excl. Abu Dhabi, 20–65, Advantage+ audience on, pixel Lead; destination **website + instant form** (original: website); no WhatsApp placements | ACTIVE, LEARNING, AED 5.94 by 16:10 (102 impressions) |
+| 15:41–16:04 | JN | three ads in the copy, all with **new Book-button creatives** on Page 122098309970001876: 28775651848731448 (EN "Behind every sparkling space", existing post 122381682380006883, same photo as C1-1-d), 1861078528594328 (AR "كمّلي حجزك" finish-your-booking video 1397312108778647, display link book-now), 1583289796213887 (AR "تنظيف جوّة الخزائن" cabinets video 1811993813141327) | all ACTIVE and delivering 16:00–17:28 |
+| 15:45 | JN | **C1-1-a 120252107427390312 un-paused with a new creative 982787274862822** (EN "From stained to spotless", new video 1294773682762931, Book button) | ACTIVE, approved 15:50 |
+
+Assessment: (1) the C1 raise is the owner's scale decision; the BOOK-WEB vs C1 verdict stays on cost per confirmed booking,
+not volume. (2) The union copy duplicates the union's audience inside the same AED 80 CBO: the two ad sets bid against
+each other for ≈ 40k people, frequency climbs toward the 1.6 guard, and the union's 10-day verdict (PASS-TRACK, day 6) is
+muddied. Recommended: pause the copy and move its three Book-button creatives into the original union as new ads
+(creative refresh without a learning reset); alternative: pause the original and let the copy carry the AED 80.
+Owner decision. (3) The three copy creatives cannot be placed by the connector: `ads_create_ad` → "Terms of Service Not
+Accepted: You can't run lead ads until your Facebook Page accepts Facebook's Lead Generation Terms of Service … or this
+connection cannot read its acceptance status" (error 1815089) — they carry the instant-form destination; Ads Manager can
+still copy them. (4) The new C1-1-a creative is a plain website creative with a Book button, so it went into the
+booking-optimised ad set: **ad 120252297690530312 `BOOK-WEB-1-d \| From stained to spotless \| Book button \| EN`**
+created PAUSED 16:3x (prompt approved) and activated on its prompt — BOOK-WEB-1 now has four ads. The AR cabinets video
+with a button (the C1-1-d content the owner asked for this morning) still needs to be added from Ads Manager (existing
+post 122098309970001876_122383360754006883, Book Now → justnow.life/book-now) because the connector cannot read the
+Page video's thumbnail. Writes: 1 ad create + 1 activation; 2 ad creates rejected (lead-form creatives). **Running
+total: 97 successful Meta production writes, 0 rollbacks.**
+
+**31a. 18:07 Dubai — owner "ok" on the clean-up; the executable version was applied.** Option 1 (move the three
+creatives into the original union) is not executable by the connector — the same lead-form refusal applies to any
+website ad set — so the clean-up is option 2: **original union 120252226500410312 PAUSED 18:07:37** (prompt approved;
+final numbers 9–14 Oct: AED 496 → 10 leads @ 49.6, 1 purchase; today 57.14 → 7 back-filled leads), the copy
+120252296031040312 stays ACTIVE as the single retargeting ad set under C2's AED 80 (LEARNING, AED 6.13 by 18:10).
+Read-back: PAUSED / ACTIVE. The 09:22 scorecard routine was re-pointed (update_trigger): union row = the copy from 14 Oct
+with the original's final numbers reported once, BOOK-WEB-1 row added, C1 expected 60, C3 paused, DONE-time check added.
+BOOK-WEB-1-d read back ACTIVE / PENDING_REVIEW 18:05. **Running total: 98 successful Meta production writes, 0 rollbacks.**
+Owner-side still open: C2 80 → 70; the cabinets-video Book-button ad into BOOK-WEB-1 from Ads Manager; the three 12-hour
+DONE times of Tue 13 Oct; Meta support case for the video audiences; Webador browser-Lead eventID.
+
+## 32. Thu 15 Oct 00:40 Dubai — read-only budget verification; Wednesday full day
+
+| Campaign / ad set | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level); rule plan row 1 would have set 90 at Thu 00:00 | 80 / 80 | Mon 23:33 | ✓ vs recorded level; **no native rule fired** (row 1 not created — first rule cycle was due today) |
+| jn C3 | PAUSED (§28c) | PAUSED, field 90 | Wed 06:31 | ✓ |
+| JN C1 | 60 (owner, §31) | 60 | Wed 15:27 | ✓ |
+| JN C2 | 70 (row 20b) | **80** | Sun 12:45 | **MISMATCH, 5th day** — owner-present item |
+| justnow22 brand | 60 (row 21: Thu 00:00 → 60, no-op) | 60 | 9 Oct | ✓ |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+| Reactivation | PAUSED | PAUSED | 9 Oct | ✓ |
+
+**Wednesday 14 Oct full day:** New Sales AED 70.27 → 19 @ 3.70 (CPM 16.0) · 5158 77.64 → 20 @ 3.88 (CPM 20.5) · twins
+87.85 → 33 @ **2.66** (T1 57.03 → 25 @ 2.28; T2 30.82 → 8 @ 3.85) · C3 0 (paused 06:31) · C1 62.54 → 2 leads @ 31.27
+(both back-filled server Leads; CPM 30.95; 57 link clicks, 13 LPV) · C2 82.25: union 57.92 → 7 @ 8.27 until its 18:07 pause,
+copy 24.33 → 1 @ 24.33 (CPM 52.3, learning, 2 conv) · W1/W2 73.46 → 22 @ 3.34 (+2 pixel leads) · **BOOK-WEB 41.20 → 0
+attributed leads** (1,357 impressions, 28 link clicks, 3 LPV, CPM 30.4, LEARNING — day 1) · brand 53.69 → 21,137
+impressions, 5,928 ThruPlays (28.0 %) @ 0.009, CPM 2.54. **Wednesday total ≈ AED 549** (jn 235.76 + JN 259.45 + brand
+53.69); brand share 9.8 %. Conversations 94 (New Sales 19, 5158 20, twins 33, W1/W2 22).
+
+**Booking signal, first full day:** Make 6624989 logged hourly runs whenever something changed (20:08 Dubai 19 ops, 21:08
+21, 22:08 11, 23:08 7, 00:08 9); pixel server events 20:00–03:00 Dubai: Lead 7, Schedule 2 (hours 20–01 Dubai). Nightly
+6529499 at 00:00: **4 Purchases sent, AED 1,136** (yasmin 249, Moukaram 279, jhonalyn 279, Maricar 329 — all with correct
+DONE times), 13 already-sent skipped, 2 excluded, **22 pending, 32 aged out**; the three 12-hour DONE jobs of Tue 13 Oct
+(Maria 439, كفاح 379, mirna 350) were held as expected and age out on Mon 20 Oct unless the lines are corrected. No write.
+
+## 33. Daily scorecard — day 7 (Thu 15 Oct; routine fired 09:22; reads 09:23 and 12:41 Dubai, window Thu 9 Oct → now)
+
+**Fault record:** the 09:22 run's reads began 09:23 but the session answered the continuation prompt with "no response"
+and left the run unfinished; it was completed at 12:41 together with the 12:40 verification. Same fault class as §18/§24.
+
+| Item | Window numbers | Scorecard | Verdict |
+|---|---|---|---|
+| **T1** 120250144454520073 (AED 60) | AED 362.86 → **124 @ 2.93**, freq 1.13, CPM 18.45, CTR 2.26 % | pass ≤ 4.70 with ≥ 50, freq < 1.6 | **PASS-TRACK** (day 7 of 7 — verdict at the Fri 16 Oct read) |
+| **T2** 120250144457040073 (AED 30) | AED 182.51 → **59 @ 3.09**, freq 1.24, CPM 16.50 | pass ≤ 4.60 with ≥ 25 | **PASS-TRACK** |
+| Controls W1 / W2 (JN) | W1 513.55 → 144 @ 3.57 (freq 1.16, CPM 12.5, +6 pixel leads @ 85.6); W2 6.01 → 2 @ 3.01; both ACTIVE | parity | twins **−16 % CPA, +25 % volume on +5 % spend** (545.37 → 183 @ 2.98 vs 519.56 → 146 @ 3.56) |
+| Union original 120252226500410312 (PAUSED 14 Oct 18:07) | final AED 525.26 → 13 leads @ 40.4, 2 purchases, freq 1.53 | — | closed |
+| **Union copy** 120252296031040312 (live union row, day 1) | AED 85.48 → **8 leads @ 10.69** (indicator includes the server booking Leads), freq 1.27, CPM 47.5, LEARNING (8 conv) | pass ≥ 5 leads ≤ AED 100 | **PASS-TRACK** (window to 19 Oct) |
+| C2-1/2/3 | PAUSED ×3 | must stay paused | ✓ |
+| C2 campaign budget | **80** (expected 70) | row 20b | **MISMATCH, 5th day** |
+| **BOOK-WEB-1** 120252289067460312 (AED 42) | AED 72.83 → 0 attributed leads, 2,325 impressions, 42 link clicks, 12 LPV, CPM 31.3, freq 1.26, LEARNING; today to 12:40 AED 31.53 | — | day 2, too early (verdict Wed 21 Oct) |
+| C1 (60) / C1-1 | AED 575.61 → 3 leads @ 191.87, 1 purchase, LEARNING (reset 14 Oct 15:46); today 40.26 → 0 | — | control |
+| C3 · Reactivation | PAUSED · PAUSED | must stay paused | ✓ |
+| jn New Sales / 5158 | 80 / 80; today to 12:40: 38.90 → 7 @ 5.56 · 36.91 → 13 @ 2.84; twins 42.63 → 16 @ 2.66 | — | — |
+| **Brand** (CBO 60 ✓) | Window: AED 352.27 → 144,288 impressions, reach ≈ 132,700, **42,294 ThruPlays (29.3 %) @ 0.0083**, hook 45.9 % (25 %-plays 66,219), 100 %-plays 18,233 (12.6 %), post engagement 104,571. Per ad: A-EN 314.04 / 129,347 / 37,645 (29.1 %) / hook 47.2 % / freq 1.09; E-BI 27.22 / 10,813 / 3,483 (32.2 %); F 4.61 / 1,596 / 424; B 2.79 / 1,113 / 337; C 2.12 / 777 / 256; D 0.77 / 336 / 99; A-AR 0.72 / 306 / 50. Today to 12:40 AED 24.40 → 2,546 TP | ThruPlay ≥ 15 %, cost ≤ 0.25, hook ≥ 30 %, freq ≤ 2.0; share 8–12 % | **PASS-TRACK on all four**; Wed share 9.8 % ✓; no fatigue flag |
+| Warm audiences | A1/A2/A3 and the three Page-wide video audiences: **still below 1,000, INACTIVE** (day 4 / day 6); IG engagers 120251888118190312 31.8–37.4k (+0.2k); FB engagers 120241682713780312 27.2–32.0k (+0.3k) | — | escalation stands (Meta support case, owner) |
+| **Capacity guard** | Wed 14 Oct: 3 jobs, all done with correct DONE lines (sent 00:00); Thu 15 Oct: **5 confirmed bookings** (Rafik Shj 249, Hamisha Dxb 329, Porkodi Ajm 499, Dr Manoj Shj 499, Mariam Shj 749) — three of them created Wed evening through the website form, which now carries a reference number (JN-000035/37/39) | ≥ 11 → FULL | 5/12, no block. Wed 94 conversations → ≥ 3 website bookings created Wed among events starting 14–16 Oct. Tue's three 12-hour DONE lines still uncorrected (held) |
+
+**Recommended next action (proposal only):** hold all budgets today. Tomorrow's 09:22 read closes the twins' 7 days; on
+current numbers both PASS → proposed owner approval for Fri: fold W1/W2's AED 80 into the twins (T1 60 → 100, T2 30 → 70)
+and pause W1/W2 (owner-present writes). C2 80 → 70 still outstanding. No write in this section.
+
+## 34. Thu 15 Oct 12:40 Dubai — read-only budget verification
+
+| Campaign / ad set | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (owner's level); rule rows 1–2 would have set 90 at Thu 00:00 and 108 at Thu 12:00 | 80 / 80 | Mon 23:33 | ✓ vs recorded level; **no native rule fired at either Thursday slot — the rule plan's first cycle was missed; owner to build the rules or drop the plan** |
+| jn C3 | PAUSED | PAUSED, field 90 | Wed 06:31 | ✓ |
+| JN C1 | 60 | 60 | Wed 15:27 | ✓ |
+| JN C2 | 70 | **80** | Sun 12:45 | **MISMATCH, 5th day** |
+| justnow22 brand | 60 (row 22 would set 70 at Thu 12:00) | 60 | 9 Oct | ✓ vs recorded; rule not created |
+| T1 / T2 · W1/W2 campaign | 60 / 30 · 80 | 60 / 30 · 80 | 9 Oct · 7 Oct | untouched ✓ |
+| Reactivation | PAUSED | PAUSED | 9 Oct | ✓ |
+
+No write.
+
+## 33a. Thu 15 Oct ≈16:00–16:30 Dubai — owner status check, two clarifications (read-only)
+
+**Live check at 16:00 (owner: "every thing working fine ?"):** all three accounts delivering toward unchanged budgets;
+6624989 ran every hour since 06:08 (all successful, next 16:08) and the pixel shows 4 Lead + 4 Schedule server events
+today whose run sizes match the operation counts exactly (e.g. the 10:08 run, 25 ops = 1 + 4×4 + 1 Lead×2 + 3 Schedule×2);
+6529499 ran 00:00 successfully (140 ops). Calendar: Thu 7 confirmed jobs (AED 3,203), Fri already 7 (AED 2,283) — 7/12 both
+days, no capacity block. Today to 16:00: 5158 39.01 → 15 @ 2.60; twins 45.90 → 17 @ 2.70; New Sales 42.95 → 7 @ 6.14 (weak
+afternoon, watch); W1/W2 38.27 → 9 @ 4.25; C2 63.32 → 7 leads; C1 42.96 → 0; BOOK-WEB 32.53 → 0 (1,001 imp); brand 26.12 →
+2,667 TP.
+
+**Clarification 1 — the two Hamisha bookings today are both legitimate (owner, 16:05):** the morning job (08:30, AED 329
+card, 3 h) was extended by 2.5 h on site; the team had to leave for the next appointment and a second slot (17:30) was
+booked to finish the house. Not a duplicate: two calendar ids, two Lead + Schedule pairs already sent by 6624989, which is
+correct. For tonight's Purchase the morning event needs a `Final price: AED …` line (6529499 module 8 maps
+final/new/updated price → `cfinal`, preferred over `Price:`) and a `DONE 2026-10-15 HH:mm` line (24-hour, ≥ 08:30); the
+evening event gets its own DONE line after it ends. Rafik's `DONE 2026-10-15 11:15` is already correct (AED 249 goes out
+tonight).
+
+**Clarification 2 — C2 "not getting any reflection" (owner, 16:20: "If you see that we need to switch off C2, we can go
+ahead since it's not getting any reflection on any details"):** read of the union copy 120252296031040312, 14–15 Oct:
+AED 91.74 → 8 leads @ 11.47, **all 8 are on-Facebook instant-form leads** (`onsite_conversion_lead_grouped` = 8, pixel leads
+0; destination `WEBSITE_AND_LEAD_FORM`, 37 link clicks → 3 landing-page views). By ad: cabinets video 120252296031030312
+AED 71.51 → 7 leads @ 10.22; stove/"finish your booking" 120252296031050312 14.02 → 1; EN existing post 120252296031060312
+6.21 → 0. Both AR creatives (1583289796213887, 1861078528594328) carry instant forms (the 1815089 ToS error of §31 proved
+it). **No flow collects these leads:** Make team 1579313 has only the on-demand "Facebook Lead Ads Get Lead Details" tool
+(3469026, bound to a Nov-2025 form), no Watch-Leads trigger; nothing writes them to respond.io or the calendar. So the
+owner's observation is right (the leads never reach the team) but the cause is collection, not delivery: the copy is the
+account's cheapest lead source on paper (AED 11.47 vs C1's 191.87). **Recommendation given: do not switch C2 off yet.**
+Owner to open Meta Business Suite → Leads Center for Page 122098309970001876 and work the 8 leads; if real → build the
+auto-forward (Make: Facebook Lead Ads Watch Leads → respond.io contact + WhatsApp template + UNCONFIRMED calendar entry,
+one approval) and keep C2; if junk or unwanted → owner says "off" and C2 campaign 120252107080200312 is paused
+owner-present with read-back. The C2 80-vs-70 flag stays until that decision. No write.
+
+## 33b. Thu 15 Oct ≈17:40 Dubai — "why no bookings today?" and the C2 decision (read-only, no write)
+
+**Booking pipeline (6369438, the website-form / agent webhook):** Wed 14 Oct carried 12 booking requests into the
+calendar (10:09, 10:15, 10:16, 10:19, 10:31, 15:15, 16:04, 19:21, 19:57, 19:58, 21:20, 22:24 Dubai). Thu 15 Oct by
+17:30: **4** — 09:41 ZaQ (Fri, AED 249), 13:47 Hamisha evening (AED 329), 16:47 Priyanka (Fri 08:00, AED 409,
+UNCONFIRMED), 17:28 Motaz (Sun 18 Oct, AED 829, UNCONFIRMED) — plus three near-empty submissions 15:11–15:24 (4 ops,
+223 bytes each, filtered: not bookings). Webhook queue 0, scenario active, every run successful. Same-hour comparison:
+Wed 7 by 17:30 vs Thu 4; Wed's evening (5 of its 12 after 19:00) is still ahead today. Traffic is **not** down: browser
+PageView Thu 00:00–16:00 ≈ 143 vs Wed same window ≈ 111; C1 landing-page views 33 today vs 13 all of yesterday, BOOK-WEB
+10 vs 3; WhatsApp inbound normal (20 respond.io contacts created 14:41–17:35, agent filling service/area, "Price needed"
+tags). **Verdict: nothing is broken; a slower form-conversion afternoon on a higher-traffic day, small-number variance.**
+Two UNCONFIRMED requests are waiting for the team's call.
+
+**C2 decision (owner delegated it 16:30: "no results = waste; results we cannot measure = something else"):** results
+exist — 8 instant-form leads in 24 h @ AED 11.47, 7 of them today (§33a) — so this is the "not measured" case and
+**C2 stays ON.** Collection is the gap, and the automated collector cannot be built yet: Make team 1579313 has **no
+Facebook connection** (`connections_list` type facebook → empty; the old tool 3469026's connection 6213750 answers
+"Account doesn't exist"), and the Facebook Lead Ads app (v2: `WatchLeads` polling trigger, `listLeads`, `GetLeadDetails`;
+`LeadInterface` = leadgenId / formId / dateCreated / adId) needs one. Owner-side: (1) work today's leads from Meta Business
+Suite → Leads Center / Instant Forms for Page 122098309970001876; (2) add a Facebook Lead Ads connection in Make. Build
+spec ready for the moment the connection exists: 15-minute poll of the two AR ads' form → GetLeadDetails → UNCONFIRMED
+"LEAD FORM" entry in the main calendar (phone, wa.me link, service, answers); 6624989 then sends Lead on creation and
+Schedule on confirmation; unconverted leads get "cancel" in the title so the nightly flow ignores them. Expected-budget
+flag for C2 (80 vs 70) stays open until the owner confirms the level.
+
+## 34. Thu 15 Oct ≈22:30 Dubai — "why is Meta not getting more qualified day by day?" (read-only answer)
+
+14-day daily read of every live campaign plus the dataset quality report. Average cost per WhatsApp chat, 2–8 Oct vs
+9–15 Oct: 5158 3.95 → 3.39; New Sales 3.45 → 3.96 (5.17 on Thu 15); twins 2.86 (from 9 Oct); W1/W2 3.95 → 3.61 — a
+plateau, not a learning curve. Website path: ≈ 100 booking requests reached the site in 14 days; Meta attributed 12 to C1
+and 14 to the old C2 (≈ 1/day each, "learning limited" since day one). Dataset quality: Lead / Schedule / Purchase
+server events score **4.8 / 10** (phone, external_id, country, fn, ln, ct at 100 %; no email, fbp/fbc, IP or user agent);
+browser PageView / Contact 6.1–6.9. Answer given: Meta optimises exactly what it is asked for (a chat, a noisy pixel Lead)
+and nothing has ever optimised on a booking; the fixes are (1) email on the server events (two Make edits, offered as
+"go"), (2) one booking-optimised ad set per channel with ≥ 50 events/week (BOOK-WEB for web; WhatsApp needs the
+respond.io click-id hand-off), (3) budget concentration. No write.
+
+## 35. Fri 16 Oct 00:45–01:10 Dubai — owner order: full audit of the active ads, pause what is not working, publish a strong website conversion ad (owner present, writes with read-back)
+
+**Order (Thu 15 Oct ≈23:40, verbatim):** "Do for me a full audit on the active ads and check how it is and what's going on
+and why it's not optimizing well. Any ad set is not working properly or any ad is not working properly, switch it off and
+replace a strong website conversion ad and publish it online. I am not going to spend more money on that."
+
+**Window:** Thu 9 → Thu 15 Oct (7 days), every ACTIVE ad set and ad on jn, JN and justnow22. **Rule applied:** not
+working = ≥ AED 20 spent at ≥ 1.5× the campaign's median cost per result, or no delivery / no result in the window, or
+(website path) ≥ AED 100 per attributed lead.
+
+| Object | 7-day numbers | Verdict | Action |
+|---|---|---|---|
+| jn T1 120250144454520073 (60) · T2 120250144457040073 (30) | 397.33 → 133 @ 2.99 · 203.83 → 69 @ 2.95 | best in the account | untouched (verdict Fri 09:22) |
+| jn 5158 A 120249855372950073 | 650.67 → 206 @ 3.16 | working | kept; dead ads: "TEST 25 Sep existing post New Sales video" 120249948119150073 (no delivery) **PAUSED**; "Customer voice" 120249855465580073 (4.58 → 1) **pause refused** by Meta (error 3858720: legacy creative with no website URL, re-validated on any edit) — owner pauses it in Ads Manager |
+| jn 5158 B 120249855378300073 | 44.94 → 16 @ 2.81 | working, under-funded | kept |
+| jn 5158 C 120249855379550073 | 25.94 → 4 @ 6.49, all its ads already paused | not working | **ad set PAUSED** |
+| jn 5158 D 120249855379980073 | 40.86 → 10 @ 4.09 | borderline | kept with "Sticky kitchen video" (2.89); "Top creator reel" 120249855754890073 (20.40 → 3 @ 6.80) **PAUSED**; "Customer voice" 120249855480020073 (0.22 → 0) **pause refused** (same error) |
+| jn 5158 E "TEST 24 Sep Dubai women" 120249947966990073 | 88.35 → 18 @ 4.91 (1.55× median) | not working | **ad set PAUSED** |
+| jn New Sales original · Copy A · Copy B | 78.28 → 23 @ 3.40 · 372.58 → 98 @ 3.80 · 365.73 → 94 @ 3.89 (CTR 1.33 %) | working; B weakest | kept, B on watch |
+| jn New Sales Copy 2 120249855757070073 | 13.71 → 2 @ 6.86 | starved and weak | **ad set PAUSED** |
+| **JN C1 campaign 120252107068880312 / C1-1** | **598.60 → 3 attributed leads @ 199.53**, 497 clicks, 121 LPV (24 %), learning reset 14 Oct, 0 conversions since | not working — the main waste | **campaign PAUSED** (AED 60/day stops; not re-allocated — BOOK-WEB-1 has the same signal problem until match quality is fixed, §34) |
+| JN BOOK-WEB-1 120252289067460312 (42) | 85.68 → 0 attributed, 52 clicks, 20 LPV (38 %), day 2 | too early; ad a weakest (39.09 → 5 LPV) | **ad a 120252289192770312 PAUSED**; b, c, d kept; **new ad e published** (below) |
+| JN union copy 120252296031040312 | 114.83 → 11 instant-form leads @ 10.44 | results exist, collection missing (§33b) | kept |
+| JN W1 120251948470210312 · W2 120251948470250312 | 541.77 → 154 @ 3.52 · 6.93 → 2 | control pair | untouched until the 09:22 verdict (W2 and W1's dead reel ad fold with it) |
+| justnow22 BR-1 23860638584760791 | 386.48 → 45,654 ThruPlays @ 0.0085, CPM 2.47 | passes brand benchmarks | kept |
+| justnow22 "Post:" campaigns 23855087595560791, 23855087542980791, 23855087442510791, 23855087061240791 | ACTIVE, AED 10–14 budgets, 0 impressions in 7 days (dormant since 13 Apr) | not working | **4 campaigns PAUSED** (hygiene; no spend impact) |
+
+All 11 pauses read back PAUSED (`updated_time` 00:54–00:56). Two legacy ads stay ACTIVE but have no delivery
+(11 and 195 impressions in 7 days).
+
+**New website conversion ad, published ACTIVE:** creative **1635938014818066** → ad **120252319099340312**
+"BOOK-WEB-1-e | Sticky kitchen | steam root cause | Book Now | EN+AR" in BOOK-WEB-1. Video 2163113240903678 — the
+account's strongest creative on evidence (brand A-EN: 29.1 % ThruPlay, 47 % hook on 139k impressions; 5158 A: 40 chats
+@ 3.46) — thumbnail hash b0bd6549837e4ed80fc20485338c56d9, Page 122098309970001876, IG 17841461253086330, link
+https://www.justnow.life/book-now, CTA BOOK_NOW, display link justnow.life, EN + AR copy ("Why does your kitchen feel
+sticky?" / "ليش مطبخك دبق؟", AED 249 anchor, pay after the job, book online in 1 minute). Page-video ids are not listed by
+the account-videos endpoint (all three "unresolved") but are accepted in creatives, as the owner's own 982787274862822
+already proved. `ads_activate_entity` → ACTIVE; read-back 01:01: status ACTIVE, effective status **PENDING_REVIEW**
+(Meta's ad review, normally under 24 h); the creative read-back shows Meta re-registered the Page video as ad video
+1845048219845493 and created IG media 18209064466368909. BOOK-WEB-1 now runs b, c, d, e (a paused).
+
+**Owner, 01:05 (verbatim):** "on a daily basis when I'm asking you the same question. So you are switching off the current
+ads and you are publishing new ads without any reason means that you're not working properly. You are not creating a
+proper ads from the beginning." and "you don't have the confidence on each step you are taking … on daily basis, I'm got
+impacted by your decisions." Recorded as a standing complaint; answer and the stability rule given in chat (no structural
+change outside the 09:22 scorecard for 14 days except the three decided items: twins verdict, C2 lead collection, email
+match-quality fix).
+
+**Writes this section:** 11 pauses + 1 creative + 1 ad + 1 activation = **14** (2 pause attempts refused). Running total
+**112 Meta writes, 0 rollbacks.** Budgets unchanged; C1's AED 60/day is now idle. T1/T2/W1/W2 untouched for the 09:22
+verdict.
+
+## 36. Fri 16 Oct 00:40 Dubai — read-only budget verification (routine fired 00:40; reads 01:12, after the §35 writes)
+
+| Campaign / ad set | Expected | Actual | `updated_time` | Verdict |
+|---|---|---|---|---|
+| jn New Sales / 5158 | 80 / 80 (no native rule exists; rule rows would have changed them at Fri 00:00) | 80 / 80 | Mon 12 Oct 23:33 | ✓ — no rule fired at the Friday slot either |
+| jn C3 | PAUSED | PAUSED, field 90 | Wed 14 Oct 06:31 | ✓ |
+| JN C1 | PAUSED since §35 (owner order, 00:55) | PAUSED, field 60 | Fri 00:55 | ✓ |
+| JN C2 | 70 (owner, Sun 11 Oct) | **80** | Sun 11 Oct 12:45 | **MISMATCH, 6th check** — never set by the owner, no native rule; C2 kept running per §33b pending the owner's word |
+| justnow22 brand | 60 | 60 | 9 Oct | ✓ |
+| T1 / T2 | 60 / 30 | 60 / 30 | 9 Oct 10:12 | untouched ✓ |
+| JN W1/W2 campaign | 80 | 80 | 7 Oct | untouched ✓ |
+| Reactivation · BOOK-WEB | PAUSED · ACTIVE | PAUSED · ACTIVE | 9 Oct · 14 Oct | ✓ |
+
+No write.
+
+## 37. Fri 16 Oct 01:20 Dubai — owner's standing mandate (verbatim) and how it is applied from now
+
+> Your job is NOT to make changes. Your job is to maximize profitable confirmed bookings and completed-service revenue.
+> A day with zero Meta writes can be a successful day. Never create, pause, restructure or scale simply because an
+> opportunity exists. Every decision must first answer: 1. Is the problem acquisition, creative, targeting, website
+> conversion, sales handling, booking confirmation, or operations? 2. Is there enough data to prove it? 3. What is the
+> lowest-risk intervention? 4. Can we learn more by holding instead of changing? 5. Will this improve confirmed bookings
+> or revenue, not just Meta metrics? Possible decisions are: SCALE, HOLD, OBSERVE, CREATIVE TEST, FUNNEL FIX, REDUCE,
+> PAUSE. HOLD and OBSERVE are valid outcomes. Do not build a new campaign when the existing structure can answer the
+> question. Do not pause a proven winner because one day is weak. Do not increase budgets only to hit a spend target.
+> Do not judge WhatsApp acquisition only by cost per conversation. Primary KPIs: 1. Confirmed bookings 2. Cost per
+> confirmed booking 3. Completed jobs 4. Revenue 5. Revenue / ad spend. Secondary diagnostics: CPA conversation,
+> Website lead cost, CTR, CPM, Frequency, Creative fatigue. Meta metrics are diagnostic signals, not the business
+> objective.
+
+**Applied immediately:**
+- §35's state is **HELD as is** — no reversal (a reversal is itself a change). C1 stays paused; the website role is
+  carried by BOOK-WEB-1 (42/day, ads b/c/d/e) untouched to Wed 21 Oct. The test now has a business KPI: website-form
+  bookings per day in the calendar vs the 9–15 Oct baseline; if they fall, that is the signal to restore website budget.
+- The 09:22 scorecard is re-pointed (routine prompt updated, §37a) to lead with the five primary KPIs computed from the
+  calendar (confirmed = no UNCONFIRMED / cancel in the title; completed = DONE line or nightly Purchase; revenue = sum of
+  Price / Final price) and total ad spend, and to state one decision per item from the owner's vocabulary. Routines
+  remain read-only.
+- Twins verdict (09:22): cost per conversation alone is no longer a sufficient basis, and bookings cannot be attributed
+  per WhatsApp ad set; default decision **HOLD** (T1/T2 and W1/W2 unchanged) unless a booking-level signal appears.
+- Email on the server booking events (§34) is classed FUNNEL FIX (measurement, no delivery change); proposed at 09:22
+  with the five answers, executed only on the owner's word.
+
+## 38. Fri 16 Oct 01:30–02:45 Dubai — owner-authorised overnight priority (via Codex): Reels hand-off, recent-event sender/ledger audit
+
+**Reels (organic).** Drive "Just Now Daily Videos" holds three clips (2 Oct, 3 Oct, 14 Oct). IG @justnow.life.ae has no
+Reel after 8 Oct 10:00 Dubai and one Story on 15 Oct 09:30; the 14 Oct clip (1Tmwkd9AbA2dsUZ2qVNWhaqQNVSvchfC5) was never
+posted as a Reel. No tool in this session can publish organic Reels (Windsor has only the read-only `instagram_public`
+connector, Make has no Instagram/Facebook Pages connection, Madgicx needs an inactive subscription, Meta tools have no
+organic publish action; Drive and Instagram hosts are denied by the network policy). Approved EN/AR captions delivered.
+Codex uploaded the 17-second clip in Meta Business Suite on both official accounts (copyright check passed); **final
+scheduling pending, no receipt** — not recorded as published. No connection or schedule created from this session.
+
+**September backfill.** Stopped on the owner's word: CAPI cannot accept true September timestamps (7-day limit for every
+action source except physical_store, which the owner rejects as untruthful). Partial reconciliation facts handed to Codex:
+of 164 September service events, 38 carry an explicit amount; HubSpot holds 21 deals keyed by calendar id (27 Sep–1 Oct);
+Make ledgers 158570/158811 hold confirmation-time values from 26 Sep. Sheet "JustNow — Completed Services" is Codex's.
+
+**8–15 Oct audit (read-only), full detail in `meta/sender-audit-2026-10-16.md`:** 43 calendar entries → 41 paid completed
+jobs (AED 21,097 as written), 1 cancelled, 1 blogger at AED 0. Sent as completion Purchases: 13 (AED 4,560), unique,
+all visible in the dataset at their DONE hour; 7 jobs already in Meta from the old confirmation-time sender (two
+under-reported: 279→369, 249→329); 5 jobs lost for CAPI (AED 3,555: one-paragraph website descriptions put `Price:`/
+`Mobile:` mid-line, one unlabelled phone); 16 jobs (AED 8,849) held and invisible, still fixable before per-job deadlines
+(DONE before the scheduled start, one-digit hours, `9:00 PM`, unlabelled phone, `المبلغ:` label). Attribution 8–15 Oct:
+4 of 13 purchases (JN C2 3 = AED 1,207; C1 1 = AED 350; jn 0). No live ad set optimises for Purchase; jn's 8 live ad sets
+optimise for conversations, JN C2-union copy and BOOK-WEB-1 for pixel Lead (any source), W1/W2 for conversations.
+BOOK-WEB-1: AED 85.77, 20 LPV, 0 attributed leads (server Leads carry no fbp/fbc/IP/UA). A second Lead/Schedule sender
+existed before 14 Oct (identical hourly pairs; respond.io workflow is the candidate) → possible double Lead per booking
+since 6624989 went live. Twelve reviewable fixes listed (label pre-split, phone fallback, price labels, DONE formats,
+zero-value exclusion, visible HOLD records, parseNumber guard, 12:00 second run, email match key, fbp/fbc from the booking
+page, single owner per event type, legacy value note). New campaign: none (HOLD).
+
+Writes this section: **0** (Meta 112 total, 0 rollbacks unchanged; Make, Calendar untouched).

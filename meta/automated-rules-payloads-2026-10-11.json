@@ -1,0 +1,1451 @@
+{
+ "generated": "2026-10-11 14:10 Dubai",
+ "source": "meta/automated-rules-build-ads-manager-2026-10-11.md (Ads Manager is the build path; this file is the API twin for reference only — the owner declined third-party connectors)",
+ "calendar": "Sun 11 Oct, Mon 12, Tue 13, Wed 14, Thu 15, Fri 16, Sat 17, Sun 18 Oct 2026",
+ "excluded": "C1 120252107068880312 flat AED 84; C3 120250020646250073 flat AED 90; T1/T2, W1/W2, reactivation, Purchase never in a rule",
+ "rules": [
+  {
+   "spec_row": "6",
+   "name": "WW | W-jn | MON 00:00 | →86",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "99 (Sun level); Mon 12 Oct 2026: 150",
+   "target_budget_aed": 86,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 86",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 00:40 both campaigns = 86",
+   "meta_api_payload": {
+    "name": "WW | W-jn | MON 00:00 | →86",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 8600
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "7",
+   "name": "WW | W-jn | MON 12:00 | →72",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 720
+   },
+   "current_expected_budget_aed_before": "86",
+   "target_budget_aed": 72,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 72",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 12:40 = 72",
+   "meta_api_payload": {
+    "name": "WW | W-jn | MON 12:00 | →72",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7200
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 720,
+       "end_minute": 750
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "8",
+   "name": "WW | W-jn | TUE 00:00 | →81",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 2,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "72",
+   "target_budget_aed": 81,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 81",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Tue 00:40 = 81",
+   "meta_api_payload": {
+    "name": "WW | W-jn | TUE 00:00 | →81",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 8100
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        2
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "9",
+   "name": "WW | W-jn | WED 00:00 | →72",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 3,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "81",
+   "target_budget_aed": 72,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 72",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Wed 00:40 = 72",
+   "meta_api_payload": {
+    "name": "WW | W-jn | WED 00:00 | →72",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7200
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        3
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "1",
+   "name": "WW | W-jn | THU 00:00 | →90",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "72",
+   "target_budget_aed": 90,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 90",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 00:40 = 90",
+   "meta_api_payload": {
+    "name": "WW | W-jn | THU 00:00 | →90",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 9000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "2",
+   "name": "WW | W-jn | THU 12:00 | →108",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 720
+   },
+   "current_expected_budget_aed_before": "90",
+   "target_budget_aed": 108,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 108",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 12:40 = 108",
+   "meta_api_payload": {
+    "name": "WW | W-jn | THU 12:00 | →108",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 10800
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 720,
+       "end_minute": 750
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "3",
+   "name": "WW | W-jn | FRI 00:00 | →126",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 5,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "108",
+   "target_budget_aed": 126,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 126",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Fri 00:40 = 126",
+   "meta_api_payload": {
+    "name": "WW | W-jn | FRI 00:00 | →126",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 12600
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "4",
+   "name": "WW | W-jn | SAT 00:00 | →117",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 6,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "126",
+   "target_budget_aed": 117,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 117",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sat 00:40 = 117",
+   "meta_api_payload": {
+    "name": "WW | W-jn | SAT 00:00 | →117",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 11700
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        6
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "5",
+   "name": "WW | W-jn | SUN 00:00 | →99",
+   "account": "1037126214908677",
+   "campaign_ids": [
+    "120249855697050073",
+    "120249855229580073"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 0,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "117",
+   "target_budget_aed": 99,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 99",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sun 00:40 = 99",
+   "meta_api_payload": {
+    "name": "WW | W-jn | SUN 00:00 | →99",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120249855697050073",
+        "120249855229580073"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 9900
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "20b",
+   "name": "WW | R-C2 | MON 00:00 | →70",
+   "account": "9147325105346647",
+   "campaign_ids": [
+    "120252107080200312"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "70 (Sun level); Mon 12 Oct 2026: 80",
+   "target_budget_aed": 70,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 70",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 00:40 = 70",
+   "meta_api_payload": {
+    "name": "WW | R-C2 | MON 00:00 | →70",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "19",
+   "name": "WW | R-C2 | FRI 00:00 | →81",
+   "account": "9147325105346647",
+   "campaign_ids": [
+    "120252107080200312"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 5,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "70",
+   "target_budget_aed": 81,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 81",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Fri 00:40 = 81",
+   "meta_api_payload": {
+    "name": "WW | R-C2 | FRI 00:00 | →81",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 8100
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "20",
+   "name": "WW | R-C2 | SUN 00:00 | →70",
+   "account": "9147325105346647",
+   "campaign_ids": [
+    "120252107080200312"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 0,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "81",
+   "target_budget_aed": 70,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 70",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sun 00:40 = 70",
+   "meta_api_payload": {
+    "name": "WW | R-C2 | SUN 00:00 | →70",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "120252107080200312"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "21",
+   "name": "BR | THU 00:00 | →60",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "50 (Wed level); Thu 15 Oct 2026: 60 → no-op",
+   "target_budget_aed": 60,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 60",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 00:40 = 60",
+   "meta_api_payload": {
+    "name": "BR | THU 00:00 | →60",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 6000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "22",
+   "name": "BR | THU 12:00 | →70",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 4,
+    "minute_from_midnight": 720
+   },
+   "current_expected_budget_aed_before": "60",
+   "target_budget_aed": 70,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 70",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Thu 12:40 = 70",
+   "meta_api_payload": {
+    "name": "BR | THU 12:00 | →70",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        4
+       ],
+       "start_minute": 720,
+       "end_minute": 750
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "23",
+   "name": "BR | FRI 00:00 | →85",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 5,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "70",
+   "target_budget_aed": 85,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 85",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Fri 00:40 = 85",
+   "meta_api_payload": {
+    "name": "BR | FRI 00:00 | →85",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 8500
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        5
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "24",
+   "name": "BR | SAT 00:00 | →90",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 6,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "85",
+   "target_budget_aed": 90,
+   "action": "Increase daily budget by 100 % with maximum daily budget cap = AED 90",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sat 00:40 = 90",
+   "meta_api_payload": {
+    "name": "BR | SAT 00:00 | →90",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": 100,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 9000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        6
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "25",
+   "name": "BR | SUN 00:00 | →72",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 0,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "90",
+   "target_budget_aed": 72,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 72",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Sun 00:40 = 72",
+   "meta_api_payload": {
+    "name": "BR | SUN 00:00 | →72",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 7200
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        0
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "26",
+   "name": "BR | MON 00:00 | →58",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 1,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "72",
+   "target_budget_aed": 58,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 58",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Mon 00:40 = 58",
+   "meta_api_payload": {
+    "name": "BR | MON 00:00 | →58",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 5800
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        1
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  },
+  {
+   "spec_row": "27",
+   "name": "BR | TUE 00:00 | →50",
+   "account": "1897980308260660",
+   "campaign_ids": [
+    "23860638577100791"
+   ],
+   "execution_time_dubai": {
+    "day_index_0_is_sunday": 2,
+    "minute_from_midnight": 0
+   },
+   "current_expected_budget_aed_before": "58",
+   "target_budget_aed": 50,
+   "action": "Decrease daily budget by 50 % with minimum daily budget cap = AED 50",
+   "failsafe": "cap equals target: never overshoots, no-op when already past the target in its own direction; condition Amount spent (Lifetime) > 0; email on action; 00:40/12:40 read-only verification",
+   "read_back_check": "Tue 00:40 = 50 (holds Wednesday)",
+   "meta_api_payload": {
+    "name": "BR | TUE 00:00 | →50",
+    "status": "ENABLED",
+    "evaluation_spec": {
+     "evaluation_type": "SCHEDULE",
+     "filters": [
+      {
+       "field": "entity_type",
+       "value": "CAMPAIGN",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "id",
+       "value": [
+        "23860638577100791"
+       ],
+       "operator": "IN"
+      },
+      {
+       "field": "time_preset",
+       "value": "LIFETIME",
+       "operator": "EQUAL"
+      },
+      {
+       "field": "spent",
+       "value": 0,
+       "operator": "GREATER_THAN"
+      }
+     ]
+    },
+    "execution_spec": {
+     "execution_type": "CHANGE_BUDGET",
+     "execution_options": [
+      {
+       "field": "change_spec",
+       "value": {
+        "amount": -50,
+        "unit": "PERCENTAGE",
+        "target_field": "daily_budget",
+        "limit": 5000
+       },
+       "operator": "EQUAL"
+      }
+     ]
+    },
+    "schedule_spec": {
+     "schedule_type": "CUSTOM",
+     "schedule": [
+      {
+       "days": [
+        2
+       ],
+       "start_minute": 0,
+       "end_minute": 30
+      }
+     ]
+    }
+   }
+  }
+ ]
+}
