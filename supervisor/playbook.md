@@ -86,3 +86,8 @@ judge whether a day, or an instruction change, is better or worse.
   all "Muhaisnah"; the customer writes the full address (building, apartment) in the address field. The bot had
   made up page steps for a customer who couldn't find "Muhaisnah 4" ("Other area", type the number); the
   instruction now forbids inventing page options, buttons or steps.
+
+## Owner rules for changing the bot (20 Oct 2026)
+- **Backup the LIVE agent before every change.** Call `get_ai_agent` right before `update_ai_agent`, save the exact live instruction and settings to `work/a1014/BACKUP_LIVE_<updatedAt>_<date>.txt`, and compare with the local file. A local file is not a backup of what is live.
+- If `updatedAt` or the description shows someone else changed the agent since our last publish, stop and tell the owner; never overwrite their version.
+- Instruction never above 10,000 characters. Always send `knowledgeSourceIds` [168623, 168624].
