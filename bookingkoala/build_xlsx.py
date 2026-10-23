@@ -31,7 +31,7 @@ sheets = []
 # Sheet 1
 sh = Sheet("1 Setup steps", [5, 26, 120]); sheets.append(sh)
 sh.add([("Just Now - BookingKoala setup pack", "title")])
-sh.add([("Source: owner-approved price table (2 Oct 2026, amended 8-9 Oct) as loaded in the WhatsApp assistant. Prepared 23 Oct 2026. Yellow cells are for you to fill.", "note")])
+sh.add([("Source: owner-approved price table (2 Oct 2026, amended 8-9 Oct) as loaded in the WhatsApp assistant. Prepared 23 Oct 2026; area list extended and approved by the owner 23 Oct 2026. Yellow cells are for you to fill.", "note")])
 sh.add([])
 sh.add([("#", "hdr"), ("Step", "hdr"), ("What to do", "hdr")])
 for s in STEPS: sh.add([S(s[0]), B_(s[1]), S(s[2])], height=48)
@@ -70,8 +70,6 @@ for emirate, a, z in areas:
 for emirate, z in defaults.items():
     if emirate in ("Dubai", "Sharjah"): continue
     sh.add([S(emirate), (EMIRATE_AR[emirate], "ar"), S("(any other area in this emirate)"), S(""), S(""), S(f"Zone {z}"), S("Emirate default: the emirate alone is enough.")]); r += 1
-for a, ar in [("Al Zubair", "الزبير"), ("Al Mahatta", "المحطة"), ("Al Ghafiya", "الغافية")]:
-    sh.add([S("Sharjah"), ("الشارقة", "ar"), S(a), (ar, "ar"), S(""), S("ASK"), S("Price verification required (owner decision 8 Oct 2026): no online price until the owner adds it.")]); r += 1
 sh.add([S("Abu Dhabi / Al Ain"), ("أبوظبي / العين", "ar"), S("(all areas)"), S(""), S(""), S("NOT ONLINE"), S("Minimum AED 1,000, quoted by the specialist on WhatsApp +971 50 767 7282. Do not offer online booking.")]); r += 1
 ar_last = r - 1
 
