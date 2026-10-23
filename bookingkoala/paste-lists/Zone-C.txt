@@ -1,0 +1,89 @@
+# Zone C: 85 areas. Paste the comma-separated line into the location's zip/area list field.
+Business Bay, Downtown, DIFC, Sheikh Zayed Road, City Walk, Al Wasl, Al Safa, Jumeirah, Umm Suqeim, Al Manara, Al Sufouh, Al Barsha, Al Barsha South, TECOM, Dubai Media City, Dubai Internet City, Knowledge Park, Dubai Marina, JBR, Bluewaters Island, Palm Jumeirah, JLT, JVC, JVT, Al Furjan, Discovery Gardens, The Gardens, Jebel Ali, Dubai Investment Park, Green Community, The Springs, The Meadows, The Lakes, The Greens, The Views, Emirates Hills, Jumeirah Islands, Jumeirah Park, Al Khail Heights, Dubai Hills, Arabian Ranches, Motor City, Sports City, Studio City, Production City (IMPZ), Arjan, Majan, Dubailand (Arabian Ranches / Global Village side), Mudon, Remraam, Damac Hills, Town Square, Tilal Al Ghaf, Serena, Villanova, Mira, Reem, The Sustainable City, Meydan, Nad Al Sheba, Al Barari, Dubai Creek Harbour, Dubai Festival City, Dubai South, Mohammed Bin Rashid City (MBR City), Sobha Hartland, District One, Dubai Science Park, Jumeirah Golf Estates, Jumeirah Heights, Dubai Harbour, La Mer, Pearl Jumeirah, Umm Al Sheif, Dubai Design District (d3), Expo City, Dubai Industrial City, The Villa, Falcon City, Rukan, Damac Lagoons, Damac Hills 2 (Akoya), Palm Jebel Ali, Lehbab, Hatta
+
+# Detail (emirate | area | Arabic | aliases | note)
+Dubai | Business Bay | الخليج التجاري |  | 
+Dubai | Downtown |  |  | 
+Dubai | DIFC |  |  | 
+Dubai | Sheikh Zayed Road |  |  | 
+Dubai | City Walk |  |  | 
+Dubai | Al Wasl |  |  | 
+Dubai | Al Safa |  |  | 
+Dubai | Jumeirah | جميرا |  | 
+Dubai | Umm Suqeim | أم سقيم |  | 
+Dubai | Al Manara |  |  | 
+Dubai | Al Sufouh | الصفوح |  | 
+Dubai | Al Barsha | البرشاء |  | 
+Dubai | Al Barsha South |  |  | 
+Dubai | TECOM |  |  | 
+Dubai | Dubai Media City |  |  | 
+Dubai | Dubai Internet City |  |  | 
+Dubai | Knowledge Park |  |  | 
+Dubai | Dubai Marina | المرينا | Marina | 
+Dubai | JBR |  | Jumeirah Beach Residence | 
+Dubai | Bluewaters Island |  |  | 
+Dubai | Palm Jumeirah | نخلة جميرا |  | 
+Dubai | JLT |  | Jumeirah Lake Towers | 
+Dubai | JVC |  | Jumeirah Village Circle | 
+Dubai | JVT |  | Jumeirah Village Triangle | 
+Dubai | Al Furjan | الفرجان |  | 
+Dubai | Discovery Gardens |  |  | 
+Dubai | The Gardens |  |  | 
+Dubai | Jebel Ali | جبل علي |  | 
+Dubai | Dubai Investment Park |  | DIP | 
+Dubai | Green Community |  |  | 
+Dubai | The Springs |  |  | 
+Dubai | The Meadows |  |  | 
+Dubai | The Lakes |  |  | 
+Dubai | The Greens |  |  | 
+Dubai | The Views |  |  | 
+Dubai | Emirates Hills |  |  | 
+Dubai | Jumeirah Islands |  |  | 
+Dubai | Jumeirah Park |  |  | 
+Dubai | Al Khail Heights |  |  | 
+Dubai | Dubai Hills |  |  | 
+Dubai | Arabian Ranches | المرابع العربية |  | 
+Dubai | Motor City |  |  | 
+Dubai | Sports City |  |  | 
+Dubai | Studio City |  |  | 
+Dubai | Production City (IMPZ) |  | IMPZ | 
+Dubai | Arjan |  |  | 
+Dubai | Majan |  |  | 
+Dubai | Dubailand (Arabian Ranches / Global Village side) | دبي لاند |  | If the customer says only 'Dubailand', ask which side. Silicon Oasis side = Zone B (DLRC, Liwan, Wadi Al Safa, Queue Point, Skycourts).
+Dubai | Mudon |  |  | 
+Dubai | Remraam |  |  | 
+Dubai | Damac Hills |  |  | 
+Dubai | Town Square |  |  | 
+Dubai | Tilal Al Ghaf |  |  | 
+Dubai | Serena |  |  | 
+Dubai | Villanova |  |  | 
+Dubai | Mira |  |  | 
+Dubai | Reem |  |  | 
+Dubai | The Sustainable City |  |  | 
+Dubai | Meydan | ميدان |  | 
+Dubai | Nad Al Sheba |  |  | 
+Dubai | Al Barari |  |  | 
+Dubai | Dubai Creek Harbour |  |  | 
+Dubai | Dubai Festival City |  |  | 
+Dubai | Dubai South |  |  | 
+Dubai | Mohammed Bin Rashid City (MBR City) |  |  | 
+Dubai | Sobha Hartland |  |  | 
+Dubai | District One |  |  | 
+Dubai | Dubai Science Park |  |  | 
+Dubai | Jumeirah Golf Estates |  |  | 
+Dubai | Jumeirah Heights |  |  | 
+Dubai | Dubai Harbour |  |  | 
+Dubai | La Mer |  |  | 
+Dubai | Pearl Jumeirah |  |  | 
+Dubai | Umm Al Sheif |  |  | 
+Dubai | Dubai Design District (d3) |  |  | 
+Dubai | Expo City |  |  | 
+Dubai | Dubai Industrial City |  |  | 
+Dubai | The Villa |  |  | 
+Dubai | Falcon City |  |  | 
+Dubai | Rukan |  |  | 
+Dubai | Damac Lagoons |  |  | 
+Dubai | Damac Hills 2 (Akoya) |  |  | 
+Dubai | Palm Jebel Ali |  |  | 
+Dubai | Lehbab |  |  | 
+Dubai | Hatta | حتا |  | 
