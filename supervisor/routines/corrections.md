@@ -1,0 +1,29 @@
+# Correction wording (not sent by the supervisor)
+
+Since 29 Sep 2026, 15:30 the supervisor no longer writes to customers (owner's order); it fixes the bot's
+instruction instead and lists the customer on the "Needs the owner" list. This wording stays for the owner or the
+team, and for a message the owner asks for in the session. Fill the brackets from the live instruction (`supervisor/work/instruction.txt`) – never from
+memory. Write in the customer's language, as one short message.
+
+| Mistake | English | Arabic |
+| --- | --- | --- |
+| Price too high for the zone / size | Sorry, a small correction 😊 For [service] in [area], it's [cleaners] cleaners × [hours] hours – AED [price], everything included. Book here: [booking link] | عذراً، تصحيح بسيط 😊 [الخدمة] في [المنطقة]: [عدد] عاملات × [ساعات] ساعات – [السعر] درهم، كل شي شامل. احجز من هنا: [رابط الحجز] |
+| Extra packages given without being asked | – no correction; log it | – |
+| Price given without the booking link, or with a wrong link | You can book your slot here in one minute 😊 [booking link] | تقدر تحجز موعدك من هنا خلال دقيقة 😊 [رابط الحجز] |
+| Kitchen price given when the customer asked for full house / a home size (or the other way round) | Sorry, a small correction 😊 For [the right service] in [area], it's [cleaners] cleaners × [hours] hours – AED [price], everything included. Book here: [booking link] | same as the price row |
+| Same-day promised after 6 PM | Sorry, a small correction 😊 Today's bookings are closed, but you can book tomorrow's first slot here: [booking link] | عذراً، تصحيح بسيط 😊 حجوزات اليوم انتهت، لكن تقدر تحجز أول موعد بكرة من هنا: [رابط الحجز] |
+| "Your booking is confirmed" (the bot cannot see bookings) | Sorry, a small correction 😊 Our booking team will contact you on WhatsApp to confirm your booking. | عذراً، تصحيح بسيط 😊 فريق الحجز بيتواصل معك على واتساب لتأكيد حجزك. |
+| An office or street address was given | Sorry, a small correction 😊 We come to you – our team serves Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah and Fujairah. | عذراً، تصحيح بسيط 😊 نحن نجيك لين عندك – نخدم دبي والشارقة وعجمان وأم القيوين ورأس الخيمة والفجيرة. |
+| A question left unanswered (the answer is in the instruction) | Sorry for the wait 😊 [the answer, in the instruction's words] | عذراً على التأخير 😊 [الجواب من التعليمات] |
+| A time promised ("3 hours is enough", "it will be done in 3 hours") – owner's rule, 29 Sep | Just to clarify 😊 We can't confirm the time before our team sees the place – the package gives you the team for the booked hours, and you can add one more hour if needed. | للتوضيح 😊 ما نقدر نأكد الوقت قبل ما يشوف فريقنا المكان – الباقة تعطيك الفريق للساعات المحجوزة، وتقدر تضيف ساعة إضافية إذا احتجت. |
+| Voice note ignored | Sorry, I can't play voice notes here 😊 Could you please type your message? | عذراً، ما أقدر أسمع الرسائل الصوتية هنا 😊 ممكن تكتب رسالتك؟ |
+
+## Rules
+
+- One correction per conversation per day; check the transcript for an earlier one of ours first.
+- Never a correction that raises the price the customer was given: the lower quote stands; log it.
+- Never to a customer whose last message declined or thanked, unless the correction lowers their price.
+- Never correct sofa / mattress / carpet / curtains or commercial prices – there is no table for them.
+- Outside the 24-hour WhatsApp window: send nothing – no templates (owner's order, 28 Sep 23:30). Put the customer
+  on the doc's "Needs the owner" list with the correction they need.
+- Log every correction in the doc's log tab (time, contact id, what was wrong, what was sent).
