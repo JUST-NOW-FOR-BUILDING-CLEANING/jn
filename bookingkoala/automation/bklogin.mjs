@@ -1,0 +1,18 @@
+import { createRequire } from "node:module"; import { execSync } from "node:child_process"; import { join } from "node:path";
+const require = createRequire(import.meta.url);
+const { chromium } = require(join(execSync("npm root -g").toString().trim(), "playwright"));
+const b = await chromium.launch({ proxy: { server: process.env.HTTPS_PROXY }, args: ["--ignore-certificate-errors", "--disable-quic"] });
+const ctx = await b.newContext({ ignoreHTTPSErrors: true, viewport: { width: 1366, height: 900 }, userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" });
+const p = await ctx.newPage();
+await p.goto("https://justnowforbuildingcleaningservicescollc.bookingkoala.com/login", { waitUntil: "domcontentloaded", timeout: 60000 });
+await p.waitForTimeout(4000);
+await p.getByRole("button", { name: /^ok$/i }).click({ timeout: 3000 }).catch(() => {});
+await p.locator('input[placeholder*="xyz"], input[placeholder*="example"]').first().fill(process.env.BK_USER, { timeout: 15000 });
+await p.locator('input[type="password"]').first().fill(process.env.BK_PASS);
+await p.getByRole("button", { name: /sign in/i }).first().click();
+await p.waitForTimeout(8000);
+await p.screenshot({ path: "bk-after-login.png" });
+console.log("URL:", p.url()); console.log("TITLE:", await p.title());
+console.log("TEXT:", (await p.evaluate(() => document.body.innerText.replace(/\s+/g, " ").slice(0, 500))));
+await ctx.storageState({ path: "bk-state.json" });
+await b.close();

@@ -1,1 +1,5 @@
 audit/out/
+
+# BookingKoala login session
+bk-state.json
+bookingkoala/automation/bkvars-log.json

@@ -1,0 +1,20 @@
+import { createRequire } from "node:module"; import { execSync } from "node:child_process";
+const require = createRequire(import.meta.url);
+const { chromium } = require(execSync("npm root -g").toString().trim() + "/playwright");
+const BASE = "https://justnowforbuildingcleaningservicescollc.bookingkoala.com";
+const b = await chromium.launch({ proxy: { server: process.env.HTTPS_PROXY }, args: ["--ignore-certificate-errors", "--disable-quic"] });
+const ctx = await b.newContext({ ignoreHTTPSErrors: true, storageState: "bk-state.json", viewport: { width: 1440, height: 1000 }, userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" });
+const page = await ctx.newPage();
+await page.goto(BASE + "/admin/settings/general/store-options", { waitUntil: "domcontentloaded" }); await page.waitForTimeout(6000);
+await page.locator("h4", { hasText: /^Store Info$/ }).first().click(); await page.waitForTimeout(2500);
+await page.locator("#uploadEl").setInputFiles("dl/jn-logo-225x50.png"); await page.waitForTimeout(3000);
+console.log("after pick:", await page.evaluate(() => (document.body.innerText.match(/(error|invalid|size|crop|upload)[^\n]{0,80}/gi) || []).slice(0, 5).join("; ")));
+await page.screenshot({ path: "bk-logo-picked.png" });
+const cropBtn = page.locator(".modal.show button", { hasText: /Crop|Save|Apply|Upload|Done/ }).filter({ visible: true });
+if (await cropBtn.count()) { console.log("modal buttons:", await cropBtn.allInnerTexts()); await cropBtn.last().click(); await page.waitForTimeout(2500); }
+await page.locator("button", { hasText: /^Save$/ }).filter({ visible: true }).first().click(); await page.waitForTimeout(4000);
+console.log("save msg:", await page.evaluate(() => (document.body.innerText.match(/(success|saved|updated|error|invalid)[^\n]{0,80}/gi) || []).join("; ")));
+await page.goto(BASE + "/booknow", { waitUntil: "domcontentloaded" }); await page.waitForTimeout(6000);
+console.log("header imgs:", await page.evaluate(() => [...document.images].slice(0, 5).map((i) => i.currentSrc.slice(0, 120) + " " + i.naturalWidth + "x" + i.naturalHeight).join(" | ")), "| has YOUR LOGO text:", await page.evaluate(() => document.body.innerText.includes("YOUR LOGO")));
+await page.screenshot({ path: "bk-public-logo.png" });
+await b.close();
