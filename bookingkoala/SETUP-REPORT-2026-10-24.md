@@ -63,3 +63,18 @@ Screenshots are in `bookingkoala/screenshots/` (admin sections 01 to 09, public 
 ## Security note
 
 The owner shared the admin password in chat for this run. Change it in Settings > Account > Your Info > Change Password.
+
+## Branding of the public site (added later on 24 Oct)
+
+The public site and booking form used BookingKoala's default theme (orange header, cyan buttons, "YOUR LOGO", placeholder phone). Changed in Design Forms & Website > Website Builder, theme "Simple", and published:
+
+- Logo: the store logo file (225 x 50 PNG, black icon with "Just Now, Deep Cleaning Services - UAE" on white) placed in the header (225 px wide) and footer.
+- Colours (Design > Colors, custom colours on): headings, links, loader and the booking summary total in brand blue #3771C1; link hover in sky #51ADE5; checkboxes, radio buttons and the active calendar date in brand green #80CC28; body text left neutral grey. Header background set to #3771C1 in the header section's style settings.
+- Custom CSS (Design > Custom CSS): all primary buttons green #80CC28 with a darker hover, "Give Us A Call" box blue, "How it works" link blue. Footer kept navy.
+- Phone: placeholder +01 123 456 7890 replaced with +971 50 767 7282 in the header call box and the footer.
+- Live reviews block on the booking form switched off (it showed sample reviews by "Test C").
+- Font: no brand font was specified, so the theme default (Lato) stays.
+
+Verified on the live pages (desktop and iPhone profile): header blue, buttons green, logo and phone present, total in blue, no sample reviews. Screenshots `10-branded-*.png`.
+
+Still default and worth a decision: the home page hero text ("Thanks For Stopping By", "Let Us Connect You With Top Providers"), the "How it works" and "Learn more about our services" blocks, the referral and "Powered by BookingKoala" sections, and the BookingKoala explanatory descriptions under each booking-form section. These are copy choices for the owner; the brand notes forbid service cards and prices on public pages, so they were left untouched.
