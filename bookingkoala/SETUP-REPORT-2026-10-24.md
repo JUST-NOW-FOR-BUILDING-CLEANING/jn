@@ -77,4 +77,15 @@ The public site and booking form used BookingKoala's default theme (orange heade
 
 Verified on the live pages (desktop and iPhone profile): header blue, buttons green, logo and phone present, total in blue, no sample reviews. Screenshots `10-branded-*.png`.
 
+## Provider account for the BookingKoala provider app (added later on 24 Oct)
+
+The owner could not log in to the provider app: it answered "valid provider ID". Cause: the merchant/admin email (justnow.cs@gmail.com) is not a provider account, and BookingKoala does not allow the merchant email to be used for a provider. Done:
+
+- Created provider id 15 "Just Now Team 1" (individual) with email customer.care@justnow.life, phone +971 50 767 7282, address Sharjah, UAE, and set its password from the admin side. Login verified: the credentials open the provider dashboard (screenshot `13-provider-app-dashboard.png`).
+- Availability: every day 08:00 AM to 09:00 PM (was the 08:00 to 18:00 default). Screenshot `11-provider-schedule-08-21.png`.
+- Settings: default location "Sharjah city"; industry Home Cleaning and Form 1 enabled; provider may set own schedule and settings with merchant approval; unassigned jobs, booking price and payment method hidden from the provider (defaults). Screenshot `12-provider-settings.png`.
+- Admin password: reset by the "forgot password" email on 24 Oct, so the admin login works with email + password again. Both passwords were handed to the owner in chat only; none are stored in this repository. Change them after the first login.
+
+Google Calendar sync is still not connected. The provider page under Apps & Integrations says the merchant credentials are missing, so the order is: Settings > General > Apps & Integrations > Google Calendar > Enable, sign in with the Google account that owns the "Cleaning Services Schedule" calendar, then open Providers > Just Now Team 1 > Apps & Integrations > Google Calendar and connect the same account. Both steps need a Google sign-in popup on the owner's own browser.
+
 Still default and worth a decision: the home page hero text ("Thanks For Stopping By", "Let Us Connect You With Top Providers"), the "How it works" and "Learn more about our services" blocks, the referral and "Powered by BookingKoala" sections, and the BookingKoala explanatory descriptions under each booking-form section. These are copy choices for the owner; the brand notes forbid service cards and prices on public pages, so they were left untouched.
