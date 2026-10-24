@@ -1,0 +1,14 @@
+Setting,Value
+Working days,"Every day, including Friday and public holidays"
+Working hours,08:00 - 21:00 (Asia/Dubai)
+Arrival window 1,08:00 - 12:00
+Arrival window 2,12:00 - 16:00
+Arrival window 3,16:00 - 21:00
+Arrival promise,Team arrives within the window; up to 1 hour delay possible due to traffic. Service hours start when the team arrives.
+Same-day booking,"Allowed until 18:00 for the 16:00-21:00 window, only if a team is free. After 18:00 the first bookable slot is tomorrow 08:00-12:00."
+Lead time (BookingKoala 'minimum notice'),2 hours
+Booking horizon,30 days ahead
+Teams / providers,Enter the number of cleaners available per day so the calendar blocks capacity correctly (fill in).
+Buffer between jobs,60 minutes travel (fill in if different)
+Recurring / frequency option,"OFF. Regular, weekly, monthly and subscription cleaning are not offered."
+Discount codes / tips,OFF
