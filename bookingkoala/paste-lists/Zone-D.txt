@@ -1,0 +1,65 @@
+# Zone D: 61 areas. Paste the comma-separated line into the location's zip/area list field.
+Mleiha, Al Dhaid, Al Madam, Al Batayah, Kalba, Khorfakkan, Dibba Al Hisn, Masfout, Manama, Falaj Al Mualla, Ras Al Khaimah City, Al Nakheel, Al Dhait, Al Mairid, Al Uraibi, Khuzam, Al Qusaidat, Al Hamra Village, Mina Al Arab, Al Jazirah Al Hamra, Al Rams, Digdaga, Khatt, Al Ghail, Shaam, Al Marjan Island, Al Seer, Al Mamourah, Al Qurm, Dafan Al Nakheel, Julphar, Al Hudaibah, Al Riffa, Al Kharran, Al Fahlain, Suhaila, Ghalilah, Fujairah City, Al Faseel, Sakamkam, Merashid, Madhab, Al Gurfa, Mirbah, Qidfa, Al Bidiyah, Al Hail, Al Taween, Masafi, Dibba Al Fujairah, Al Sharyah, Al Hilal City, Rugaylat, Al Qurayyah, Al Aqah, Sambraid, Thoban, Rul Dadna, Al Owaid, (any other area in this emirate), (any other area in this emirate)
+
+# Detail (emirate | area | Arabic | aliases | note)
+Sharjah | Mleiha | مليحة |  | 4-hour minimum (no 3-hour package).
+Sharjah | Al Dhaid | الذيد |  | 4-hour minimum (no 3-hour package).
+Sharjah | Al Madam | المدام |  | 4-hour minimum (no 3-hour package).
+Sharjah | Al Batayah |  |  | 4-hour minimum (no 3-hour package).
+Sharjah | Kalba | كلباء |  | 4-hour minimum (no 3-hour package).
+Sharjah | Khorfakkan | خورفكان |  | 4-hour minimum (no 3-hour package).
+Sharjah | Dibba Al Hisn |  |  | 4-hour minimum (no 3-hour package).
+Ajman | Masfout | مصفوت |  | 4-hour minimum (no 3-hour package).
+Ajman | Manama | المنامة |  | 4-hour minimum (no 3-hour package).
+Umm Al Quwain | Falaj Al Mualla | فلج المعلا |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Ras Al Khaimah City |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Nakheel |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Dhait |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Mairid |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Uraibi |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Khuzam |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Qusaidat |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Hamra Village |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Mina Al Arab |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Jazirah Al Hamra | الجزيرة الحمراء |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Rams | الرمس |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Digdaga |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Khatt |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Ghail |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Shaam |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Marjan Island |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Seer |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Mamourah |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Qurm |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Dafan Al Nakheel |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Julphar |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Hudaibah |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Riffa |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Kharran |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Al Fahlain |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Suhaila |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | Ghalilah |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Fujairah City |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Faseel |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Sakamkam |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Merashid |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Madhab |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Gurfa |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Mirbah |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Qidfa |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Bidiyah |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Hail |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Taween |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Masafi | مسافي |  | 4-hour minimum (no 3-hour package).
+Fujairah | Dibba Al Fujairah | دبا الفجيرة |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Sharyah |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Hilal City |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Rugaylat |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Qurayyah |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Aqah |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Sambraid |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Thoban |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Rul Dadna |  |  | 4-hour minimum (no 3-hour package).
+Fujairah | Al Owaid |  |  | 4-hour minimum (no 3-hour package).
+Ras Al Khaimah | (any other area in this emirate) |  |  | Emirate default: the emirate alone is enough.
+Fujairah | (any other area in this emirate) |  |  | Emirate default: the emirate alone is enough.

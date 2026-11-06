@@ -1,0 +1,105 @@
+# Zone A: 101 areas. Paste the comma-separated line into the location's zip/area list field.
+Al Nahda (Sharjah), Al Majaz, Al Taawun, Al Khan, Al Qasimia, Al Mamzar (Sharjah), Al Qulayaah, Al Ghuwair, Rolla, Abu Shagara, Al Nabba, Al Mujarrah, Al Soor, Bu Daniq, Al Mirgab, Al Layyah, Al Khaledia, Al Heerah, Al Fisht, Maysaloon, Al Jazzat, Al Shahba, Al Gharb, Al Sharq, Al Yarmook, Al Rifaa, Al Nasserya, Al Khezamia, Sharqan, Samnan, Al Goaz, Halwan, Al Azra, Al Ramtha, Muwaileh, Al Zahia, Tilal City, University City, Nasma Residences, Sharjah Sustainable City, Industrial Area, Maliha Road, Al Butina, Al Qadisiya, Al Falaj, Al Manakh, Al Musalla, Al Shuwaihean, Al Mareija, Al Nud, Al Ghubaiba, Al Jubail, Al Fayha, Al Darari, Al Yash, Al Abar, Al Sweihat, Al Falah, Al Riqa (Sharjah), Al Qasba, Maryam Island, Al Mamsha, Aljada, Wasit, Al Nouf, Al Zubair, Al Mahatta, Al Ghafiya, Al Nuaimiya, Al Rashidiya, Al Jurf, Ajman Corniche, Ajman Downtown, Al Mowaihat, Al Hamidiya, Al Rawda, Emirates City, Al Zahya, Al Yasmeen, Al Nakheel, Al Rumailah, Al Bustan, Al Sawan, Al Mushairef, Al Helio, Al Alia, Al Tallah, Al Amerah, Al Hamriya (Ajman), Al Zorah, Garden City, Ajman Uptown, Ajman Industrial Area, Al Karama (Ajman), Al Raqaib, Al Owan, Al Muntazi, Liwara, Al Butain, Ajman Marina, (any other area in this emirate)
+
+# Detail (emirate | area | Arabic | aliases | note)
+Sharjah | Al Nahda (Sharjah) | النهدة |  | 
+Sharjah | Al Majaz | المجاز |  | 
+Sharjah | Al Taawun | التعاون |  | 
+Sharjah | Al Khan | الخان |  | 
+Sharjah | Al Qasimia | القاسمية |  | 
+Sharjah | Al Mamzar (Sharjah) | الممزر |  | 
+Sharjah | Al Qulayaah |  |  | 
+Sharjah | Al Ghuwair | الغوير |  | 
+Sharjah | Rolla | رولا |  | 
+Sharjah | Abu Shagara | أبو شغارة |  | 
+Sharjah | Al Nabba | النباعة |  | 
+Sharjah | Al Mujarrah |  |  | 
+Sharjah | Al Soor |  |  | 
+Sharjah | Bu Daniq |  |  | 
+Sharjah | Al Mirgab | المرقاب |  | 
+Sharjah | Al Layyah |  |  | 
+Sharjah | Al Khaledia | الخالدية |  | 
+Sharjah | Al Heerah |  |  | 
+Sharjah | Al Fisht |  |  | 
+Sharjah | Maysaloon |  |  | 
+Sharjah | Al Jazzat |  |  | 
+Sharjah | Al Shahba |  |  | 
+Sharjah | Al Gharb |  |  | 
+Sharjah | Al Sharq |  |  | 
+Sharjah | Al Yarmook | اليرموك |  | 
+Sharjah | Al Rifaa | الرفاع |  | 
+Sharjah | Al Nasserya | الناصرية |  | 
+Sharjah | Al Khezamia |  |  | 
+Sharjah | Sharqan |  |  | 
+Sharjah | Samnan |  |  | 
+Sharjah | Al Goaz |  |  | 
+Sharjah | Halwan |  |  | 
+Sharjah | Al Azra |  |  | 
+Sharjah | Al Ramtha |  |  | 
+Sharjah | Muwaileh | مويلح |  | 
+Sharjah | Al Zahia | الزاهية |  | 
+Sharjah | Tilal City |  |  | 
+Sharjah | University City |  |  | 
+Sharjah | Nasma Residences |  |  | 
+Sharjah | Sharjah Sustainable City |  |  | 
+Sharjah | Industrial Area |  |  | 
+Sharjah | Maliha Road |  |  | 
+Sharjah | Al Butina |  |  | 
+Sharjah | Al Qadisiya |  |  | 
+Sharjah | Al Falaj |  |  | 
+Sharjah | Al Manakh |  |  | 
+Sharjah | Al Musalla |  |  | 
+Sharjah | Al Shuwaihean |  |  | 
+Sharjah | Al Mareija |  |  | 
+Sharjah | Al Nud |  |  | 
+Sharjah | Al Ghubaiba |  |  | 
+Sharjah | Al Jubail |  |  | 
+Sharjah | Al Fayha |  |  | 
+Sharjah | Al Darari |  |  | 
+Sharjah | Al Yash |  |  | 
+Sharjah | Al Abar |  |  | 
+Sharjah | Al Sweihat |  |  | 
+Sharjah | Al Falah |  |  | 
+Sharjah | Al Riqa (Sharjah) |  |  | 
+Sharjah | Al Qasba |  |  | 
+Sharjah | Maryam Island |  |  | 
+Sharjah | Al Mamsha |  |  | 
+Sharjah | Aljada |  |  | 
+Sharjah | Wasit |  |  | 
+Sharjah | Al Nouf |  |  | 
+Sharjah | Al Zubair |  |  | 
+Sharjah | Al Mahatta |  |  | 
+Sharjah | Al Ghafiya |  |  | 
+Ajman | Al Nuaimiya | النعيمية | Al Nuaimiya 1-3 / Al Nuaimiyah | 
+Ajman | Al Rashidiya | الراشدية | Al Rashidiya 1-3 | 
+Ajman | Al Jurf | الجرف |  | 
+Ajman | Ajman Corniche |  |  | 
+Ajman | Ajman Downtown |  |  | 
+Ajman | Al Mowaihat | المويهات | Al Mowaihat 1-3 / Al Mowaihat | 
+Ajman | Al Hamidiya | الحميدية |  | 
+Ajman | Al Rawda | الروضة | Al Rawda 1-3 | 
+Ajman | Emirates City |  |  | 
+Ajman | Al Zahya |  |  | 
+Ajman | Al Yasmeen |  |  | 
+Ajman | Al Nakheel |  |  | 
+Ajman | Al Rumailah | الرميلة |  | 
+Ajman | Al Bustan |  |  | 
+Ajman | Al Sawan |  |  | 
+Ajman | Al Mushairef |  |  | 
+Ajman | Al Helio |  |  | 
+Ajman | Al Alia |  |  | 
+Ajman | Al Tallah |  |  | 
+Ajman | Al Amerah |  |  | 
+Ajman | Al Hamriya (Ajman) |  |  | 
+Ajman | Al Zorah | الزوراء |  | 
+Ajman | Garden City |  |  | 
+Ajman | Ajman Uptown |  |  | 
+Ajman | Ajman Industrial Area |  |  | 
+Ajman | Al Karama (Ajman) |  |  | 
+Ajman | Al Raqaib |  |  | 
+Ajman | Al Owan |  |  | 
+Ajman | Al Muntazi |  |  | 
+Ajman | Liwara |  |  | 
+Ajman | Al Butain |  |  | 
+Ajman | Ajman Marina |  |  | 
+Ajman | (any other area in this emirate) |  |  | Emirate default: the emirate alone is enough.

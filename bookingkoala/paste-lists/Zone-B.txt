@@ -1,0 +1,85 @@
+# Zone B: 81 areas. Paste the comma-separated line into the location's zip/area list field.
+Al Nahda, Al Qusais, Al Qusais Industrial, Deira, Al Rigga, Al Muraqqabat, Naif, Al Murar, Muteena, Ayal Nasir, Al Buteen, Port Saeed, Hor Al Anz, Abu Hail, Al Baraha, Al Wuheida, Al Mamzar, Bur Dubai, Al Mankhool, Al Hamriya, Al Karama, Oud Metha, Al Jafiliya, Zabeel, Al Kifaf, Dubai Healthcare City, Garhoud, Umm Ramool, Al Rashidiya, Nad Al Hamar, Ras Al Khor, Al Aweer, Mirdif, Al Mizhar, Al Khawaneej, Al Twar, Muhaisnah, Al Warqa, Al Warsan, International City, Silicon Oasis, Dubailand Residence Complex (DLRC), Liwan, Wadi Al Safa, Queue Point, Skycourts, Al Khail Gate, Al Quoz, Al Jaddaf (Jaddaf), Satwa, Al Hudaiba, Al Raffa, Al Mina (Port Rashid), Umm Hurair, Al Souk Al Kabeer, Al Mushrif, Al Badia, Culture Village, Dubai Islands (Deira Islands), Academic City, Umm Al Quwain City, Al Salamah, Al Raas, Al Haditha, Al Riqqah, Al Ramlah, Al Humrah, Al Dar Al Baida, UAQ Marina, Emirates Modern Industrial Area, Al Khor, Al Abraq, Al Maidan, Al Surrah, Al Rafaah, Al Salam City, Al Madar, Al Aahad, Al Shabiya, Al Hawiyah, (any other area in this emirate)
+
+# Detail (emirate | area | Arabic | aliases | note)
+Dubai | Al Nahda | النهدة | Al Nahda 1-2 | 
+Dubai | Al Qusais | القصيص | Al Qusais 1-5 | 
+Dubai | Al Qusais Industrial |  |  | 
+Dubai | Deira | ديرة |  | 
+Dubai | Al Rigga | الرقة |  | 
+Dubai | Al Muraqqabat | المرقبات |  | 
+Dubai | Naif | نايف |  | 
+Dubai | Al Murar | المرر |  | 
+Dubai | Muteena | المطينة |  | 
+Dubai | Ayal Nasir |  |  | 
+Dubai | Al Buteen |  |  | 
+Dubai | Port Saeed |  |  | 
+Dubai | Hor Al Anz | هور العنز |  | 
+Dubai | Abu Hail | أبو هيل |  | 
+Dubai | Al Baraha |  |  | 
+Dubai | Al Wuheida |  |  | 
+Dubai | Al Mamzar | الممزر |  | 
+Dubai | Bur Dubai | بر دبي |  | 
+Dubai | Al Mankhool | المنخول |  | 
+Dubai | Al Hamriya |  |  | 
+Dubai | Al Karama | الكرامة |  | 
+Dubai | Oud Metha | عود ميثاء |  | 
+Dubai | Al Jafiliya |  |  | 
+Dubai | Zabeel | زعبيل |  | 
+Dubai | Al Kifaf |  |  | 
+Dubai | Dubai Healthcare City |  |  | 
+Dubai | Garhoud | القرهود | Al Garhoud | 
+Dubai | Umm Ramool |  |  | 
+Dubai | Al Rashidiya | الراشدية | Al Rashidiya 1-3 | 
+Dubai | Nad Al Hamar | ند الحمر |  | 
+Dubai | Ras Al Khor | رأس الخور |  | 
+Dubai | Al Aweer |  |  | 
+Dubai | Mirdif |  |  | 
+Dubai | Al Mizhar |  |  | 
+Dubai | Al Khawaneej |  |  | 
+Dubai | Al Twar |  |  | 
+Dubai | Muhaisnah | محيصنة | Muhaisnah 1-4 | 
+Dubai | Al Warqa | الورقاء |  | 
+Dubai | Al Warsan |  |  | 
+Dubai | International City | المدينة العالمية |  | 
+Dubai | Silicon Oasis | واحة السيليكون | DSO, Dubai Silicon Oasis | 
+Dubai | Dubailand Residence Complex (DLRC) |  | DLRC | 
+Dubai | Liwan |  |  | 
+Dubai | Wadi Al Safa |  |  | 
+Dubai | Queue Point |  |  | 
+Dubai | Skycourts |  |  | 
+Dubai | Al Khail Gate |  |  | 
+Dubai | Al Quoz | القوز |  | 
+Dubai | Al Jaddaf (Jaddaf) | الجداف |  | 
+Dubai | Satwa | السطوة | Al Satwa | 
+Dubai | Al Hudaiba |  |  | 
+Dubai | Al Raffa |  |  | 
+Dubai | Al Mina (Port Rashid) |  |  | 
+Dubai | Umm Hurair |  |  | 
+Dubai | Al Souk Al Kabeer |  |  | 
+Dubai | Al Mushrif |  |  | 
+Dubai | Al Badia |  |  | 
+Dubai | Culture Village |  |  | 
+Dubai | Dubai Islands (Deira Islands) |  |  | 
+Dubai | Academic City |  |  | 
+Umm Al Quwain | Umm Al Quwain City |  |  | 
+Umm Al Quwain | Al Salamah |  |  | 
+Umm Al Quwain | Al Raas |  |  | 
+Umm Al Quwain | Al Haditha |  |  | 
+Umm Al Quwain | Al Riqqah |  |  | 
+Umm Al Quwain | Al Ramlah |  |  | 
+Umm Al Quwain | Al Humrah |  |  | 
+Umm Al Quwain | Al Dar Al Baida |  |  | 
+Umm Al Quwain | UAQ Marina |  |  | 
+Umm Al Quwain | Emirates Modern Industrial Area |  |  | 
+Umm Al Quwain | Al Khor |  |  | 
+Umm Al Quwain | Al Abraq |  |  | 
+Umm Al Quwain | Al Maidan |  |  | 
+Umm Al Quwain | Al Surrah |  |  | 
+Umm Al Quwain | Al Rafaah |  |  | 
+Umm Al Quwain | Al Salam City |  |  | 
+Umm Al Quwain | Al Madar |  |  | 
+Umm Al Quwain | Al Aahad |  |  | 
+Umm Al Quwain | Al Shabiya |  |  | 
+Umm Al Quwain | Al Hawiyah |  |  | 
+Umm Al Quwain | (any other area in this emirate) |  |  | Emirate default: the emirate alone is enough.

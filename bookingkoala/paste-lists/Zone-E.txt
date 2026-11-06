@@ -1,0 +1,14 @@
+# Zone E: 10 areas. Paste the comma-separated line into the location's zip/area list field.
+Al Suyoh, Al Tai, Al Rahmaniya, Al Barashi, Hoshi, Al Juraina, Al Qarayen, Al Sajaa, Al Hamriyah, Al Sehma
+
+# Detail (emirate | area | Arabic | aliases | note)
+Sharjah | Al Suyoh | السيوح |  | Far from base: Zone E price (owner decision 28 Sep 2026).
+Sharjah | Al Tai | الطي |  | 
+Sharjah | Al Rahmaniya | الرحمانية |  | 
+Sharjah | Al Barashi |  |  | 
+Sharjah | Hoshi |  |  | 
+Sharjah | Al Juraina |  |  | 
+Sharjah | Al Qarayen |  |  | 
+Sharjah | Al Sajaa |  |  | 
+Sharjah | Al Hamriyah | الحمرية |  | 
+Sharjah | Al Sehma |  |  | 
