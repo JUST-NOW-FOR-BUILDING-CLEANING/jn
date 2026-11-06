@@ -62,3 +62,16 @@ the BookingKoala admin open and logged in in Chrome.
 
 The task text named branch `claude/epic-carson-p0nj97`; this session was assigned
 `claude/eager-tesla-8kywxv`, so the work is pushed there.
+
+## Update 6 Nov 2026
+
+- The suggested task card was started four times from the Claude app; every run landed in the cloud
+  environment and hit the same wall (no Chrome access). The owner's MacBook Air is in the Remote
+  Control list but does not offer its folders to cloud sessions, so this session could not attach.
+- The BookingKoala subscription has renewed and been charged, so the setup is now urgent.
+- New path: `bookingkoala/onboarding-pack/JustNow-BookingKoala-Onboarding-Pack.xlsx` is a
+  10-sheet pack (account, 5 locations, 338 areas, 2 services, 105 packages, hours, EN+AR texts,
+  customer form, notifications, 3 acceptance tests) for BookingKoala's onboarding team to load.
+  A Gmail draft to BookingKoala support with the pack attached was prepared for the owner to send.
+- Google Calendar check (23 Oct): no BookingKoala events exist; the current "UNCONFIRMED - ..." events
+  come from the existing justnow.life website form integration, not from BookingKoala.
