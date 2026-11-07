@@ -101,6 +101,14 @@ BookingKoala's built-in Google Calendar app needs a Google Cloud OAuth credentia
 
 Earlier note (28 Oct): Google Calendar sync was not connected.
 
+## Bringing website and WhatsApp bookings into BookingKoala (8 Nov)
+
+Today those bookings go from the Webador page justnow.life/book-now (and the WhatsApp agent, which sends that same link) through Make into the Google calendar as "UNCONFIRMED" events; they never reach BookingKoala. Checked what can bridge the gap:
+
+- BookingKoala's integration API (Make and Zapier apps) offers no "create booking" call. Only "Create Lead" and read-only GET calls exist.
+- "Create Lead" needs the Leads module, which is a paid add-on; its free trial on this account has ended ("Your free trial of the leads module has ended. Please upgrade"). No upgrade was made. A Make scenario "Calendar booking (website/WhatsApp) -> BookingKoala lead" (6946699) was built and tested, then left inactive because the leads cannot be stored.
+- So the only working integration is at the front: customers must book on the BookingKoala form. One change covers website and WhatsApp at once: in Webador, make the /book-now page redirect to https://justnowforbuildingcleaningservicescollc.bookingkoala.com/booknow (or replace its content with that page embedded). The WhatsApp agent's link justnow.life/book-now?utm_source=whatsapp then lands on BookingKoala without touching the agent. Webador has no API and sits behind the owner's Google login, so this is the owner's step.
+
 ## Automatic assignment to the team (7 Nov)
 
 - Provider "Just Now Team 1": "Show unassigned jobs to provider" set to Yes.
