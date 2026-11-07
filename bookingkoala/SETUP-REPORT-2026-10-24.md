@@ -40,7 +40,7 @@ Screenshots are in `bookingkoala/screenshots/` (admin sections 01 to 09, public 
 
 ## Owner inputs still needed
 
-- **Capacity.** Each booking spot allows 3 jobs (BookingKoala default). Change in Settings > Booking Spots once the number of teams per day is known.
+- **Capacity.** Each booking spot allows 3 jobs. Confirmed by the owner on 7 Nov and verified on Settings > Booking Spots: all seven days, all three windows, max 3 jobs per spot.
 - **Travel buffer between jobs.** None is set (provider max time per booking is 0). Set it in Settings > General > Scheduling if wanted.
 - **Damac Hills 2 (Akoya).** Zone C as in the sheet, which puts it under the "Dubai (2)" location. Confirm.
 - **Dubailand.** The "Dubai (2)" location name says "Dubailand" (zone C). Customers on the Silicon Oasis side should pick "Dubai (1)". Decide whether to rename the two locations to make the split clearer.
