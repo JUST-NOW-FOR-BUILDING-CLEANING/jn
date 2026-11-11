@@ -4,7 +4,7 @@ Period: 2026-10-17 to 2026-11-11 (26 days, Dubai time). Source: the website's "N
 
 ## Read this first: what these emails are
 
-The website does not email every booking. It emails the ones that need a person: no free team at the requested time, a price that must be confirmed, or add-ons. Bookings that fit the website schedule go straight to the calendar without an email. Booking numbers JN-147240 to JN-147554 cover 315 bookings; 139 of them (44%) came to the mailbox. Every share below is a share of the emailed requests unless it says otherwise.
+The website sends staff two kinds of email. Requests it cannot confirm by itself arrive in this mailbox as "New booking request": no free team at the requested time, no listed price (sofa, mattress and carpet only, or a home or area that is not in the price list), or kitchen add-ons. Bookings it confirms by itself are announced as "New booking" to the company Gmail and are not in this report. Booking numbers JN-147240 to JN-147554 were issued for 315 bookings, owner tests included; 139 of them (44%) came to this mailbox. Every share below is a share of the requests in this mailbox unless it says otherwise.
 
 ## Totals
 
@@ -19,61 +19,75 @@ The website does not email every booking. It emails the ones that need a person:
 | Requests with a price shown | 114 (80%) |
 | Value of prices shown (AED) | 51,436 |
 | Average price shown (AED) | 451 |
-| Request emails left unread in the mailbox | 83 (58%) |
+| Request emails still unread in the mailbox | 83 (58%) |
 
-## What happened to the emailed requests (from the calendar)
+All 83 unread emails arrived from 2026-10-29 10:28 on (83 of the 104 requests since then). Every earlier one was read.
+
+## What happened to these requests (from the calendar)
 
 | Outcome | Requests | Share | Prices shown (AED) |
 |---|---:|---:|---:|
-| Done | 83 | 58% | 34,064 |
-| In calendar, not marked done | 6 | 4% | 1,785 |
+| Done | 88 | 62% | 35,520 |
+| In calendar, not marked done | 1 | 1% | 329 |
 | In calendar, still UNCONFIRMED | 4 | 3% | 938 |
 | No longer in the calendar | 50 | 35% | 14,649 |
 
-Customers with no booking in the calendar at all: 31 of 129 (24%). Prices they were shown: AED 7,605. They are the "Lost leads" sheet of the lead register.
+The amounts are the prices the website showed at request time, not the final prices in the calendar.
 
-| Comparison | Bookings | Still in calendar | Share |
+A request that is no longer in the calendar was cancelled, was a duplicate, was never confirmed, or was booked again under another number: 16 of the 50 belong to customers who still have another booking in the calendar.
+
+Customers with no booking in the calendar at all: 31 of 129 (24%). 15 of them were shown a price, AED 7,605 in total. They are the "Lost leads" sheet of the lead register.
+
+| Booking numbers in the same range | Bookings | Still in calendar | Done |
 |---|---:|---:|---:|
-| Emailed requests (needed manual handling) | 143 | 93 | 65% |
-| Not emailed (fitted the website schedule) | 176 | 130 | 74% |
+| Sent to this mailbox (the website could not confirm) | 138 | 91 (66%) | 86 (62%) |
+| Confirmed by the website itself (announced to the Gmail) | 176 | 131 (74%) | 107 (61%) |
 
-A booking that is no longer in the calendar was cancelled, was a duplicate, or was never confirmed.
+The second group includes a few owner test bookings that cannot be told apart here. A gap of a few points between the two groups is within chance at these sizes.
 
-| Flag on the request | Requests | Done | No longer in calendar |
+A booking the website confirms by itself also starts as UNCONFIRMED in the calendar, until someone confirms with the customer and removes the word. 17 of them are still UNCONFIRMED, 1 for a date that has already passed.
+
+Groups of fewer than about 30 requests are too small to compare reliably.
+
+| Why it came to this mailbox | Requests | Done | No longer in calendar |
 |---|---:|---:|---:|
-| No free team at requested time | 92 | 60 (65%) | 26 (28%) |
-| No flag | 51 | 23 (45%) | 24 (47%) |
+| No free team at requested time | 92 | 64 (70%) | 26 (28%) |
+| No listed price | 28 | 8 (29%) | 18 (64%) |
+| Kitchen add-ons | 18 | 13 (72%) | 4 (22%) |
+| Other (before 18 Oct every request came here) | 5 | 3 (60%) | 2 (40%) |
 
 | Service | Requests | Done | No longer in calendar |
 |---|---:|---:|---:|
-| Full home deep cleaning | 76 | 46 (61%) | 26 (34%) |
-| Kitchen deep cleaning | 51 | 34 (67%) | 13 (25%) |
+| Full home deep cleaning | 76 | 49 (64%) | 26 (34%) |
+| Kitchen deep cleaning | 51 | 36 (71%) | 13 (25%) |
 | Sofa, mattress & carpet | 16 | 3 (19%) | 11 (69%) |
 
 | Slot asked | Requests | Done | No longer in calendar |
 |---|---:|---:|---:|
-| Afternoon | 66 | 34 (52%) | 27 (41%) |
-| Morning | 46 | 30 (65%) | 13 (28%) |
-| Evening | 31 | 19 (61%) | 10 (32%) |
+| Afternoon | 66 | 36 (55%) | 27 (41%) |
+| Morning | 46 | 31 (67%) | 13 (28%) |
+| Evening | 31 | 21 (68%) | 10 (32%) |
 
 | Preferred date | Requests | Done | No longer in calendar |
 |---|---:|---:|---:|
-| Same day | 33 | 25 (76%) | 7 (21%) |
-| Next day | 68 | 38 (56%) | 27 (40%) |
-| 2+ days ahead | 42 | 20 (48%) | 16 (38%) |
+| Same day | 33 | 26 (79%) | 7 (21%) |
+| Next day | 68 | 41 (60%) | 27 (40%) |
+| 2+ days ahead | 42 | 21 (50%) | 16 (38%) |
 
 | Emirate | Requests | Done | No longer in calendar |
 |---|---:|---:|---:|
-| Dubai | 86 | 53 (62%) | 26 (30%) |
-| Sharjah | 42 | 24 (57%) | 17 (40%) |
-| Ajman | 10 | 4 (40%) | 4 (40%) |
+| Dubai | 86 | 56 (65%) | 26 (30%) |
+| Sharjah | 42 | 25 (60%) | 17 (40%) |
+| Ajman | 10 | 5 (50%) | 4 (40%) |
 | Ras Al Khaimah | 3 | 1 (33%) | 2 (67%) |
 | Umm Al Quwain | 1 | 1 (100%) | 0 (0%) |
 | Fujairah | 1 | 0 (0%) | 1 (100%) |
 
+Possible duplicates: the website marked 8 requests with "Possible conflict: another request exists for this date, slot and area". 5 of them are no longer in the calendar.
+
 ## Capacity signal: "No free team in the website schedule"
 
-The website adds this line when its team schedule has no free team for the slot the customer picked. It first appeared on 2026-10-24. Since then 265 bookings were made on the website and 92 of them (35%) carried the flag.
+The website adds this line when its team schedule has no free team for the slot the customer picked. The first customer request with it arrived on 2026-10-24. Since then 265 bookings were made on the website and 92 of them (35%) carried the flag. The website does not run this check for sofa requests, kitchen add-ons or unlisted prices; among the 229 bookings it does check, the share is 40%.
 
 | Slot asked | Flagged requests | Share of flagged |
 |---|---:|---:|
@@ -189,7 +203,7 @@ Kitchen requests with bathroom or balcony add-ons: 18. Kitchen or home requests 
 | Furnished, 5+ bedrooms | 2 | 3% |
 | Furnished, 4 bedrooms | 2 | 3% |
 
-## Team asked
+## Team asked (requests with a team line)
 
 | Team | Requests | Share |
 |---|---:|---:|
@@ -253,10 +267,11 @@ Kitchen requests with bathroom or balcony add-ons: 18. Kitchen or home requests 
 |---|---:|
 | English form | 128 |
 | Arabic form | 15 |
-| With customer notes | 47 |
+| With customer notes | 40 |
 | Without an email address | 1 |
 | Mobile is not a UAE mobile number | 4 |
-| Confirmation email bounced | 7 |
+| of which a UAE mobile typed after a wrong country code | 2 |
+| Email to the customer bounced | 7 |
 
 ## HubSpot coverage
 

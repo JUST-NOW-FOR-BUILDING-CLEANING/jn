@@ -1,339 +1,402 @@
 {
-  "_about": "Make scenario 6991667 in team 1579313 (org 'Just Now For Building Cleaning Services CO LLC', us2.make.com). Exported 2026-11-11. Trigger: custom webhook 3051146, which receives the Hostinger Email webhook 'Make - inbox listener (CRM + alerts)' (event message.received) for customer.care@justnow.life. No secrets in this file: the webhook URL and the Hostinger signing secret are not stored here.",
-  "scheduling": {
-    "type": "immediately"
-  },
-  "blueprint": {
-    "flow": [
-      {
-        "id": 1,
-        "mapper": {},
-        "module": "gateway:CustomWebHook",
-        "version": 1,
-        "metadata": {
-          "designer": {
-            "x": 0,
-            "y": 0,
-            "name": "Hostinger: new email received"
-          }
-        },
-        "parameters": {
-          "hook": 3051146,
-          "maxResults": 1
-        }
-      },
-      {
-        "id": 2,
-        "mapper": {
-          "scope": "roundtrip",
-          "variables": [
-            {
-              "name": "f",
-              "value": "{{lower(ifempty(1.data.from; emptystring))}}"
-            },
-            {
-              "name": "s",
-              "value": "{{lower(ifempty(1.data.subject; emptystring))}}"
-            },
-            {
-              "name": "body",
-              "value": "{{ifempty(1.data.plainBody; emptystring)}}"
-            }
-          ]
-        },
-        "module": "util:SetVariables",
-        "version": 1,
-        "metadata": {
-          "designer": {
-            "x": 300,
-            "y": 0,
-            "name": "Normalise sender, subject, body"
-          }
-        },
-        "parameters": {}
-      },
-      {
-        "id": 3,
-        "mapper": {
-          "scope": "roundtrip",
-          "variables": [
-            {
-              "name": "category",
-              "value": "{{if(contains(2.f; \"mailer-daemon\"); \"BOUNCE\"; if(contains(2.s; \"new booking request\"); \"BOOKING_REQUEST\"; if(contains(2.f; \"justnow.life\"); \"CONFIRMATION_COPY\"; if(length(replace(2.f; \"/facebook|meta\\.com|tiktok/g\"; emptystring)) < length(2.f); if(length(replace(2.s; \"/disabled|declined|rejected|restricted|suspended/g\"; emptystring)) < length(2.s); \"AD_ALERT\"; if(length(replace(2.s; \"/receipt|invoice|إيصال/g\"; emptystring)) < length(2.s); \"BILLING\"; \"AD_NOTICE\")); if(length(replace(2.f; \"/no-?reply|notification|newsletter|marketing|insights|testflight|support@|info@|team@|contact@|security|pushwoosh|rapidr|n8n|google\\.com|microsoft|github/g\"; emptystring)) < length(2.f); \"AUTOMATED\"; if(length(replace(2.s; \"/complain|refund|compensat|شكوى|شكوي|استرداد|تعويض/g\"; emptystring)) < length(2.s); \"COMPLAINT\"; if(length(replace(2.s; \"/booking|jn-[0-9]|حجز/g\"; emptystring)) < length(2.s); \"CUSTOMER_REPLY\"; \"OTHER\")))))))}}"
-            },
-            {
-              "name": "ref",
-              "value": "{{if(contains(1.data.subject + \" \" + substring(2.body; 0; 1500); \"JN-\"); replace(1.data.subject + \" \" + substring(2.body; 0; 1500); \"/^[\\s\\S]*?(JN-[0-9A-Z]+)[\\s\\S]*$/\"; \"$1\"); emptystring)}}"
-            },
-            {
-              "name": "snippet",
-              "value": "{{substring(2.body; 0; 900)}}"
-            }
-          ]
-        },
-        "module": "util:SetVariables",
-        "version": 1,
-        "metadata": {
-          "designer": {
-            "x": 600,
-            "y": 0,
-            "name": "Classify email"
-          }
-        },
-        "parameters": {}
-      },
-      {
-        "id": 4,
-        "mapper": {
-          "scope": "roundtrip",
-          "variables": [
-            {
-              "name": "priority",
-              "value": "{{if(length(replace(3.category; \"/^(COMPLAINT|CUSTOMER_REPLY|BOUNCE|AD_ALERT)$/\"; emptystring)) = 0; \"HIGH\"; \"LOW\")}}"
-            },
-            {
-              "name": "label",
-              "value": "{{if(3.category = \"COMPLAINT\"; \"🚨 Customer COMPLAINT by email\"; if(3.category = \"CUSTOMER_REPLY\"; \"✉️ Customer replied by email\"; if(3.category = \"BOUNCE\"; \"⚠️ Email to customer BOUNCED (wrong address)\"; if(3.category = \"AD_ALERT\"; \"🛑 Ad platform issue\"; 3.category))))}}"
-            }
-          ]
-        },
-        "module": "util:SetVariables",
-        "version": 1,
-        "metadata": {
-          "designer": {
-            "x": 900,
-            "y": 0,
-            "name": "Priority + alert label"
-          }
-        },
-        "parameters": {}
-      },
-      {
-        "id": 5,
-        "mapper": {
-          "key": "{{1.id}}",
-          "data": {
-            "from": "{{1.data.from}}",
-            "snippet": "{{substring(3.snippet; 0; 300)}}",
-            "subject": "{{1.data.subject}}",
-            "category": "{{3.category}}",
-            "priority": "{{4.priority}}",
-            "received": "{{now}}",
-            "message_id": "{{1.data.messageId}}",
-            "booking_ref": "{{3.ref}}"
-          },
-          "overwrite": true
-        },
-        "module": "datastore:AddRecord",
-        "version": 1,
-        "metadata": {
-          "expect": [
-            {
-              "name": "key",
-              "type": "text",
-              "label": "Key"
-            },
-            {
-              "name": "overwrite",
-              "type": "boolean",
-              "label": "Overwrite an existing record",
-              "required": true
-            },
-            {
-              "name": "data",
-              "spec": [
-                {
-                  "name": "received",
-                  "type": "date"
-                },
-                {
-                  "name": "from",
-                  "type": "text"
-                },
-                {
-                  "name": "subject",
-                  "type": "text"
-                },
-                {
-                  "name": "category",
-                  "type": "text"
-                },
-                {
-                  "name": "priority",
-                  "type": "text"
-                },
-                {
-                  "name": "booking_ref",
-                  "type": "text"
-                },
-                {
-                  "name": "message_id",
-                  "type": "text"
-                },
-                {
-                  "name": "snippet",
-                  "type": "text"
-                }
-              ],
-              "type": "collection",
-              "label": "Record"
-            }
-          ],
-          "restore": {
-            "parameters": {
-              "datastore": {
-                "label": "JN Email log (customer.care inbox)"
-              }
-            }
-          },
-          "designer": {
-            "x": 1200,
-            "y": 0,
-            "name": "Log email (reporting)"
-          }
-        },
-        "parameters": {
-          "datastore": 198605
-        }
-      },
-      {
-        "id": 6,
-        "filter": {
-          "name": "High priority only",
-          "conditions": [
-            [
-              {
-                "a": "{{4.priority}}",
-                "b": "HIGH",
-                "o": "text:equal"
-              }
-            ]
-          ]
-        },
-        "mapper": {
-          "end": "{{addMinutes(now; 17)}}",
-          "start": "{{addMinutes(now; 2)}}",
-          "select": "detail",
-          "colorId": "11",
-          "summary": "{{4.label}} – {{substring(ifempty(1.data.subject; emptystring); 0; 90)}}",
-          "calendar": "44c3dc7735f0b44d936ad7fe97e4aa4446c8e7efe4fb5144b58be02fe83e7b4c@group.calendar.google.com",
-          "overrides": [
-            {
-              "method": "popup",
-              "minutes": 0
-            },
-            {
-              "method": "email",
-              "minutes": 0
-            }
-          ],
-          "useDefault": false,
-          "visibility": "default",
-          "allDayEvent": false,
-          "description": "{{4.label}}\nMailbox: customer.care@justnow.life\nFrom: {{1.data.from}}\nSubject: {{1.data.subject}}\nBooking ref: {{ifempty(3.ref; \"-\")}}\n\n{{if(3.category = \"BOUNCE\"; \"A confirmation email could not be delivered. The customer's email address is wrong or rejected. Contact the customer by phone / WhatsApp instead. The failed address is in the text below.\"; if(3.category = \"AD_ALERT\"; \"Check the ad account / payment / template in the platform itself. Never click links inside the email.\"; \"Open webmail and reply: https://mail.hostinger.com\"))}}\n\n--- start of message ---\n{{3.snippet}}\n\nReceived {{formatDate(now; \"DD MMM YYYY HH:mm\"; \"Asia/Dubai\")}} (Dubai) via Hostinger mail listener.",
-          "transparency": "transparent",
-          "conferenceDate": false,
-          "guestPermissions": {
-            "guestsCanModify": false,
-            "guestsCanInviteOthers": true,
-            "guestsCanSeeOtherGuests": true
-          }
-        },
-        "module": "google-calendar:createAnEvent",
-        "version": 5,
-        "metadata": {
-          "restore": {
-            "expect": {
-              "select": {
-                "label": "In Detail"
-              },
-              "colorId": {
-                "mode": "edit"
-              },
-              "calendar": {
-                "mode": "chose",
-                "label": "Just Now – Alerts"
-              },
-              "overrides": {
-                "mode": "chose",
-                "items": [
-                  {
-                    "method": {
-                      "mode": "chose",
-                      "label": "Pop-up"
-                    }
-                  },
-                  {
-                    "method": {
-                      "mode": "chose",
-                      "label": "Email"
-                    }
-                  }
-                ]
-              },
-              "visibility": {
-                "mode": "chose",
-                "label": "Default"
-              },
-              "allDayEvent": {
-                "mode": "chose"
-              },
-              "transparency": {
-                "mode": "chose",
-                "label": "Available"
-              },
-              "conferenceDate": {
-                "mode": "chose"
-              }
-            },
-            "parameters": {
-              "__IMTCONN__": {
-                "data": {
-                  "scoped": "true",
-                  "connection": "google"
-                },
-                "label": "JUST's Google connection"
-              }
-            }
-          },
-          "advanced": true,
-          "designer": {
-            "x": 1500,
-            "y": 0,
-            "name": "Owner alert on 'Just Now – Alerts' calendar"
-          }
-        },
-        "parameters": {
-          "__IMTCONN__": 11258189
-        }
-      }
-    ],
-    "name": "Hostinger mail listener -> email log + owner alert (customer.care inbox)",
+ "_about": "Make scenario 6991667 in team 1579313 (org 'Just Now For Building Cleaning Services CO LLC', us2.make.com). Exported 2026-11-11 after the review fixes. Trigger: custom webhook 3051146, which receives the Hostinger Email webhook 'Make - inbox listener (CRM + alerts)' (event message.received) for customer.care@justnow.life. The formulas in modules 2, 7, 3 and 4 are generated by `python3 mail_rules.py --make`; change the patterns there, not here. No secrets in this file: the webhook URL and the Hostinger signing secret are not stored here.",
+ "scheduling": {
+  "type": "immediately"
+ },
+ "blueprint": {
+  "flow": [
+   {
+    "id": 1,
+    "mapper": {},
+    "module": "gateway:CustomWebHook",
+    "version": 1,
     "metadata": {
-      "instant": true,
-      "version": 1,
-      "designer": {
-        "orphans": []
-      },
-      "scenario": {
-        "dlq": true,
-        "slots": null,
-        "dataloss": false,
-        "maxErrors": 3,
-        "autoCommit": true,
-        "roundtrips": 1,
-        "sequential": false,
-        "confidential": false,
-        "freshVariables": false,
-        "autoCommitTriggerLast": true
-      }
+     "designer": {
+      "x": 0,
+      "y": 0,
+      "name": "Hostinger: new email received"
+     }
     },
-    "scheduling": {
-      "type": "immediately"
-    },
-    "interface": {
-      "input": [],
-      "output": []
+    "parameters": {
+     "hook": 3051146,
+     "maxResults": 1
     }
+   },
+   {
+    "id": 2,
+    "mapper": {
+     "scope": "roundtrip",
+     "variables": [
+      {
+       "name": "f",
+       "value": "{{lower(ifempty(1.data.from; emptystring))}}"
+      },
+      {
+       "name": "s",
+       "value": "{{lower(ifempty(1.data.subject; emptystring))}}"
+      },
+      {
+       "name": "body",
+       "value": "{{ifempty(1.data.plainBody; emptystring)}}"
+      },
+      {
+       "name": "addr",
+       "value": "{{trim(replace(lower(ifempty(1.data.from; emptystring)); \"/^[\\s\\S]*<([^<>]*)>\\s*$/\"; \"$1\"))}}"
+      },
+      {
+       "name": "name",
+       "value": "{{if(contains(lower(ifempty(1.data.from; emptystring)); \"<\"); trim(replace(lower(ifempty(1.data.from; emptystring)); \"/<[^<>]*>\\s*$/\"; emptystring)); emptystring)}}"
+      },
+      {
+       "name": "dom",
+       "value": "{{trim(replace(lower(ifempty(1.data.from; emptystring)); \"/^[\\s\\S]*@([^@<>\\s]*)>?\\s*$/\"; \"$1\"))}}"
+      },
+      {
+       "name": "local",
+       "value": "{{trim(replace(lower(ifempty(1.data.from; emptystring)); \"/^([\\s\\S]*[<\\s])?([^<>@\\s]*)@[^@<>\\s]*>?\\s*$/\"; \"$2\"))}}"
+      }
+     ]
+    },
+    "module": "util:SetVariables",
+    "version": 1,
+    "metadata": {
+     "designer": {
+      "x": 300,
+      "y": 0,
+      "name": "Normalise sender, subject, body"
+     }
+    },
+    "parameters": {},
+    "filter": {
+     "name": "Hostinger new-mail events only",
+     "conditions": [
+      [
+       {
+        "a": "{{1.event}}",
+        "b": "message.received",
+        "o": "text:equal"
+       },
+       {
+        "a": "{{1.data.from}}",
+        "o": "exist"
+       }
+      ]
+     ]
+    }
+   },
+   {
+    "id": 7,
+    "module": "util:SetVariables",
+    "version": 1,
+    "parameters": {},
+    "mapper": {
+     "scope": "roundtrip",
+     "variables": [
+      {
+       "name": "sender",
+       "value": "{{if(2.addr = \"customer.care@justnow.life\"; \"OWN\"; if(2.addr = \"no-reply@www.justnow.life\"; \"OWN\"; if(length(replace(2.local; \"/^(mailer-daemon|postmaster)$|^microsoftexchange/g\"; emptystring)) < length(2.local); \"DAEMON\"; if(length(replace(2.s; \"/^(undeliverable|undelivered mail|delivery status notification|mail delivery (failed|failure|subsystem)|returned mail|failure notice|delivery failure|message not delivered)/g\"; emptystring)) < length(2.s); \"DAEMON\"; if(length(replace(2.dom; \"/^(.*\\.)?(facebook\\.com|facebookmail\\.com|meta\\.com|whatsapp\\.com|instagram\\.com|tiktok\\.com)$/g\"; emptystring)) < length(2.dom); \"ADS\"; if(length(replace(2.dom; \"/^(.*\\.)?(google\\.com|googlemail\\.com)$/g\"; emptystring)) < length(2.dom); if(length(replace(2.local; \"/^(ads-|googleads|adwords)/g\"; emptystring)) < length(2.local); \"ADS\"; \"VENDOR\"); if(length(replace(2.dom; \"/^(.*\\.)?(google\\.com|googlemail\\.com|microsoft\\.com|apple\\.com|bookingkoala\\.com|ziina\\.com|setmore\\.com|respond\\.io|hubspot\\.com|hs-send\\.com|bigin\\.com|zoho\\.com|zohobookings\\.com|hostinger\\.com|make\\.com|github\\.com|pushwoosh\\.com|rapidr\\.io|n8n\\.io|wetracked\\.io|uae-crif\\.com|theaccountant\\.ae|betterlifeuae\\.com|farahatacademy\\.com|adspirer\\.com|9kmanpower\\.com|800lawuae\\.com)$/g\"; emptystring)) < length(2.dom); \"VENDOR\"; if(2.addr = \"justnow.cs@gmail.com\"; \"OWNER\"; if(length(replace(2.dom; \"/^(.*\\.)?(deped\\.gov\\.ph|jisuniversity\\.ac\\.in|klu\\.ac\\.in|iedcj\\.edu\\.pe|kts\\.ac\\.th|indus\\.edu\\.pk|sellluna\\.com|morrisonfoersterlaw\\.com)$/g\"; emptystring)) < length(2.dom); \"FAKE\"; if(length(replace(2.dom; \"/(^|[.\\-])(facebook|facebookmail|tiktok|whatsapp|instagram|google|microsoft)([.\\-]|$)/g\"; emptystring)) < length(2.dom); \"FAKE\"; \"OTHER\"))))))))))}}"
+      },
+      {
+       "name": "phish",
+       "value": "{{if(length(replace(2.name + \" \" + 2.s; \"/\\bcopyright|\\bintellectual property\\b|\\btrademark (infringement|violation|complaint)|حقوق النشر|حقوق الطبع|الملكية الفكرية/g\"; emptystring)) < length(2.name + \" \" + 2.s); \"yes\"; if(length(replace(2.name + \" \" + 2.s; \"/\\bpages? (has been|have been|is|was|will be) (suspended|unpublished|removed|disabled|restricted)\\b/g\"; emptystring)) < length(2.name + \" \" + 2.s); \"yes\"; if(length(replace(2.name; \"/\\b(ad|ads|advertising) accounts?\\b|\\badvertising (policy|policies|access)\\b|\\bcommunity (policy|standards)\\b|حساب الإعلانات|الحساب الإعلاني|سياسة الإعلانات/g\"; emptystring)) < length(2.name); \"yes\"; if(length(replace(2.name + \" \" + 2.s; \"/\\b(meta|facebook|instagram)\\b|فيسبوك|ميتا/g\"; emptystring)) < length(2.name + \" \" + 2.s); if(length(replace(2.name + \" \" + 2.s; \"/\\b(ad|ads|advertising) accounts?\\b|\\badvertising (policy|policies|access)\\b|\\bcommunity (policy|standards)\\b|حساب الإعلانات|الحساب الإعلاني|سياسة الإعلانات/g\"; emptystring)) < length(2.name + \" \" + 2.s); \"yes\"; if(length(replace(2.name + \" \" + 2.s; \"/\\baccounts? (has been|have been|is|was|will be) (suspended|disabled|restricted|locked|removed)\\b|\\baccount verification\\b|\\bverify your (ad |business )?(account|page|identity)\\b|\\bverification (is )?(required|needed)\\b|\\bviolat(es|ed|ion)\\b|تعليق الحساب|توثيق الحساب/g\"; emptystring)) < length(2.name + \" \" + 2.s); \"yes\"; \"no\")); if(length(replace(2.name + \" \" + 2.s; \"/\\b(ad|ads|advertising) accounts?\\b|\\badvertising (policy|policies|access)\\b|\\bcommunity (policy|standards)\\b|حساب الإعلانات|الحساب الإعلاني|سياسة الإعلانات/g\"; emptystring)) < length(2.name + \" \" + 2.s); if(length(replace(2.name + \" \" + 2.s; \"/\\baccounts? (has been|have been|is|was|will be) (suspended|disabled|restricted|locked|removed)\\b|\\baccount verification\\b|\\bverify your (ad |business )?(account|page|identity)\\b|\\bverification (is )?(required|needed)\\b|\\bviolat(es|ed|ion)\\b|تعليق الحساب|توثيق الحساب/g\"; emptystring)) < length(2.name + \" \" + 2.s); \"yes\"; \"no\"); if(length(replace(2.name + \" \" + 2.s; \"/\\baccounts? (has been|have been|is|was|will be) (suspended|disabled|restricted|locked|removed)\\b|\\baccount verification\\b|\\bverify your (ad |business )?(account|page|identity)\\b|\\bverification (is )?(required|needed)\\b|\\bviolat(es|ed|ion)\\b|تعليق الحساب|توثيق الحساب/g\"; emptystring)) < length(2.name + \" \" + 2.s); if(length(replace(2.name + \" \" + 2.s; \"/\\badvertis/g\"; emptystring)) < length(2.name + \" \" + 2.s); \"yes\"; \"no\"); \"no\"))))))}}"
+      }
+     ]
+    },
+    "metadata": {
+     "designer": {
+      "x": 600,
+      "y": 0,
+      "name": "Sender type + phishing check"
+     }
+    }
+   },
+   {
+    "id": 3,
+    "mapper": {
+     "scope": "roundtrip",
+     "variables": [
+      {
+       "name": "category",
+       "value": "{{if(7.sender = \"OWN\"; if(contains(2.s; \"[test\"); \"TEST\"; if(contains(2.s; \"new booking request\"); \"BOOKING_REQUEST\"; if(2.addr = \"no-reply@www.justnow.life\"; \"BOOKING_REQUEST\"; if(contains(2.s; \"test\"); \"TEST\"; \"CONFIRMATION_COPY\")))); if(7.sender = \"DAEMON\"; if(7.phish = \"yes\"; \"PHISHING\"; \"BOUNCE\"); if(length(replace(2.s; \"/^\\s*re:.*jn-[0-9]/g\"; emptystring)) < length(2.s); if(length(replace(2.s; \"/complain|refund|compensat|damage|legal notice|شكوى|شكوي|استرداد|تعويض|تلف/g\"; emptystring)) < length(2.s); \"COMPLAINT\"; \"CUSTOMER_REPLY\"); if(7.sender = \"ADS\"; if(length(replace(2.s; \"/security code|use code|login code|verification code|confirm your email|verify your email/g\"; emptystring)) < length(2.s); \"AD_LOGIN_CODE\"; if(length(replace(2.s; \"/verification help/g\"; emptystring)) < length(2.s); \"AD_LOGIN_CODE\"; if(length(replace(2.s; \"/disabled|declined|rejected|restricted|suspended|no longer have access|not approved|couldn.t|could not|unable to|fail|problem|issue with|flagged|violat|removed|unpublished|deactivat|expir|overdue|past due|\\bdue\\b|unpaid|outstanding|action (is )?(required|needed)|at risk|paused|n.t running|not running|not delivering|blocked|appeal|warning|limit reached|معطل|تعطيل|مرفوض|رفض|مقيد|تقييد|فشل|مشكلة|متأخر|إجراء مطلوب/g\"; emptystring)) < length(2.s); \"AD_ALERT\"; if(length(replace(2.s; \"/receipt|invoice|إيصال|فاتورة/g\"; emptystring)) < length(2.s); \"BILLING\"; if(length(replace(2.s; \"/\\bads? (was|were) approved\\b|is complete|have increased|pricing|see more of|new notifications?|running again|business portfolio|تمت الموافقة|عرض أداء|\\btips?\\b|newsletter|webinar|introducing|what.s new|summary|report is ready/g\"; emptystring)) < length(2.s); \"AD_NOTICE\"; \"AD_OTHER\"))))); if(7.sender = \"VENDOR\"; \"AUTOMATED\"; if(7.sender = \"OWNER\"; \"OWNER_MAIL\"; if(7.sender = \"FAKE\"; \"PHISHING\"; if(7.phish = \"yes\"; \"PHISHING\"; if(length(replace(2.s; \"/complain|refund|compensat|damage|legal notice|شكوى|شكوي|استرداد|تعويض|تلف/g\"; emptystring)) < length(2.s); \"COMPLAINT\"; if(length(replace(2.s; \"/\\bbooking\\b|\\bbook\\b|jn-[0-9]|حجز/g\"; emptystring)) < length(2.s); \"CUSTOMER_REPLY\"; if(length(replace(2.s; \"/\\bnewsletter\\b|\\bwebinar\\b|\\bunsubscribe\\b|last chance to register|special offer for/g\"; emptystring)) < length(2.s); \"BULK_OR_OFFER\"; if(length(replace(2.s; \"/\\bcv\\b|curriculum vitae|\\bresume (attached|for)\\b|\\bmy resume\\b|reasme|job application|application for .*\\b(position|post|role|vacancy|job)\\b|\\bvacanc(y|ies)\\b|recruitment agenc|manpower (supply|agency)|partnership opportunity|authorized dealer|\\bseo\\b|web ?design|landing page|app idea|digital marketing|سيرة ذاتية|طلب توظيف/g\"; emptystring)) < length(2.s); \"BULK_OR_OFFER\"; if(length(replace(2.local; \"/no-?reply|do-?not-?reply|notification|newsletter|marketing|mailer|bounce|^news$|^updates?$|^alerts?$/g\"; emptystring)) < length(2.local); \"AUTOMATED\"; \"PERSON\")))))))))))))}}"
+      },
+      {
+       "name": "ref",
+       "value": "{{if(contains(1.data.subject + \" \" + substring(2.body; 0; 1500); \"JN-\"); replace(1.data.subject + \" \" + substring(2.body; 0; 1500); \"/^[\\s\\S]*?(JN-[0-9A-Z]+)[\\s\\S]*$/\"; \"$1\"); emptystring)}}"
+      },
+      {
+       "name": "snippet",
+       "value": "{{substring(2.body; 0; 900)}}"
+      }
+     ]
+    },
+    "module": "util:SetVariables",
+    "version": 1,
+    "metadata": {
+     "designer": {
+      "x": 900,
+      "y": 0,
+      "name": "Classify email"
+     }
+    },
+    "parameters": {}
+   },
+   {
+    "id": 4,
+    "mapper": {
+     "scope": "roundtrip",
+     "variables": [
+      {
+       "name": "priority",
+       "value": "{{if(length(replace(3.category; \"/^(COMPLAINT|CUSTOMER_REPLY|PERSON|BOUNCE|AD_ALERT)$/\"; emptystring)) = 0; \"HIGH\"; \"LOW\")}}"
+      },
+      {
+       "name": "label",
+       "value": "{{if(3.category = \"COMPLAINT\"; \"🚨 Customer COMPLAINT by email\"; if(3.category = \"CUSTOMER_REPLY\"; \"✉️ Customer replied by email\"; if(3.category = \"PERSON\"; \"✉️ Email from a person (not a known sender)\"; if(3.category = \"BOUNCE\"; \"⚠️ Email to a customer BOUNCED (wrong address)\"; if(3.category = \"AD_ALERT\"; \"🛑 Ad platform issue\"; 3.category)))))}}"
+      }
+     ]
+    },
+    "module": "util:SetVariables",
+    "version": 1,
+    "metadata": {
+     "designer": {
+      "x": 1200,
+      "y": 0,
+      "name": "Priority + alert label"
+     }
+    },
+    "parameters": {}
+   },
+   {
+    "id": 5,
+    "mapper": {
+     "key": "{{1.id}}",
+     "data": {
+      "from": "{{1.data.from}}",
+      "snippet": "{{substring(3.snippet; 0; 300)}}",
+      "subject": "{{1.data.subject}}",
+      "category": "{{3.category}}",
+      "priority": "{{4.priority}}",
+      "received": "{{now}}",
+      "message_id": "{{1.data.messageId}}",
+      "booking_ref": "{{3.ref}}"
+     },
+     "overwrite": true
+    },
+    "module": "datastore:AddRecord",
+    "version": 1,
+    "metadata": {
+     "expect": [
+      {
+       "name": "key",
+       "type": "text",
+       "label": "Key"
+      },
+      {
+       "name": "overwrite",
+       "type": "boolean",
+       "label": "Overwrite an existing record",
+       "required": true
+      },
+      {
+       "name": "data",
+       "spec": [
+        {
+         "name": "received",
+         "type": "date"
+        },
+        {
+         "name": "from",
+         "type": "text"
+        },
+        {
+         "name": "subject",
+         "type": "text"
+        },
+        {
+         "name": "category",
+         "type": "text"
+        },
+        {
+         "name": "priority",
+         "type": "text"
+        },
+        {
+         "name": "booking_ref",
+         "type": "text"
+        },
+        {
+         "name": "message_id",
+         "type": "text"
+        },
+        {
+         "name": "snippet",
+         "type": "text"
+        }
+       ],
+       "type": "collection",
+       "label": "Record"
+      }
+     ],
+     "restore": {
+      "parameters": {
+       "datastore": {
+        "label": "JN Email log (customer.care inbox)"
+       }
+      }
+     },
+     "designer": {
+      "x": 1500,
+      "y": 0,
+      "name": "Log email (reporting)"
+     }
+    },
+    "parameters": {
+     "datastore": 198605
+    }
+   },
+   {
+    "id": 6,
+    "filter": {
+     "name": "High priority, real mailbox only",
+     "conditions": [
+      [
+       {
+        "a": "{{4.priority}}",
+        "b": "HIGH",
+        "o": "text:equal"
+       },
+       {
+        "a": "{{1.data.mailboxAddress}}",
+        "b": "customer.care@justnow.life",
+        "o": "text:equal"
+       }
+      ]
+     ]
+    },
+    "mapper": {
+     "end": "{{addMinutes(now; 17)}}",
+     "start": "{{addMinutes(now; 2)}}",
+     "select": "detail",
+     "colorId": "11",
+     "summary": "{{4.label}} – {{substring(ifempty(1.data.subject; emptystring); 0; 90)}}",
+     "calendar": "44c3dc7735f0b44d936ad7fe97e4aa4446c8e7efe4fb5144b58be02fe83e7b4c@group.calendar.google.com",
+     "overrides": [
+      {
+       "method": "popup",
+       "minutes": 0
+      },
+      {
+       "method": "email",
+       "minutes": 0
+      }
+     ],
+     "useDefault": false,
+     "visibility": "default",
+     "allDayEvent": false,
+     "description": "{{4.label}}\nMailbox: customer.care@justnow.life\nFrom: {{1.data.from}}\nSubject: {{1.data.subject}}\nBooking ref: {{ifempty(3.ref; \"-\")}}\n\n{{if(3.category = \"BOUNCE\"; \"An email to a customer could not be delivered. The address is wrong, full or rejected. Contact the customer by phone or WhatsApp instead. The failed address is in the text below.\"; if(3.category = \"AD_ALERT\"; \"Check the ad account, payment or template in the platform itself. Never click links inside the email.\"; \"Open webmail and reply: https://mail.hostinger.com . If it looks like spam, ignore it and never click its links.\"))}}\n\n--- start of message ---\n{{3.snippet}}\n\nReceived {{formatDate(now; \"DD MMM YYYY HH:mm\"; \"Asia/Dubai\")}} (Dubai) via Hostinger mail listener.",
+     "transparency": "transparent",
+     "conferenceDate": false,
+     "guestPermissions": {
+      "guestsCanModify": false,
+      "guestsCanInviteOthers": true,
+      "guestsCanSeeOtherGuests": true
+     }
+    },
+    "module": "google-calendar:createAnEvent",
+    "version": 5,
+    "metadata": {
+     "restore": {
+      "expect": {
+       "select": {
+        "label": "In Detail"
+       },
+       "colorId": {
+        "mode": "edit"
+       },
+       "calendar": {
+        "mode": "chose",
+        "label": "Just Now – Alerts"
+       },
+       "overrides": {
+        "mode": "chose",
+        "items": [
+         {
+          "method": {
+           "mode": "chose",
+           "label": "Pop-up"
+          }
+         },
+         {
+          "method": {
+           "mode": "chose",
+           "label": "Email"
+          }
+         }
+        ]
+       },
+       "visibility": {
+        "mode": "chose",
+        "label": "Default"
+       },
+       "allDayEvent": {
+        "mode": "chose"
+       },
+       "transparency": {
+        "mode": "chose",
+        "label": "Available"
+       },
+       "conferenceDate": {
+        "mode": "chose"
+       }
+      },
+      "parameters": {
+       "__IMTCONN__": {
+        "data": {
+         "scoped": "true",
+         "connection": "google"
+        },
+        "label": "JUST's Google connection"
+       }
+      }
+     },
+     "advanced": true,
+     "designer": {
+      "x": 1800,
+      "y": 0,
+      "name": "Owner alert on 'Just Now – Alerts' calendar"
+     }
+    },
+    "parameters": {
+     "__IMTCONN__": 11258189
+    }
+   }
+  ],
+  "name": "Hostinger mail listener -> email log + owner alert (customer.care inbox)",
+  "metadata": {
+   "instant": true,
+   "version": 1,
+   "designer": {
+    "orphans": []
+   },
+   "scenario": {
+    "dlq": true,
+    "slots": null,
+    "dataloss": false,
+    "maxErrors": 3,
+    "autoCommit": true,
+    "roundtrips": 1,
+    "sequential": false,
+    "confidential": false,
+    "freshVariables": false,
+    "autoCommitTriggerLast": true
+   }
+  },
+  "scheduling": {
+   "type": "immediately"
+  },
+  "interface": {
+   "input": [],
+   "output": []
   }
+ }
 }
