@@ -7,15 +7,15 @@ The website (justnow.life) sends staff two kinds of email (checked on 2026-11-11
   * "New booking - JN-..." to the company Gmail for bookings it confirms by itself.
 This script reads the first kind. They are plain text in a fixed layout:
 
-    Booking request JN-147290 (website, EN)
+    Booking request JN-000000 (website, EN)
 
     Service: Full home deep cleaning
     Home: Furnished, 2 bedrooms
     Team: 3 cleaners × 4 hours
-    Price shown: AED 549
-    Area: International City, Dubai (zone B)
+    Price shown: AED 000
+    Area: Example Area, Dubai (zone B)
     Address: ...
-    Preferred: 2026-10-24, Afternoon (12 – 2 PM)
+    Preferred: 2026-01-01, Morning (8 – 10 AM)
     No free team in the website schedule at this time - ...      (optional line)
     Name: ...
     Mobile: ...

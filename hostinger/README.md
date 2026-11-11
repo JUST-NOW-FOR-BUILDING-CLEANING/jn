@@ -9,12 +9,12 @@ Reached through: the Hostinger Email connector, which covers this one mailbox (m
 | Area | Status | Details |
 |---|---|---|
 | Folders | Done | 11 numbered folders under the inbox (section 3). |
-| One-off sort | Done, verified | All 561 inbox messages filed. 567 messages in the mailbox before and after (561 inbox + 6 already in Junk), none deleted. Ten recent customer emails were left in the inbox on purpose. |
+| One-off sort | Done, verified | 551 of the 561 inbox messages were filed into the folders; ten recent customer emails were left in the inbox on purpose. Inbox and Junk held 567 messages before, and the inbox, the folders and Junk held 567 after. None deleted. One test email sent afterwards is in folder 08. |
 | Read state | Done | 135 unread ad notices, newsletters and phishing mails marked as read. No other flag was changed. |
-| Live listener | Done, tested | Hostinger webhook "Make - inbox listener (CRM + alerts)" fires on every new email and calls the Make scenario "Hostinger mail listener -> email log + owner alert (customer.care inbox)". After the review its rules were rewritten and checked with 86 test events: all 86 got the expected category. Two real emails have been logged since. |
+| Live listener | Done, tested | Hostinger webhook "Make - inbox listener (CRM + alerts)" fires on every new email and calls the Make scenario "Hostinger mail listener -> email log + owner alert (customer.care inbox)". After the review its rules were rewritten and checked with 86 test events: all 86 got the expected category, and 8 more after a last correction. Two real emails have been logged since. |
 | Owner alerts | Done, tested | A complaint, a customer reply, any email from a person the rules do not know, a bounced email or an ad platform problem puts an event on the Google Calendar "Just Now – Alerts" with a pop-up and an email reminder. Test alerts were created and removed. |
-| Email log | Done | Make data store "JN Email log (customer.care inbox)": one row per new email with time, sender, subject, category, priority, booking number and the first lines. Test rows removed, it starts empty. |
-| Daily filing and digest | Done, test run verified | Scheduled task "Just Now inbox daily triage", every day 07:36 Asia/Dubai. The test run filed 77 of the remaining 87 messages and left the ten customer emails; every folder count matched the expected plan. It ends with a short Arabic digest of what needs the owner. |
+| Email log | Done | Make data store "JN Email log (customer.care inbox)": one row per new email with time, sender, subject, category, priority, booking number and the first lines. Test rows removed. It holds customer data: sender, subject and the first 300 characters of every email. It is stored in Make and limited to 2 MB, roughly 3,500 emails or about ten months; when it is full, logging and alerts stop, so empty it before then. |
+| Daily filing and digest | Done, test run verified | Scheduled task "Just Now inbox daily triage", every day 07:36 Asia/Dubai. The test run filed 77 of the remaining 87 messages and left the ten customer emails; every folder count matched the expected plan. It ends with a short Arabic digest of what needs the owner. The digest is the last message in the Claude conversation "Just Now inbox daily triage". It is not emailed: open that conversation each morning. If it says the Hostinger Email connector is not attached, nothing was filed that day. |
 | Lead register | Done | The 146 website booking-request emails parsed into a spreadsheet: Leads, Customers, Lost leads, Not in HubSpot, Bounced emails. Handed to the owner directly. It holds customer data, so it is not in this repository. |
 | Report | Done | `REPORT-booking-requests-2026-11-11.md`: counts and outcomes, no customer data. |
 | Mail authentication | Checked | SPF, DKIM and DMARC all pass on a real confirmation email. The DMARC policy itself is only `p=none` (section 6). |
@@ -60,13 +60,13 @@ Real Meta mail only comes from facebook.com, facebookmail.com, meta.com, whatsap
 6. **13 emails to customers bounced, all because of the customer's address:** two mistyped domains (gmail.cok, gmail.gom), eight addresses that do not exist or were refused (one is an obvious placeholder) and three full inboxes. None was rejected because of this domain. The website form accepts any text as an email address.
 7. **Meta billing.** "Payment declined, ads paused" notices for the ad account named "jn" (ID ending 8677) ten times from 22 September to 10 November, for "justnow22" (ending 0660) on 22 October, and a declined payment for "JN" (ending 6647) on 3 November. The emails give no amount and no reason.
 8. **WhatsApp.** Three message templates rejected on 3 and 9 November. The only reason given is the Commerce Policy.
-9. **TikTok.** The business login is tied to a phone number the company no longer has, so balance cannot be added. The support request of 27 October has no answer in this mailbox.
-10. **BookingKoala.** Their reply of 11 November: they will not load the configuration for us and offer a Zoom walkthrough. The trial-extension request is still with their developers. The question about which plan gives Google Calendar sync and Arabic texts was not answered.
+9. **TikTok.** The business login is tied to a phone number the company no longer has, and on 27 October the company wrote to TikTok support that it could not add balance. There is no answer from TikTok support in this mailbox. TikTok has sent 19 invoices since then, so check whether the problem still exists.
+10. **BookingKoala.** Their reply of 11 November: they will not load the configuration for us and offer a Zoom walkthrough. On 11 November, after the sort, they answered that 14 more trial days were added. The question about which plan gives Google Calendar sync and Arabic texts was not answered.
 11. **Google Play.** The developer account must declare trader or non-trader status by 1 February 2027, or the apps and the developer profile are removed.
 12. **Zoho Bigin** reported 90% of its 500-record limit on 22 October.
 13. **Phishing.** 15 phishing emails were sitting in the inbox and are now in Junk, next to the six Hostinger had already caught. Typical signs: sender on a school or unrelated domain, a 12 or 24 hour threat, a shortened link.
 14. **Security noise.** 36 Google "Security alert" emails for the company Gmail between 15 September and 9 November, and Microsoft password changes on 21 September. Worth one look at the list of connected apps and devices.
-15. **HubSpot.** 96 of the 129 customers in these emails are already in HubSpot. The other 33 were not added on purpose: the active Make scenario "Hubspot (On Contact Created) -> Facebook Conversions API for CRM" sends every new contact to Meta as a conversion, so a bulk import would distort ad optimisation. They are listed in the lead register.
+15. **HubSpot.** 96 of the 129 customers in these emails are already in HubSpot. The other 33 were not added on purpose: the active Make scenario "Hubspot (On Contact Created) -> Facebook Conversions API for CRM" sends new HubSpot contacts to Meta as leads, with some exceptions set in its filter, so a bulk import could distort ad optimisation. They are listed in the lead register.
 
 ## 5. What only you can do
 
@@ -83,7 +83,7 @@ Real Meta mail only comes from facebook.com, facebookmail.com, meta.com, whatsap
 
 - **DMARC.** The record is `v=DMARC1; p=none` with no report address, so a forged email in the company's name is not blocked. First step: add `rua=mailto:` an address you read. After two weeks of clean reports move to `p=quarantine`. Check first that every tool sending as @justnow.life is signed.
 - **Server-side filters.** Hostinger webmail can file mail the moment it arrives. Until then filing happens once a day through the scheduled task.
-- **Forwarding and auto-reply.** A short auto-reply ("for a faster answer write to us on WhatsApp +971 50 767 7282") would cover the hours before anyone reads the inbox.
+- **Forwarding and auto-reply.** A short auto-reply ("for a faster answer write to us on WhatsApp +971 50 767 7282") would cover the hours before anyone reads the inbox. Set it to skip mail from customer.care@justnow.life itself, otherwise the website's own notices are answered too.
 - **Other mailboxes, aliases, hosting, domain.** Not visible through the email connector.
 - **The website.** Not touched.
 
@@ -100,7 +100,9 @@ Real Meta mail only comes from facebook.com, facebookmail.com, meta.com, whatsap
 
 Identifiers: Hostinger webhook `01a1c9d9-9869-732b-aa26-5c562ae89acb`; Make team 1579313, hook 3051146, scenario 6991667, data store 198605, data structure 576435; scheduled task `trig_0131Va5py27rzYHpbeJgWfFQ` in session `session_01ESETHWs9wAdJkXgdTUmy5z`. The webhook URL and its signing secret are not stored in this repository.
 
-Running cost: the listener uses 6 Make operations per email, 7 when it alerts. At the current volume that is about 1,800 operations a month out of 20,000. The daily task is one short Claude run per day.
+Running cost: the listener uses 6 Make operations per email, 7 when it alerts, about 2,000 a month. **Check the Make balance now.** On 11 November the account had about 6,900 operations left until the cycle resets on 17 November, at a use of about 1,500 a day across all 17 scenarios, and automatic purchase is off. When the balance reaches zero Make pauses every scenario, this listener included. The daily task is one short Claude run per day.
+
+Alerts have no quiet hours: 18 of the 43 alerts the history would have raised fall between 22:00 and 07:00. Silence the "Just Now – Alerts" calendar at night on the phone if that is unwanted.
 
 ## 8. Files in this folder
 

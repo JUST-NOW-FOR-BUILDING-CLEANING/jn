@@ -47,12 +47,12 @@ OWNER_GMAIL = "justnow.cs@gmail.com"          # also the sender of BookingKoala 
 # ---------------------------------------------------------------- senders, by domain
 META = ("facebook.com", "facebookmail.com", "meta.com", "whatsapp.com", "instagram.com")
 TIKTOK = ("tiktok.com",)
-GOOGLE = ("google.com", "googlemail.com")
+GOOGLE = ("google.com",)      # googlemail.com is ordinary Gmail: people
 MICROSOFT = ("microsoft.com",)
 APPLE = ("apple.com",)
 TOOL_DOMAINS = (
     "bookingkoala.com", "ziina.com", "setmore.com", "respond.io", "hubspot.com", "hs-send.com",
-    "bigin.com", "zoho.com", "zohobookings.com", "hostinger.com", "make.com", "github.com",
+    "bigin.com", "zohobookings.com", "hostinger.com", "make.com", "github.com",
 )
 NEWSLETTER_DOMAINS = (
     "pushwoosh.com", "rapidr.io", "n8n.io", "wetracked.io", "uae-crif.com", "theaccountant.ae",
@@ -90,7 +90,7 @@ DSN_SUBJ = (r"^(undeliverable|undelivered mail|delivery status notification|mail
 # A subject that matches nothing is treated as a problem, so it is never hidden as routine.
 SEC_CODE = r"security code|use code|login code|verification code|confirm your email|verify your email"
 LOGIN_HELP = r"verification help"      # TikTok login codes; kept with the open TikTok access issue
-ALERT = (r"disabled|declined|rejected|restricted|suspended|no longer have access|not approved|couldn.t|could not|"
+ALERT = (r"disabled|declined|rejected|restricted|suspended|no longer have access|not approved|n.t approved|locked|couldn.t|could not|"
          r"unable to|fail|problem|issue with|flagged|violat|removed|unpublished|deactivat|expir|overdue|past due|"
          r"\bdue\b|unpaid|outstanding|action (is )?(required|needed)|at risk|paused|n.t running|not running|"
          r"not delivering|blocked|appeal|warning|limit reached|"
@@ -180,7 +180,7 @@ def classify(from_addr, subject, from_name=""):
         return "junk" if phishy(name, sl) else "bounce"
 
     # A reply to one of our booking emails is a customer, even from a company address.
-    if has(REPLY_TO_US, sl):
+    if has(REPLY_TO_US, sl) and a != OWNER_GMAIL:
         return "customer"
 
     # 3. Ad platforms, real domains only.
@@ -268,6 +268,8 @@ def listener(from_header, subject):
     # sender type
     if addr in (OWN, WEBSITE_FORM):
         sender = "OWN"
+    elif addr == OWNER_GMAIL:
+        sender = "OWNER"
     elif has(DAEMON_LOCAL, local) or has(DSN_SUBJ, s):
         sender = "DAEMON"
     elif has(AD_PLATFORM_DOM, dom):
@@ -276,8 +278,6 @@ def listener(from_header, subject):
         sender = "ADS"
     elif has(KNOWN_DOM, dom):
         sender = "VENDOR"
-    elif addr == OWNER_GMAIL:
-        sender = "OWNER"
     elif has(PHISHING_DOM, dom) or has(LOOKALIKE_DOM, dom):
         sender = "FAKE"
     else:
@@ -293,6 +293,8 @@ def listener(from_header, subject):
             cat = "TEST" if "test" in s else "CONFIRMATION_COPY"
     elif sender == "DAEMON":
         cat = "PHISHING" if phish else "BOUNCE"
+    elif sender == "OWNER":
+        cat = "OWNER_MAIL"
     elif has(REPLY_TO_US, s):
         cat = "COMPLAINT" if has(COMPLAINT, s) else "CUSTOMER_REPLY"
     elif sender == "ADS":
@@ -306,8 +308,6 @@ def listener(from_header, subject):
             cat = "AD_NOTICE" if has(ROUTINE, s) else "AD_OTHER"
     elif sender == "VENDOR":
         cat = "AUTOMATED"
-    elif sender == "OWNER":
-        cat = "OWNER_MAIL"
     elif sender == "FAKE" or phish:
         cat = "PHISHING"
     elif has(COMPLAINT, s):
@@ -350,12 +350,12 @@ def make_formulas():
     sender = chain([
         (f'2.addr = "{OWN}"', q("OWN")),
         (f'2.addr = "{WEBSITE_FORM}"', q("OWN")),
+        (f'2.addr = "{OWNER_GMAIL}"', q("OWNER")),
         (t(DAEMON_LOCAL, "2.local"), q("DAEMON")),
         (t(DSN_SUBJ, "2.s"), q("DAEMON")),
         (t(AD_PLATFORM_DOM, "2.dom"), q("ADS")),
         (t(GOOGLE_DOM, "2.dom"), chain([(t(GOOGLE_ADS_LOCAL, "2.local"), q("ADS"))], q("VENDOR"))),
         (t(KNOWN_DOM, "2.dom"), q("VENDOR")),
-        (f'2.addr = "{OWNER_GMAIL}"', q("OWNER")),
         (t(PHISHING_DOM, "2.dom"), q("FAKE")),
         (t(LOOKALIKE_DOM, "2.dom"), q("FAKE")),
     ], q("OTHER"))
@@ -375,10 +375,10 @@ def make_formulas():
     category = chain([
         ('7.sender = "OWN"', own),
         ('7.sender = "DAEMON"', chain([('7.phish = "yes"', q("PHISHING"))], q("BOUNCE"))),
+        ('7.sender = "OWNER"', q("OWNER_MAIL")),
         (t(REPLY_TO_US, "2.s"), chain([(t(COMPLAINT, "2.s"), q("COMPLAINT"))], q("CUSTOMER_REPLY"))),
         ('7.sender = "ADS"', ads),
         ('7.sender = "VENDOR"', q("AUTOMATED")),
-        ('7.sender = "OWNER"', q("OWNER_MAIL")),
         ('7.sender = "FAKE"', q("PHISHING")),
         ('7.phish = "yes"', q("PHISHING")),
         (t(COMPLAINT, "2.s"), q("COMPLAINT")),
