@@ -3,3 +3,7 @@ audit/out/
 # BookingKoala login session
 bk-state.json
 bookingkoala/automation/bkvars-log.json
+
+# Python bytecode
+__pycache__/
+*.pyc
