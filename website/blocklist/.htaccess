@@ -1,0 +1,4 @@
+# Deny direct web access to the blocklist data and code.
+<FilesMatch "\.(json|php)$">
+  Require all denied
+</FilesMatch>
