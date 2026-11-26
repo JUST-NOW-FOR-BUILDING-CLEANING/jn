@@ -3,9 +3,26 @@
   "blocked": [
     {
       "name": "Bassem Elhalfawy",
-      "phones": ["971504532529"],
-      "emails": ["basem.elhalfawy@gmail.com", "cartoonlover47@gmail.com"],
+      "phones": [
+        "971504532529"
+      ],
+      "emails": [
+        "basem.elhalfawy@gmail.com",
+        "cartoonlover47@gmail.com"
+      ],
       "reason": "Booked and cancelled 3 times (JN-147415 twice, JN-147681)",
+      "added": "2026-11-26",
+      "added_by": "owner"
+    },
+    {
+      "name": "Leah mores",
+      "phones": [
+        "971526938429"
+      ],
+      "emails": [
+        "moresleahmae@gmail.com"
+      ],
+      "reason": "Blocked by owner (booking JN-147717)",
       "added": "2026-11-26",
       "added_by": "owner"
     }
